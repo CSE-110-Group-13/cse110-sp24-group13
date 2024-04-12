@@ -1,4 +1,7 @@
-# dev-journal
+# Dev Journal:
+
+## How to Contribute: 
+We'll add more here as we learn more about the technologies we'll need for the project, but this normally is just getting the right extensions, language support, and software downloaded.
 
 ## Issue Workflow
 
