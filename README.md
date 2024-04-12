@@ -8,4 +8,5 @@
 - Create a slack/discord channel for that issue if there's more than 1 assigned and get to work
 - **Reach out got help** if you get stuck or too much gets on your plate. We can reassign your work or add more programmers
 
-  # You (We) got this !!!!
+## You got this!!!!
+## We got this!!!!
