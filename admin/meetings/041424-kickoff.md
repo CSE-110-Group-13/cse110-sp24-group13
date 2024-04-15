@@ -23,3 +23,11 @@ Topics discussed
 4. Judgement free zone
 - Selected branding image
 - Figured out intros for team page.
+
+Tasks
+- Record 10 second intro video - Everyone
+- Format intro videos for group video - Sarah and Video
+- Format team rules to markdown - Venkata
+- Complete team page - Zeyad
+
+
