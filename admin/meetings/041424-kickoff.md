@@ -27,10 +27,10 @@ Topics discussed
 - Figured out intros for team page.
 
 Tasks
-- Record 10 second intro video - Everyone
-- Format intro videos for group video - Sarah and Video
-- Format team working agreement to markdown - Venkata
-- Complete team page - Zeyad
+- Record 10 second intro video - Everyone by Morning of 4/15/2024
+- Format intro videos for group video - Sarah and Uliyaah by 4/15/2024
+- Format team working agreement to markdown - Venkata by 4/17/12
+- Complete team page - Zeyad 4/15/2024
 - Everyone turn in a copy of the Team Working Agreement by Wednesday 4/17/24
 
 
