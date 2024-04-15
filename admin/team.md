@@ -38,7 +38,7 @@ Welcome to the official team page for Good Draw! Here you'll find information ab
 
 4. **[Hoang Phan](https://github.com/hwaengfan)**
    - Role: [TBD]
-   - Bio: I love cycling, snowboarding, and exploring the world. My favorite programming language is Python
+   - Bio: I play guitar in my free time. I also arrange flowers and look at pinterest for fun :slightly_smiling_face:
    
 5. **[Jacqueline Huebner](https://github.com/jvhuebner)**
    - Role: [TBD]
