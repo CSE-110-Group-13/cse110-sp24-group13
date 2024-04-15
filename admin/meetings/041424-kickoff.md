@@ -3,6 +3,7 @@ Kickoff meeting. 4/14/2024
 Minutes taken by Rocky Hankin <br>
 Group 13, held remotely <br>
 Everyone was present <br>
+Notes taken by: Rocky Hankin
 
 Topics discussed
 1. Team page 
