@@ -1,16 +1,18 @@
 Kickoff meeting. 4/14/2024
 
 Minutes taken by Rocky Hankin <br>
-Group 13, held remotely <br>
+Group 13, held remotely on Discord <br>
 Everyone was present <br>
+Team Name: Good Draw <br>
 
 Topics discussed
 1. Team page 
 2. Team intro video 
 3. Branding, team name
 4. Other logistics for things due on 4/15
+5. Team Working Agreement
 
-- We chose to record 10 second introductions for each person where we'd mention our name, our age, our favorite card game
+- We chose to record 10 second introductions for each person where we'd mention our name and our favorite card game
 - Sarah and Uliyaah will work on the video
 - "Github Goblins," "Stranger Strings"
 - Max will sort out the github repo
