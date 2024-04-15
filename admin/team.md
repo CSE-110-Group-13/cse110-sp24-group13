@@ -1,6 +1,6 @@
 # Good Draw
 
-<img src="branching/Team Slack Logo.png" alt="Team Logo" width="200" height="200">
+<img src="branding/Team Slack Logo.png" alt="Team Logo" width="200" height="200">
 
 
 ---
