@@ -1,3 +1,6 @@
+# Group 13 - Good Draw
+[About the team!](/admin/team.md)
+
 # Dev Journal:
 
 ## Brief Description:  
