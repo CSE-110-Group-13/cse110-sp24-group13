@@ -1,5 +1,7 @@
 # Dev Journal:
 
+## Brief Description:  
+This should be a full-stack web app to serve as a journal for a web developer. More information about the project will be written as more instructions are given.
 ## How to Contribute: 
 We'll add more here as we learn more about the technologies we'll need for the project, but this normally is just getting the right extensions, language support, and software downloaded.
 
