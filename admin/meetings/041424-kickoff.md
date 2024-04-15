@@ -10,7 +10,7 @@ Topics discussed
 3. Branding, team name
 4. Other logistics for things due on 4/15
 
-- We chose to record 10 second introductions for each person where we'd mention our name, our age, our favorite piece of art
+- We chose to record 10 second introductions for each person where we'd mention our name, our age, our favorite card game
 - Sarah and Uliyaah will work on the video
 - "Github Goblins," "Stranger Strings"
 - Max will sort out the github repo
