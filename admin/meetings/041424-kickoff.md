@@ -29,7 +29,8 @@ Topics discussed
 Tasks
 - Record 10 second intro video - Everyone
 - Format intro videos for group video - Sarah and Video
-- Format team rules to markdown - Venkata
+- Format team working agreement to markdown - Venkata
 - Complete team page - Zeyad
+- Everyone turn in a copy of the Team Working Agreement by Wednesday 4/17/24
 
 
