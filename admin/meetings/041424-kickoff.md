@@ -4,6 +4,8 @@ Minutes taken by Rocky Hankin <br>
 Group 13, held remotely on Discord <br>
 Everyone was present <br>
 Team Name: Good Draw <br>
+Meeting started at: 6:46 PM <br>
+Meeting ended at: 7:48 PM <br>
 
 Topics discussed
 1. Team page 
