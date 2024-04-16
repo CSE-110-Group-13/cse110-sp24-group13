@@ -34,7 +34,7 @@ Welcome to the official team page for Good Draw! Here you'll find information ab
    
 3. **[Alessio Yu](https://github.com/aleyu0?tab=overview&from=2024-04-01&to=2024-04-14)**
    - Role: [TBD]
-   - Bio: [Brief bio or fun fact about the team member]
+   - Bio: I love cycling, snowboarding, and exploring the world. My favorite programming language is Python.
 
 4. **[Hoang Phan](https://github.com/hwaengfan)**
    - Role: [TBD]
