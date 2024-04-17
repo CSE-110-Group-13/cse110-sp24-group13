@@ -2,11 +2,11 @@
 
 ## Group Identification
 
-*Group # 13*
+**Group # 13**
 
-Team name: *Good Draw*
+Team name: **Good Draw**
 
-Instructor: *Professor Powell*
+Instructor: *Professor Powell**
 
 | Name | Email | Phone | Roles |
 |-----------------|-----------------|-----------------|-----------------|
