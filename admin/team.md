@@ -64,7 +64,7 @@ Welcome to the official team page for Good Draw! Here you'll find information ab
        - Role: [TBD]
        - Bio: I’m interested in all things involving creation! Mainly SWE, sewing, knitting, and pottery
    
-11. **[Venekata Komma](https://github.com/vkom56000)**
+11. **[Venkata Komma](https://github.com/vkom56000)**
        - Role: [TBD]
        - Bio: I enjoy watching movies and playing basketball. My favorite language to program in is C++
 
