@@ -6,7 +6,7 @@
 
 Team name: **Good Draw**
 
-Instructor: *Professor Powell**
+Instructor: **Professor Powell**
 
 | Name | Email | Phone | Roles |
 |-----------------|-----------------|-----------------|-----------------|
