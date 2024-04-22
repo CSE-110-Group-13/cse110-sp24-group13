@@ -12,7 +12,8 @@ Attendees:
 - Salman
 - Sarah
 - Uliyaah
-- vkom?
+- Venkata
+- Zeyaad
 
 ## Topics discussed
 - Poll before meeting
