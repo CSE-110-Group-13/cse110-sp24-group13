@@ -1,8 +1,9 @@
 # Warm-up project Briefing
 
-Meeting started: 6:00pm
-Meeting ended: 6:25pm
-Location: Remote (Discord)
+Meeting started: 6:00pm <br>
+Meeting ended: 6:25pm <br>
+Location: Remote (Discord) <br>
+Date: 4/21/2024 <br>
 Attendees:
 - Addy 
 - Alessio 
