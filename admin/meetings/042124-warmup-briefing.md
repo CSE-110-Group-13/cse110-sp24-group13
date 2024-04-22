@@ -36,7 +36,7 @@ Attendees:
 ## To-do
 * Check slack and coordinate tasks for each part of the project
 * Use the slack channels to communicate your progress
-** Keep your commits small, pull and commut frequently!!
+* **Keep your commits small, pull and commut frequently!!**
 
 ## If in doubt
 - Discuss in the Slack channels, or
