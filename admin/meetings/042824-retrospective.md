@@ -30,7 +30,7 @@ Date: 4/28/2024
   - Next time we will try to have pair and trios for programming. 
 
 
-  **Aditional topics discussed **  
+  **Aditional topics discussed**  
   - We ranked people based on their skill level in order to create specific teams going forward. 
   - Discussed some ideas for dev journal. 
   - Discussed development process rules which can be found in the retrospective board. 
