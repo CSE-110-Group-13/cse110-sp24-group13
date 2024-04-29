@@ -27,7 +27,7 @@ Date: 4/28/2024
   
 ## Topics Discussed
 
-- [Link to Retrospective](https://miro.com/app/board/uXjVKOOTGvE=/?share_link_id=234250682131) 
+- [Link to Retrospective Board](https://miro.com/app/board/uXjVKOOTGvE=/?share_link_id=234250682131) 
 
 - **Key Take Aways of Retrospective:** 
   - Everyone was very dependable and stepped up to finish the tasks at hand. 
