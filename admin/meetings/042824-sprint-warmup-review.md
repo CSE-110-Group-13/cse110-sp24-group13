@@ -7,6 +7,13 @@ Meeting ended: [actual end time]
 
 ## Attendees:
 - [People]
+- Addy 
+- Alessio
+- Maxim
+- Sarah
+- Hoang
+- Jacqueline
+- Zeyad 
 
 ## Agenda:
 Team presentations: (~ 3 minutes per person)
@@ -15,3 +22,15 @@ Team presentations: (~ 3 minutes per person)
 
 ## Meeting Notes:
 - [What we discussed]
+- 
+
+  Team 3: 
+- Html and buttons-maxim
+- fixed the initial java script numbers for calenders salman
+- Focused on styling the page CSS alessio
+- Implemented base calender and bug fixes. Adding delete and edit buttons - addy
+- The calender automatically figures out what month its on and hover features for the day - zeyad
+
+- 
+
+  
