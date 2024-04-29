@@ -2,18 +2,21 @@
 
 ## Date and Location
 April 28 2024 @5:30pm on Discord
-Meeting began: [actual start time]
-Meeting ended: [actual end time]
+Meeting began: 5:30 pm
+Meeting ended: 5:45pm
 
 ## Attendees:
-- [People]
 - Addy 
 - Alessio
 - Maxim
+- Salman
+- Hoang
+- Uliyaah 
 - Sarah
 - Hoang
 - Jacqueline
-- Zeyad 
+- Zeyad
+- Venkata 
 
 ## Agenda:
 Team presentations: (~ 3 minutes per person)
@@ -21,16 +24,21 @@ Team presentations: (~ 3 minutes per person)
 - we will not discuss the process and improvements since that is the purpose for the retrospective review
 
 ## Meeting Notes:
-- [What we discussed]
-- 
 
-  Team 3: 
-- Html and buttons-maxim
-- fixed the initial java script numbers for calenders salman
-- Focused on styling the page CSS alessio
-- Implemented base calender and bug fixes. Adding delete and edit buttons - addy
-- The calender automatically figures out what month its on and hover features for the day - zeyad
+- **Team 2(Task List):**
+  - Feature of adding buttons to the specific day - Venkata
+  - Strike through feature and helped with java script and html - Hoang
+  - Set up initial script to read from json file and create tasklist - Sarah
+  - Worked on CSS file - Rocky
+  - Helped on CSS file and worked on additional features of adding new tasks overall - Uliyaah 
 
-- 
+- **Team 3 (Calender):**
+  - Html, buttons and google translate feeature - Maxim
+  - Fixed the initial java script numbers for calender - Salman
+  - Focused on styling the page CSS - Alessio
+  - Implemented base calender and bug fixes. Adding delete and edit buttons - Addy
+  - The calender automatically figures out what month its on and hover features for the day - Zeyad
+
+
 
   
