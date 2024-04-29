@@ -38,25 +38,13 @@ Date: 4/28/2024
   
 
 ## Alocated Teams: 
-**UI:**
-   - Uliyaah 
-   - Zeyad 
-   - Maxim 
+**UI:** Uliyaah, Zeyad, Maxim 
 
- **Modular 1:** 
-    - Alessio
-    - Rocky
-    - Venkata
+ **Modular 1:** Alessio, Rocky, Venkata
   
-  **Modular 2:** 
-    - Addy
-    - Jacqueline 
-    - Sarah 
+  **Modular 2:**  Addy, Jacqueline, Sarah 
 
-  **Back End:**
-    - Hoang
-    - Salman
-    - Maxim 
+  **Back End:** Hoang, Salman, Maxim 
   
 
   
