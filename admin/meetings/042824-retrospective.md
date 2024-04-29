@@ -23,10 +23,9 @@ Date: 4/28/2024
 
 ## Agenda 
 - Each team member will follow the retrospective template and fill out the necessary sections.
-- We will as a group reflect upon what everyone listed and try to improve our action plan going forward.
+- We as a group will reflect upon what everyone listed and try to improve our action plan going forward.
   
 ## Topics Discussed
-
 
 - [Link to Retrospective](https://miro.com/app/board/uXjVKOOTGvE=/?share_link_id=234250682131) 
 
