@@ -55,8 +55,8 @@ Date: 4/28/2024
 
 ## To-Do: 
 - Create a slack channel for each team
-- Everyone think of some features they would like to propose to the team. 
-- Conduct a poll on features we would like to implement either via slack or in person.
+- Everyone think of some features they would like to propose to the team. (by Tuesday lecture)
+- Conduct a poll on features we would like to implement either via slack or in person. (after Tuesday's lecure)
   
 
   
