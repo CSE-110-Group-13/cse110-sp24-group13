@@ -23,14 +23,14 @@ Date: 4/28/2024
 
 - [Link to Retrospective](https://miro.com/app/board/uXjVKOOTGvE=/) 
 
-- **Key Take Aways of Retrospective** 
+- **Key Take Aways of Retrospective:** 
   - Everyone was very dependable and stepped up to finish the tasks at hand. 
   - Lack of experience and task assignment were some factors holding us back. 
   - Focus more on the ground work preperation before coding and testing code are things we could do differently.
   - Next time we will try to have pair and trios for programming. 
 
 
-- **Aditional topics discussed**  
+- **Aditional topics discussed:**  
   - We ranked people based on their skill level in order to create specific teams going forward.
   - Discussed a tenative design process going forward. 
   - Discussed some ideas for dev journal. 
