@@ -31,20 +31,21 @@ Date: 4/28/2024
 
 
   **Aditional topics discussed**  
-  - We ranked people based on their skill level in order to create specific teams going forward. 
+  - We ranked people based on their skill level in order to create specific teams going forward.
+  - Discussed a tenative design process going forward. 
   - Discussed some ideas for dev journal. 
   - Discussed development process rules which can be found in the retrospective board. 
 
   
 
-## Alocated Teams: 
-- **UI: ** Uliyaah, Zeyad, Maxim 
+## Assigned Teams: 
+- **UI:** Uliyaah, Zeyad, Maxim 
 
-- **Modular 1: ** Alessio, Rocky, Venkata
+- **Modular 1:** Alessio, Rocky, Venkata
   
-- **Modular 2: **  Addy, Jacqueline, Sarah 
+- **Modular 2:**  Addy, Jacqueline, Sarah 
 
-- **Back End: ** Hoang, Salman, Maxim 
+- **Back End:** Hoang, Salman, Maxim 
   
 
   
