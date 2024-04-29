@@ -39,13 +39,18 @@ Date: 4/28/2024
   
 
 ## Assigned Teams: 
-- **UI:** Uliyaah, Zeyad, Maxim 
+- **UI:**  Uliyaah, Zeyad, Maxim 
 
-- **Modular 1:** Alessio, Rocky, Venkata
+- **Modular 1:**  Alessio, Rocky, Venkata
   
 - **Modular 2:**  Addy, Jacqueline, Sarah 
 
-- **Back End:** Hoang, Salman, Maxim 
+- **Back End:**  Hoang, Salman, Maxim
+
+## To-Do: 
+- Create a slack channel for each team
+- Everyone think of some features they would like to propose to the team. 
+- Conduct a poll on features we would like to implement either via slack or in person.
   
 
   
