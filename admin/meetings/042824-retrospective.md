@@ -1,8 +1,11 @@
 ## Retrospective 
 
 Meeting Started: 5:45 PM
+
 Meeting Ended: 6:30 PM 
+
 Location: Remote(Discord)
+
 Date: 4/28/2024
 
 ## Atendees: 
