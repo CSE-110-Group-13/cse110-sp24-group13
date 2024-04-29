@@ -2,8 +2,11 @@
 
 ## Date and Location
 April 28 2024 @5:30pm on Discord
+
 Meeting began: 5:30 pm
+
 Meeting ended: 5:45pm
+
 
 ## Attendees:
 - Addy 
