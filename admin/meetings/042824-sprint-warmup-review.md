@@ -35,12 +35,12 @@ Team presentations: (~ 3 minutes per person)
   - Worked on CSS file for styling- Rocky
   - Helped on CSS file and worked on additional features of adding new tasks overall - Uliyaah 
 
-- **Team 3 (Calender):**
-  - Html, buttons and google translate feeature - Maxim
-  - Fixed the initial java script numbers for calender - Salman
+- **Team 3 (Calendar):**
+  - Html, buttons and google translate feature - Maxim
+  - Fixed the initial java script numbers for calendar - Salman
   - Focused on styling the page, CSS - Alessio
-  - Implemented base calender and bug fixes. Adding delete and edit buttons - Addy
-  - Implemented the feature of the calender automatically figuring out what month it is and hover features for the day - Zeyad
+  - Implemented base calendar and bug fixes. Adding delete and edit buttons - Addy
+  - Implemented the feature of the calendar automatically figuring out what month it is and hover features for the day - Zeyad
 
 
 
