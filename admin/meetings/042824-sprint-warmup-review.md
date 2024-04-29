@@ -28,16 +28,16 @@ Team presentations: (~ 3 minutes per person)
 - **Team 2(Task List):**
   - Feature of adding buttons to the specific day - Venkata
   - Strike through feature and helped with java script and html - Hoang
-  - Set up initial script to read from json file and create tasklist - Sarah
-  - Worked on CSS file - Rocky
+  - Set up initial script to read from json file and HTML - Sarah
+  - Worked on CSS file for styling- Rocky
   - Helped on CSS file and worked on additional features of adding new tasks overall - Uliyaah 
 
 - **Team 3 (Calender):**
   - Html, buttons and google translate feeature - Maxim
   - Fixed the initial java script numbers for calender - Salman
-  - Focused on styling the page CSS - Alessio
+  - Focused on styling the page, CSS - Alessio
   - Implemented base calender and bug fixes. Adding delete and edit buttons - Addy
-  - The calender automatically figures out what month its on and hover features for the day - Zeyad
+  - Implemented the feature of the calender automatically figuring out what month it is and hover features for the day - Zeyad
 
 
 
