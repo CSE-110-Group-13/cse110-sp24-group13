@@ -48,7 +48,11 @@ Team presentations: (~ 3 minutes per person)
   - Task List received some neat styling and an add task button for each day as well as a translation option!
   - Calendar has color coordinated tasks, a delete and edit button, and can display a full year!
 <img width="1452" alt="image" src="https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/a4936052-4b83-47d2-a0f6-df780ab6aea7">
+<img width="1043" alt="image" src="https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/48bd1088-489d-4854-a873-795bf5ba214b">
+
 <img width="1362" alt="image" src="https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/3c56adf1-4b3d-4974-9833-ff2243636c43">
+<img width="1470" alt="image" src="https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/eb23658e-94b1-4a01-b121-d6c31159aeab">
+
 
 
 
