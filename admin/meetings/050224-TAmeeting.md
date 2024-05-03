@@ -25,10 +25,10 @@ Meeting ended: 8:30 pm
   - the TAs will conduct interviews with everyone and everyone will be graded
  
 ## Action Items:
--[] Invest more time in planning tools like Miro boards
--[]Make sure to have clear documentation for the upcoming project
--[]Schedule project pitch meeting with Jash (can propose alternative days/times if necessary)
--[]Continue brainstorming project ideas and finalize scope for pitch meeting
+-[ ] Invest more time in planning tools like Miro boards
+-[ ]Make sure to have clear documentation for the upcoming project
+-[ ]Schedule project pitch meeting with Jash (can propose alternative days/times if necessary)
+-[ ]Continue brainstorming project ideas and finalize scope for pitch meeting
 
 ---
 
