@@ -1,7 +1,7 @@
 # Decisions: 
 
 
-## ** Have our files displayed in list view for the UI **
+## **Have our files displayed in list view for the UI**
 
 ## Context
 
@@ -15,7 +15,7 @@
 
   We decided it was best to go with the list view since a majority of our files would be text files. Moreover, it is easier to implement and more efficient than a window view. 
 
-## *Have 
+
 
 
 
