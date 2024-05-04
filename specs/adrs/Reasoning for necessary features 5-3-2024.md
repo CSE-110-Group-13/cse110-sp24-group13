@@ -8,6 +8,8 @@ The markdown editor will make the app easy to use and clean.
 
 The tags and priority are necessary to make the entries sortable and searchable in convenient ways.
 
+The calendar is also necessary for organizational use <br>
+
 The following features were deemed desirable
 1. Customizable template
 2. Progress bar for tasks
@@ -19,3 +21,4 @@ The following features were deemed beyond
 4. Ability to have LaTeX formatting
 5. Ability to set goals and mark as done
 6. Git integration
+7. Extension for search specific journals
