@@ -1,4 +1,4 @@
-#Decisions: 
+# Decisions: 
 
 
 # Have our files displayed in list view for the UI
