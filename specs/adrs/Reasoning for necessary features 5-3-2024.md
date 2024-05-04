@@ -8,13 +8,13 @@ The markdown editor will make the app easy to use and clean.
 
 The tags and priority are necessary to make the entries sortable and searchable in convenient ways.
 
-The calendar is also necessary for organizational use <br>
+The calendar is also necessary for organizational use <br> <br>
 
-The following features were deemed desirable
+The following features were deemed desirable. Things very good to implement and good for functionality but not strictly necessary.
 1. Customizable template
 2. Progress bar for tasks
 
-The following features were deemed beyond
+The following features were deemed beyond. Not at all necessary to functionality, but would be nice to have.
 1. Ability to search journals by keywords
 2. Ability to pin journals at the top
 3. Ability to categorize journal
