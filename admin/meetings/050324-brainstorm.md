@@ -40,5 +40,4 @@ Meeting ended: 7:05 pm
 - ADR group: Finish ADR documenting
 - Roadmap group: Finish Roadmap
 - Diagram group: Finish diagrams
-- Sarah: Do the wireframs
--—
+- Sarah: Do the wireframes
