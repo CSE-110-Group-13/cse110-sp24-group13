@@ -29,4 +29,5 @@ Meeting ended: 7:24 PM
 - TA meetings starting from next week will be held in-person @ 4:40 outside the lecture hall. 
 
 -—
+
 If you have any questions, please mention them in the #General, on Slack Alessio, Maxim, or Addy. 
