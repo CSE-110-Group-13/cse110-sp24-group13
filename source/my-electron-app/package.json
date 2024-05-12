@@ -1,0 +1,14 @@
+{
+  "name": "commit",
+  "version": "1.0.0",
+  "description": "placeholder text",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Good Draw",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.3"
+  }
+}
