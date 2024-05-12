@@ -14,7 +14,7 @@
 5. Use a spacing of 4
 6. Avoid super-long lines, break into multiple lines if necessary
     - Max line length = Col 80 on VSCode
-
+![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/594e2494-ceb1-4990-9a12-43e5a04ecf5e)
 7. Avoid being super-abstract and try not to do too much in one function
     - The more complicated the function, the more it can be broken down
 8. Try to create functions that can be used in multiple occasions
@@ -49,3 +49,6 @@
     - Once we have a basic skeleton, we add E2E based on what features are added
     - Then E2E runs automatically for each PR
     - It will have to be updated as the actual site changes, so the tests are current
+
+### Diagram:
+![phase1Diagram](https://github.com/CSE-110-Group-13/cse110-sp24-group13/blob/main/admin/cipipeline/phase1.drawio.png)
