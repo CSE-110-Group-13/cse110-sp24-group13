@@ -20,4 +20,4 @@ https://marketplace.visualstudio.com/items?itemName=crystal-spider.jsdoc-generat
 
 It can automatically generate function documentation from VSCode.
 
-For code styling we looked into using ESlint, but it's more complicated than the purposes we need which are just basic code styling which can be done with proper VSCode settings. The rules we outline can be found in our file [pipeline.md](../admin/cipipeline/phase1.md).
+For code styling we looked into using ESlint, but it's more complicated than the purposes we need which are just basic code styling which can be done with proper VSCode settings. The rules we outlined can be found in our file [pipeline.md](../admin/cipipeline/phase1.md).
