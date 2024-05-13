@@ -11,4 +11,4 @@ jobs: # the things being executed
         run: cd /source/my-electron-app/
         run: npm install
       - name: Unit Test
-        run: npm test source/my-electron-app/calendar.test.js # the actual testing line
+        run: npm test ./calendar.test.js # the actual testing line
