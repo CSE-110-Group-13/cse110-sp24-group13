@@ -11,7 +11,7 @@
     - Follow the same for HTML attributes, id, and class names
 3. Use logical and descriptive function names
 4. useCamelCase
-5. Use a spacing of 4
+5. Use a spacing of 2
 6. Avoid super-long lines, break into multiple lines if necessary
     - Max line length = Col 80 on VSCode
 ![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/594e2494-ceb1-4990-9a12-43e5a04ecf5e)
