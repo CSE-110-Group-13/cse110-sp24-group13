@@ -2,7 +2,7 @@
   "name": "dev-journal-app",
   "version": "1.0.0",
   "description": "webapp for dev journal",
-  "main": "main.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "jest --runInBand"

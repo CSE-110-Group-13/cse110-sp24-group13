@@ -2,10 +2,8 @@
 document.addEventListener("DOMContentLoaded", (event) => {
   const button = document.querySelector('button');
   button.addEventListener('click', () => {
-    alert("This is the calendar page!");
-
-    // Calls the async function and should print out Hello World!
-    makeApiRequest().then(data => console.log(data));
+    // Calls the async function and should alert Hello World!
+    makeApiRequest().then(data => alert(data));
   });
 });
 
