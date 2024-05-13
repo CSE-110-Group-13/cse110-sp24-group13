@@ -6,7 +6,7 @@ Accepted
 
 # Context
 
-We looked at the different options for unit testing and researched the pros and cons for them. 
+We looked at the different options for unit testing, including Jest, Tape, Ava, Cypress, Mocha/Chai, and researched the pros and cons for them. 
 
 # Decisions 
 
