@@ -7,6 +7,8 @@ jobs: # the things being executed
     runs-on: ubuntu-latest # which device on Github's server that you are running the Actions on
     steps:
       - uses: actions/checkout@v4 # using version 4 of Actions
+        with:
+            path: source/my-electron-app
       - name: Switch CD
         run: cd ./source/my-electron-app/
       - name: Install Dependencies
