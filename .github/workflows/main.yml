@@ -8,10 +8,13 @@ jobs: # the things being executed
     steps:
       - uses: actions/checkout@v4 # using version 4 of Actions
         with:
-            path: source/my-electron-app
-      - name: Switch CD
-        run: cd ./source/my-electron-app/
-      - name: Install Dependencies
-        run: npm install
-      - name: Unit Test
-        run: npm test ./calendar.test.js # the actual testing line
+            path: source
+      - name: Print PWD
+        run: ls
+          
+      # - name: Switch CD
+      #   run: cd ./source/my-electron-app/
+      # - name: Install Dependencies
+      #   run: npm install
+      # - name: Unit Test
+      #   run: npm test ./calendar.test.js # the actual testing line
