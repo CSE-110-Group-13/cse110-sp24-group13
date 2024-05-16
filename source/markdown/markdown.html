@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Converter</title>
+  <link rel="stylesheet" href="markdown.css">
+</head>
+<body>
+  <div id="content">
+    <h1>Testing page for convert markdown to html</h1>
+    <a href="https://github.com/markedjs/marked" target="_blank">Link to documentation</a>
+    <form id="markdownForm">
+      <textarea id="markdownInput" placeholder="Enter Markdown text" rows="6"></textarea>
+      <button type="submit" id="convertButton">Convert</button>
+    </form>
+    <div id="display-markdown"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="markdown.js"></script>
+</body>
+</html>
