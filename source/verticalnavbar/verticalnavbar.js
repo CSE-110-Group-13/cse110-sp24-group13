@@ -19,6 +19,10 @@ class VerticalNavbar extends HTMLElement {
         width: 20%;
         background-color: #F8F8F8;
       }
+
+      #verticalNavbar.close {
+        display: none;
+      }
       
       nav {
         box-sizing: border-box;
@@ -52,6 +56,11 @@ class VerticalNavbar extends HTMLElement {
       
       #settingsAnchor {
         padding-top: 7em;
+      }
+
+      #toggleButton {
+        background-color: black;
+        cursor: pointer;
       }
     `;
 
@@ -134,6 +143,18 @@ class VerticalNavbar extends HTMLElement {
     navbar.appendChild(anchorToSettings);
 
     this.shadowRoot.appendChild(styles);
+
+    // Create toggle button
+    const toggleButton = document.createElement('button');
+    toggleButton.id = "toggleButton";
+
+    // Add event listener to open and close navbar
+    toggleButton.addEventListener("click", () => {
+      navbarContainer.classList.toggle("close");
+    });
+
+    // Append toggle button to navbar
+    this.shadowRoot.appendChild(toggleButton);
   }
 }
 
