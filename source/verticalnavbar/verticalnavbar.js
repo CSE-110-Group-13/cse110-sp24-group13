@@ -26,6 +26,8 @@ class VerticalNavbar extends HTMLElement {
     const anchorToLibrary = document.createElement("a");
     const anchorToCalendar = document.createElement("a");
     const anchorToTaskList = document.createElement("a");
+    const anchorToSettings = document.createElement("a");
+    anchorToSettings.id = "settingsAnchor";
 
     // Add href property to anchors
     anchorToHome.href = "../homepage/index.html";
@@ -33,13 +35,47 @@ class VerticalNavbar extends HTMLElement {
     anchorToLibrary.href = "../library/library.html";
     anchorToCalendar.href = "../calendar/calendar.html";
     anchorToTaskList.href = "../tasklist/tasklist.html";
+    anchorToSettings.href = "../settings/settings.html";
+
+    // Create image elements
+    const homeImg = document.createElement('img');
+    homeImg.src = '../verticalnavbar/icons/house-solid.svg';
+    anchorToHome.appendChild(homeImg);
+    const favoritesImg = document.createElement('img');
+    favoritesImg.src = '../verticalnavbar/icons/star-solid.svg';
+    anchorToFavorites.appendChild(favoritesImg);
+    const libraryImg = document.createElement('img');
+    libraryImg.src = '../verticalnavbar/icons/book-solid.svg';
+    anchorToLibrary.appendChild(libraryImg);
+    const calendarImg = document.createElement('img');
+    calendarImg.src = '../verticalnavbar/icons/calendar-days-solid.svg';
+    anchorToCalendar.appendChild(calendarImg);
+    const taskListImg = document.createElement('img');
+    taskListImg.src = '../verticalnavbar/icons/list-check-solid.svg';
+    anchorToTaskList.appendChild(taskListImg);
+    const settingsImg = document.createElement('img');
+    settingsImg.src = '../verticalnavbar/icons/gear-solid.svg';
+    anchorToSettings.appendChild(settingsImg);
 
     // Add text content to anchors
-    anchorToHome.textContent = "Home";
-    anchorToFavorites.textContent = "Favorites";
-    anchorToLibrary.textContent = "Library";
-    anchorToCalendar.textContent = "Calendar";
-    anchorToTaskList.textContent = "Task List";
+    const homeLabel = document.createElement('span');
+    homeLabel.textContent = "Home"
+    anchorToHome.appendChild(homeLabel);
+    const favoritesLabel = document.createElement('span');
+    favoritesLabel.textContent = "Favorites";
+    anchorToFavorites.appendChild(favoritesLabel);
+    const libraryLabel = document.createElement('span');
+    libraryLabel.textContent = "Library";
+    anchorToLibrary.appendChild(libraryLabel);
+    const calendarLabel = document.createElement('span');
+    calendarLabel.textContent = "Calendar";
+    anchorToCalendar.appendChild(calendarLabel);
+    const taskListLabel = document.createElement('span');
+    taskListLabel.textContent = "Task List";
+    anchorToTaskList.appendChild(taskListLabel);
+    const settingsLabel = document.createElement('span');
+    settingsLabel.textContent = "Settings";
+    anchorToSettings.appendChild(settingsLabel);
 
     // Append anchors to navbar
     navbar.appendChild(anchorToHome);
@@ -47,6 +83,7 @@ class VerticalNavbar extends HTMLElement {
     navbar.appendChild(anchorToLibrary);
     navbar.appendChild(anchorToCalendar);
     navbar.appendChild(anchorToTaskList);
+    navbar.appendChild(anchorToSettings);
   }
 }
 
