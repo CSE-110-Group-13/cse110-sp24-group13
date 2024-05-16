@@ -18,10 +18,12 @@ class VerticalNavbar extends HTMLElement {
         height: 100vh;
         width: 20%;
         background-color: #F8F8F8;
+        transition: transform 0.5s ease-in-out;
+        transform: translateX(0%);
       }
 
       #verticalNavbar.close {
-        display: none;
+        transform: translateX(-100%);
       }
       
       nav {
@@ -65,6 +67,7 @@ class VerticalNavbar extends HTMLElement {
         position: fixed;
         top: 50%;
         left: 19%;
+        transition: left 0.5s ease-in-out;
       }
     `;
 
