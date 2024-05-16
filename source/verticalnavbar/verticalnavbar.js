@@ -8,10 +8,52 @@ class VerticalNavbar extends HTMLElement {
 
   connectedCallback() {
     // Link to Stylesheet
-    const linkToStylesheet = document.createElement('link');
-    linkToStylesheet.rel = 'stylesheet';
-    linkToStylesheet.href = '../verticalnavbar/verticalnavbar.css';
-    this.shadowRoot.appendChild(linkToStylesheet);
+    // const linkToStylesheet = document.createElement('link');
+    // linkToStylesheet.rel = 'stylesheet';
+    // linkToStylesheet.href = '../verticalnavbar/verticalnavbar.css';
+    // this.shadowRoot.appendChild(linkToStylesheet);
+    const styles = document.createElement('style');
+    styles.innerHTML = `
+      #verticalNavbar {
+        height: 100vh;
+        width: 20%;
+        background-color: #F8F8F8;
+      }
+      
+      nav {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        gap: 3em;
+        padding-top: 5em;
+        margin: 0;
+      }
+      
+      a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        gap: 0.2em;
+        font-family: 'Varela Round', sans-serif;
+      }
+      
+      a img {
+        width: 2em;
+        height: auto;
+      }
+      
+      a span {
+        color: #000;
+        font-size: 1em;
+        font-family: 'Varela Round';
+      }
+      
+      #settingsAnchor {
+        padding-top: 7em;
+      }
+    `;
 
     // Attach element to shadow dom
     const navbarContainer = document.createElement("div");
@@ -84,6 +126,8 @@ class VerticalNavbar extends HTMLElement {
     navbar.appendChild(anchorToCalendar);
     navbar.appendChild(anchorToTaskList);
     navbar.appendChild(anchorToSettings);
+
+    this.shadowRoot.appendChild(styles);
   }
 }
 
