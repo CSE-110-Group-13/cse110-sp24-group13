@@ -59,8 +59,12 @@ class VerticalNavbar extends HTMLElement {
       }
 
       #toggleButton {
-        background-color: black;
         cursor: pointer;
+        color: black;
+        border-radius: 5px;
+        position: fixed;
+        top: 50%;
+        left: 19%;
       }
     `;
 
@@ -147,10 +151,22 @@ class VerticalNavbar extends HTMLElement {
     // Create toggle button
     const toggleButton = document.createElement('button');
     toggleButton.id = "toggleButton";
+    toggleButton.textContent = '<';
+    
 
     // Add event listener to open and close navbar
     toggleButton.addEventListener("click", () => {
       navbarContainer.classList.toggle("close");
+
+      // update symbol and position 
+      if (navbarContainer.classList.contains("close")) {
+        toggleButton.textContent = '>';
+        toggleButton.style.left = '0%';
+      }
+      else {
+        toggleButton.textContent = '<';
+        toggleButton.style.left = '18%';
+      }
     });
 
     // Append toggle button to navbar
