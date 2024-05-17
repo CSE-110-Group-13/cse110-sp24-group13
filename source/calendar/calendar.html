@@ -1,17 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="calendar.css">
 </head>
 <body>
-  <nav>
+    <nav>
     <a href="../markdown/markdown.html">Markdown</a>
     <a href="../calendar/calendar.html">Calendar</a>
     <a href="../homepage/index.html">Homepage</a>
-  </nav>
+    </nav>
 
-  <script src="calendar.js"></script>
+
+    <div class="container">
+        <header>
+            <h1>Calendar</h1>
+            <div class="controls">
+                <button id="prev-month">&lt;</button>
+                <select id="month-select"></select>
+                <input type="number" id="year-input" min="1900" max="2100">
+                <button id="next-month">&gt;</button>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search" placeholder="Search tasks...">
+            </div>
+            <button id="create-task-btn">Create Task</button>
+        </header>
+        <div id="calendar">
+            <div class="week-days">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div id="calendar-days" class="days-grid"></div>
+        </div>
+    </div>
+
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Task</h2>
+            <form id="task-form">
+                <label for="task-date">Date:</label>
+                <input type="date" id="task-date" required>
+                <label for="task-title">Title:</label>
+                <input type="text" id="task-title" required>
+                <label for="task-description" class="description-label">Description:</label>
+                <textarea id="task-description" required></textarea>
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="calendar.js"></script>
 </body>
 </html>
