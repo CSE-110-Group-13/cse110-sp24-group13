@@ -6,7 +6,8 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    width: 80%;
+    height: 80vh;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -61,6 +62,7 @@ header h1 {
 #calendar {
     display: grid;
     gap: 10px;
+    flex-grow: 1;
 }
 
 .week-days {
@@ -80,18 +82,46 @@ header h1 {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
+    position: relative;
+    height: 65vh;
 }
 
 .calendar-day {
-    padding: 20px;
+    padding: 1px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     position: relative;
+    height: 90%;
+
+}
+
+.calendar-day span {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: black;
+}
+
+.current-day::before {
+    content: '';
+    position: absolute;
+    width: 25px; 
+    height: 25px; 
+    background-color: #0AB73B;
+    border-radius: 75%;
+    top: 2px;
+    right: 1.5px;
+}
+
+.current-day span {
+    color: white;
 }
 
 .calendar-day .tasks {
     margin-top: 10px;
 }
+
+
 
 #task-modal {
     display: none;

@@ -122,8 +122,20 @@ document.addEventListener("DOMContentLoaded", () => {
             dayElement.className = "calendar-day";
             dayElement.setAttribute("data-date", date.toISOString().split("T")[0]);
             dayElement.innerHTML = `<span>${day}</span><div class="tasks"></div>`;
+            // Check if the date is equal to today's date
+            if (isToday(date)) {
+                dayElement.classList.add("current-day");
+            }
             calendarDays.appendChild(dayElement);
         }
+    }
+
+    // Find current date
+    function isToday(date) {
+        const today = new Date();
+        return date.getDate() === today.getDate() 
+            && date.getMonth() === today.getMonth() 
+            && date.getFullYear() === today.getFullYear();
     }
 
     generateCalendar(currentMonth, currentYear);
