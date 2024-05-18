@@ -12,18 +12,21 @@ class VerticalNavbar extends HTMLElement {
     // linkToStylesheet.rel = 'stylesheet';
     // linkToStylesheet.href = '../verticalnavbar/verticalnavbar.css';
     // this.shadowRoot.appendChild(linkToStylesheet);
-    const styles = document.createElement('style');
+    const styles = document.createElement("style");
     styles.innerHTML = `
       #verticalNavbar {
         height: 100vh;
-        width: 20%;
+        width: 10vw;
         background-color: #F8F8F8;
         transition: transform 0.5s ease-in-out;
-        transform: translateX(0%);
+        transform: translateX(0vw);
+        box-shadow: 0.4em 0em 0.5em rgba(0, 0, 0, 0.2); 
+        border-top-right-radius: 0.8em;
+        border-bottom-right-radius: 0.8em;
       }
 
       #verticalNavbar.close {
-        transform: translateX(-100%);
+        transform: translateX(-7.5vw);
       }
       
       nav {
@@ -32,7 +35,7 @@ class VerticalNavbar extends HTMLElement {
         flex-direction: column;
         height: 100%;
         gap: 3em;
-        padding-top: 5em;
+        padding-top: 1.5em;
         margin: 0;
       }
       
@@ -56,18 +59,35 @@ class VerticalNavbar extends HTMLElement {
         font-family: 'Varela Round';
       }
       
-      #settingsAnchor {
+      #anchorToSettings {
         padding-top: 7em;
       }
 
+      #toggleButtonContainer {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+      }
+
       #toggleButton {
+        width: 100%;
+        text-align: right;
         cursor: pointer;
-        color: black;
-        border-radius: 5px;
-        position: fixed;
-        top: 50%;
-        left: 19%;
+        color: #7C7C7C;
+        font-weight: bold;
+        font-size: 2em;
+        padding: 0;
+        margin: 0;
+        padding-right: 0.45em;
+        border: none;
+        background: none;
+        box-sizing: border-box;
         transition: left 0.5s ease-in-out;
+      }
+
+      #toggleButton svg {
+        width: 0.5em;
+        height: auto;
       }
     `;
 
@@ -79,13 +99,44 @@ class VerticalNavbar extends HTMLElement {
     // Create nav element to contain anchors to other pages
     const navbar = document.createElement("nav");
     navbarContainer.appendChild(navbar);
+
+    // Create toggle button
+    const toggleButton = document.createElement("button");
+    toggleButton.id = "toggleButton";
+    // toggleButton.textContent = "<";
+    toggleButton.innerHTML = `<svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.5" d="M0.34363 6.98486L6.98426 0.344238C7.44324 -0.114746 8.18543 -0.114746 8.63953 0.344238L9.74304 1.44775C10.202 1.90674 10.202 2.64893 9.74304 3.10303L5.0409 7.81494L9.74793 12.522C10.2069 12.981 10.2069 13.7231 9.74793 14.1772L8.64441 15.2856C8.18543 15.7446 7.44324 15.7446 6.98914 15.2856L0.348513 8.64502C-0.115354 8.18604 -0.115354 7.44385 0.34363 6.98486Z" fill="black"/></svg>`;
+
+    // Add event listener to open and close navbar
+    toggleButton.addEventListener("click", () => {
+      navbarContainer.classList.toggle("close");
+
+      // update symbol and position
+      if (navbarContainer.classList.contains("close")) {
+        toggleButton.innerHTML = `<svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.5" d="M9.74865 6.98486L3.10803 0.344238C2.64905 -0.114746 1.90686 -0.114746 1.45276 0.344238L0.349241 1.44775C-0.109744 1.90674 -0.109744 2.64893 0.349241 3.10303L5.05139 7.81494L0.344358 12.522C-0.114627 12.981 -0.114627 13.7231 0.344358 14.1772L1.44787 15.2856C1.90686 15.7446 2.64905 15.7446 3.10315 15.2856L9.74377 8.64502C10.2076 8.18604 10.2076 7.44385 9.74865 6.98486Z" fill="black"/></svg>`;
+        // toggleButton.textContent = ">";
+        // toggleButton.style.left = "0%";
+      } else {
+        toggleButton.innerHTML = `<svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.5" d="M0.34363 6.98486L6.98426 0.344238C7.44324 -0.114746 8.18543 -0.114746 8.63953 0.344238L9.74304 1.44775C10.202 1.90674 10.202 2.64893 9.74304 3.10303L5.0409 7.81494L9.74793 12.522C10.2069 12.981 10.2069 13.7231 9.74793 14.1772L8.64441 15.2856C8.18543 15.7446 7.44324 15.7446 6.98914 15.2856L0.348513 8.64502C-0.115354 8.18604 -0.115354 7.44385 0.34363 6.98486Z" fill="black"/></svg>`;
+        // toggleButton.textContent = "<";
+        // toggleButton.style.left = "18%";
+      }
+    });
+    // Append toggle button to navbar
+    navbar.appendChild(toggleButton);
+
+    // Create anchor elements
     const anchorToHome = document.createElement("a");
+    anchorToHome.id = "anchorToHome";
     const anchorToFavorites = document.createElement("a");
+    anchorToFavorites.id = "anchorToFavorites";
     const anchorToLibrary = document.createElement("a");
+    anchorToLibrary.id = "anchorToLibrary";
     const anchorToCalendar = document.createElement("a");
+    anchorToCalendar.id = "anchorToCalendar";
     const anchorToTaskList = document.createElement("a");
+    anchorToTaskList.id = "anchorToTaskList";
     const anchorToSettings = document.createElement("a");
-    anchorToSettings.id = "settingsAnchor";
+    anchorToSettings.id = "anchorToSettings";
 
     // Add href property to anchors
     anchorToHome.href = "../homepage/index.html";
@@ -122,22 +173,22 @@ class VerticalNavbar extends HTMLElement {
     anchorToSettings.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg>`;
 
     // Add text content to anchors
-    const homeLabel = document.createElement('span');
-    homeLabel.textContent = "Home"
+    const homeLabel = document.createElement("span");
+    homeLabel.textContent = "Home";
     anchorToHome.appendChild(homeLabel);
-    const favoritesLabel = document.createElement('span');
+    const favoritesLabel = document.createElement("span");
     favoritesLabel.textContent = "Favorites";
     anchorToFavorites.appendChild(favoritesLabel);
-    const libraryLabel = document.createElement('span');
+    const libraryLabel = document.createElement("span");
     libraryLabel.textContent = "Library";
     anchorToLibrary.appendChild(libraryLabel);
-    const calendarLabel = document.createElement('span');
+    const calendarLabel = document.createElement("span");
     calendarLabel.textContent = "Calendar";
     anchorToCalendar.appendChild(calendarLabel);
-    const taskListLabel = document.createElement('span');
+    const taskListLabel = document.createElement("span");
     taskListLabel.textContent = "Task List";
     anchorToTaskList.appendChild(taskListLabel);
-    const settingsLabel = document.createElement('span');
+    const settingsLabel = document.createElement("span");
     settingsLabel.textContent = "Settings";
     anchorToSettings.appendChild(settingsLabel);
 
@@ -150,30 +201,20 @@ class VerticalNavbar extends HTMLElement {
     navbar.appendChild(anchorToSettings);
 
     this.shadowRoot.appendChild(styles);
+    this.changeToCurrentPage();
+  }
 
-    // Create toggle button
-    const toggleButton = document.createElement('button');
-    toggleButton.id = "toggleButton";
-    toggleButton.textContent = '<';
-    
-
-    // Add event listener to open and close navbar
-    toggleButton.addEventListener("click", () => {
-      navbarContainer.classList.toggle("close");
-
-      // update symbol and position 
-      if (navbarContainer.classList.contains("close")) {
-        toggleButton.textContent = '>';
-        toggleButton.style.left = '0%';
-      }
-      else {
-        toggleButton.textContent = '<';
-        toggleButton.style.left = '18%';
-      }
-    });
-
-    // Append toggle button to navbar
-    this.shadowRoot.appendChild(toggleButton);
+  // Function that will change the other icons to gray
+  changeToCurrentPage() {
+    const currentPageAttributes = ["anchorToHome", "anchorToFavorites", "anchorToLibrary", "anchorToCalendar", "anchorToTaskList", "anchorToSettings"];
+    const currentPage = this.getAttribute("currentPage");
+    if (currentPageAttributes.includes(currentPage)) {
+      currentPageAttributes.forEach((attribute) => {
+        if (attribute !== currentPage) {
+          this.shadowRoot.querySelector(`#${attribute} svg path`).style.fill = "gray";
+        }
+      });
+    }
   }
 }
 
