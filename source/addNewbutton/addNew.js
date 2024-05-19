@@ -1,161 +1,170 @@
 class AddNewBtn extends HTMLElement {
   constructor() {
     super();
+    this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
-    // Create a shadow dom
-    const shadow = this.attachShadow({ mode: "open" });
-
     const styles = document.createElement('style');
     styles.innerHTML = `
-      #addNewBtn {
+      #buttonsContainer {
+        display: flex;
         height: 10vh;
-        width: 20%;
-        background-color: #F8F8F8;
-        position: fixed;
-        top: 5%;
-        left: 100%; 
-        justify-content: center;
-        align-items: center;
-        border-radius: 15px;
-        transition: opacity 2s ease-in-out;
-        transform: translateX(0%);
+        width: 15vw;
+        user-select: none;
+        font-family: 'Varela Round', sans-serif;
       }
 
-      #addNewBtn.open {
-        transform: translateX(-100%)
+      .closed {
+        display: none !important;
+      }
+
+      #addNewContainer {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+
+      #addNewButton {
+        box-sizing: border-box;
+        cursor: pointer;
+        padding: 1em;
+        margin: 0;
+        background: #F8F8F8;
+        border: none;
+        border-radius: 15px;
+      }
+
+      #addNewButton span {
+        font-family: 'Varela Round', sans-serif;
+      }
+
+      #addNoteProjectContainer {
+        display: flex;
+        flex-direction: row;
+        width: 100em;
+        background: #F8F8F8;
+        align-items: center;
+        border-radius: 15px;
+        padding-left: 0.3em;
+      }
+
+      #addNoteProjectContainer div {
+        width: 1.5em;
+      }
+
+      #addNoteProjectContainer nav {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5em;
+      }
+
+      #addNoteProjectContainer a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3em;
       }
 
       a svg {
-        width: 2em;
+        width: 3em;
         height: auto;
       }
-
-      a span {
-        color: #000;
-        font-size: 1em;
-        font-family: 'Varela Round';
-        width: 5em;
-        align-items: center;
-        padding-left: 5px;
-      }
-
+      
       a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         text-decoration: none;
-        gap: 0.3em;
-        font-family: 'Varela Round', sans-serif;
-        padding: 7px;
-        padding-left: 20px;
-        
+        color: black;
       }
 
-     nav {
-      display: flex;
-     }
-
-      button {
-        position: absolute;
-        top: 4%;
-        left: 90%;
-        display: flex;
-        flex-direction: column;
-        gap: 0.3em;
-        align-items: center;
-        justify-content: center;
-        background: #F8F8F8;
-        height: 10vh;
-        width: 8%;
-        border-radius: 20px;
+      #addNoteProjectContainer button {
+        box-sizing: border-box;
+        cursor: pointer;
+        padding: 0.5em;
+        padding-left: 1em;
+        margin: 0;
+        background: none;
         border: none;
-        transition: opacity 2s ease-in-out;
-        
       }
 
-      button span {
-        color: #000;
-        font-size: 1em;
-        font-family: 'Varela Round';
-        width: 5em;
-        align-items: center;
-
-      }
-
-      button svg {
-        width: 3em;
+      #addNoteProjectContainer button svg {
+        width: 1.3em;
         height: auto;
       }
     `
 
-    // Attach element to shadow dom
-    const addNewBtnContainer = document.createElement("div");
-    addNewBtnContainer.id = "addNewBtn";
-    shadow.appendChild(addNewBtnContainer);
+    // Attach element to shadow dom, create container for all buttons
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.id = "buttonsContainer";
+    this.shadowRoot.appendChild(buttonsContainer);
 
-    // Cream nav element to contain anchors to other pages
-    const navbar = document.createElement("nav");
-    addNewBtnContainer.appendChild(navbar);
-    const anchorToAddNewNote = document.createElement("a");
-    const anchorToAddNewProject = document.createElement("a");
+    // Create container for addNew
+    const addNewContainer = document.createElement("div");
+    addNewContainer.id = "addNewContainer";
+    buttonsContainer.appendChild(addNewContainer);
+    // Create container for addNewNote and addNewProject
+    const addNoteProjectContainer = document.createElement("div");
+    addNoteProjectContainer.id = "addNoteProjectContainer";
+    buttonsContainer.appendChild(addNoteProjectContainer);
 
+    // Create closeButton when addNew is clicked
+    const closeButton = document.createElement("button");
+    closeButton.innerHTML = `<svg viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.5" d="M9.74865 6.98486L3.10803 0.344238C2.64905 -0.114746 1.90686 -0.114746 1.45276 0.344238L0.349241 1.44775C-0.109744 1.90674 -0.109744 2.64893 0.349241 3.10303L5.05139 7.81494L0.344358 12.522C-0.114627 12.981 -0.114627 13.7231 0.344358 14.1772L1.44787 15.2856C1.90686 15.7446 2.64905 15.7446 3.10315 15.2856L9.74377 8.64502C10.2076 8.18604 10.2076 7.44385 9.74865 6.98486Z" fill="black"/></svg>`;
+    addNoteProjectContainer.appendChild(closeButton);
+    // Create a spacing div
+    const spacingDiv = document.createElement("div");
+    addNoteProjectContainer.appendChild(spacingDiv);
+    // Create navbar for closeButton, addNote, addProject
+    const navbarAddNoteAddProject = document.createElement("nav");
+    addNoteProjectContainer.appendChild(navbarAddNoteAddProject);
+    // Create addNote and addProject anchors, append to addNoteProjectContainer
+    const anchorToAddNote = document.createElement("a");
+    const anchorToAddProject = document.createElement("a");
     // Add href property to anchors
-    anchorToAddNewNote.href = "#";
-    anchorToAddNewProject.href = "#";
-
+    anchorToAddNote.href = "#";
+    anchorToAddProject.href = "#";
     // Add image elements
-    anchorToAddNewNote.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>';
-    anchorToAddNewProject.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>';
-
+    anchorToAddNote.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>';
+    anchorToAddProject.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>';
+    // Append addNote and addProject anchors to navbarAddNoteAddProject
+    navbarAddNoteAddProject.appendChild(anchorToAddNote);
+    navbarAddNoteAddProject.appendChild(anchorToAddProject);
     // Add text content to anchors
-    const newNoteLabel = document.createElement('span');
-    newNoteLabel.textContent = "Add Note";
-    anchorToAddNewNote.appendChild(newNoteLabel);
-    const newProjectLabel = document.createElement('span');
-    newProjectLabel.textContent = "Add Project";
-    anchorToAddNewProject.appendChild(newProjectLabel);
+    const addNoteLabel = document.createElement('span');
+    addNoteLabel.textContent = "Add Note";
+    anchorToAddNote.appendChild(addNoteLabel);
+    const addProjectLabel = document.createElement('span');
+    addProjectLabel.textContent = "Add Project";
+    anchorToAddProject.appendChild(addProjectLabel);
 
     // Create add new button
-    const addBtn = document.createElement('button');
-    addBtn.id = "add-button";
-    addBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>';
-    addBtn.innerHTML += "<span> Add New <\span>";
+    const addNewButton = document.createElement('button');
+    addNewButton.id = "addNewButton";
+    addNewButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>';
+    addNewButton.innerHTML += "<span>Add New</span>";
+    // Append addNewButton to addNewContainer
+    addNewContainer.appendChild(addNewButton);
 
-    // Add event listener to the add new button
-    addBtn.addEventListener("click", () => {
-      addNewBtnContainer.classList.toggle("open");
-      
-      if (addNewBtnContainer.classList.contains("open")) {
-        addBtn.innerHTML = '';
-        addBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>';
-        addBtn.style.left = '77%';
-        addBtn.style.top = '5%';
-        addBtn.querySelector('svg').style.width = '1em';
-        addBtn.style.background = 'none';
-      }
-      else{
-        addBtn.innerHTML = '';
-        addBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>';
-        addBtn.innerHTML += "<span> Add New <\span>";
-        addBtn.style.top = '4%';
-        addBtn.style.left = '90%';
-        addBtn.style.background = '#F8F8F8';
-        addBtn.style.height = '10vh';
-        addBtn.style.width = '8%';
-      }
-    });
+    // Create default class for addNewContainer to be open and addNoteProjectContainer to be closed
+    addNewContainer.classList.add("closed");
+    addNoteProjectContainer.classList.add("open");
 
-    // Append anchors and button to navbar
-    navbar.appendChild(anchorToAddNewNote);
-    navbar.appendChild(anchorToAddNewProject);
-    
-    addNewBtnContainer.appendChild(navbar);
-    shadow.appendChild(addNewBtnContainer);
-    shadow.appendChild(styles);
-    shadow.appendChild(addBtn);
+    // Add event listener to the addNewButton
+    addNewButton.addEventListener('click', () => {
+      addNewContainer.classList.toggle("open");
+      addNewContainer.classList.toggle("closed");
+      addNoteProjectContainer.classList.toggle("closed");
+      addNoteProjectContainer.classList.toggle("open");
+    })
+    // add event listener to closeButton
+    closeButton.addEventListener('click', () => {
+      addNewContainer.classList.toggle("open");
+      addNewContainer.classList.toggle("closed");
+      addNoteProjectContainer.classList.toggle("closed");
+      addNoteProjectContainer.classList.toggle("open");
+    })
 
+    this.shadowRoot.appendChild(styles);
+    // this.shadowRoot.appendChild(addBtn);
   }
 
 }
