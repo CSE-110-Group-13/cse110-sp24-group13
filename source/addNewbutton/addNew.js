@@ -145,8 +145,8 @@ class AddNewBtn extends HTMLElement {
     addNewContainer.appendChild(addNewButton);
 
     // Create default class for addNewContainer to be open and addNoteProjectContainer to be closed
-    addNewContainer.classList.add("closed");
-    addNoteProjectContainer.classList.add("open");
+    addNewContainer.classList.add("open");
+    addNoteProjectContainer.classList.add("closed");
 
     // Add event listener to the addNewButton
     addNewButton.addEventListener('click', () => {
