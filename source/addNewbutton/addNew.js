@@ -10,7 +10,7 @@ class AddNewBtn extends HTMLElement {
       #buttonsContainer {
         display: flex;
         height: 10vh;
-        width: 15vw;
+        width: 20vw;
         user-select: none;
         font-family: 'Varela Round', sans-serif;
       }
@@ -28,8 +28,8 @@ class AddNewBtn extends HTMLElement {
       #addNewButton {
         box-sizing: border-box;
         cursor: pointer;
-        padding: 1em;
         margin: 0;
+        padding: 0.4vh 1vw;
         background: #F8F8F8;
         border: none;
         border-radius: 15px;
@@ -37,7 +37,9 @@ class AddNewBtn extends HTMLElement {
 
       #addNewButton span {
         font-family: 'Varela Round', sans-serif;
+        font-size: max(8px, 0.9vw);
       }
+
 
       #addNoteProjectContainer {
         display: flex;
@@ -46,7 +48,7 @@ class AddNewBtn extends HTMLElement {
         background: #F8F8F8;
         align-items: center;
         border-radius: 15px;
-        padding-left: 0.3em;
+        padding-left: 0.3vw;
       }
 
       #addNoteProjectContainer div {
@@ -57,6 +59,7 @@ class AddNewBtn extends HTMLElement {
         display: flex;
         flex-direction: row;
         gap: 1.5em;
+        padding-right: 10px;
       }
 
       #addNoteProjectContainer a {
@@ -64,16 +67,23 @@ class AddNewBtn extends HTMLElement {
         flex-direction: column;
         align-items: center;
         gap: 0.3em;
+
       }
 
       a svg {
-        width: 3em;
-        height: auto;
+        width: 8vw;
+        height: 7vh;
+        max-width: 3em;
+        max-height: 3em;
       }
       
       a {
         text-decoration: none;
         color: black;
+      }
+
+      #addNoteProjectContainer span {
+        font-size: max(7.5px, min(0.85vw, 15px));
       }
 
       #addNoteProjectContainer button {
@@ -87,8 +97,10 @@ class AddNewBtn extends HTMLElement {
       }
 
       #addNoteProjectContainer button svg {
-        width: 1.3em;
-        height: auto;
+        width: 3vw;
+        height: 5vh;
+        max-width: 1.5em;
+        max-height: 1.5em;
       }
     `
 
