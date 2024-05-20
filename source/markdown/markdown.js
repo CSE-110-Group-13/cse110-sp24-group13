@@ -1,3 +1,5 @@
+import { createWysimark } from "@wysimark/standalone"
+
 // For event listeners
 document.addEventListener("DOMContentLoaded", () => {
   const display = document.getElementById('display-markdown');
@@ -11,3 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     display.innerHTML = `${html}<br/>`;  
   });
 });
+
+// Assumes the existence of an HTML element with id="editor"
+const wysimark = createWysimark(document.getElementById("editor"), {
+  initialMarkdown: "# Hello World",
+})
