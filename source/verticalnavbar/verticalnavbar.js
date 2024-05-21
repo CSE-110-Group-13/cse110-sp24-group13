@@ -44,7 +44,7 @@ class VerticalNavbar extends HTMLElement {
         flex-direction: column;
         align-items: center;
         text-decoration: none;
-        gap: 0.2em;
+        gap: 0.3em;
         font-family: 'Varela Round', sans-serif;
       }
       
@@ -60,7 +60,7 @@ class VerticalNavbar extends HTMLElement {
       }
       
       #anchorToSettings {
-        padding-top: 7em;
+        padding-top: 7em; 
       }
 
       #toggleButtonContainer {
@@ -112,7 +112,7 @@ class VerticalNavbar extends HTMLElement {
 
       // update symbol and position
       if (navbarContainer.classList.contains("close")) {
-        toggleButton.innerHTML = `<svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.5" d="M9.74865 6.98486L3.10803 0.344238C2.64905 -0.114746 1.90686 -0.114746 1.45276 0.344238L0.349241 1.44775C-0.109744 1.90674 -0.109744 2.64893 0.349241 3.10303L5.05139 7.81494L0.344358 12.522C-0.114627 12.981 -0.114627 13.7231 0.344358 14.1772L1.44787 15.2856C1.90686 15.7446 2.64905 15.7446 3.10315 15.2856L9.74377 8.64502C10.2076 8.18604 10.2076 7.44385 9.74865 6.98486Z" fill="black"/></svg>`;
+        toggleButton.innerHTML = `<svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.74865 6.98486L3.10803 0.344238C2.64905 -0.114746 1.90686 -0.114746 1.45276 0.344238L0.349241 1.44775C-0.109744 1.90674 -0.109744 2.64893 0.349241 3.10303L5.05139 7.81494L0.344358 12.522C-0.114627 12.981 -0.114627 13.7231 0.344358 14.1772L1.44787 15.2856C1.90686 15.7446 2.64905 15.7446 3.10315 15.2856L9.74377 8.64502C10.2076 8.18604 10.2076 7.44385 9.74865 6.98486Z" fill="black"/></svg>`;
         // toggleButton.textContent = ">";
         // toggleButton.style.left = "0%";
       } else {
