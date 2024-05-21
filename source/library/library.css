@@ -1,0 +1,37 @@
+body {
+  display: grid;
+  grid-template-columns: [first] 10vw [line2] 10vw [line3] 10vw [line4] 10vw [line5] 20vw [line6] 10vw [line7] 10vw [line8] auto [lastCol];
+  grid-template-rows: [first] 5vh [line2] 5vh [line3] 90vh [lastRow];
+}
+
+body > #SearchBar {
+  grid-column: line5 / line6;
+  grid-row: first / line2;
+  text-align: center;
+}
+
+body > #sort-select {
+  grid-column: line2 / line4;
+  grid-row: line2 / line3;
+}
+
+body > #entries-holder{
+  display: flex;
+  flex-direction: column;
+  grid-column: line3 / line8;
+  grid-row: line3 / lastRow;
+}
+#add-new-button {
+  grid-column: line8 / lastCol;
+}
+/*
+grid-column-start: <number> | <name> | span <number> | span <name> | auto;
+  grid-column-end: <number> | <name> | span <number> | span <name> | auto;
+  grid-row-start: <number> | <name> | span <number> | span <name> | auto;
+  grid-row-end: <number> | <name> | span <number> | span <name> | auto;
+
+.container {
+  grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
+  grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line];
+}
+*/

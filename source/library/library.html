@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="library.css">
   <title>Document</title>
 </head>
 <body>
-  
+  <select id = 'sort-select'>
+    <script src ='library.js'></script>
+    <option value="title">Sort by title</option>
+    <option value="date">Sort by date</option>
+    <option value="priority">Sort by priority</option>
+  </select>
+    <button id="add-new-button"></button>
+  <textarea id="SearchBar">Search</textarea>
+  <div id="entries-holder">
+    <div id="end-block"></div>
+  </div>
 </body>
 </html>
