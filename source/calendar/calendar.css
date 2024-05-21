@@ -83,16 +83,29 @@ header h1 {
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
     position: relative;
-    height: 65vh;
+    height: 65vh; 
 }
 
 .calendar-day {
+    /*
     padding: 1px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     position: relative;
     height: 90%;
-
+    */
+    
+    /* make it so grid does not change as tasks are added*/
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    padding: 1px;
+    height: 12vh;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
 }
 
 .calendar-day span {
@@ -120,7 +133,6 @@ header h1 {
 .calendar-day .tasks {
     margin-top: 10px;
 }
-
 
 
 #task-modal {
@@ -175,11 +187,13 @@ close:focus {
     width: 100px;
 }
 
+
 #task-description {
     display: inline-block;
     width: calc(100% - 110px);
     margin-left: 10px;
 }
+
 
 #task-form button {
     padding: 15px 30px;
@@ -195,4 +209,35 @@ close:focus {
 
 #task-form button:hover {
     background-color: #0056b3;
+}
+
+/*Have tasks appear as title only with an icon on calendar*/
+.tasks {
+    margin-top: 5px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.task-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 2px;
+    /*If want fixed icon color*/
+    /*background-color: #0056b3*/
+
+}
+
+.task-title {
+    white-space: nowrap;
+    font-size: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%; /* adjust how much is displayed */
 }

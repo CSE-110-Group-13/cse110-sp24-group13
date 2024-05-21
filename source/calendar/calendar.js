@@ -138,5 +138,52 @@ document.addEventListener("DOMContentLoaded", () => {
             && date.getFullYear() === today.getFullYear();
     }
 
+    function addTask() {
+        const taskDate = document.getElementById("task-date").value;
+        const taskTitle = document.getElementById("task-title").value;
+        const taskDescription = document.getElementById("task-description").value;
+
+        if (!taskDate || !taskTitle || !taskDescription) {
+            alert("All fields are required!");
+            return;
+        }
+
+        const dayElement = document.querySelector(`[data-date='${taskDate}']`);
+        if (dayElement) {
+            const taskElement = document.createElement("div");
+            taskElement.className = "task";
+
+            const icon = document.createElement("div");
+            icon.className = "task-icon";
+            icon.style.backgroundColor = getRandomColor();
+            
+
+            const title = document.createElement("div");
+            title.className = "task-title";
+            title.textContent = taskTitle;
+
+            taskElement.appendChild(icon);
+            taskElement.appendChild(title);
+            dayElement.querySelector(".tasks").appendChild(taskElement);
+        }
+
+        taskForm.reset();
+        taskModal.style.display = "none";
+    }
+
+    /** select random color */
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    
+
+    
+
     generateCalendar(currentMonth, currentYear);
 });
+
