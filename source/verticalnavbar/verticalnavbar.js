@@ -26,7 +26,7 @@ class VerticalNavbar extends HTMLElement {
       }
 
       #verticalNavbar.close {
-        transform: translateX(-7.5vw);
+        transform: translateX(-7.5vw); 
       }
       
       nav {
@@ -34,8 +34,10 @@ class VerticalNavbar extends HTMLElement {
         display: flex;
         flex-direction: column;
         height: 100%;
-        gap: 3em;
-        padding-top: 1.5em;
+        /* gap: 3em; */
+        gap: 6vh;
+        /* padding-top: 1.5em; */
+        padding-top: 3vh;
         margin: 0;
       }
       
@@ -44,23 +46,31 @@ class VerticalNavbar extends HTMLElement {
         flex-direction: column;
         align-items: center;
         text-decoration: none;
-        gap: 0.3em;
+        /* gap: 0.3em; */
+        gap: 0.6vh;
         font-family: 'Varela Round', sans-serif;
       }
       
       a svg {
-        width: 2em;
-        height: auto;
+        /* width: 2em; */
+        width: 5vw;
+        max-width: 2em; 
+        /* height: auto; */
+        height: 4vh;
+        max-height: 2em;
+
       }
       
       a span {
         color: #000;
-        font-size: 1em;
+        /* font-size: 1em; */
+        font-size: min(min(1em, 1.5vw), min(1em, 1.5vh));
         font-family: 'Varela Round';
       }
       
       #anchorToSettings {
-        padding-top: 7em; 
+        /* padding-top: 7em; */
+        padding-top: 14vh;
       }
 
       #toggleButtonContainer {
@@ -75,10 +85,12 @@ class VerticalNavbar extends HTMLElement {
         cursor: pointer;
         color: #7C7C7C;
         font-weight: bold;
-        font-size: 2em;
+        /* font-size: 2em; */
+        font-size: 4vh;
         padding: 0;
         margin: 0;
-        padding-right: 0.45em;
+        /* padding-right: 0.45em; */
+        padding-right: 0.8vw;
         border: none;
         background: none;
         box-sizing: border-box;
@@ -86,8 +98,12 @@ class VerticalNavbar extends HTMLElement {
       }
 
       #toggleButton svg {
-        width: 0.5em;
-        height: auto;
+        /* width: 0.5em; */
+        width: 2vw;
+        max-width: 0.5em;
+        /* height: auto; */
+        height: 2.5vh;
+        max-height: 2em;
       }
     `;
 
