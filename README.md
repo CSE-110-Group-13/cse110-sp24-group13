@@ -8,7 +8,7 @@ This should be a full-stack web app to serve as a journal for a web developer. M
 ## How to Contribute: 
 We'll add more here as we learn more about the technologies we'll need for the project, but this normally is just getting the right extensions, language support, and software downloaded.
 
-## Keeping Your Fork Up to Date (let's try this with branches)
+## Keeping Your Fork Up to Date (I tried and this only works for forks, not branches)
 You'll want to make sure you keep your fork up to date by tracking the original "upstream" repo that you forked. To do this, you'll need to add a remote:
 
 ```shell
