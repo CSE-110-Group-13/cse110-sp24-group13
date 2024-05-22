@@ -39,5 +39,81 @@ body {
     height: 25px;
 }
 
+.noteTitle {
+    margin-top: 10%;
+}
+
+.noteDetails h4 {
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    /* background-color: orange;  TESTING */
+}
+
+.tags ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.tags li {
+    background-color: #E2E2E2;
+    padding: 5 10 5 10;
+    border-radius: 25px;
+}
+
+.newTag {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.newTag input{
+    background-color: #E2E2E2;
+    border: none;
+    padding: 5 10 5 10;
+    border-radius: 25px;
+    height: 30px;
+    width: fit-content;
+}
+
+.projectTag {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.projectTag input {
+    background-color: #E2E2E2;
+    border: none;
+    padding: 5 10 5 10;
+    border-radius: 25px;
+    height: 30px;
+    width: fit-content;
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.date input {
+    font-family: Helvetica, Arial, sans-serif;
+    color: #7C7C7C;
+    border: none;
+    padding: 5 10 5 10;
+    border-radius: 25px;
+    height: 30px;
+    width: fit-content;
+}
+
 
 
