@@ -1,0 +1,67 @@
+<!-- HTML to test backend - delete at final deployment -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backend Test Page</title>
+</head>
+
+<body>
+  <h1>Backend Test Page</h1>
+  <button id="initializeNoteButton">press to initialize a note in local storage</button>
+  <Note-Item>
+    This is a note item: 
+    <p>
+      {
+        "noteID" : ,
+        "text" : ,
+        "date": ,
+        "lastEdited": ,
+        "title": ,
+        "projectList": ,
+        "favorited": ,
+        "tags": 
+      }
+    </p>
+  </Note-Item>
+  <form id="modifyNoteTextForm">
+    <label for="text">Text:</label>
+    <input type="text" id="text" name="text" required>
+    <button type="submit">modify text</button>
+  </form>
+  <form id="modifyNoteDateForm">
+    <lavel for="date">Date:</lavel>
+    <input type="date" id="date" name="date" required>
+    <button type="submit">modify date</button>
+  </form>
+  <form id="modifyNoteLastEditedForm">
+    <label for="lastEdited">Last Edited:</label>
+    <input type="date" id="lastEdited" name="lastEdited" required>
+    <button type="submit">modify last edited</button>
+  </form>
+  <form id="modifyNoteTitleForm">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+    <button type="submit">modify title</button>
+  </form>
+  <form id="modifyProjectListForm">
+    <label for="projectList">Project List:</label>
+    <input type="text" id="projectList" name="projectList" required>
+    <button type="submit">modify project list</button>
+  </form>
+  <form id="modifyFavoritedForm">
+    <label for="favorited">Favorited:</label>
+    <input type="checkbox" id="favorited" name="favorited">
+    <button type="submit">modify favorited</button>
+  </form>
+  <form id="">
+    <label for="tags">Tags:</label>
+    <input type="text" id="tags" name="tags" required>
+    <button type="submit">modify tags</button>
+  </form>
+  <script type="module" src="main.js"></script>
+  <script type="module" src="(test).js"></script>
+</body>
+</html>
