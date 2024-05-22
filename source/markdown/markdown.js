@@ -1,14 +1,21 @@
 class markdownEditor extends HTMLElement {
-  constructor() {
+  /**
+ * Creates an instance of markdownEditor.
+ *
+ * @constructor
+ */
+constructor() {
     super();
     this.wysimark = null;
   }
 
-  connectedCallback() {
-    // Create a shadow dom
-    const shadow = this.attachShadow({ mode: "open" });
-
-    // Define the HTML part
+  /**
+ * The real constructor. Makes all the sub elemenrs and appends them to the main element.
+ * It also initializes the wysimark editor.
+ * It also adds event listeners to the save and load buttons.
+ */
+connectedCallback() {
+    // Create a div element
     const container = document.createElement('div');
     const editor = document.createElement('div');
     editor.id = 'editor';
@@ -24,40 +31,30 @@ class markdownEditor extends HTMLElement {
     container.appendChild(saveButton);
     container.appendChild(loadButton);
 
-    // Append the container to the shadow root
-    shadow.appendChild(container);
+    // Append the container to the element itself
+    this.appendChild(container);
 
-    const foundEditor = shadow.getElementById('editor');
+    const foundEditor = document.getElementById('editor');
     // Initialize wysimark
-    this.wysimark = createWysimark(foundEditor, { initialMarkdown: "# Hello World" });
+    this.wysimark = createWysimark(foundEditor, { initialMarkdown: 
+    "# Hello World \n" +
+    "lorem ipsum dolor sit amet. Goo goo g'joob\n" +
+    "more example text\n" +
+    "filling this up"
+    });
 
     // Add event listeners
     saveButton.addEventListener('click', () => this.save());
     loadButton.addEventListener('click', () => this.load());
-
-  /*  // Create a style element
-  const style = document.createElement('style');
-  style.textContent = `
-    #content {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    #display-markdown {
-      margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      background-color: #f9f9f9;
-    }
-    `;
-  shadow.appendChild(style);*/
   }
 
-  save() {
+
+  
+
+  /**
+ * Uses the built in wysimark method to save the markdown content to local storage.
+ */
+save() {
     if (this.wysimark) {
       const markdown = this.wysimark.getMarkdown();
       window.localStorage.setItem("markdown", markdown.toString());
@@ -65,7 +62,10 @@ class markdownEditor extends HTMLElement {
   }
   
   
-  load() {
+  /**
+ * Uses built im wysimark method to load the markdown content from local storage.
+ */
+load() {
     const savedMarkdownContent = window.localStorage.getItem("markdown");
     if (this.wysimark && savedMarkdownContent) {
       this.wysimark.setMarkdown(savedMarkdownContent);
