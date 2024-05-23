@@ -13,5 +13,9 @@
   "jest": {
     "preset": "jest-puppeteer",
     "verbose": true
+  },
+  "dependencies": {
+    "@wysimark/standalone": "^3.0.20",
+    "type": "module"
   }
 }
