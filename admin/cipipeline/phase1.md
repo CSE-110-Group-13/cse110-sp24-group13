@@ -12,8 +12,9 @@
 3. Use logical and descriptive function names
 4. useCamelCase
 5. Use a spacing of 2
-6. Avoid super-long lines, break into multiple lines if necessary
-    - Max line length = Col 80 on VSCode
+6. ~~Avoid super-long lines, break into multiple lines if necessary~~
+    - ~~Max line length = Col 80 on VSCode~~
+    - Update: (5/19/2024) Removal of line character limit due to elements like `<svg>` taking up a lot of characters by default
 ![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/594e2494-ceb1-4990-9a12-43e5a04ecf5e)
 7. Avoid being super-abstract and try not to do too much in one function
     - The more complicated the function, the more it can be broken down
