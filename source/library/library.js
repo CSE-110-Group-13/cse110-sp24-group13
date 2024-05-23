@@ -82,33 +82,30 @@ function init() {
     loadedNotes.push(loadEntry(testNote2));
 
     //init sort functions
-    const sortFunctions = new Map();
-
-    sortFunctions.set('title', (noteA, noteB) => {
+    function titleSort (noteA, noteB) {
         const titleA = noteA.getAttribute('title'),
         titleB = noteB.getAttribute('title');
-
         if(titleA > titleB)
             return 1;
         else if(titleA < titleB)
             return -1;
         return 0;
-    });
+    }
 
-    sortFunctions.set('date', (noteA, noteB) => {
+    function dateSort(noteA, noteB) {
         let da = new Date(noteA.getAttribute('date')),
             db = new Date(noteB.getAttribute('date'));
         return da - db;
-    });
+    }
 
-    sortFunctions.set('lastEdited', (noteA, noteB) => {
+    function recencySort(noteA, noteB) {
         let da = new Date(noteA.getAttribute('lastEdited')),
             db = new Date(noteB.getAttribute('lastEdited'));
         return da - db;
-    })
+    }
     //sort notes by title to start
     //NOTE: would not be opposed to saving the last sort-type used in local storage so we can use that.
-    loadedNotes.sort(sortFunctions['title']);
+    loadedNotes.sort(titleSort);
     const sortBox = document.querySelector("select");
 
     //display notes
@@ -132,7 +129,12 @@ function init() {
 
     sortBox.addEventListener("input", function sortAndDisplay(event)
     {
-        loadedNotes.sort(sortFunctions[event.target.value]);
+        if(event.target.value == "title")
+            loadedNotes.sort(titleSort);
+        else if(event.target.value == "date")
+            loadedNotes.sort(dateSort);
+        else if(event.target.value == "lastEdited")
+            loadedNotes.sort(recencySort);
         displayNotes();
     });
 }
