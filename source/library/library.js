@@ -72,11 +72,8 @@ function init() {
     let loadedNotes = [];
 
     //get and store all notes in an array
-    if(IDContainer.length > 0)
-        for(let i = 0; i < IDContainer.length; i++)
-        {
-            loadedNotes.push(loadEntry(getNoteFromTable(IDContainer[i])));
-        }
+    for(let i = 0; i < IDContainer.length; i++)
+        loadedNotes.push(loadEntry(getNoteFromTable(IDContainer[i])));
 
     //Adding my own notes for testing. Remove later.
     const testNote1 = {
