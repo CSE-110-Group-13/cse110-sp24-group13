@@ -24,14 +24,10 @@ body > #entries-holder{
 #add-new-button {
   grid-column: line8 / lastCol;
 }
-/*
-grid-column-start: <number> | <name> | span <number> | span <name> | auto;
-  grid-column-end: <number> | <name> | span <number> | span <name> | auto;
-  grid-row-start: <number> | <name> | span <number> | span <name> | auto;
-  grid-row-end: <number> | <name> | span <number> | span <name> | auto;
-
-.container {
-  grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
-  grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line];
+.note {
+  display: flex;
+  flex-direction: row;
 }
-*/
+.note > .p {
+  display: block;
+}
