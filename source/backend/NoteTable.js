@@ -211,9 +211,9 @@ function appendTagToNoteTags(noteID, tag) {
  * @param {String} noteID - the ID of the note to modify
  * @param {String} tag - the tag to remove
  */
-function removeTagFromNoteTags(noteID, tag) {
+function removeTagFromNoteTags(noteID, tagID) {
   const noteObject = getNoteFromTable(noteID);
-  noteObject["tags"] = noteObject["tags"].filter(tag => tag !== tag);
+  noteObject["tags"] = noteObject["tags"].filter(tag => tag !== tagID);
   saveNoteToTable(noteID, noteObject);
 }
 

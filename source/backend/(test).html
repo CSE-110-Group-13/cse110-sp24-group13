@@ -32,7 +32,7 @@
     <button type="submit">modify text</button>
   </form>
   <form id="modifyNoteDateForm">
-    <lavel for="date">Date:</lavel>
+    <label for="date">Date:</label>
     <input type="date" id="date" name="date" required>
     <button type="submit">modify date</button>
   </form>
@@ -47,19 +47,29 @@
     <button type="submit">modify title</button>
   </form>
   <form id="modifyProjectListForm">
-    <label for="projectList">Project List:</label>
+    <label for="projectList">Add to Project List:</label>
     <input type="text" id="projectList" name="projectList" required>
-    <button type="submit">modify project list</button>
+    <button type="submit"">add to project list</button>
+  </form>
+  <form id="removeProjectListForm">
+    <label for="projectList">Remove from Project List:</label>
+    <input type="text" id="removeprojectList" name="projectList" required>
+    <button type="submit"">remove from project list</button>
   </form>
   <form id="modifyFavoritedForm">
     <label for="favorited">Favorited:</label>
     <input type="checkbox" id="favorited" name="favorited">
     <button type="submit">modify favorited</button>
   </form>
-  <form id="">
-    <label for="tags">Tags:</label>
+  <form id="modifyTagsForm">
+    <label for="tags">Add Tags:</label>
     <input type="text" id="tags" name="tags" required>
-    <button type="submit">modify tags</button>
+    <button type="submit">add tags</button>
+  </form>
+  <form id="removeTagsForm">
+    <label for="tags">Remove Tags:</label>
+    <input type="text" id="tags" name="tags" required>
+    <button type="submit">remove tags</button>
   </form>
   <script type="module" src="main.js"></script>
   <script type="module" src="(test).js"></script>
