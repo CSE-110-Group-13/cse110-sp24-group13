@@ -1,0 +1,73 @@
+/* Overriding browser defaults */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+#recents {
+  overflow: hidden;
+  position: fixed;
+  top: 24%;
+  left: 220px;
+  width: 70%;
+  padding: 20px;
+}
+
+
+
+#recents span {
+  position: fixed;
+  top: 22%;
+  left: 220px;
+  color: black;
+}
+
+.note {
+  overflow: hidden;
+  transition: transform 0.8s ease-in-out, opacity 0.8s ease;
+  max-height: 100px; /* Set initial max-height */
+  opacity: 1; /* Set initial opacity */
+  display: block; /* Ensure note is displayed */
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 15px; /* Slight border curve */
+  padding: 10px; /* Add padding inside the note */
+  margin-bottom: 20px; /* Add a gap between each note */
+  background-color: #f9f9f9; /* Light grey background */
+}
+
+.collapsed .note {
+  transform: translateY(-600px);
+  opacity: 0;
+}
+
+a {
+  text-decoration: none; /* Remove underline */
+}
+
+#collapseButton1 {
+  position: fixed;
+  top: 21%;
+  right: 260px;
+}
+
+.note h2 {
+  margin-top: 40px; /* Adjust default margin for h2 */
+  color: black;
+}
+
+.note p {
+  margin-bottom: 5px; /* Add a small gap between paragraphs */
+  color: black;
+  text-decoration: none;
+}
+
+#end-block {
+  display: none; /* Hidden element used for inserting entries before it */
+}
