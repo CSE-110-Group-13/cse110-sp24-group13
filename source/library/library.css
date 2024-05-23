@@ -27,7 +27,8 @@ body > #entries-holder{
 .note {
   display: flex;
   flex-direction: row;
-}
-.note > .p {
-  display: block;
+  background-color: #f1f1f1;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  font-size: larger;
 }
