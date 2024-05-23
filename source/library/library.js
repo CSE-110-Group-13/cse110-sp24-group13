@@ -10,6 +10,8 @@ import {
 function loadEntry(entry) {
     // create a new div element
     const newNote = document.createElement("div");
+
+    //assign attributes for sorting/display purposes. Some of these may be unnecessary or would be more clean to obtain from the child divs.
     newNote.setAttribute("class", "note");
     newNote.setAttribute("noteID", entry["noteID"]);
     newNote.setAttribute("text", entry["text"]);
@@ -18,9 +20,28 @@ function loadEntry(entry) {
     newNote.setAttribute("title", entry["title"]);
     newNote.setAttribute("projectList", entry["projectList"]);
     newNote.setAttribute("favorited", entry["favorited"]);
-    //elements that must be displayed: title, date, lastEdited, tags, project
+
+    //elements that must be displayed: title, date, lastEdited, tags, project, text
     //Everything else can be attributes
-    newNote.innerText = entry['title'] + entry['date'];
+    const titleText = document.createElement("div");
+    titleText.setAttribute("class", "title");
+    titleText.innerText = entry["title"];
+    newNote.insertBefore(titleText, null);
+
+    const dateText = document.createElement("div");
+    dateText.setAttribute("class", "date");
+    dateText.innerText = "Created on: " + entry["date"];
+    newNote.insertBefore(dateText, null);
+
+    const lastEdited = document.createElement("div");
+    lastEdited.setAttribute("class", "date");
+    lastEdited.innerText = "Last worked on: " + entry["date"];
+    newNote.insertBefore(lastEdited, null);
+
+    const noteText = document.createElement("div");
+    noteText.setAttribute("class", "body-text");
+    noteText.innerText = entry['text'];
+    newNote.insertBefore(noteText, null);
 
     return newNote;
 }
@@ -46,15 +67,16 @@ function init() {
     if (window.localStorage.getItem("IDContainer") === null) {
         localStorage.setItem("IDContainer", JSON.stringify([]));
     }
-    const IDContainer = window.localStorage.getItem("IDContainer");
+    const IDContainer = JSON.parse(window.localStorage.getItem("IDContainer"));
 
     let loadedNotes = [];
 
     //get and store all notes in an array
-    /*for(let i = 0; i < IDContainer.length; i++)
-    {
-        loadedNotes.push(loadEntry(getNoteFromTable(IDContainer[i])));
-    }*/
+    if(IDContainer.length > 0)
+        for(let i = 0; i < IDContainer.length; i++)
+        {
+            loadedNotes.push(loadEntry(getNoteFromTable(IDContainer[i])));
+        }
 
     //Adding my own notes for testing. Remove later.
     const testNote1 = {
@@ -111,18 +133,17 @@ function init() {
     //display notes
     //NOTE: would like to add pagination
     const entriesHolder = document.querySelector("#entries-holder");
-    const endBlock = document.querySelector("#end-block");
     function displayNotes()
     {
         //clear current display 
         const children = entriesHolder.children;
-        while(children[0] != endBlock)
+        while(children.length != 0)
             entriesHolder.removeChild(children[0]);
 
         //put all the notes in the html
         for(let i = 0; i < loadedNotes.length; i++)
         {
-            entriesHolder.insertBefore(loadedNotes[i], endBlock);
+            entriesHolder.insertBefore(loadedNotes[i], null);
         }
     }
     displayNotes();

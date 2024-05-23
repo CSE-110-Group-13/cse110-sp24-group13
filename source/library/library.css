@@ -26,9 +26,26 @@ body > #entries-holder{
 }
 .note {
   display: flex;
-  flex-direction: row;
-  background-color: #f1f1f1;
+  flex-direction: column;
+  background-color: #dddddd;
   padding-top: 10vh;
   padding-bottom: 10vh;
+  margin-top: 2.5vh;
+  margin-bottom: 0vh;
   font-size: larger;
+}
+
+.note > .date {
+  color: #f0f0f0;
+  font-size: small;
+}
+
+.note > .title {
+  color: black;
+  font-size: x-large;
+  font-weight: 700;
+}
+.note > .body-text{
+  color: black;
+  font-size: small;
 }
