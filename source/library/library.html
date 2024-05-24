@@ -7,17 +7,25 @@
   <title>Document</title>
 </head>
 <body>
+
+  <nav-bar></nav-bar> <!-- Vertical Navbar - shouldn't be scrollable -->
+    <!-- <button id="add-new-button" href="">
+      Add New
+    </button> -->
+  <search-bar></search-bar>  <!-- Search bar - Top of site -->
+  
+  <add-new-btn> </add-new-btn> <!-- Add new button - Top right side of site -->
+  <!-- <textarea id="SearchBar">Search</textarea> -->
+  <!-- <div id="entries-holder">
+  </div> -->
+
   <select id = 'sort-select'>
     <script src ='library.js' type="module"></script>
     <option value="title">Sort by title</option>
     <option value="date">Sort by date</option>
     <option value="lastEdited">Sort by recent</option>
   </select>
-    <button id="add-new-button" href="">
-      Add New
-    </button>
-  <textarea id="SearchBar">Search</textarea>
-  <div id="entries-holder">
-  </div>
+
+  <note-entry></note-entry> <!-- Note entry - Main content of site -->
 </body>
 </html>

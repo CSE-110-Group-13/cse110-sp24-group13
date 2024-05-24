@@ -2,10 +2,12 @@ import {
     getNoteFromTable,
   } from "./NoteTable.js";
 
+
 /**
- * Create html note elements from information in local stoarge
- * @param {*} entry an entry of the note table in local storage
- * @returns the created element
+ * Description placeholder
+ *
+ * @param {*} entry
+ * @returns {*}
  */
 function loadEntry(entry) {
     // create a new div element
@@ -54,6 +56,9 @@ function loadEntry(entry) {
 window.addEventListener("DOMContentLoaded", init);
 
 // Starts the program, all function calls trace back here
+/**
+ * Description placeholder
+ */
 function init() {
   // Initialize the tables in local storage if they do not exist
     const tables = ["NoteTable", "ProjectTable", "TaskTable"];
@@ -97,6 +102,7 @@ function init() {
         "favorited" : false,
         "tags" : []
     };
+
     loadedNotes.push(loadEntry(testNote1));
     loadedNotes.push(loadEntry(testNote2));
 
