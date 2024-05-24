@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <nav>
-    <a href="../markdown/markdown.html">Markdown</a>
-    <a href="../calendar/calendar.html">Calendar</a>
-    <a href="../homepage/index.html">Homepage</a>
-  </nav>
-
-  <script src="calendar.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../calendar/calendar.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+    </style>
+    <script src="calendar.js"></script>
+    <script src="../verticalnavbar/verticalnavbar.js"></script>
+  </head>
+  <body>
+    <!-- <nav>
+      <a href="../markdown/markdown.html">Markdown</a>
+      <a href="../calendar/calendar.html">Calendar</a>
+      <a href="../homepage/index.html">Homepage</a>
+    </nav> -->
+    <vertical-navbar currentPage="anchorToCalendar"></vertical-navbar>
+  </body>
 </html>
