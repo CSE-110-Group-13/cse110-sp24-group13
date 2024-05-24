@@ -1,10 +1,18 @@
 class AddNewBtn extends HTMLElement {
-  constructor() {
+  /**
+ * Creates an instance of AddNewBtn.
+ *
+ * @constructor
+ */
+constructor() {
     super();
     this.attachShadow({ mode: "open" });
   }
 
-  connectedCallback() {
+  /**
+ * The real constructor
+ */
+connectedCallback() {
     const styles = document.createElement('style');
     styles.innerHTML = `
       #buttonsContainer {
