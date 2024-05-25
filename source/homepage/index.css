@@ -1,36 +1,4 @@
-/* Overriding browser defaults */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
 
-body {
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-#recents {
-  overflow: hidden;
-  position: fixed;
-  top: 24%;
-  left: 220px;
-  width: 70%;
-  padding: 20px;
-}
-
-
-
-#recents span {
-  position: fixed;
-  top: 22%;
-  left: 220px;
-  color: black;
-}
-
-.note {
-  overflow: hidden;
   transition: transform 0.8s ease-in-out, opacity 0.8s ease;
   max-height: 100px; /* Set initial max-height */
   opacity: 1; /* Set initial opacity */
