@@ -8,6 +8,72 @@ class NoteWebComponent extends HTMLElement {
   }
 
   render() {
+    const styles = document.createElement("style");
+    styles.innerHTML = `
+      .note-container {
+        background-color: #F8F8F8;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        
+      }
+
+      h2 {
+        font-weight: bold;
+        margin-right: 100px;
+      }
+
+      header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .tags {
+        display: flex;
+      }
+
+      .tags span {
+        background-color: #e2e2e2;
+        padding: 0px 10px;
+        margin-right: 5px;
+        border-radius: 5px;
+        height: 20px;
+      }
+
+      #vertical-line {
+        border-left: 2px solid #000;
+        height: 25px;
+        margin-right: 5px;
+      }
+
+      .projects {
+        display: flex;
+      }
+
+      .projects span {
+        background-color: #e2e2e2;
+        padding: 0px 10px;
+        margin-right: 5px;
+        border-radius: 5px;
+        height: 20px;
+      }
+
+      .content-container {
+        display: flex;
+        flex-direction: row;
+        
+      }
+
+      .date {
+        display: flex;
+        flex-direction: column;
+      }
+
+    `;
+    document.head.appendChild(styles);
     // Hardcode notes data
     const notesData = {
       "123": {
@@ -22,7 +88,7 @@ class NoteWebComponent extends HTMLElement {
       },
       "456": {
         "noteID": "456",
-        "text": "This is the content of note 2.",
+        "text": "This is the content of note 2",
         "date": "2024-05-05",
         "lastEdited": "2024-05-15",
         "title": "Note 2",
@@ -43,30 +109,48 @@ class NoteWebComponent extends HTMLElement {
       const noteContainer = document.createElement('div');
       noteContainer.classList.add('note-container');
 
+      // Create a header
+      const headerElement = document.createElement('header');
+      noteContainer.appendChild(headerElement);
+
+      // Create a container for the content (text, date, and lastEdited)
+      const contentContainer = document.createElement('div');
+      contentContainer.classList.add('content-container');
+      noteContainer.appendChild(contentContainer);
+
+      // Create a date container
+      const dateContainer = document.createElement('div');
+      dateContainer.classList.add('dates');
+      contentContainer.appendChild(dateContainer);
+
       // Add the title
       const titleElement = document.createElement('h2');
       titleElement.textContent = note.title;
-      noteContainer.appendChild(titleElement);
+      headerElement.appendChild(titleElement);
+
+      // Call the function getFormattedDate()
+      const date = this.getFormattedDate(note.date);
+      const lastEdited = this.getFormattedDate(note.lastEdited);
+
+      // Add date
+      const dateElement = document.createElement('p');
+      dateElement.textContent = `Started ${date}`;
+      dateContainer.appendChild(dateElement);
+
+      // Add last edited
+      const lastEditedElement = document.createElement('p');
+      lastEditedElement.textContent = `Last Worked on: ${lastEdited}`;
+      dateContainer.appendChild(lastEditedElement);
 
       // Add text
       const textElement = document.createElement('p');
       textElement.textContent = note.text;
-      noteContainer.appendChild(textElement);
-
-      // Add date
-      const dateElement = document.createElement('span');
-      dateElement.textContent = `Started ${note.date}`;
-      noteContainer.appendChild(dateElement);
-
-      // Add last edited
-      const lastEditedElement = document.createElement('span');
-      lastEditedElement.textContent = `Last Worked on: ${note.lastEdited}`;
-      noteContainer.appendChild(lastEditedElement);
+      contentContainer.appendChild(textElement);
 
       // Create tags container
       const tagsContainer = document.createElement('div');
       tagsContainer.classList.add('tags');
-      noteContainer.appendChild(tagsContainer);
+      headerElement.appendChild(tagsContainer);
 
       // Add each tag separately
       note.tags.forEach(tag => {
@@ -75,10 +159,15 @@ class NoteWebComponent extends HTMLElement {
         tagsContainer.appendChild(tagElement);
       });
 
+      // Add line separating the tags and projects
+      const verticalLine = document.createElement('div');
+      verticalLine.id = 'vertical-line';
+      headerElement.appendChild(verticalLine);
+
       // Create project container
       const projectContainer = document.createElement('div');
       projectContainer.classList.add('projects');
-      noteContainer.appendChild(projectContainer);
+      headerElement.appendChild(projectContainer);
 
       // Add each project separately
       note.projectList.forEach(project => {
@@ -87,11 +176,44 @@ class NoteWebComponent extends HTMLElement {
         projectContainer.appendChild(projectElement);
       });
 
-      // Add favorited button 
 
+      // Add favorited button 
+    
       this.appendChild(noteContainer);
     }
   }
+
+  /**
+  * Takes in a date string and converts it to the format Month Day with the corresponding suffix
+  * @param {string}  dateString string in the format YYYY-MM-DD
+  * @return {string} a string in the correct format
+  */
+  getFormattedDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    let suffix = "";
+
+    // Determine the suffix based on the day
+    if (day === 1 || day === 21 || day === 31) {
+      suffix = "st";
+    }
+    else if (day === 2 || day === 22) {
+      suffix = "nd";
+    }
+    else if (day === 3 || day === 23) {
+      suffix = "rd";
+    }
+    else {
+      suffix = "th";
+    }
+
+    // Format the string
+    const options = { month: 'long' };
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+
+    return `${formattedDate} ${day}${suffix}`;
+  }
+
 
 }
 customElements.define('note-web-component', NoteWebComponent);
