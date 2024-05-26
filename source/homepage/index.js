@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { 
   getNoteFromTable,modifyNoteFavorited,
 } from "./NoteTable.js";
@@ -114,7 +113,7 @@ function init(){
     loadedNotes.push(getNoteFromTable(IDContainer[i]));
   }
   
-  console.log(getNoteFromTable("ABC"));  // Sort notes based off last edited. WORK IN PROGRESS NOT FULLY FUNCTIONAL. 
+     // Sort notes based off last edited. WORK IN PROGRESS NOT FULLY FUNCTIONAL. 
   loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
 
 
@@ -152,7 +151,7 @@ function init(){
     "tags" : []
   };
 
-  //loadedNotes.push(testNote1,testNote2,testNote3);
+  loadedNotes.push(testNote1,testNote2,testNote3);
 
 
 
@@ -238,15 +237,3 @@ recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event,
 recentsCollapseButton.innerHTML = expandIcon;
 
 
-=======
-// customElements.whenDefined('vertical-navbar').then(function() {
-//   document.body.style.visibility = 'visible';
-// });
-
-// Promise.all([
-//   customElements.whenDefined('vertical-navbar'),
-//   // Add other custom elements here
-// ]).then(function() {
-//   document.body.style.visibility = 'visible';
-// });
->>>>>>> 629079e30057e3dc50cf8ff2dc38fbb11e567855
