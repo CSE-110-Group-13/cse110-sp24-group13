@@ -1,7 +1,5 @@
-
-//still have to finish collapse buttons. 
 import { 
-  getNoteFromTable,
+  getNoteFromTable,modifyNoteFavorited,
 } from "./NoteTable.js";
 
 
@@ -24,7 +22,7 @@ function createNoteElement(noteObject){
 
   //Tittle of note
   const titleElement = document.createElement('p');
-  titleElement.textContent ="Tittle: " + noteObject.title;
+  titleElement.textContent ="title: " + noteObject.title;
   noteContainer.appendChild(titleElement);
 
   //Text of note
@@ -75,6 +73,7 @@ function createNoteElement(noteObject){
 
 
   const button = document.createElement("button");
+  button.dataset.noteID = noteObject.noteID;
   if( favorited == true){
     button.innerText = "Favorited";
   }
@@ -108,12 +107,13 @@ function init(){
   //Define an array to store all the notes from id container. 
   let loadedNotes = [];
 
+  
   // Upload notes to array
   for(let i = 0; i < IDContainer.length; i++){
     loadedNotes.push(getNoteFromTable(IDContainer[i]));
   }
-
-  // Sort notes based off last edited. WORK IN PROGRESS NOT FULLY FUNCTIONAL. 
+  
+  console.log(getNoteFromTable("ABC"));  // Sort notes based off last edited. WORK IN PROGRESS NOT FULLY FUNCTIONAL. 
   loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
 
 
@@ -151,23 +151,21 @@ function init(){
     "tags" : []
   };
 
-  loadedNotes.push(testNote1);
-  loadedNotes.push(testNote2);
-  loadedNotes.push(testNote3);
+  //loadedNotes.push(testNote1,testNote2,testNote3);
 
 
 
   //For all the loadedNOtes upload them unto homepage 
   for(let i = 0; i < loadedNotes.length; i++){
     //the noteObject will be assigned to a note object from the array of all notes; 
-    let noteObject = loadedNotes[i];
+    let noteObject = getNoteFromTable(loadedNotes[i].noteID);
     const noteElement = createNoteElement(noteObject);
     recentContainer.appendChild(noteElement);
   }
 
   for(let i = 0; i < loadedNotes.length; i++){
     //the noteObject will be assigned to a note object from the array of all notes; 
-    let noteObject = loadedNotes[i];
+    let noteObject = getNoteFromTable(loadedNotes[i].noteID);
     const noteElement = createNoteElement(noteObject);
     favoritesContainer.appendChild(noteElement);
   }
@@ -183,11 +181,20 @@ function init(){
 
 //Function to change favorite button from highlighted to note highlighted. 
 function toggleFavorite(button){
-  if(button.innerText == "Favorited"){
-      button.innerText = 'False';
-  }
-  else{
-      button.innerText = "Favorited";
+
+  const noteID = button.dataset.noteID;
+  const note = getNoteFromTable(noteID);
+
+  if(note){
+    const newFavoritedStatus = !note.favorited;
+
+    modifyNoteFavorited(noteID, newFavoritedStatus);
+    if (newFavoritedStatus) {
+      button.innerText = 'Favorited';
+    } else {
+      button.innerText = 'Not Favorited';
+      button.style.backgroundColor = ''; // Revert to default or another style
+    }
   }
 }
 
@@ -228,4 +235,6 @@ const recentsCollapseButton = document.getElementById('collapseButton1');
 recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'recents'));
 
 recentsCollapseButton.innerHTML = expandIcon;
+
+
 
