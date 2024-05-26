@@ -1,6 +1,6 @@
 import { 
   getNoteFromTable,modifyNoteFavorited,
-} from "./NoteTable.js";
+} from "../backend/NoteTable.js";
 
 
 window.addEventListener("DOMContentLoaded", init);
@@ -153,6 +153,7 @@ function init(){
 
   loadedNotes.push(testNote1,testNote2,testNote3);
 
+  console.log(loadedNotes[0]);
 
 
   //For all the loadedNOtes upload them unto homepage 
