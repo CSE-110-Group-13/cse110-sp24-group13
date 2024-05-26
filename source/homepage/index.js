@@ -237,4 +237,3 @@ recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event,
 recentsCollapseButton.innerHTML = expandIcon;
 
 
-
