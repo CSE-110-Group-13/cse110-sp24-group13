@@ -52,7 +52,7 @@ connectedCallback() {
       #addNoteProjectContainer {
         display: flex;
         flex-direction: row;
-        width: 100em;
+        width: 100%;
         background: #F8F8F8;
         align-items: center;
         border-radius: 15px;
