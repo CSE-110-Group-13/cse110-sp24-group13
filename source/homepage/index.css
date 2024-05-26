@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*styling not finished yet*/
 
 
@@ -119,3 +120,39 @@ a {
 #end-block {
   display: none;
 }
+=======
+/* Overriding browser defaults */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* body {
+  visibility: hidden;
+} */
+
+/* vertical-navbar:not(:defined) {
+  display: inline-block;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+} */
+
+/* vertical-navbar {
+  display: block;
+  min-height: 2em;
+  transition: opacity 0.5s ease-out;
+
+}
+vertical-navbar:not(:defined) {
+  opacity: 0;
+} */
+
+/* vertical-navbar:not(:defined) {
+  display: block;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  } */
+>>>>>>> 629079e30057e3dc50cf8ff2dc38fbb11e567855
