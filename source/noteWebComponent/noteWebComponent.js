@@ -17,25 +17,29 @@ class NoteWebComponent extends HTMLElement {
         border-radius: 5px;
         display: flex;
         flex-direction: column;
+        position: relative;
         
       }
 
       h2 {
         font-weight: bold;
-        margin-right: 100px;
       }
 
       header {
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin-top: -5px;
       }
 
-      .tags {
+      .tags-project {
         display: flex;
+        position: absolute;
+        left: 25%;
+        align-items: center;
       }
 
-      .tags span {
+      .tags-project span {
         background-color: #e2e2e2;
         padding: 0px 10px;
         margin-right: 5px;
@@ -46,19 +50,8 @@ class NoteWebComponent extends HTMLElement {
       #vertical-line {
         border-left: 2px solid #000;
         height: 25px;
-        margin-right: 5px;
-      }
-
-      .projects {
-        display: flex;
-      }
-
-      .projects span {
-        background-color: #e2e2e2;
-        padding: 0px 10px;
-        margin-right: 5px;
-        border-radius: 5px;
-        height: 20px;
+        margin-right: 9px;
+        margin-left: 9px;
       }
 
       .content-container {
@@ -67,9 +60,23 @@ class NoteWebComponent extends HTMLElement {
         
       }
 
-      .date {
+      .dates {
         display: flex;
         flex-direction: column;
+      }
+
+      .dates p {
+        font-size: 10px;
+        color: #7C7C7C;
+        margin-top: -5px;
+    
+      }
+
+      #note-text {
+        position: absolute;
+        left: 25%;
+        margin-top: -5px;
+        font-size: 12px;
       }
 
     `;
@@ -144,36 +151,32 @@ class NoteWebComponent extends HTMLElement {
 
       // Add text
       const textElement = document.createElement('p');
+      textElement.id = 'note-text';
       textElement.textContent = note.text;
       contentContainer.appendChild(textElement);
 
-      // Create tags container
-      const tagsContainer = document.createElement('div');
-      tagsContainer.classList.add('tags');
-      headerElement.appendChild(tagsContainer);
+      // Create a tags-project container
+      const tagsProjectContainer = document.createElement('div');
+      tagsProjectContainer.classList.add('tags-project');
+      headerElement.appendChild(tagsProjectContainer);
 
       // Add each tag separately
       note.tags.forEach(tag => {
         const tagElement = document.createElement('span');
         tagElement.textContent = tag;
-        tagsContainer.appendChild(tagElement);
+        tagsProjectContainer.appendChild(tagElement);
       });
 
       // Add line separating the tags and projects
       const verticalLine = document.createElement('div');
       verticalLine.id = 'vertical-line';
-      headerElement.appendChild(verticalLine);
-
-      // Create project container
-      const projectContainer = document.createElement('div');
-      projectContainer.classList.add('projects');
-      headerElement.appendChild(projectContainer);
+      tagsProjectContainer.appendChild(verticalLine);
 
       // Add each project separately
       note.projectList.forEach(project => {
         const projectElement = document.createElement('span');
         projectElement.textContent = project;
-        projectContainer.appendChild(projectElement);
+        tagsProjectContainer.appendChild(projectElement);
       });
 
 
