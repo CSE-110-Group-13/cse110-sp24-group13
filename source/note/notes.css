@@ -39,6 +39,13 @@ body {
     height: 25px;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #F8F8F8;
+}
+
 .noteTitle {
     margin-top: 10%;
 }
