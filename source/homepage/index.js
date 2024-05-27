@@ -11,7 +11,8 @@ function createNoteElement(noteObject){
   //Wrapper container for a note Element. That will incude a note Contianer and a button.
   const noteContainerMain = document.createElement("span");
   noteContainerMain.className = "note-wrapper";
-  
+
+
   //Note Container that is an anchor to another page. 
   const noteContainer = document.createElement("a");
   noteContainer.href = "../library/library.html";
@@ -74,6 +75,7 @@ function createNoteElement(noteObject){
 
   const button = document.createElement("button");
   button.dataset.noteID = noteObject.noteID;
+  button.dataset.favorited = noteObject.favorited;
   if( favorited == true){
     button.innerText = "Favorited";
   }
@@ -94,88 +96,128 @@ function createNoteElement(noteObject){
 
 }
 
+const recentContainer = document.createElement("div");
+const recents = document.getElementById("recents");
+recents.appendChild(recentContainer);
+recentContainer.id = "recentsContainer";
+
+const favoriteContainer = document.createElement("div");
+const favorite = document.getElementById("favorites");
+favorite.appendChild(favoriteContainer);
+favoriteContainer.id = "favoritesContainer";
 
 function init(){
   
   //Appended those two as children of the recents module.
-  const recentContainer = document.getElementById("recents");
-  const favoritesContainer = document.getElementById("favorites");
 
   //Get list of all notes from id container. 
   const IDContainer = JSON.parse(window.localStorage.getItem("IDContainer"));
 
   //Define an array to store all the notes from id container. 
   let loadedNotes = [];
-
-  
   // Upload notes to array
   for(let i = 0; i < IDContainer.length; i++){
     loadedNotes.push(getNoteFromTable(IDContainer[i]));
   }
-  
      // Sort notes based off last edited. WORK IN PROGRESS NOT FULLY FUNCTIONAL. 
   loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
 
+  //Testing Values for console. 
+  /**
+   * const testNote1 = {
+    "ABC": {
+        "noteID": "ABC",
+        "text": "buy eggs",
+        "date": "2024-5-21",
+        "lastEdited": "2025-5-23",
+        "title": "to do at grocery store",
+        "projectList": [],
+        "favorited": false,
+        "tags": []
+    }
+};
 
-  //dummy test values.
-  const testNote1 = {
-    "noteID" : "ABC",
-    "text" : "buy eggs",
-    "date" : "2024-5-21",
-    "lastEdited" : "2025-5-23",
-    "title" : "to do at grocery store",
-    "projectList" : [],
-    "favorited" : false,
-    "tags" : []
-  };
+const testNote2 = {
+    "21kfasde": {
+        "noteID": "21kfasde",
+        "text": "mow lawn",
+        "date": "2024-5-22",
+        "lastEdited": "2026-5-22",
+        "title": "chores",
+        "projectList": ["Ash"],
+        "favorited": false,
+        "tags": []
+    }
+};
 
-  const testNote2 = {
-      "noteID" : "21kfasde",
-      "text" : "mow lawn",
-      "date" : "2024-5-22",
-      "lastEdited" : "2026-5-22",
-      "title" : "chores",
-      "projectList" : ["Ash"],
-      "favorited" : false,
-      "tags" : []
-  };
+const testNote3 = {
+    "XYZ": { // Changed the noteID here
+        "noteID": "XYZ",
+        "text": "buy eggs",
+        "date": "2024-5-21",
+        "lastEdited": "2025-5-23",
+        "title": "to do at grocery store",
+        "projectList": [],
+        "favorited": false,
+        "tags": []
+    }
+};
 
-  const testNote3 = {
-    "noteID" : "ABC",
-    "text" : "buy eggs",
-    "date" : "2024-5-21",
-    "lastEdited" : "2025-5-23",
-    "title" : "to do at grocery store",
-    "projectList" : [],
-    "favorited" : false,
-    "tags" : []
-  };
+// Combine test notes into a single object
+const notesTable = { ...testNote1, ...testNote2, ...testNote3 };
 
-  loadedNotes.push(testNote1,testNote2,testNote3);
-
-  console.log(loadedNotes[0]);
+// Store notesTable in local storage
+localStorage.setItem('notesTable', JSON.stringify(notesTable));
+   */
+  
 
 
   //For all the loadedNOtes upload them unto homepage 
   for(let i = 0; i < loadedNotes.length; i++){
-    //the noteObject will be assigned to a note object from the array of all notes; 
-    let noteObject = getNoteFromTable(loadedNotes[i].noteID);
-    const noteElement = createNoteElement(noteObject);
-    recentContainer.appendChild(noteElement);
+    let noteID = loadedNotes[i].noteID;
+
+    
+    // Check if the noteID already exists in recentContainer
+
+    // If the noteID doesn't exist, create and append the note element
+ 
+        const noteObject = getNoteFromTable(noteID);
+        const noteElement = createNoteElement(noteObject);
+        recentContainer.appendChild(noteElement);
+    
   }
 
   for(let i = 0; i < loadedNotes.length; i++){
-    //the noteObject will be assigned to a note object from the array of all notes; 
-    let noteObject = getNoteFromTable(loadedNotes[i].noteID);
-    const noteElement = createNoteElement(noteObject);
-    favoritesContainer.appendChild(noteElement);
+    let noteID = loadedNotes[i].noteID;
+    
+    // Check if the noteID already exists in favoritesContainer
+  
+    
+    
+    // If the noteID doesn't exist and it is favorited, create and append the note element
+   
+        let noteObject = getNoteFromTable(noteID);
+        if (noteObject.favorited === true) {
+            const noteElement = createNoteElement(noteObject);
+            favoritesContainer.appendChild(noteElement);
+        
+    }
   }
 
-
-
-  
 }
 
+function reset() {
+  const recentsContainer = document.getElementById('recentsContainer');
+  while (recentsContainer.firstChild) {
+    recentsContainer.removeChild(recentsContainer.firstChild);
+  }
+
+  const favoriteContainer = document.getElementById('favoritesContainer');
+  while (favoriteContainer.firstChild) {
+    favoriteContainer.removeChild(favoriteContainer.firstChild);
+  }
+  
+}
 
 
 
@@ -192,11 +234,15 @@ function toggleFavorite(button){
     modifyNoteFavorited(noteID, newFavoritedStatus);
     if (newFavoritedStatus) {
       button.innerText = 'Favorited';
+      button.dataset.favorited = newFavoritedStatus;
     } else {
       button.innerText = 'Not Favorited';
+      button.dataset.favorited = newFavoritedStatus;
       button.style.backgroundColor = ''; // Revert to default or another style
     }
   }
+  reset();
+  init();
 }
 
 
