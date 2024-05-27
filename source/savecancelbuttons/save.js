@@ -33,7 +33,7 @@ class saveButton extends HTMLElement {
             background-color: #e0e0e0; /* Change background color on hover */
         }
 
-        svg {
+        #sButton svg {
             margin-right: 8px; /* Add space between icon and text */
             width: 25px;
             height: 25px;
