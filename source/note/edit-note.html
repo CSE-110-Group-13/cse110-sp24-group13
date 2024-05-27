@@ -11,60 +11,62 @@
     <title>Edit Note | Commit</title>
 </head>
 <body>
+    <!-- TODO: Make the tags more accurate, pull data using the backend, make link projects look nice-->
+    
     <div id="container">
     <vertical-navbar currentPage="anchorToEditNote"></vertical-navbar>
     <div id="restOfScreen">
-        <header>
-            <div class = "actionBar" href = "#">
-                <save-button></save-button>
-                <a id = "Cancel" href = "#"> <!-- link needs to be replaced with corresponding action -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                        <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
-                    Cancel
-                </a> 
-            </div>
-        </header>
-        <div class = "noteTitle">
-            <h1>Sample Note</h1>
-        </div>
-        <div class = "noteDetails">
-            <div class = "tags"> <!-- new tag tag allows user to type, pressing on a tag will delete -->
-                <h4>Tags:</h4>
-                <ul>
-                    <li>Tag 1</li>
-                    <li>Tag 2</li>
-                </ul>
-                <div class = "newTag">
-                    <input type = "text" placeholder = "+ Add new tag">
+        <main>
+            <header>
+                <div class = "actionBar" href = "#">
+                    <save-button></save-button>
+                    <a id = "Cancel" href = "#"> <!-- link needs to be replaced with corresponding action -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                            <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                            <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                        Cancel
+                    </a> 
                 </div>
-                <div class = "projectTag">
-                    <input type = "text" placeholder = "Project Name">
+            </header>
+            <div class = "noteTitle">
+                <h1>Sample Note</h1>
+            </div>
+            <div class = "noteDetails">
+                <div class = "tags"> <!-- new tag tag allows user to type, pressing on a tag will delete -->
+                    <h4>Tags:</h4>
+                    <ul>
+                        <li>Tag 1</li>
+                        <li>Tag 2</li>
+                    </ul>
+                    <div class = "newTag">
+                        <input type = "text" placeholder = "+ Add new tag">
+                    </div>
+                    <div class="vr"></div>
+                    <div class = "projectTag">
+                        <input type = "text" placeholder = "Project Name">
+                    </div>
+                </div>
+                <div class = "date">
+                    <h4>Date:</h4>
+                    <input type = "date" value="2024-05-18">
                 </div>
             </div>
-            <div class = "date">
-                <h4>Date:</h4>
-                <input type = "date" value="2024-05-18">
+            <hr>
+            <div class = "noteContainer">
+                <markdown-editor></markdown-editor>
             </div>
-        </div>
-        <hr>
-        <div class = "noteContainer">
-            <markdown-editor></markdown-editor>
-        </div>
-        <div class = "project">
-            <div class = "linkedProject">
-                <h3>Linked Project:</h3>
-                <ul>
-                    <li>No projects linked at this time</li>
-                </ul>
+            <div class = "project">
+                <div class = "linkedProject">
+                    <h3>Linked Project:</h3>
+                    <ul>
+                        <li>No projects linked at this time</li>
+                    </ul>
+                </div>
+                <div class = "linkProject">
+                    <a href = "">Add project</a>
+                </div>
             </div>
-            <div class = "linkProject">
-                <a href = "">Add project</a>
-            </div>
-        </div>
-    
-    
-    
+        </main>
     </div>
     
 </body>

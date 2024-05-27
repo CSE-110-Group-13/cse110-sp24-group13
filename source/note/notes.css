@@ -17,7 +17,7 @@ hmtl, body {
 header {
     display: flex;
     justify-content: flex-end;
-    height: 10vh;
+    height: 8vh;
     margin-bottom: 1vh;
 }
 
@@ -54,7 +54,7 @@ header {
     width: 25px;
     height: 25px;
 }
-
+/*
 main {
     display: flex;
     flex-direction: column;
@@ -65,16 +65,37 @@ main {
   
     align-items: center;
 }
-
-main > div {
+*/
+main > .noteContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     background-color: #F8F8F8;
     border-radius: 25px;
-    width: 80vw;
+    width: 89vw;
   
-    gap: 1vh;
+    margin-bottom: 2%;
+}
+
+main > .project {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: #F8F8F8;
+    border-radius: 25px;
+    width: 89vw;
+  
+    margin-bottom: 2%;
+}
+
+.vr
+{
+  display:inline;
+
+  width:0px;
+  border:0.1px inset;
+  margin:5px;
+  fill: black;
 }
 
 .noteTitle {
