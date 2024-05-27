@@ -29,6 +29,8 @@ Meeting ended: [3:00 PM]
   - Moving from teams taking on tasks to individuals taking on tasks (SOLOING)
 - Create status update video for this week's sprint
 
+[Miro Board](https://miro.com/app/board/uXjVKOOTGvE=/?share_link_id=154817868365)
+
 - Specific Tasks
   - Sarah & Venkata decide how to create the note component (that's used on the homepage, library, and favorites)
 
@@ -53,6 +55,8 @@ Backend:
 - GitHub boards are a good way to keep organized for open and taken tasks
 - Too much focus on styling took away time from creating the skeleton and core functionality
 - More communication of when certain tasks are taken
+
+![Sprint Retrospect](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/88dcd41f-74dd-410e-aae7-9ae36b320b42)
 
 ## Additional topics discussed:
 - Decided to pull request more often to have a more updated app for each branch
