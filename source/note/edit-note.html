@@ -2,13 +2,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../verticalnavbar/verticalnavbar.js"></script>
     <link rel="stylesheet" href="notes.css">
     <title>Edit Note | Commit</title>
 </head>
 <body>
-    <!-- navbar -->
-    <div id="verticalNavbar"></div>
-    <div class = "content"> 
+    <div id="container">
+    <vertical-navbar currentPage="anchorToEditNote"></vertical-navbar>
+    <div id="restOfScreen">
         <div class = "actionBar" href = "#">
             <a id = "save"> <!-- link needs to be replaced with corresponding -->
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
