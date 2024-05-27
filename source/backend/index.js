@@ -1,4 +1,4 @@
-// main.js
+// index.js
 
 // Note: all the functions in import are the only functions that are exposed to the frontend, if you want to expose more functions, talk to the backend team
 // import { 
