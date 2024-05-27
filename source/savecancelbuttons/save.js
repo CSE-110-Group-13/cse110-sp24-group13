@@ -10,15 +10,8 @@ class saveButton extends HTMLElement {
         sButton.textContent = 'Save';
         const styles = document.createElement('style');
         styles.innerHTML = `
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin: 2% 1% 0 0;
-        min-width: fit-content;
-        display: flex;
-        gap: 10px;
 
-        #sButton {
+        a {
             display: flex;
             width: 136px;
             justify-content: center;
@@ -32,11 +25,11 @@ class saveButton extends HTMLElement {
             font-size: 16px;
         }
 
-        #sButton hover {
+        a: hover {
             background-color: #e0e0e0; /* Change background color on hover */
         }
 
-        #sButton svg {
+        svg {
             margin-right: 8px; /* Add space between icon and text */
             width: 25px;
             height: 25px;
