@@ -21,8 +21,8 @@
  * }
  */
 
-// Import the generateID function from generateID.js
-import { generateID } from "./generateID.js";
+// Import the functions from generateID.js
+import { generateID, getIDContainerFromStorage, saveIDContainerToStorage } from "./generateID.js";
 
 /**
  * Get the note table from local storage, if there is none, return an empty object
@@ -58,7 +58,7 @@ function getNoteFromTable(noteID) {
     return noteTable[noteID];
   }
   else {
-    alert(`NoteID: ${noteID} does not exist to save to storage`);
+    alert(`NoteID: ${noteID} does not exist to get in the table`);
     return undefined;
   }
 }
@@ -75,18 +75,31 @@ function saveNoteToTable(noteID, noteObject) {
     saveNoteTableToStorage(noteTable);
   }
   else {
-    alert(`NoteID: ${noteID} does not exist to save to storage`);
+    alert(`NoteID: ${noteID} does not exist to save in the table`);
   }
 }
 
 /**
- * Takes in an ID, delete the note object that maps to that ID from the table and update the local storage
+ * Delete the note object that maps to the given ID from the table, as well as the ID in the IDContainer, and update the local storage
  * @param {String} noteID - the ID of the note to delete
  */
 function deleteNoteFromTable(noteID) {
+  // Remove the noteID from the noteTable
   const noteTable = getNoteTableFromStorage();
-  delete noteTable[noteID];
-  saveNoteTableToStorage(noteTable);
+
+  if (noteID in noteTable) {
+    delete noteTable[noteID];
+    saveNoteTableToStorage(noteTable);
+  
+    // Filter and remove the noteID from the IDContainer
+    const removeID = noteID.split("-")[1];
+    const IDContainer = getIDContainerFromStorage();
+    const newIDContainer = IDContainer.filter(ID => ID !== removeID);
+    saveIDContainerToStorage(newIDContainer);
+  }
+  else {
+    alert(`NoteID: ${noteID} does not exist to delete in the table`);
+  }
 }
 
 /**
