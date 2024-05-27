@@ -1,0 +1,80 @@
+<html> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="project.css">
+    <title>PROJECT NAME | Commit</title> <!-- replace name with project name -->
+</head>
+<body>
+    <!-- navbar -->
+    <div id="verticalNavbar"></div>
+    <div class = "content"> 
+        <div class = "actionBar" href = "#">
+            <a id = "save"> <!-- link needs to be replaced with corresponding -->
+                <span style="background: url(../note/icons/floppy-disk-solid.svg); display: block;"></span>
+                Save
+            </a>
+            <a id = "Cancel" href = "#"> <!-- link needs to be replaced with corresponding action -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                Cancel
+            </a> 
+        </div>
+        <div class = "container">
+            <svg class="priorityDot">
+                <circle cx="20" cy="20" r="10" fill="red" />
+            </svg>
+            <div class = "projectTitle">
+                <h1>Project Name</h1> <!-- replace name with project name -->
+            </div>
+            <label for="progressBar">30%</label>
+            <progress id="progressBar" value="30" max="100"> 200000</progress>
+            <div class = "projectDue">
+                <!-- add calendar icon-->
+                    <label for="deadline">Set Deadline: </label>
+                    <input id="deadline" type="datetime-local">
+            </div> 
+            <h3><label for="projectDetails">Description</label></h3>
+            <textarea id="projectDetails" name="projectDetails" rows="4" cols="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus beatae eum perferendis accusantium quasi odio vel voluptatem temporibus nihil sed reprehenderit quo eveniet delectus reiciendis dolor itaque, nemo quas dolore!</textarea>
+        </div>
+        <div class = "container">
+            <div class = "tasks">
+                <h2>Tasks</h2>
+                <input type="checkbox" id="task1" name="task1" value="task1" checked>
+                <label for="task1">Task 1</label>
+                <br>
+                <input type="checkbox" id="task2" name="task2" value="task2">
+                <label for="task2">Task 2</label>
+                <br>
+                <input type="checkbox" id="task3" name="task3" value="task3">
+                <label for="task3">Task 3</label>
+                <add-task></add-task>   <!-- Add task component-->
+            </div>
+        </div>
+    
+        <div class = "container">
+            <div class = "linkedNotes">
+                <h2>Linked Notes</h2>
+                <div class = "linkedNote">
+                    <h3>Linked Note 1</h3>
+                    <!-- link icon to note -->
+                    <p>Last modified: X/Y/Z</p>
+                    <div class = "tags">
+                        <ul>
+                            <li>Tag 1</li>
+                            <li>Tag 2</li>
+                        </ul>
+                    </div>
+                    <i>Completed Tasks</i>
+                    <div class = "completedTasks">
+                        <input type="checkbox" id="task1" name="task1" value="task1" checked>
+                        <label for="task1">Task 1</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
