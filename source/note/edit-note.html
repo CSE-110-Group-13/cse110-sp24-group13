@@ -11,7 +11,9 @@
     <title>Edit Note | Commit</title>
 </head>
 <body>
-    <!-- TODO: Make the tags more accurate, pull data using the backend, make link projects look nice-->
+    <!-- TODO: Make save button styling work-->
+    <!-- TODO: Delete save and load from markdown component and put that functionality in save-->
+    <!-- TODO: Make it like project list in that it has autoload/generate features. If no saved data, make temp stuff-->
     
     <div id="container">
     <vertical-navbar currentPage="anchorToEditNote"></vertical-navbar>
@@ -58,9 +60,10 @@
             <div class = "project">
                 <div class = "linkedProject">
                     <h3>Linked Project:</h3>
-                    <ul>
-                        <li>No projects linked at this time</li>
-                    </ul>
+                    <p>This allows you to to update a specific task. 
+                        Once you select a specific task, you can then check off which 
+                        subtask you have completed in this specific note
+                    </p>
                 </div>
                 <div class = "linkProject">
                     <a href = "">Add project</a>
