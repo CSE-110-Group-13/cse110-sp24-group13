@@ -10,16 +10,19 @@ class NoteWebComponent extends HTMLElement {
   render() {
     const styles = document.createElement("style");
     styles.innerHTML = `
-      .note-container {
-        background-color: #F8F8F8;
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        
-      }
+    .note-container {
+      background-color: #F8F8F8;
+      padding-right: 10px;
+      padding-left: 20px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden;
+      position: relative; 
+    }
 
       h2 {
         font-weight: bold;
@@ -29,13 +32,13 @@ class NoteWebComponent extends HTMLElement {
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-top: -5px;
+        margin-top: -10px;
       }
 
       .tags-project {
         display: flex;
         position: absolute;
-        left: 25%;
+        left: 22%;
         align-items: center;
       }
 
@@ -57,6 +60,7 @@ class NoteWebComponent extends HTMLElement {
       .content-container {
         display: flex;
         flex-direction: row;
+        margin-top: -10px;
         
       }
 
@@ -68,16 +72,22 @@ class NoteWebComponent extends HTMLElement {
       .dates p {
         font-size: 10px;
         color: #7C7C7C;
-        margin-top: -5px;
-    
+        margin-top: -5px;    
       }
 
       #note-text {
         position: absolute;
-        left: 25%;
+        left: 22%;
         margin-top: -5px;
+        margin-right: 10px;
         font-size: 12px;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
       }
+
+      
 
     `;
     document.head.appendChild(styles);
