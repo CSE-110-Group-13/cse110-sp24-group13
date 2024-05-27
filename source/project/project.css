@@ -20,6 +20,7 @@ body {
     width: 136px;
     justify-content: center;
     align-items: center;
+
     background-color: #F8F8F8;
     box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
     border-radius: 10px;
@@ -51,3 +52,45 @@ body {
     border-radius: 25px;
     
 }
+
+.projectHeader{
+    display: flex; 
+    align-items: center; 
+   /* flex-direction: row-reverse;  */
+}
+
+.priorityDot{
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+select {
+    display: flex;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: #F8F8F8;
+    box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    border-style: none;
+    padding: 10px 15px; 
+    text-decoration: none; 
+    color: black; 
+    font-size: 16px;
+    
+    /* Remove default CSS */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    /* Change select dropdown icon */
+    background-image: url('put path to icon here');
+      background-repeat: no-repeat, repeat;
+      background-position: right .7em top 50%, 0 0;
+      background-size: .65em auto, 100%;
+  }
+
+  

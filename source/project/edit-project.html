@@ -7,11 +7,28 @@
 </head>
 <body>
     <!-- navbar -->
-    <div id="verticalNavbar"></div>
+    <vertical-navbar currentPage="anchorToProjectList"></vertical-navbar>
     <div class = "content"> 
         <div class = "actionBar" href = "#">
+
+            <select name="linkNotes" id="linkNotes">
+                <option value="" disabled selected>Link Note(s)</option>
+                <option value="note1ID">Note 1 Title</option>
+                <option value="note2ID">Note 1 Title</option>
+                <option value="note3ID">Note 1 Title</option>
+            </select>
+            <select name="priority" id="priority">
+                <option value="" disabled selected>Update Priority</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            
             <a id = "save"> <!-- link needs to be replaced with corresponding -->
-                <span style="background: url(../note/icons/floppy-disk-solid.svg); display: block;"></span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                    <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                  </svg>
                 Save
             </a>
             <a id = "Cancel" href = "#"> <!-- link needs to be replaced with corresponding action -->
@@ -22,14 +39,12 @@
             </a> 
         </div>
         <div class = "container">
-            <svg class="priorityDot">
-                <circle cx="20" cy="20" r="10" fill="red" />
-            </svg>
-            <div class = "projectTitle">
-                <h1>Project Name</h1> <!-- replace name with project name -->
+            <div class="projectHeader">
+                <span class="priorityDot"></span>
+                <h1 id = "projectTitle">Project Name</h1> <!-- replace name with project name -->
+                <label for="progressBar">30%</label>
+                <progress id="progressBar" value="30" max="100"> 200000</progress>
             </div>
-            <label for="progressBar">30%</label>
-            <progress id="progressBar" value="30" max="100"> 200000</progress>
             <div class = "projectDue">
                 <!-- add calendar icon-->
                     <label for="deadline">Set Deadline: </label>
