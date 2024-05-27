@@ -1,8 +1,24 @@
-body {
+hmtl, body {
     font-family: Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    margin: 2% 1% 2% 1%;
+    height: 100%;
+}
+
+#container {
+    display: flex;
+}
+
+#restOfScreen {
+    flex: 1;
+    margin-left: 1%;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    height: 10vh;
+    margin-bottom: 1vh;
 }
 
 .actionBar {
@@ -39,8 +55,30 @@ body {
     height: 25px;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+  
+    height: 89vh;
+    overflow-y: auto;
+  
+    align-items: center;
+}
+
+main > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F8F8F8;
+    border-radius: 25px;
+    width: 80vw;
+  
+    gap: 1vh;
+}
+
 .noteTitle {
-    margin-top: 10%;
+    margin-top: 0%;
 }
 
 .noteDetails h4 {
