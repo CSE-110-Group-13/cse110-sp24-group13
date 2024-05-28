@@ -14,6 +14,25 @@ hmtl, body {
     margin-left: 1%;
 }
 
+button {
+    display: flex;
+    width: 136px;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8F8F8;
+    box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 10px 15px; 
+    text-decoration: none; 
+    color: black; 
+    font-size: 16px;
+    border-width: 0px;
+}
+
+button:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+}
+
 header {
     display: flex;
     justify-content: flex-end;
@@ -55,7 +74,7 @@ header {
     width: 25px;
     height: 25px;
 }
-
+/*
 main {
     display: flex;
     flex-direction: column;
@@ -67,7 +86,7 @@ main {
     align-items: center;
 }
 */
-main > .noteContainer {
+main >.noteContainer {
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -78,10 +97,10 @@ main > .noteContainer {
     margin-bottom: 2%;
 }
 
-main > .project {
+main >.projectContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     background-color: #F8F8F8;
     border-radius: 25px;
     width: 88vw;

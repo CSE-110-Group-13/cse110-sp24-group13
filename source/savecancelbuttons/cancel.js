@@ -29,7 +29,7 @@ class cancelButton extends HTMLElement {
             border-width: 0px;
         }
 
-        #cButton: hover {
+        #cButton:hover {
             background-color: #e0e0e0; /* Change background color on hover */
         }
 

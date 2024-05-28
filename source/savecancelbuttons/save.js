@@ -29,7 +29,7 @@ class saveButton extends HTMLElement {
             border-width: 0px;
         }
 
-        #sButton: hover {
+        #sButton:hover {
             background-color: #e0e0e0; /* Change background color on hover */
         }
 
