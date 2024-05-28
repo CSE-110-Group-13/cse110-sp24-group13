@@ -112,7 +112,6 @@ function init(){
 
   //Get list of all notes from id container. 
   const IDContainer = JSON.parse(window.localStorage.getItem("IDContainer"));
-
   //Define an array to store all the notes from id container. 
   let loadedNotes = [];
   // Upload notes to array
@@ -123,8 +122,8 @@ function init(){
   loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
 
   //Testing Values for console. 
-  /**
-   * const testNote1 = {
+  /** 
+    const notesTable = {
     "ABC": {
         "noteID": "ABC",
         "text": "buy eggs",
@@ -134,10 +133,7 @@ function init(){
         "projectList": [],
         "favorited": false,
         "tags": []
-    }
-};
-
-const testNote2 = {
+    },
     "21kfasde": {
         "noteID": "21kfasde",
         "text": "mow lawn",
@@ -147,11 +143,8 @@ const testNote2 = {
         "projectList": ["Ash"],
         "favorited": false,
         "tags": []
-    }
-};
-
-const testNote3 = {
-    "XYZ": { // Changed the noteID here
+    },
+    "XYZ": {
         "noteID": "XYZ",
         "text": "buy eggs",
         "date": "2024-5-21",
@@ -163,12 +156,16 @@ const testNote3 = {
     }
 };
 
-// Combine test notes into a single object
-const notesTable = { ...testNote1, ...testNote2, ...testNote3 };
+// Store the combined notesTable in local storage
+localStorage.setItem('NoteTable', JSON.stringify(notesTable));
 
-// Store notesTable in local storage
-localStorage.setItem('notesTable', JSON.stringify(notesTable));
-   */
+// Define the ID array correctly
+const ID = ["ABC", "21kfasde", "XYZ"];
+
+// Store the ID array in local storage
+localStorage.setItem('IDContainer', JSON.stringify(ID));
+  */
+
   
 
 
