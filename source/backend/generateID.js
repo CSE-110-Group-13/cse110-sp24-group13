@@ -50,5 +50,5 @@ function generateID() {
   return newID;
 }
 
-// Export the generateID function
-export { generateID };
+// Export the functions
+export { generateID, getIDContainerFromStorage, saveIDContainerToStorage };
