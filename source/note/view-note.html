@@ -2,28 +2,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../verticalnavbar/verticalnavbar.js"></script>
+    <script src="https://www.unpkg.com/wysimark-standalone/dist/javascript/index.cjs.js"></script>
+    <script src="../markdown/markdown.js"></script>
+    <script src="../savecanceleditbuttons/cancel.js"></script>
+    <script src="../savecanceleditbuttons/edit.js"></script>
+    <script src="../projectinnote/projectInNote.js"></script>
+  <script type="module" src="viewNote.js"></script>
+  <link rel="stylesheet" href="notes.css">
   <title>Note Title | Commit </title> <!-- with JS, this can be switched to the note title -->
 </head>
 <body>
-    <!-- navbar -->
-    <div id="verticalNavbar"></div>
-    <div class = "content"> 
-        <div class = "actionBar">
-            <a href = "edit-note.html">Edit</a> <!-- link needs to be replaced with corresponding -->
-            <a href = "">Delete</a> <!-- link needs to be replaced with corresponding action -->
+    <div id="container">
+        <vertical-navbar currentPage="anchorToEditNote"></vertical-navbar>
+        <div id="restOfScreen">
+            <main>
+                <header>
+                    <div class = "actionBar" href = "#">
+                        <edit-button></edit-button>
+                        <cancel-button></cancel-button>
+                    </div>
+                </header>
+                <div class = "noteTitle">
+                    <h1>Sample Note</h1>
+                </div>
+                <div class = "noteDetails">
+                    <div class = "tags"> <!-- new tag tag allows user to type, pressing on a tag will delete -->
+                        <h4>Tags:</h4>
+                        <ul>
+                            <li>Tag 1</li>
+                            <li>Tag 2</li>
+                        </ul>
+                        <div class = "newTag">
+                            <input type = "text" placeholder = "+ Add new tag">
+                        </div>
+                        <div class="vr"></div>
+                        <div class = "projectTag">
+                            <input type = "text" placeholder = "Project Name">
+                        </div>
+                    </div>
+                    <div class = "date">
+                        <h4>Date:</h4>
+                        <input type = "date" value="2024-05-18">
+                    </div>
+                </div>
+                <hr>
+                <div class = "noteContainer">
+                    <!-- TODO: Make this visually uneditable-->
+                    <markdown-editor></markdown-editor>
+                </div>
+                <div class = "projectContainer">
+                    <linked-project></linked-project>
+                </div>
+                
+            </main>
         </div>
-        <div class = "noteTitle"></div>
-        <div class = "noteDetails"></div>
-        <hr>
-        <div class = "noteContainer">
-            <div class = "toolBar"></div>
-            <div class = "noteContent"></div>
-        </div>
-        <div class = "project">
-            <div class = "linkedProject"></div>
-            <div class = "linkNewProject"></div>
-        </div>
-    </div>
     
 </body>
 </html>
