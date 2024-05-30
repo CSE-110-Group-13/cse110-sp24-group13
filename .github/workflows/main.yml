@@ -6,7 +6,7 @@ name: Testing Suite # name of the test
 #     branches:
 #       - main
 
-on[push]
+on: [push]
 
 jobs: # the things being executed
   tests: # the name of your status check, will become important when you do branch protection
