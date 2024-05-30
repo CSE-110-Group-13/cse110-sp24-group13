@@ -1,6 +1,5 @@
 html body {
     font-family: Helvetica, Arial, sans-serif;
-    margin: 0;
     padding: 0;
     margin: 2% 1% 2% 1%;
 }
@@ -12,6 +11,10 @@ html body {
 #restOfScreen {
     flex: 1;
     margin-left: 1%;
+}
+
+p{
+    margin: 0 2%;
 }
 .header {
     min-width: fit-content;
@@ -97,13 +100,26 @@ html body {
 
   }
 
-  .projectDetails svg{
+
+.projectDue{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.projectDue svg{
+    margin: 1% 1%;
+    min-width: 20px;
+    height: 20px;
+}
+
+#descDropdown{
     margin: 1% 50%; /* Add space between icon and text */
     width: 20px;
     height: 20px;
-  }
+}
 
-  .container svg:hover{
+.container svg:hover{
     cursor: pointer;
 }
 
@@ -172,17 +188,17 @@ select:hover{
 }
 
 ul{
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     list-style-type: none;
-    min-width: fit-content;
+    width: 60%;
     display: flex;
     margin: 0 1% 0 auto;
     
 }
 li{
-    margin: auto;
-    
+    margin:0;
+    width:fit-content;
     background-color: #E2E2E2;
     border-radius: 30px;
     border-style: none;
@@ -190,5 +206,6 @@ li{
     text-decoration: none; 
     color: black; 
     scale: 70%;
+ 
 }
 
