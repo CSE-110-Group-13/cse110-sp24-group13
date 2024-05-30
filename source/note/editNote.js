@@ -20,8 +20,9 @@ window.addEventListener("DOMContentLoaded", init);
  * Attaches an event listener to the save button.
  */
 function init() {
-    console.log(NOTE_ID);
-    console.log("Initializing editNote JS")
+    //Remove this once everything is linked better
+    localStorage.setItem("NoteTable", JSON.stringify({}));
+    localStorage.setItem("IDContainer", JSON.stringify([]));
     if (!NOTE_ID) {
         const newNote = createNewNoteObject();
         NOTE_ID = newNote.noteID;
@@ -36,8 +37,6 @@ function init() {
  */
 function attachSaveButtonListener() {
     document.querySelector('save-button button').addEventListener('click', saveNote);
-    window.location.href = './view-note.html';
-    window.location.NOTE_ID = NOTE_ID;
 }
 
 /**
@@ -53,6 +52,8 @@ function saveNote() {
     modifyNoteTitle(NOTE_ID, noteTitle);
     modifyNoteText(NOTE_ID, noteMarkdown);
     modifyNoteDate(NOTE_ID, noteDate);
+    window.location.href = './view-note.html#' + NOTE_ID;
+    
 }
 
 /**
@@ -62,6 +63,7 @@ function saveNote() {
  */
 function populateNote() {
     const note = getNoteFromTable(NOTE_ID);
+    console.log(note.title)
     document.querySelector('.noteTitle h1').innerText = note.title;
     document.querySelector('markdown-editor').wysimark.setMarkdown(note.text);
     document.querySelector('.date input').value = note.date;

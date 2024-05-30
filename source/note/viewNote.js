@@ -1,10 +1,4 @@
 import { 
-    createNewNoteObject, 
-    modifyNoteText, 
-    modifyNoteDate, 
-    modifyNoteTitle, 
-    appendTagToNoteTags, 
-    removeTagFromNoteTags,
     getNoteFromTable
 } from '../backend/NoteTable.js';
 
@@ -12,14 +6,10 @@ let NOTE_ID = "";
 
 window.addEventListener("DOMContentLoaded", init);
 
-/**
- * Initializes the note editing process.
- * If a note ID is not set, creates a new note object.
- * If a note ID is set, populates the note with existing data.
- * Attaches an event listener to the save button.
- */
+
 function init() {
-    NOTE_ID = window.location.NOTE_ID;
+    NOTE_ID = window.location.hash.substring(1);
+    console.log(NOTE_ID);
     populateNote();   
 }
 
