@@ -329,3 +329,9 @@ recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event,
 recentsCollapseButton.innerHTML = expandIcon;
 
 
+// Export functions for creating a note
+export {
+  createNoteElement,
+  getFormattedDate,
+  toggleFavorite
+}
