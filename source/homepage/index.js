@@ -12,7 +12,6 @@ function createNoteElement(noteObject){
   const noteContainerMain = document.createElement("span");
   noteContainerMain.className = "note-wrapper";
 
-
   //Note Container that is an anchor to another page. 
   const noteContainer = document.createElement("a");
   noteContainer.href = "../library/library.html";
@@ -21,53 +20,71 @@ function createNoteElement(noteObject){
   //append note container to wrapper container. 
   noteContainerMain.appendChild(noteContainer);
 
-  //Tittle of note
-  const titleElement = document.createElement('p');
-  titleElement.textContent ="title: " + noteObject.title;
-  noteContainer.appendChild(titleElement);
+  // Create a header
+  const headerElement = document.createElement('header');
+  noteContainer.appendChild(headerElement);
 
-  //Text of note
+  // Create a container for the content (text, date, and lastEdited)
+  const contentContainer = document.createElement('div');
+  contentContainer.classList.add('content-container');
+  noteContainer.appendChild(contentContainer);
+
+  // Create a date container
+  const dateContainer = document.createElement('div');
+  dateContainer.classList.add('dates');
+  contentContainer.appendChild(dateContainer);
+
+  // Title of note
+  const titleElement = document.createElement('h2');
+  titleElement.textContent = noteObject.title;
+  headerElement.appendChild(titleElement);
+
+  // Call the function getFormattedDate()
+  const date = getFormattedDate(noteObject.date);
+  const lastEdited = getFormattedDate(noteObject.lastEdited);
+
+  // Date Started of note
+  const dateElement = document.createElement('p');
+  dateElement.textContent = `Started ${date}`;
+  dateContainer.appendChild(dateElement);
+
+  // Last Edited of note
+  const lastEditedElement = document.createElement('p');
+  lastEditedElement.textContent = `Worked on: ${lastEdited}`;
+  dateContainer.appendChild(lastEditedElement);
+
+  // Text of note
   const textElement = document.createElement('p');
-  textElement.textContent =" Text: " + noteObject.text;
-  noteContainer.appendChild(textElement);
+  textElement.id = 'note-text';
+  textElement.textContent = noteObject.text;
+  contentContainer.appendChild(textElement);
 
-  //Date Started of note
-  const date = document.createElement('p');
-  date.textContent = "Started:" + noteObject.date;
-  noteContainer.appendChild(date);
+  // Create a tags-project container
+  const tagsProjectContainer = document.createElement('div');
+  tagsProjectContainer.classList.add('tags-project');
+  headerElement.appendChild(tagsProjectContainer);
 
-  //Last Edited of note
-  const lastEditeds = document.createElement('p');
-  lastEditeds.textContent = "Last Edited: " + noteObject.lastEdited;
-  noteContainer.appendChild(lastEditeds);
-
-  //List of projects for the note. 
-  if(noteObject.projectList.length != 0){
-    const projectList = document.createElement("p");
-    projectList.className = "projects";
-    projectList.textContent = noteObject.projectList[0];
-    for(let k  =1; k < noteObject.projectList.length; k++){
-      const projectListsContinued = document.createElement("p");
-      projectListsContinued.className = "projects";
-      projectListsContinued.textContent = noteObject.projectList[k];
-      projectList.appendChild(projectListsContinued);
-    }
-    noteContainer.appendChild(projectList);
+  // Add each tag separately
+  noteObject.tags.forEach(tag => {
+    const tagElement = document.createElement('span');
+    tagElement.textContent = tag;
+    tagsProjectContainer.appendChild(tagElement);
+  });
+  
+  // Add line separating the tags and projects
+  if(noteObject.projectList.length != 0) {
+    const verticalLine = document.createElement('div');
+    verticalLine.id = 'vertical-line';
+    tagsProjectContainer.appendChild(verticalLine);
   }
+  
+  // Add each project separately
+  noteObject.projectList.forEach(project => {
+    const projectElement = document.createElement('span');
+    projectElement.textContent = project;
+    tagsProjectContainer.appendChild(projectElement);
+  });
 
-  //List of tags for the note. 
-  if(noteObject.tags.length != 0){
-    const tagList = document.createElement("h2");
-    tagList.className = "tags";
-    tagList.textContent = noteObject.tags[0];
-    for( let j = 1; j< noteObject.tags.length; j++){
-      const tagsListContinued = document.createElement("h2");
-      tagsListContinued.className = "tags";
-      tagsListContinued.textContent = noteObject.tags[j];
-      tagList.appendChild(tagsListContinued)
-    }
-    noteContainer.appendChild(tagList);
-  }
 
   //Favorite button of the note. 
   let favorited = noteObject.favorited;
@@ -77,7 +94,7 @@ function createNoteElement(noteObject){
   button.dataset.noteID = noteObject.noteID;
   button.dataset.favorited = noteObject.favorited;
   if( favorited == true){
-    button.innerText = "Favorited";
+   button.innerText = "Favorited";
   }
 
   else{
@@ -122,7 +139,7 @@ function init(){
   loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
 
   //Testing Values for console. 
-  /** 
+  /*
     const notesTable = {
     "ABC": {
         "noteID": "ABC",
@@ -132,7 +149,7 @@ function init(){
         "title": "to do at grocery store",
         "projectList": [],
         "favorited": false,
-        "tags": []
+        "tags": ["bb", "cc"]
     },
     "21kfasde": {
         "noteID": "21kfasde",
@@ -142,7 +159,7 @@ function init(){
         "title": "chores",
         "projectList": ["Ash"],
         "favorited": false,
-        "tags": []
+        "tags": ["a"]
     },
     "XYZ": {
         "noteID": "XYZ",
@@ -164,7 +181,7 @@ const ID = ["ABC", "21kfasde", "XYZ"];
 
 // Store the ID array in local storage
 localStorage.setItem('IDContainer', JSON.stringify(ID));
-  */
+*/
 
   
 
@@ -240,6 +257,37 @@ function toggleFavorite(button){
   }
   reset();
   init();
+}
+
+/**
+  * Takes in a date string and converts it to the format Month Day with the corresponding suffix
+  * @param {string}  dateString string in the format YYYY-MM-DD
+  * @return {string} a string in the correct format
+  */
+function getFormattedDate(dateString) {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  let suffix = "";
+
+  // Determine the suffix based on the day
+  if (day === 1 || day === 21 || day === 31) {
+    suffix = "st";
+  }
+  else if (day === 2 || day === 22) {
+    suffix = "nd";
+  }
+  else if (day === 3 || day === 23) {
+    suffix = "rd";
+  }
+  else {
+    suffix = "th";
+  }
+
+  // Format the string
+  const options = { month: 'long' };
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+
+  return `${formattedDate} ${day}${suffix}`;
 }
 
 
