@@ -51,6 +51,12 @@ class saveButton extends HTMLElement {
             Save
         `;
         console.log("initailized save button")
+
+        sButton.addEventListener('click', () => this.save());
+    }
+
+    save(){
+        //window.location.href = './view-note.html';
     }
 }
 

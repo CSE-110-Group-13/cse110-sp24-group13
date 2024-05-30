@@ -20,6 +20,8 @@ window.addEventListener("DOMContentLoaded", init);
  * Attaches an event listener to the save button.
  */
 function init() {
+    console.log(NOTE_ID);
+    console.log("Initializing editNote JS")
     if (!NOTE_ID) {
         const newNote = createNewNoteObject();
         NOTE_ID = newNote.noteID;
@@ -34,6 +36,8 @@ function init() {
  */
 function attachSaveButtonListener() {
     document.querySelector('save-button button').addEventListener('click', saveNote);
+    window.location.href = './view-note.html';
+    window.location.NOTE_ID = NOTE_ID;
 }
 
 /**
