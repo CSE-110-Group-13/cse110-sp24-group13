@@ -6,6 +6,8 @@ on:
     branches:
       - main
 
+on[push]
+
 jobs: # the things being executed
   tests: # the name of your status check, will become important when you do branch protection
     runs-on: ubuntu-latest # which device on Github's server that you are running the Actions on
