@@ -56,11 +56,13 @@ document.addEventListener("DOMContentLoaded", () => {
     monthSelect.addEventListener("change", () => {
         currentMonth = parseInt(monthSelect.value);
         generateCalendar(currentMonth, currentYear);
+        addNotesAndProjectsToCalendar();
     });
 
     yearInput.addEventListener("change", () => {
         currentYear = parseInt(yearInput.value);
         generateCalendar(currentMonth, currentYear);
+        addNotesAndProjectsToCalendar();
     });
 
     prevMonthBtn.addEventListener("click", () => {
@@ -72,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         updateControls();
         generateCalendar(currentMonth, currentYear);
+        addNotesAndProjectsToCalendar();
     });
 
     nextMonthBtn.addEventListener("click", () => {
@@ -83,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         updateControls();
         generateCalendar(currentMonth, currentYear);
+        addNotesAndProjectsToCalendar();
     });
 
     function updateControls() {
