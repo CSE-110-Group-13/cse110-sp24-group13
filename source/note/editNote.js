@@ -23,9 +23,9 @@ function init() {
     
     NOTE_ID = window.location.hash.substring(1);
     if (!NOTE_ID) {
-        //Remove these 2 lines once everything is linked better
-        localStorage.setItem("NoteTable", JSON.stringify({}));
-        localStorage.setItem("IDContainer", JSON.stringify([]));
+        //Uncomment these 2 lines if you're starting live-server from this page
+        //localStorage.setItem("NoteTable", JSON.stringify({}));
+        //localStorage.setItem("IDContainer", JSON.stringify([]));
         const newNote = createNewNoteObject();
         NOTE_ID = newNote.noteID;
     } else {
