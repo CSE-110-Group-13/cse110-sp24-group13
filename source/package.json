@@ -14,8 +14,8 @@
     "preset": "jest-puppeteer",
     "verbose": true
   },
+  "type": "module",
   "dependencies": {
-    "@wysimark/standalone": "^3.0.20",
-    "type": "module"
+    "@wysimark/standalone": "^3.0.20"
   }
 }
