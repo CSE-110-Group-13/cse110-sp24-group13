@@ -212,7 +212,7 @@ localStorage.setItem('IDContainer', JSON.stringify(ID));
   for (const[key, value] of Object.entries(noteTable)) {
     if (value.favorited === true) {
       const noteElement = createNoteElement(value);
-      favoritesContainer.appendChild(noteElement);
+      favoriteContainer.appendChild(noteElement);
     }
   }
 
