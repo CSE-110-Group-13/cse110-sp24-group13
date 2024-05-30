@@ -8,10 +8,12 @@ jobs: # the things being executed
     steps:
       - uses: actions/checkout@v4 # using version 4 of Actions
         with:
-            path: source          
-      - name: Switch CD
-        run: cd ./source
+            path: source 
+
       - name: Install Dependencies
+        working-directory: ./source
         run: npm install
+        
       - name: Unit Test
+        working-directory: ./source
         run: npm test ./calendar.test.js # the actual testing line
