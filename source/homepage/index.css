@@ -28,6 +28,7 @@ body {
   width: 70%;
 }
 
+
 #recents-header {
   display: flex;              /* Use flexbox for horizontal alignment */
   align-items: center;        /* Vertically center the items */
@@ -71,27 +72,16 @@ body {
 }
 
 .note {
-  /*
-  overflow: hidden; 
-  max-height: 100px; /* Set initial max-height 
-  opacity: 1; /* Set initial opacity 
-  display: block; /* Ensure note is displayed 
-  border: 1px solid #ccc; /* Light grey border 
-  border-radius: 15px; /* Slight border curve 
-  padding: 40px; /* Add padding inside the note 
-  background-color: #f9f9f9; /* Light grey background 
-  margin-top: 10px;
-  */
   background-color: #F8F8F8;
   padding-right: 10px;
   padding-left: 20px;
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-radius: 20px;
-  display: flex;
+  display: flex;         /* Use flexbox for horizontal alignement */
   flex-direction: column;
-  justify-content: flex-start;
-  overflow: hidden;
+  justify-content: flex-start; 
+  overflow: hidden;      /* hide the overflowed text */
   position: relative; 
  
 }
@@ -99,20 +89,21 @@ body {
 h2 {
   font-weight: bold;
   color: #000;
-  max-width: 24%;
+  max-width: 24%;   /* set max-width to avoid overlapping with the tags */
 }
 
 header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display: flex;   
+  flex-direction: row; 
+  align-items: center; /* align items to be centered in the row */
   margin-top: -10px;
 }
 
+/* align the tags and project elements to the right of the title */
 .tags-project {
   display: flex;
   position: absolute;
-  left: 25%;
+  left: 25%;          
   align-items: center;
 }
 
@@ -139,8 +130,8 @@ header {
 }
 
 .dates {
-  display: flex;
-  flex-direction: column;
+  display: flex;   /* align the dates vertically */
+  flex-direction: column; 
   max-width: 22%;  
 }
 
@@ -157,9 +148,9 @@ header {
   margin-right: 10px;
   font-size: 12px;
   color: #000;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  overflow: hidden;             /* Hide any overflow */
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 3;       /* set amount of lines of text allowed */
   display: -webkit-box;
 }
 
@@ -183,9 +174,16 @@ a {
 
 #collapseButton1 {
   position: fixed;
-  top: 25%;
+  top: 26%;
   right: 260px;
 }
+
+#collapseButton2 {
+  position: fixed;
+  top: 72%;
+  right: 260px;
+}
+
 
 #end-block {
   display: none;
