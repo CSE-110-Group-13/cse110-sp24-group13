@@ -1,3 +1,10 @@
+import {
+    getProjectTableFromStorage,
+} from "../backend/ProjectTable.js"
+import {
+    getNoteTableFromStorage,
+} from "../backend/NoteTable.js"
+
 document.addEventListener("DOMContentLoaded", () => {
     const createTaskBtn = document.getElementById("create-task-btn");
     const taskModal = document.getElementById("task-modal");
@@ -83,27 +90,27 @@ document.addEventListener("DOMContentLoaded", () => {
         yearInput.value = currentYear;
     }
 
-    function addTask() {
-        const taskDate = document.getElementById("task-date").value;
-        const taskTitle = document.getElementById("task-title").value;
-        const taskDescription = document.getElementById("task-description").value;
+    // function addTask() {
+    //     const taskDate = document.getElementById("task-date").value;
+    //     const taskTitle = document.getElementById("task-title").value;
+    //     const taskDescription = document.getElementById("task-description").value;
 
-        if (!taskDate || !taskTitle || !taskDescription) {
-            alert("All fields are required!");
-            return;
-        }
+    //     if (!taskDate || !taskTitle || !taskDescription) {
+    //         alert("All fields are required!");
+    //         return;
+    //     }
 
-        const dayElement = document.querySelector(`[data-date='${taskDate}']`);
-        if (dayElement) {
-            const taskElement = document.createElement("div");
-            taskElement.className = "task";
-            taskElement.innerHTML = `<strong>${taskTitle}</strong><p>${taskDescription}</p>`;
-            dayElement.querySelector(".tasks").appendChild(taskElement);
-        }
+    //     const dayElement = document.querySelector(`[data-date='${taskDate}']`);
+    //     if (dayElement) {
+    //         const taskElement = document.createElement("div");
+    //         taskElement.className = "task";
+    //         taskElement.innerHTML = `<strong>${taskTitle}</strong><p>${taskDescription}</p>`;
+    //         dayElement.querySelector(".tasks").appendChild(taskElement);
+    //     }
 
-        taskForm.reset();
-        taskModal.style.display = "none";
-    }
+    //     taskForm.reset();
+    //     taskModal.style.display = "none";
+    // }
 
     function generateCalendar(month, year) {
         calendarDays.innerHTML = '';
@@ -170,20 +177,68 @@ document.addEventListener("DOMContentLoaded", () => {
         taskForm.reset();
         taskModal.style.display = "none";
     }
-
-    /** select random color */
-    function getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
     
-
-    
-
     generateCalendar(currentMonth, currentYear);
+    addNotesAndProjectsToCalendar();
 });
 
+/** select random color */
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function addNotesAndProjectsToCalendar() {
+    const noteTable = getNoteTableFromStorage();
+    const projectTable = getProjectTableFromStorage();
+
+    // Date is saved as year-month-day 2024-05-30
+    // const dayElement = document.querySelector(`[data-date='${taskDate}']`);
+
+    for (const [key, value] of Object.entries(noteTable)) {
+        const dayElement = document.querySelector(`[data-date='${value.date}']`);
+        console.log(value.date);
+        if (dayElement) {
+            const noteElement = document.createElement('div');
+            noteElement.className = "task";
+
+            const icon = document.createElement('div');
+            icon.className = 'task-icon';
+            icon.style.backgroundColor = getRandomColor();
+
+            const title = document.createElement('div');
+            title.className = 'task-title';
+            title.textContent = value.title;
+
+            noteElement.appendChild(icon);
+            noteElement.appendChild(title);
+            dayElement.querySelector(".tasks").appendChild(noteElement);
+        }
+    }
+
+    for (const [key, value] of Object.entries(projectTable)) {
+        const dayElement = document.querySelector(`[data-date='${value.deadline}']`);
+        console.log(value.deadline);
+        if (dayElement) {
+            const projectElement = document.createElement('div');
+            projectElement.className = "task";
+
+            const icon = document.createElement('div');
+            icon.className = 'task-icon';
+            icon.style.backgroundColor = getRandomColor();
+
+            const title = document.createElement('div');
+            title.className = 'task-title';
+            title.textContent = value.title;
+
+            projectElement.appendChild(icon);
+            projectElement.appendChild(title);
+            dayElement.querySelector(".tasks").appendChild(projectElement);
+        }
+    }
+    console.log('test');
+}
