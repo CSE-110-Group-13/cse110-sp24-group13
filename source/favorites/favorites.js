@@ -1,5 +1,5 @@
 import { 
-    getNoteFromTable, modifyNoteFavorited 
+    getNoteTableFromStorage, getNoteFromTable, modifyNoteFavorited 
   } from "../backend/NoteTable.js";
   
   window.addEventListener("DOMContentLoaded", init);
@@ -83,47 +83,56 @@ import {
     favoriteContainer.id = "favoritesContainer";
 
     // Test notes
-    const testNotes = [
-        {
-        noteID: 1,
-        title: "Test Note 1",
-        date: "2024-01-01",
-        lastEdited: "2024-06-01",
-        text: "This is a test note.",
-        tags: ["tag1", "tag2"],
-        projectList: ["Project A"],
-        favorited: true
-        },
-        {
-        noteID: 2,
-        title: "Test Note 2",
-        date: "2024-02-01",
-        lastEdited: "2024-05-01",
-        text: "Another test note.",
-        tags: ["tag3"],
-        projectList: [],
-        favorited: true
-        }
-    ];
+    // const testNotes = [
+    //     {
+    //     noteID: 1,
+    //     title: "Test Note 1",
+    //     date: "2024-01-01",
+    //     lastEdited: "2024-06-01",
+    //     text: "This is a test note.",
+    //     tags: ["tag1", "tag2"],
+    //     projectList: ["Project A"],
+    //     favorited: true
+    //     },
+    //     {
+    //     noteID: 2,
+    //     title: "Test Note 2",
+    //     date: "2024-02-01",
+    //     lastEdited: "2024-05-01",
+    //     text: "Another test note.",
+    //     tags: ["tag3"],
+    //     projectList: [],
+    //     favorited: true
+    //     }
+    // ];
 
-    testNotes.forEach(noteObject => {
-        const noteElement = createNoteElement(noteObject);
-        favoriteContainer.appendChild(noteElement);
-    });
+    // testNotes.forEach(noteObject => {
+    //     const noteElement = createNoteElement(noteObject);
+    //     favoriteContainer.appendChild(noteElement);
+    // });
   
-    const IDContainer = JSON.parse(window.localStorage.getItem("IDContainer"));
-    let loadedNotes = [];
-    for (let i = 0; i < IDContainer.length; i++) {
-      loadedNotes.push(getNoteFromTable(IDContainer[i]));
-    }
+    // const IDContainer = JSON.parse(window.localStorage.getItem("IDContainer"));
+    // let loadedNotes = [];
+    // for (let i = 0; i < IDContainer.length; i++) {
+    //   loadedNotes.push(getNoteFromTable(IDContainer[i]));
+    // }
     
-    loadedNotes.sort((a, b) => new Date(b.lastEdited) - new Date(a.lastEdited));
+    // loadedNotes.sort((a, b) => new Date(b.lastEdited) - new Date(a.lastEdited));
   
-    for (let i = 0; i < loadedNotes.length; i++) {
-      let noteID = loadedNotes[i].noteID;
-      let noteObject = getNoteFromTable(noteID);
-      if (noteObject.favorited === true) {
-        const noteElement = createNoteElement(noteObject);
+    // for (let i = 0; i < loadedNotes.length; i++) {
+    //   let noteID = loadedNotes[i].noteID;
+    //   let noteObject = getNoteFromTable(noteID);
+    //   if (noteObject.favorited === true) {
+    //     const noteElement = createNoteElement(noteObject);
+    //     favoriteContainer.appendChild(noteElement);
+    //   }
+    // }
+
+    const noteTable = getNoteTableFromStorage();
+    // noteTable.sort((a, b) => new Date(b.lastEdited) - new Date(a.lastEdited));
+    for (const[key, value] of Object.entries(noteTable)) {
+      if (value.favorited === true) {
+        const noteElement = createNoteElement(value);
         favoriteContainer.appendChild(noteElement);
       }
     }

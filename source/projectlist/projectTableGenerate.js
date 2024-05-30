@@ -49,10 +49,10 @@ function init() {
   }
 
   if (Object.keys(noteTable).length < 5) {
-    createNewNoteObject("this is text1", "2024-05-29", "2024-05-30", "this is title1", ["project1", "project2"], true, ["tag1", "tag2", "tag3"]);
+    createNewNoteObject("this is text1", "2024-05-28", "2024-05-29", "this is title1", ["project1", "project2"], true, ["tag1", "tag2", "tag3"]);
     createNewNoteObject("this is text2", "2024-05-29", "2024-05-30", "this is title2", ["project1", "project2"], false, ["tag1", "tag2", "tag3"]);
     createNewNoteObject("this is text3", "2024-05-29", "2024-05-30", "this is title3", ["project1", "project2"], true, ["tag1", "tag2", "tag3"]);
     createNewNoteObject("this is text4", "2024-05-29", "2024-05-30", "this is title4", ["project1", "project2"], false, ["tag1", "tag2", "tag3"]);
-    createNewNoteObject("this is text5", "2024-05-29", "2024-05-30", "this is title5", ["project1", "project2"], true, ["tag1", "tag2", "tag3"]);
+    createNewNoteObject("this is text5", "2024-05-29", "2024-05-31", "this is title5", ["project1", "project2"], true, ["tag1", "tag2", "tag3"]);
   }
 }
