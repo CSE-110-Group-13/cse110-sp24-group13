@@ -20,16 +20,19 @@ window.addEventListener("DOMContentLoaded", init);
  * Attaches an event listener to the save button.
  */
 function init() {
-    //Remove this once everything is linked better
-    localStorage.setItem("NoteTable", JSON.stringify({}));
-    localStorage.setItem("IDContainer", JSON.stringify([]));
+    
+    NOTE_ID = window.location.hash.substring(1);
     if (!NOTE_ID) {
+        //Remove these 2 lines once everything is linked better
+        localStorage.setItem("NoteTable", JSON.stringify({}));
+        localStorage.setItem("IDContainer", JSON.stringify([]));
         const newNote = createNewNoteObject();
         NOTE_ID = newNote.noteID;
     } else {
         populateNote();
     }
     attachSaveButtonListener();
+    attachCancelButtonListener();
 }
 
 /**
@@ -37,6 +40,10 @@ function init() {
  */
 function attachSaveButtonListener() {
     document.querySelector('save-button button').addEventListener('click', saveNote);
+}
+
+function attachCancelButtonListener() {
+    document.querySelector('cancel-button button').addEventListener('click', cancelEdit);
 }
 
 /**
@@ -56,6 +63,9 @@ function saveNote() {
     
 }
 
+function cancelEdit() {
+    window.location.href = "../homepage/index.html";
+}
 /**
  * Populates the note with existing data from the backend.
  * Retrieves the note data using the note ID.
