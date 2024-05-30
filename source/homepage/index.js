@@ -141,7 +141,7 @@ function init(){
   loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
 
   //Testing Values for console. 
-  
+  /*
     const notesTable = {
     "ABC": {
         "noteID": "ABC",
@@ -172,8 +172,9 @@ function init(){
         "projectList": [],
         "favorited": false,
         "tags": []
-    }
-};
+    } 
+  };
+
 
 // Store the combined notesTable in local storage
 localStorage.setItem('NoteTable', JSON.stringify(notesTable));
@@ -183,6 +184,7 @@ const ID = ["ABC", "21kfasde", "XYZ"];
 
 // Store the ID array in local storage
 localStorage.setItem('IDContainer', JSON.stringify(ID));
+*/
 
   //For all the loadedNOtes upload them unto homepage 
   for(let i = 0; i < loadedNotes.length; i++){
@@ -327,3 +329,9 @@ recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event,
 recentsCollapseButton.innerHTML = expandIcon;
 
 
+// Export functions for creating a note
+export {
+  createNoteElement,
+  getFormattedDate,
+  toggleFavorite
+}
