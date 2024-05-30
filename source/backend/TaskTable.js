@@ -134,6 +134,8 @@ function modifyTaskCompleted(taskID, newTitle) {
 }
 
 export {
+  getTaskTableFromStorage,
+  saveTaskTableToStorage,
   getTaskFromTable,
   saveTaskToTable,
   deleteTaskFromTable,

@@ -232,6 +232,8 @@ function removeTagFromNoteTags(noteID, tagID) {
 
 // Export the functions
 export { 
+  getNoteTableFromStorage,
+  saveNoteTableToStorage,
   getNoteFromTable, 
   saveNoteToTable, 
   deleteNoteFromTable, 
