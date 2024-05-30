@@ -1,72 +1,65 @@
-<html> 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../verticalnavbar/verticalnavbar.js"></script>
+    <script src="https://www.unpkg.com/wysimark-standalone/dist/javascript/index.cjs.js"></script>
+    <script src="../markdown/markdown.js"></script>
+    <script src="../savecancelbuttons/save.js"></script>
+    <script src="../savecancelbuttons/cancel.js"></script>
+    <script src="../projectinnote/projectInNote.js"></script>
+    <script type="module" src="editNote.js"></script>
     <link rel="stylesheet" href="notes.css">
     <title>Edit Note | Commit</title>
 </head>
 <body>
-    <!-- navbar -->
-    <div id="verticalNavbar"></div>
-    <div class = "content"> 
-        <div class = "actionBar" href = "#">
-            <a id = "save"> <!-- link needs to be replaced with corresponding -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                    <!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                    <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
-                  </svg>
-                Save
-            </a>
-            <a id = "Cancel" href = "#"> <!-- link needs to be replaced with corresponding action -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                    <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
-                Cancel
-            </a> 
-        </div>
-        <div class = "noteTitle">
-            <h1>Sample Note</h1>
-        </div>
-        <div class = "noteDetails">
-            <div class = "tags"> <!-- new tag tag allows user to type, pressing on a tag will delete -->
-                <h4>Tags:</h4>
-                <ul>
-                    <li>Tag 1</li>
-                    <li>Tag 2</li>
-                </ul>
-                <div class = "newTag">
-                    <input type = "text" placeholder = "+ Add new tag">
+    <!-- TODO: Make save work fully-->
+    <!-- TODO: Make it like project list in that it has autoload/generate features. If no saved data, make temp stuff-->
+    <!-- TODO: Make the project link button work like it does in the figma-->
+    
+    <div id="container">
+    <vertical-navbar currentPage="anchorToEditNote"></vertical-navbar>
+    <div id="restOfScreen">
+        <main>
+            <header>
+                <div class = "actionBar" href = "#">
+                    <save-button></save-button>
+                    <cancel-button></cancel-button>
                 </div>
-                <div class = "projectTag">
-                    <input type = "text" placeholder = "Project Name">
+            </header>
+            <div class = "noteTitle">
+                <h1>Sample Note</h1>
+            </div>
+            <div class = "noteDetails">
+                <div class = "tags"> <!-- new tag tag allows user to type, pressing on a tag will delete -->
+                    <h4>Tags:</h4>
+                    <ul>
+                        <li>Tag 1</li>
+                        <li>Tag 2</li>
+                    </ul>
+                    <div class = "newTag">
+                        <input type = "text" placeholder = "+ Add new tag">
+                    </div>
+                    <div class="vr"></div>
+                    <div class = "projectTag">
+                        <input type = "text" placeholder = "Project Name">
+                    </div>
+                </div>
+                <div class = "date">
+                    <h4>Date:</h4>
+                    <input type = "date" value="2024-05-18">
                 </div>
             </div>
-            <div class = "date">
-                <h4>Date:</h4>
-                <input type = "date" value="2024-05-18">
+            <hr>
+            <div class = "noteContainer">
+                <markdown-editor></markdown-editor>
             </div>
-        </div>
-        <hr>
-        <div class = "noteContainer">
-            <div class = "toolBar"></div>
-            <div class = "noteContent">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque voluptas labore voluptate doloremque exercitationem cumque natus dolorum dolores? Ipsam qui quos architecto dolorum maxime perferendis recusandae consequatur mollitia accusantium repellat!</p>
+            <div class = "projectContainer">
+                <linked-project></linked-project>
             </div>
-        </div>
-        <div class = "project">
-            <div class = "linkedProject">
-                <h3>Linked Project:</h3>
-                <ul>
-                    <li>No projects linked at this time</li>
-                </ul>
-            </div>
-            <div class = "linkProject">
-                <a href = "">Add project</a>
-            </div>
-        </div>
-    
-    
-    
+            
+        </main>
     </div>
     
 </body>

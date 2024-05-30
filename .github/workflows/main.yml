@@ -1,20 +1,30 @@
-name: Unit Tests # name of the test
+name: Testing Suite # name of the test
 
-on: [push] # the Github Action will activate "on" the event that you "push" to the repo
+# the Github Action will activate "on" the event that you "make a pr" to main
+# on:
+#   pull_request:
+#     branches:
+#       - main
+
+on: [push]
 
 jobs: # the things being executed
   tests: # the name of your status check, will become important when you do branch protection
     runs-on: ubuntu-latest # which device on Github's server that you are running the Actions on
+
     steps:
-      - uses: actions/checkout@v4 # using version 4 of Actions
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-            path: source
-      - name: Print PWD
-        run: ls
-          
-      # - name: Switch CD
-      #   run: cd ./source/my-electron-app/
-      # - name: Install Dependencies
-      #   run: npm install
-      # - name: Unit Test
-      #   run: npm test ./calendar.test.js # the actual testing line
+          node-version: '14'
+    
+      - name: Install Dependencies
+        working-directory: ./source
+        run: npm install
+        
+      - name: Unit Test
+        working-directory: ./source
+        run: npm test

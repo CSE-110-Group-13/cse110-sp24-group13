@@ -1,8 +1,44 @@
-body {
+hmtl, body {
     font-family: Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    margin: 2% 1% 2% 1%;
+    height: 100%;
+}
+
+#container {
+    display: flex;
+}
+
+#restOfScreen {
+    flex: 1;
+    margin-left: 1%;
+}
+
+button {
+    display: flex;
+    width: 136px;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8F8F8;
+    box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 10px 15px; 
+    text-decoration: none; 
+    color: black; 
+    font-size: 16px;
+    border-width: 0px;
+}
+
+button:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    height: 8vh;
+    height: 8vh;
+    margin-bottom: 1vh;
 }
 
 .actionBar {
@@ -38,6 +74,39 @@ body {
     width: 25px;
     height: 25px;
 }
+/*
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+  
+    height: 89vh;
+    overflow-y: auto;
+  
+    align-items: center;
+}
+*/
+main >.noteContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: #F8F8F8;
+    border-radius: 25px;
+    width: 88vw;
+  
+    margin-bottom: 2%;
+}
+
+main >.projectContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: #F8F8F8;
+    border-radius: 25px;
+    width: 88vw;
+  
+    gap: 1vh;
+}
 
 .container {
     display: flex;
@@ -47,7 +116,7 @@ body {
 }
 
 .noteTitle {
-    margin-top: 10%;
+    margin-top: 0%;
 }
 
 .noteDetails h4 {

@@ -1,0 +1,70 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#container {
+  display: flex;
+}
+
+#restOfScreen {
+  flex: 1;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  height: 10vh;
+
+  margin-bottom: 1vh;
+  /* box-sizing: border-box; */
+}
+
+/* Task Box */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+
+  height: 89vh;
+  overflow-y: auto;
+
+  align-items: center;
+}
+
+main > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F8F8F8;
+  border-radius: 25px;
+  width: 80vw;
+
+  gap: 1vh;
+}
+
+.titlePercentCompletedContainer {
+
+}
+
+.titlePercentCompletedContainer {
+
+}
+
+.deadlineConatiner {
+
+}
+
+.descriptionContainer {
+
+}
+
+.taskListContainer > .taskList {
+  list-style-type: none;
+}
+
+/* * {
+  padding: 0;
+  margin: 0;
+} */

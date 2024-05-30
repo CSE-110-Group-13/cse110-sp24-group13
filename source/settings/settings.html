@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../settings/settings.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+    </style>
+    <script src="settings.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <button id="back-button">
+        <svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.34363 6.98486L6.98426 0.344238C7.44324 -0.114746 8.18543 -0.114746 8.63953 0.344238L9.74304 1.44775C10.202 1.90674 10.202 2.64893 9.74304 3.10303L5.0409 7.81494L9.74793 12.522C10.2069 12.981 10.2069 13.7231 9.74793 14.1772L8.64441 15.2856C8.18543 15.7446 7.44324 15.7446 6.98914 15.2856L0.348513 8.64502C-0.115354 8.18604 -0.115354 7.44385 0.34363 6.98486Z" fill="black"/></svg>
+      </button>
+      <h1>Settings</h1>
+      <hr>
+      <div class="settings">
+        <div class="general">
+          <h2>General</h2>
+          <div class="general-controls">
+            <label for="font-name">Default Font</label>
+            <select id="font-name" name="font-name">
+              <option value="" disabled selected>Font Name</option>
+              <option value="Varela Round" class="varela-round">Varela Round</option>
+              <option value="Roboto" class="roboto">Roboto</option>
+              <option value="Open Sans" class="open-sans">Open Sans</option>
+            </select>
+            <label for="font-size">Font Size</label>
+            <select id="font-size" name="font-size">
+              <option value="" disabled selected>Font Size</option>
+            </select>
+            <label for="alignment">Alignment</label>
+            <select id="alignment" name="alignment">
+              <option value="" disabled selected>Left/Right</option>
+              <option label="Left"></option>
+              <option label="Right"></option>
+            </select>
+            <label for="theme">Theme</label>
+            <select id="theme" name="theme">
+              <option value="" disabled selected>Light/Dark</option>
+              <option label="Light"></option>
+              <option label="Dark"></option>
+            </select>
+          </div>
+          <input type="checkbox" id="auto-justify" name="auto-justify">
+          <label for="auto-justify">Auto Justify</label>
+        </div>
+        <div class="project-settings">
+          <h2>Project Settings</h2>
+          <div class="project-settings-controls">
+            <label for="sorting">Default Sorting</label>
+            <select id="sorting" name="sorting">
+              <option value="" disabled selected>Sorting</option>
+              <option value="priority">Sort by Priority</option>
+              <option value="title">Sort by Title</option>
+              <option value="date">Sort by Date</option>
+              <option value="lastEdited">Sort by Recent</option>
+            </select>
+            <label for="project-view">Project View</label>
+            <select id="project-view" name="project-view">
+              <option value="" disabled selected>View by</option>
+          </select>
+          </div>
+        </div>
+      </div>
+      <button id="confirm-button">Confirm</button>
+    </div>
+    
+  </body>
+</html>
