@@ -1,0 +1,51 @@
+body {
+  display: grid;
+  grid-template-columns: [first] 10vw [line2] 10vw [line3] 10vw [line4] 10vw [line5] 20vw [line6] 10vw [line7] 10vw [line8] auto [lastCol];
+  grid-template-rows: [first] 5vh [line2] 5vh [line3] 90vh [lastRow];
+}
+
+body > #SearchBar {
+  grid-column: line5 / line6;
+  grid-row: first / line2;
+  text-align: center;
+}
+
+body > #sort-select {
+  grid-column: line2 / line4;
+  grid-row: line2 / line3;
+}
+
+body > #entries-holder{
+  display: flex;
+  flex-direction: column;
+  grid-column: line3 / line8;
+  grid-row: line3 / lastRow;
+}
+#add-new-button {
+  grid-column: line8 / lastCol;
+}
+.note {
+  display: flex;
+  flex-direction: column;
+  background-color: #dddddd;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  margin-top: 2.5vh;
+  margin-bottom: 0vh;
+  font-size: larger;
+}
+
+.note > .date {
+  color: #f0f0f0;
+  font-size: small;
+}
+
+.note > .title {
+  color: black;
+  font-size: x-large;
+  font-weight: 700;
+}
+.note > .body-text{
+  color: black;
+  font-size: small;
+}

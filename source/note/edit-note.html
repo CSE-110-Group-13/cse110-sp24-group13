@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../verticalnavbar/verticalnavbar.js"></script>
+    <script src="https://www.unpkg.com/wysimark-standalone/dist/javascript/index.cjs.js"></script>
+    <script src="../markdown/markdown.js"></script>
+    <script src="../savecancelbuttons/save.js"></script>
+    <script src="../savecancelbuttons/cancel.js"></script>
+    <script src="../projectinnote/projectInNote.js"></script>
+    <script type="module" src="editNote.js"></script>
+    <link rel="stylesheet" href="notes.css">
+    <title>Edit Note | Commit</title>
+</head>
+<body>
+    <!-- TODO: Make save work fully-->
+    <!-- TODO: Make it like project list in that it has autoload/generate features. If no saved data, make temp stuff-->
+    <!-- TODO: Make the project link button work like it does in the figma-->
+    
+    <div id="container">
+    <vertical-navbar currentPage="anchorToEditNote"></vertical-navbar>
+    <div id="restOfScreen">
+        <main>
+            <header>
+                <div class = "actionBar" href = "#">
+                    <save-button></save-button>
+                    <cancel-button></cancel-button>
+                </div>
+            </header>
+            <div class = "noteTitle">
+                <h1>Sample Note</h1>
+            </div>
+            <div class = "noteDetails">
+                <div class = "tags"> <!-- new tag tag allows user to type, pressing on a tag will delete -->
+                    <h4>Tags:</h4>
+                    <ul>
+                        <li>Tag 1</li>
+                        <li>Tag 2</li>
+                    </ul>
+                    <div class = "newTag">
+                        <input type = "text" placeholder = "+ Add new tag">
+                    </div>
+                    <div class="vr"></div>
+                    <div class = "projectTag">
+                        <input type = "text" placeholder = "Project Name">
+                    </div>
+                </div>
+                <div class = "date">
+                    <h4>Date:</h4>
+                    <input type = "date" value="2024-05-18">
+                </div>
+            </div>
+            <hr>
+            <div class = "noteContainer">
+                <markdown-editor></markdown-editor>
+            </div>
+            <div class = "projectContainer">
+                <linked-project></linked-project>
+            </div>
+            
+        </main>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,98 @@
+/*styling not finished yet*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+#recents {
+  padding: 20px; /* Changed to auto to allow scrolling */
+  position: fixed;
+  width: 70%;
+  top:24%;
+  left: 17%;
+}
+
+#favorites{
+  padding: 20px;
+  position: fixed;
+  top: 70%;
+  left: 17%;
+  width: 70%;
+}
+
+
+#recents-header {
+  display: flex;              /* Use flexbox for horizontal alignment */
+  align-items: center;        /* Vertically center the items */
+  justify-content: space-between; /* Space items out evenly */
+}
+
+.recents-content, .favorites-content {
+  display: flex;              /* Use flexbox for horizontal alignment */
+  align-items: center;        /* Vertically center the items */
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.5em;           /* Make the text bigger */
+  font-weight: bold;          /* Make the text bold */
+}
+
+.recents-content svg, .favorites-content svg {
+  width: 24px;                /* Set the width of the SVG icon */
+  height: 24px;               /* Set the height of the SVG icon */
+  margin-right: 15px;         /* Add space between icon and text */
+}
+
+.recents-content span, .favorites-content span {
+  font-size: inherit;         /* Inherit the font size from .recents-content */
+  font-weight: inherit;       /* Inherit the font weight from .recents-content */
+}
+
+#collapseButton1, #collapseButton2 {
+  background-color: transparent; /* Transparent background */
+  border: none; /* Remove border */
+  padding: 5px; /* Add some padding */
+  cursor: pointer; /* Change the cursor to a pointer */
+}
+
+#collapseButton1 svg, #collapseButton2 svg {
+  width: 24px; /* Set the width of the SVG icon */
+  height: 24px; /* Set the height of the SVG icon */
+}
+
+.note-wrapper {
+  position: relative;
+  transition: transform 0.8s ease-in-out, opacity 0.8s ease;
+}
+
+.collapsed .note-wrapper {
+  transform: translateY(-50px); /* Adjust the translate value as needed */
+  opacity: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+#collapseButton1 {
+  position: fixed;
+  top: 26%;
+  right: 260px;
+}
+
+#collapseButton2 {
+  position: fixed;
+  top: 72%;
+  right: 260px;
+}
+
+
+#end-block {
+  display: none;
+}
