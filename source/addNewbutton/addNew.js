@@ -1,10 +1,16 @@
+async function fetchSvg(url) {
+  const response = await fetch(url);
+  const text = await response.text();
+  return text;
+}
+
 class AddNewBtn extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     const styles = document.createElement('style');
     styles.innerHTML = `
       #buttonsContainer {
@@ -16,7 +22,7 @@ class AddNewBtn extends HTMLElement {
         font-family: 'Varela Round', sans-serif;
       }
 
-      svg {
+      .svg-button {
         cursor: pointer;
         width: 3rem;
         height: 3rem;
@@ -25,6 +31,30 @@ class AddNewBtn extends HTMLElement {
 
       .hidden {
         display: none;
+        visibility: hidden;
+      }
+
+      .back-button {
+        position: relative;
+        top: 1rem; 
+      }
+
+      .action-container {
+        background-color: grey;
+        border-radius: 3rem; 
+        padding: 2rem; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem; 
+        width: 20rem;
+      }
+
+      .svg-button-container {
+        cursor: pointer;
+        width: 3rem;
+        height: 3rem;
+        margin: 0 1rem;
       }
     `;
 
@@ -34,51 +64,51 @@ class AddNewBtn extends HTMLElement {
     buttonsContainer.id = "buttonsContainer";
     this.shadowRoot.appendChild(buttonsContainer);
 
-    // Create SVG buttons
-    const addNewButton = document.createElement("svg");
-    addNewButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>';
-    addNewButton.setAttribute("viewBox", "0 0 512 512");
-    addNewButton.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    // Correct paths to the SVG files
+    const addNewSvg = await fetchSvg('../addNewButton/addNew.svg');
+    const backSvg = await fetchSvg('../addNewButton/back.svg');
+    const addNoteSvg = await fetchSvg('../addNewButton/addNote.svg');
+    const addProjSvg = await fetchSvg('../addNewButton/addProj.svg');
+
+    // Create SVG elements with fetched content
+    const addNewButton = document.createElement("div");
+    addNewButton.innerHTML = addNewSvg;
+    addNewButton.classList.add("svg-button");
     addNewButton.onclick = () => {
       addNewButton.classList.add("hidden");
-      backButton.classList.remove("hidden");
-      addNoteButton.classList.remove("hidden");
-      addProjectButton.classList.remove("hidden");
+      actionContainer.classList.remove("hidden");
     };
     buttonsContainer.appendChild(addNewButton);
 
-    const backButton = document.createElement("svg");
-    backButton.classList.add("hidden");
-    backButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/>';
-    backButton.setAttribute("viewBox", "0 0 320 512");
-    backButton.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    const actionContainer = document.createElement("div");
+    actionContainer.classList.add("action-container", "hidden");
+
+    const backButton = document.createElement("div");
+    backButton.innerHTML = backSvg;
+    backButton.classList.add("svg-button", "back-button");
     backButton.onclick = () => {
       addNewButton.classList.remove("hidden");
-      backButton.classList.add("hidden");
-      addNoteButton.classList.add("hidden");
-      addProjectButton.classList.add("hidden");
+      actionContainer.classList.add("hidden");
     };
-    buttonsContainer.appendChild(backButton);
+    actionContainer.appendChild(backButton);
 
-    const addNoteButton = document.createElement("svg");
-    addNoteButton.classList.add("hidden");
-    addNoteButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>';
-    addNoteButton.setAttribute("viewBox", "0 0 512 512");
-    addNoteButton.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    const addNoteButton = document.createElement("div");
+    addNoteButton.innerHTML = addNoteSvg;
+    addNoteButton.classList.add("svg-button", "svg-button-container");
     addNoteButton.onclick = () => {
       window.location.href = "../note/edit-note.html";
     };
-    buttonsContainer.appendChild(addNoteButton);
+    actionContainer.appendChild(addNoteButton);
 
-    const addProjectButton = document.createElement("svg");
-    addProjectButton.classList.add("hidden");
-    addProjectButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>';
-    addProjectButton.setAttribute("viewBox", "0 0 512 512");
-    addProjectButton.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    const addProjectButton = document.createElement("div");
+    addProjectButton.innerHTML = addProjSvg;
+    addProjectButton.classList.add("svg-button", "svg-button-container");
     addProjectButton.onclick = () => {
       window.location.href = "#"; // Add the correct URL for adding a project
     };
-    buttonsContainer.appendChild(addProjectButton);
+    actionContainer.appendChild(addProjectButton);
+
+    buttonsContainer.appendChild(actionContainer);
   }
 }
 
