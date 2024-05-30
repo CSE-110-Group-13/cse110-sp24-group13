@@ -10,7 +10,10 @@ import {
   appendTaskToProjectTaskList,
   removeTaskFromProjectTaskList,
   modifyProjectDeadline,
-  modifyProjectPriority
+  modifyProjectPriority,
+  modifyProjectDateCreated,
+  appendCompletedTaskToProject,
+  removeCompletedTaskFromProject
 } from "../backend/ProjectTable.js"
 
 window.addEventListener("DOMContentLoaded", init);

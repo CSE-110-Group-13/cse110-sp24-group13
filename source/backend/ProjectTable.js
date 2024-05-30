@@ -231,6 +231,8 @@ function removeCompletedTaskFromProject(projectID, taskID) {
 }
 
 export {
+  getProjectTableFromStorage,
+  saveProjectTableToStorage,
   getProjectFromTable,
   saveProjectToTable,
   deleteProjectFromTable,
