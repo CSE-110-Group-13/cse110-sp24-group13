@@ -31,6 +31,9 @@ connectedCallback() {
         display: flex;
         width: 100%;
         justify-content: center;
+        position: fixed; 
+        top: 2%;
+        right: -45%; 
       }
 
       #addNewButton {
@@ -57,6 +60,9 @@ connectedCallback() {
         align-items: center;
         border-radius: 15px;
         padding-left: 0.3vw;
+        position: fixed; 
+        top: 2%;
+        right: -85%; 
       }
 
       #addNoteProjectContainer div {
