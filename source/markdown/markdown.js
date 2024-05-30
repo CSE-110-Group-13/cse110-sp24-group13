@@ -37,7 +37,7 @@ connectedCallback() {
 
     const foundEditor = document.getElementById('editor');
     // Initialize wysimark
-    this.wysimark = createWysimark(foundEditor, { initialMarkdown: 
+    this.wysimark = createWysimark(foundEditor, { placeholder: 
     "# Hello World \n" +
     "lorem ipsum dolor sit amet. Goo goo g'joob\n" +
     "more example text\n" +
