@@ -57,7 +57,7 @@ class cancelButton extends HTMLElement {
     cancel() {
         // Add code here to switch pages to viewnote
         // For example:
-        window.location.href = './view-note.html';
+        
     }
 }    
 
