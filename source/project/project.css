@@ -5,6 +5,23 @@ body {
     margin: 2% 1% 2% 1%;
 }
 
+.header {
+    min-width: fit-content;
+    display: flex;
+    gap: 10px;
+    
+}
+
+.selectBar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 2% 1% 0 1%;
+    min-width: fit-content;
+    display: flex;
+    gap: 10px;
+}
+
 .actionBar {
     position: absolute;
     top: 0;
@@ -32,6 +49,7 @@ body {
 
 .actionBar a:hover {
     background-color: #e0e0e0; /* Change background color on hover */
+    cursor: pointer;
 }
 
 .actionBar svg {
@@ -53,19 +71,55 @@ body {
     
 }
 
+.container textarea{
+    margin: -1% 0 0 0;
+    padding: 10px;
+    width: 100%;
+
+    border: 1px solid #9b9b9b;
+    border-radius: 5px;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #F8F8F8;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+
+  }
+
+  .projectDetails svg{
+    margin: 1% 50%; /* Add space between icon and text */
+    width: 20px;
+    height: 20px;
+  }
+
+  .container svg:hover{
+    cursor: pointer;
+}
+
 .projectHeader{
     display: flex; 
     align-items: center; 
-   /* flex-direction: row-reverse;  */
 }
 
+.progress{
+    margin-left: auto; 
+    margin-right: 1%;
+}
+
+
 .priorityDot{
+    margin: 10px;
     height: 20px;
     width: 20px;
     background-color: red;
     border-radius: 50%;
     display: inline-block;
 }
+
 
 select {
     display: flex;
@@ -87,10 +141,47 @@ select {
     -webkit-appearance: none;
     appearance: none;
     /* Change select dropdown icon */
-    background-image: url('put path to icon here');
+    background-image: 'url(put path to icon here)';
       background-repeat: no-repeat, repeat;
       background-position: right .7em top 50%, 0 0;
       background-size: .65em auto, 100%;
   }
 
-  
+select:hover{
+    cursor: pointer;
+}
+
+.linkedNote{
+    justify-content: start;
+    align-items: center;
+    min-width: fit-content;
+    display: flex;
+    gap: 10px;
+}
+
+.linkedNote svg{
+    width: 20px;
+    height: 20px;
+}
+
+ul{
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    min-width: fit-content;
+    display: flex;
+    margin: 0 1% 0 auto;
+    
+}
+li{
+    margin: auto;
+    
+    background-color: #E2E2E2;
+    border-radius: 30px;
+    border-style: none;
+    padding: 10px; 
+    text-decoration: none; 
+    color: black; 
+    scale: 70%;
+}
+
