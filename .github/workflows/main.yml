@@ -14,7 +14,7 @@ jobs: # the things being executed
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 # using version 4 of Actions
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3

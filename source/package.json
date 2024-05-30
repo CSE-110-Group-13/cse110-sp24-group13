@@ -2,13 +2,13 @@
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
-    "babel-jest": "^29.7.0",
-    "jest": "^29.7.0",
-    "jest-puppeteer": "^10.0.1",
-    "puppeteer": "^22.9.0"
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1",
+    "jest-puppeteer": "^6.2.0",
+    "puppeteer": "^11.0.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "jest": {
     "preset": "jest-puppeteer",
