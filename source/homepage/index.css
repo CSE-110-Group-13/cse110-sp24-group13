@@ -167,6 +167,8 @@ header {
   position: absolute;
   top: 20px;
   right: 10px;
+  border: none;
+  background-color: transparent;
 }
 
 
@@ -184,17 +186,7 @@ a {
   top: 25%;
   right: 260px;
 }
-/*
-.note h2 {
-  margin-top: 40px;
-  color: black;
-}
 
-.note p {
-  margin-bottom: 5px;
-  color: black;
-}
-*/
 #end-block {
   display: none;
 }
