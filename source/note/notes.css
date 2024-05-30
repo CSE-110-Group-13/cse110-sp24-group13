@@ -108,6 +108,13 @@ main >.projectContainer {
     gap: 1vh;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #F8F8F8;
+}
+
 .noteTitle {
     margin-top: 0%;
 }

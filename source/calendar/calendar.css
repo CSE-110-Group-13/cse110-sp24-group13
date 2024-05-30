@@ -1,5 +1,243 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    height: 80vh;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+}
+
+.controls select, .controls input, .controls button {
+    margin: 0 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.controls select {
+    width: 150px;
+}
+
+.controls input {
+    width: 80px;
+}
+
+.controls button {
+    font-size: 18px;
+}
+
+.search-bar {
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#calendar {
+    display: grid;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.week-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #ddd;
+    padding: 10px;
+}
+
+.week-days div {
+    text-align: center;
+    font-weight: bold;
+    
+}
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    position: relative;
+    height: 65vh; 
+}
+
+.calendar-day {
+    /*
+    padding: 1px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    position: relative;
+    height: 90%;
+    */
+    
+    /* make it so grid does not change as tasks are added*/
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    padding: 1px;
+    height: 12vh;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.calendar-day span {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: black;
+}
+
+.current-day::before {
+    content: '';
+    position: absolute;
+    width: 25px; 
+    height: 25px; 
+    background-color: #0AB73B;
+    border-radius: 75%;
+    top: 2px;
+    right: 1.5px;
+}
+
+.current-day span {
+    color: white;
+}
+
+.calendar-day .tasks {
+    margin-top: 10px;
+}
+
+
+#task-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#task-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#task-form label {
+    margin-top: 10px;
+}
+
+.description-label {
+    margin-top: 10px;
+    display: inline-block;
+    width: 100px;
+}
+
+
+#task-description {
+    display: inline-block;
+    width: calc(100% - 110px);
+    margin-left: 10px;
+}
+
+
+#task-form button {
+    padding: 15px 30px;
+    font-size: 10px;
+    background-color: #007BFF;
+    left: 0;
+    top: 0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#task-form button:hover {
+    background-color: #0056b3;
+}
+
+/*Have tasks appear as title only with an icon on calendar*/
+.tasks {
+    margin-top: 5px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.task-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 2px;
+    /*If want fixed icon color*/
+    /*background-color: #0056b3*/
+
+}
+
+.task-title {
+    white-space: nowrap;
+    font-size: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%; /* adjust how much is displayed */
 }
