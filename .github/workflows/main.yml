@@ -1,10 +1,10 @@
 name: Testing Suite # name of the test
 
 # the Github Action will activate "on" the event that you "make a pr" to main
-on:
-  pull_request:
-    branches:
-      - main
+# on:
+#   pull_request:
+#     branches:
+#       - main
 
 on[push]
 
