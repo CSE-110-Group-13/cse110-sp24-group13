@@ -142,17 +142,28 @@ function init(){
   // Get notes from local storage
   const noteTable = getNoteTableFromStorage();
   // Load notes under recent section
-  for (const[key, value] of Object.entries(noteTable)) {
-    const noteElement = createNoteElement(value);
+  let loadedNotes = [];
+
+  for(const [key, value] of Object.entries(noteTable)){
+      loadedNotes.push(value);
+  }
+
+  loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
+
+
+  for (const note of loadedNotes) {
+    const noteElement = createNoteElement(note);
     recentContainer.appendChild(noteElement);
   }
   // Load notes under favorites section
-  for (const[key, value] of Object.entries(noteTable)) {
-    if (value.favorited === true) {
-      const noteElement = createNoteElement(value);
+  for (const note of loadedNotes) {
+    if (note.favorited === true) {
+      const noteElement = createNoteElement(note);
       favoritesContainer.appendChild(noteElement);
     }
   }
+
+
 
 
 }
