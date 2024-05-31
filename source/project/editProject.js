@@ -1,5 +1,9 @@
 // editProject.js
 
+//TODO - Linked notes section needs to be implemented (may be done with webcomponent)
+//TODO - Add functionality to Link Notes  and Priority dropdown
+//TODO - Populate Tasks container
+
 import {
     createNewProjectObject, 
     modifyProjectText, 
