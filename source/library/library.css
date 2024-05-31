@@ -1,13 +1,37 @@
 body {
-  display: grid;
-  grid-template-columns: [first] 10vw [line2] 10vw [line3] 10vw [line4] 10vw [line5] 20vw [line6] 10vw [line7] 10vw [line8] auto [lastCol];
-  grid-template-rows: [first] 5vh [line2] 5vh [line3] 90vh [lastRow];
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0% 1% 2% 0%;
+  display: flex;
+  /* overflow-y: hidden; */
+
+  background-color: blanchedalmond; /* TEMP */
+}
+
+vertical-navbar{
+  left: 0;
+  top: 0;
+  min-width: fit-content;
 }
 
 body > #SearchBar {
-  grid-column: line5 / line6;
-  grid-row: first / line2;
-  text-align: center;
+  background-color: black; /* PLACEHOLDER */
+}
+
+.sort{
+  margin: 10%;
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.sort label {
+  size: normal;
+}
+
+.sort > #sort-select {
+  border: none;
+  font-size: normal;
 }
 
 body > #sort-select {
