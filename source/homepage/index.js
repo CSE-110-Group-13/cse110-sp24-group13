@@ -8,6 +8,11 @@ window.addEventListener("DOMContentLoaded", init);
 
 
 //Function to create a Note Element;
+/**
+ * creates HTML element based on the object and appends it to the page.
+ * @param {*} noteObject 
+ * @returns nothing
+ */
 function createNoteElement(noteObject){
   //Wrapper container for a note Element. That will incude a note Contianer and a button.
   //check if
@@ -20,7 +25,7 @@ function createNoteElement(noteObject){
   });
 
   if(filteredTags.length > 0 && !relevantTag)
-    return; 
+    return null; 
   const noteContainerMain = document.createElement("span");
   noteContainerMain.className = "note-wrapper";
 
