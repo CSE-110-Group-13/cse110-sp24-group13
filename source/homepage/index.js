@@ -93,8 +93,7 @@ function createNoteElement(noteObject){
     if(filteredTags.indexOf(tag) != -1)
       tagElement.setAttribute("filtered", true);
     else
-      tagElement.setAttribute("filtered", false);
-    tagElement.setAttribute('noLink', true);
+      tagElement.setAttribute("filtered", false)
 
     tagElement.addEventListener("click", () => filterByTag(tag));
 
