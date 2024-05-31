@@ -3,30 +3,43 @@ import {
 } from "../backend/NoteTable.js";
 
 
+const filteredTags = [];
 window.addEventListener("DOMContentLoaded", init);
 
 
 //Function to create a Note Element;
 function createNoteElement(noteObject){
   //Wrapper container for a note Element. That will incude a note Contianer and a button.
+  //check if
+  let relevantTag = false;
+  noteObject.tags.forEach(tag => {
+    filteredTags.forEach(otherTag => {
+      if(tag === otherTag)
+        relevantTag = true;
+    });
+  });
+
+  if(filteredTags.length > 0 && !relevantTag)
+    return; 
   const noteContainerMain = document.createElement("span");
   noteContainerMain.className = "note-wrapper";
 
   //Note Container that is an anchor to another page. 
-  const noteContainer = document.createElement("a");
-  noteContainer.href = "../library/library.html";
+  const noteContainer = document.createElement("div");
+  //noteContainer.href = "../library/library.html";
   noteContainer.className = "note";
 
   //append note container to wrapper container. 
   noteContainerMain.appendChild(noteContainer);
-
+  
   // Create a header
   const headerElement = document.createElement('header');
   noteContainer.appendChild(headerElement);
 
   // Create a container for the content (text, date, and lastEdited)
-  const contentContainer = document.createElement('div');
+  const contentContainer = document.createElement('a');
   contentContainer.classList.add('content-container');
+  contentContainer.href="../library/library.html";
   noteContainer.appendChild(contentContainer);
 
   // Create a date container
@@ -36,7 +49,10 @@ function createNoteElement(noteObject){
 
   // Title of note
   const titleElement = document.createElement('h2');
-  titleElement.textContent = noteObject.title;
+  const linkElement = document.createElement('a');
+  linkElement.href = "../library/library.html";
+  linkElement.textContent = noteObject.title;
+  titleElement.appendChild(linkElement);
   headerElement.appendChild(titleElement);
 
   // Call the function getFormattedDate()
@@ -68,6 +84,14 @@ function createNoteElement(noteObject){
   noteObject.tags.forEach(tag => {
     const tagElement = document.createElement('span');
     tagElement.textContent = tag;
+    if(filteredTags.indexOf(tag) != -1)
+      tagElement.setAttribute("filtered", true);
+    else
+      tagElement.setAttribute("filtered", false);
+    tagElement.setAttribute('noLink', true);
+
+    tagElement.addEventListener("click", () => filterByTag(tag));
+
     tagsProjectContainer.appendChild(tagElement);
   });
   
@@ -277,6 +301,17 @@ function toggleFavorite(button){
   init();
 }
 
+function filterByTag(tag)
+{
+  let idx = filteredTags.indexOf(tag);
+  if(idx == -1)
+    filteredTags.push(tag);
+  else
+    filteredTags.splice(idx, 1);
+  reset();
+  init();
+};
+
 /**
   * Takes in a date string and converts it to the format Month Day with the corresponding suffix
   * @param {string}  dateString string in the format YYYY-MM-DD
@@ -350,6 +385,7 @@ recentsCollapseButton.innerHTML = expandIcon;
 // Export functions for creating a note
 export {
   createNoteElement,
+  filterByTag,
   getFormattedDate,
   toggleFavorite
 }
