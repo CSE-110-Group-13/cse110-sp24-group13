@@ -42,6 +42,11 @@ header {
   border-radius: 5px;
   height: 20px;
   color: #000;
+  transition: 0.5s;
+}
+.tags-project span:hover {
+  background-color: #D2D2D2;
+  transition: 0.5s;
 }
 
 #vertical-line {
