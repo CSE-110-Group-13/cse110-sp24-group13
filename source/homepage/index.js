@@ -39,7 +39,7 @@ function createNoteElement(noteObject){
   // Create a container for the content (text, date, and lastEdited)
   const contentContainer = document.createElement('a');
   contentContainer.classList.add('content-container');
-  contentContainer.href="../library/library.html";
+  contentContainer.href="../note/view-note.html";
   noteContainer.appendChild(contentContainer);
 
   // Create a date container
@@ -50,7 +50,7 @@ function createNoteElement(noteObject){
   // Title of note
   const titleElement = document.createElement('h2');
   const linkElement = document.createElement('a');
-  linkElement.href = "../library/library.html";
+  linkElement.href = "../note/view-note.html";
   linkElement.textContent = noteObject.title;
   titleElement.appendChild(linkElement);
   headerElement.appendChild(titleElement);
