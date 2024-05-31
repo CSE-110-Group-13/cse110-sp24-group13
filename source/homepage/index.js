@@ -26,7 +26,7 @@ function createNoteElement(noteObject){
 
   if(filteredTags.length > 0 && !relevantTag)
     return document.createElement("div"); 
-  
+
   const noteContainerMain = document.createElement("span");
   noteContainerMain.className = "note-wrapper";
 
@@ -280,9 +280,6 @@ function reset() {
   }
   
 }
-
-
-
 
 //Function to change favorite button from highlighted to note highlighted. 
 function toggleFavorite(button){
