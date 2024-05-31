@@ -1,5 +1,5 @@
 import { 
-  getNoteFromTable,modifyNoteFavorited,
+  getNoteTableFromStorage,getNoteFromTable,modifyNoteFavorited,
 } from "../backend/NoteTable.js";
 
 
@@ -56,7 +56,17 @@ function createNoteElement(noteObject){
   // Text of note
   const textElement = document.createElement('p');
   textElement.id = 'note-text';
-  textElement.textContent = noteObject.text;
+  let greaterThan1300 = false;
+  if(noteObject.text.length > 1300){
+      greaterThan1300 = true;
+  }
+  let textMax1500Characters = noteObject.text.slice(0,1300);
+  if(greaterThan1300){
+     let  textMax1500Characterss = textMax1500Characters + "...";
+      textMax1500Characters = textMax1500Characterss;
+  }
+  textElement.textContent = textMax1500Characters;
+
   contentContainer.appendChild(textElement);
 
   // Create a tags-project container
@@ -127,96 +137,23 @@ favoriteContainer.id = "favoritesContainer";
 
 function init(){
   
-  //Appended those two as children of the recents module.
-
-  //Get list of all notes from id container. 
-  const IDContainer = JSON.parse(window.localStorage.getItem("IDContainer"));
-  //Define an array to store all the notes from id container. 
-  let loadedNotes = [];
-  // Upload notes to array
-  for(let i = 0; i < IDContainer.length; i++){
-    loadedNotes.push(getNoteFromTable(IDContainer[i]));
-  }
-     // Sort notes based off last edited. WORK IN PROGRESS NOT FULLY FUNCTIONAL. 
-  loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
-
-  //Testing Values for console. 
-  /*
-    const notesTable = {
-    "ABC": {
-        "noteID": "ABC",
-        "text": "buy eggs",
-        "date": "2024-5-21",
-        "lastEdited": "2025-5-23",
-        "title": "to do at grocery store",
-        "projectList": [],
-        "favorited": false,
-        "tags": ["bb", "cc"]
-    },
-    "21kfasde": {
-        "noteID": "21kfasde",
-        "text": "mow lawn",
-        "date": "2024-5-22",
-        "lastEdited": "2026-5-22",
-        "title": "chores",
-        "projectList": ["Ash"],
-        "favorited": false,
-        "tags": ["a"]
-    },
-    "XYZ": {
-        "noteID": "XYZ",
-        "text": "buy eggs",
-        "date": "2024-5-21",
-        "lastEdited": "2025-5-23",
-        "title": "to do at grocery store",
-        "projectList": [],
-        "favorited": false,
-        "tags": []
-    } 
-  };
-
-
-// Store the combined notesTable in local storage
-localStorage.setItem('NoteTable', JSON.stringify(notesTable));
-
-// Define the ID array correctly
-const ID = ["ABC", "21kfasde", "XYZ"];
-
-// Store the ID array in local storage
-localStorage.setItem('IDContainer', JSON.stringify(ID));
-*/
-
-  //For all the loadedNOtes upload them unto homepage 
-  for(let i = 0; i < loadedNotes.length; i++){
-    let noteID = loadedNotes[i].noteID;
-
-    
-    // Check if the noteID already exists in recentContainer
-
-    // If the noteID doesn't exist, create and append the note element
- 
-        const noteObject = getNoteFromTable(noteID);
-        const noteElement = createNoteElement(noteObject);
-        recentContainer.appendChild(noteElement);
-    
-  }
-
-  for(let i = 0; i < loadedNotes.length; i++){
-    let noteID = loadedNotes[i].noteID;
-    
-    // Check if the noteID already exists in favoritesContainer
   
-    
-    
-    // If the noteID doesn't exist and it is favorited, create and append the note element
-   
-        let noteObject = getNoteFromTable(noteID);
-        if (noteObject.favorited === true) {
-            const noteElement = createNoteElement(noteObject);
-            favoritesContainer.appendChild(noteElement);
-        
+
+  // Get notes from local storage
+  const noteTable = getNoteTableFromStorage();
+  // Load notes under recent section
+  for (const[key, value] of Object.entries(noteTable)) {
+    const noteElement = createNoteElement(value);
+    recentContainer.appendChild(noteElement);
+  }
+  // Load notes under favorites section
+  for (const[key, value] of Object.entries(noteTable)) {
+    if (value.favorited === true) {
+      const noteElement = createNoteElement(value);
+      favoritesContainer.appendChild(noteElement);
     }
   }
+
 
 }
 

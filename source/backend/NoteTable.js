@@ -231,5 +231,6 @@ export {
   removeProjectFromNoteProjectList, 
   modifyNoteFavorited, 
   appendTagToNoteTags, 
-  removeTagFromNoteTags
+  removeTagFromNoteTags,
+  getNoteTableFromStorage,
 }
