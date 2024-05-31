@@ -81,7 +81,10 @@ function createNoteElement(noteObject){
   // Add each project separately
   noteObject.projectList.forEach(project => {
     const projectElement = document.createElement('span');
-    projectElement.textContent = project;
+    const linkElement = document.createElement('a');
+    linkElement.href="../project/view-project.html";
+    linkElement.textContent = project;
+    projectElement.appendChild(linkElement);
     tagsProjectContainer.appendChild(projectElement);
   });
 

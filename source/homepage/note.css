@@ -9,8 +9,9 @@
   flex-direction: column;
   justify-content: flex-start; 
   overflow: hidden;      /* hide the overflowed text */
-  position: relative; 
+  position: relative;
 }
+
 
 header h2 {
   font-weight: bold;
@@ -43,6 +44,10 @@ header {
   height: 20px;
   color: #000;
   transition: 0.5s;
+}
+.tags-project span > a {
+  text-decoration: none;
+  color: #000;
 }
 .tags-project span:hover {
   background-color: #D2D2D2;
