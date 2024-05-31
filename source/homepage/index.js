@@ -9,9 +9,9 @@ window.addEventListener("DOMContentLoaded", init);
 
 //Function to create a Note Element;
 /**
- * creates HTML element based on the object and appends it to the page.
- * @param {*} noteObject 
- * @returns nothing
+ * creates HTML element based on the object and returns it.
+ * @param {*} noteObject noteObject to create the HTML off of.
+ * @returns a noteObject, or an empty div if it's being passed over.
  */
 function createNoteElement(noteObject){
   //Wrapper container for a note Element. That will incude a note Contianer and a button.
@@ -25,7 +25,8 @@ function createNoteElement(noteObject){
   });
 
   if(filteredTags.length > 0 && !relevantTag)
-    return null; 
+    return document.createElement("div"); 
+  
   const noteContainerMain = document.createElement("span");
   noteContainerMain.className = "note-wrapper";
 
@@ -306,6 +307,10 @@ function toggleFavorite(button){
   init();
 }
 
+/**
+ * adds a tag to filteredTags[] and reloads the notes based on it.
+ * @param {*} tag 
+ */
 function filterByTag(tag)
 {
   let idx = filteredTags.indexOf(tag);
