@@ -14,18 +14,18 @@ body {
 
 #recents {
   padding: 20px; /* Changed to auto to allow scrolling */
-  position: fixed;
-  width: 70%;
+  position:relative;
+  width: 70vw;
   top:24%;
   left: 17%;
 }
 
 #favorites{
   padding: 20px;
-  position: fixed;
+  position: relative;
   top: 70%;
   left: 17%;
-  width: 70%;
+  width: 70vw;
 }
 
 
