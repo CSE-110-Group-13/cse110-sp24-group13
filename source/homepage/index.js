@@ -324,10 +324,14 @@ function filterByTag(tag)
   * @return {string} a string in the correct format
   */
 function getFormattedDate(dateString) {
+  //catches exception where a date is left blank.
+  if(dateString == "")
+  {
+    return "";
+  }
   const date = new Date(dateString);
   const day = date.getDate();
   let suffix = "";
-
   // Determine the suffix based on the day
   if (day === 1 || day === 21 || day === 31) {
     suffix = "st";
