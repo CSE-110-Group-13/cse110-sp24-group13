@@ -81,15 +81,13 @@ a {
 }
 
 #collapseButton1 {
-  position: fixed;
-  top: 26%;
-  right: 260px;
+  position: auto;
+  padding: 2vh;
 }
 
 #collapseButton2 {
-  position: fixed;
-  top: 72%;
-  right: 260px;
+  position: auto;
+  padding-top: 2vh;
 }
 
 
