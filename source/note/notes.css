@@ -99,13 +99,23 @@ main >.noteContainer {
 
 main >.projectContainer {
     display: flex;
-    flex-direction: column;
-    align-items: left;
-    background-color: #F8F8F8;
-    border-radius: 25px;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 25px; 
     width: 88vw;
-  
-    gap: 1vh;
+    gap: 2vw;
+}
+
+.description {
+    width: 60vw;
+    background-color: #F8F8F8;
+    border-radius: 25px; 
+    padding: 5px 20px;
+}
+
+.description p {
+    margin-top: -15px;
+    margin-left: 20px;
 }
 
 .container {
