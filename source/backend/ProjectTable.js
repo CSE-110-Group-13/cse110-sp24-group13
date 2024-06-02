@@ -18,6 +18,7 @@
  *    "priority" : ""
  *    "dateCreated" : "",
  *    "tasksCompleted" : [],
+ *    "lastWorked" : ""
  * }
  */
 
@@ -113,7 +114,7 @@ function deleteProjectFromTable(projectID) {
  * @param {Array<String>} tasksCompleted - the list of task IDs that are completed in the project
  * @returns {Object} the project object that was created
  */
-function createNewProjectObject(title="", description="", taskList=[], deadline="", priority="", dateCreated="", tasksCompleted=[]) {
+function createNewProjectObject(title="", description="", taskList=[], deadline="", priority="", dateCreated="", tasksCompleted=[], lastWorked="") {
   const newProjectObject = {
     "projectID" : `project-${generateID()}`,
     "title" : title,
@@ -122,7 +123,8 @@ function createNewProjectObject(title="", description="", taskList=[], deadline=
     "deadline" : deadline,
     "priority" : priority,
     "dateCreated" : dateCreated,
-    "tasksCompleted" : tasksCompleted
+    "tasksCompleted" : tasksCompleted,
+    "lastWorked" : lastWorked
   }
 
   const projectTable = getProjectTableFromStorage();
@@ -230,6 +232,12 @@ function removeCompletedTaskFromProject(projectID, taskID) {
   saveProjectToTable(projectID, projectObject);
 }
 
+function modifyProjectLastWorked(projectID, newLastWorked) {
+  const projectObject = getProjectFromTable(projectID);
+  projectObject["lastWorked"] = newLastWorked;
+  saveProjectToTable(projectID, projectObject);
+}
+
 export {
   getProjectTableFromStorage,
   saveProjectTableToStorage,
@@ -245,5 +253,6 @@ export {
   modifyProjectPriority,
   modifyProjectDateCreated,
   appendCompletedTaskToProject,
-  removeCompletedTaskFromProject
+  removeCompletedTaskFromProject,
+  modifyProjectLastWorked
 }
