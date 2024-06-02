@@ -9,14 +9,16 @@
   flex-direction: column;
   justify-content: flex-start; 
   overflow: hidden;      /* hide the overflowed text */
-  position: relative; 
+  position: relative;
 }
 
-header h2 {
+
+header h2 > a {
   font-weight: bold;
   color: #000;
   max-width: 24%;   /* set max-width to avoid overlapping with the tags */
   font-size: min(20px, max(14px, 2vw));
+  text-decoration: none;
 }
 
 header {
@@ -42,6 +44,29 @@ header {
   border-radius: 5px;
   height: 20px;
   color: #000;
+  transition: 0.5s;
+}
+.tags-project span > a {
+  text-decoration: none;
+  color: #000;
+}
+.tags-project span:hover {
+  background-color: #D2D2D2;
+  transition: 0.5s;
+}
+
+.tags-project span[filtered="true"]
+{
+  background-color: #212121;
+  color:#F8F8F8;
+  transition: 0.5s;
+}
+
+.tags-project span[filtered="true"]:hover
+{
+  background-color: #000;
+  color:#F8F8F8;
+  transition: 0.5s;
 }
 
 #vertical-line {
