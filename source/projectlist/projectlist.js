@@ -13,8 +13,21 @@ import {
   modifyProjectPriority,
   modifyProjectDateCreated,
   appendCompletedTaskToProject,
-  removeCompletedTaskFromProject
+  removeCompletedTaskFromProject,
+  modifyProjectLastWorked
 } from "../backend/ProjectTable.js"
+
+import {
+  getTaskTableFromStorage,
+  saveTaskTableToStorage,
+  getTaskFromTable,
+  saveTaskToTable,
+  deleteTaskFromTable,
+  createNewTaskObject,
+  modifyTaskName,
+  modifyTaskCompleted
+} from "../backend/TaskTable.js"
+
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -31,7 +44,6 @@ function createProjects() {
       <div class="titlePercentCompletedContainer">
         <priority-icon></priority-icon>
         <h1 class="title"></h1>
-        <percentage-completed></percentage-completed>
       </div>
       <div class="deadlineConatiner">
         <p class="startedDate"></p>
@@ -46,9 +58,20 @@ function createProjects() {
         <ul class="taskList"></ul>
       </div>
     `;
+    const titlePercentCompletedContainer = projectContainer.querySelector('.titlePercentCompletedContainer');
 
     const title = projectContainer.querySelector('.title');
     title.textContent = value.title;
+
+    const labelForProgressBar = document.createElement('label');
+    labelForProgressBar.setAttribute('for', 'progressBar');
+    const progressBar = document.createElement('progress');
+    progressBar.id = 'progressBar';
+    progressBar.value = `${calculateTaskCompletion(value.projectID)}`;
+    progressBar.max = '100';
+    titlePercentCompletedContainer.appendChild(labelForProgressBar);
+    titlePercentCompletedContainer.appendChild(progressBar);
+
 
     const startedDate = projectContainer.querySelector('.startedDate');
     startedDate.textContent = `Deadline: ${value.deadline}`;
@@ -65,7 +88,8 @@ function createProjects() {
 
 // Change this to store task id in the checkbox in some way
 function createTaskListItem(taskListElement, taskListArray) {
-  for (const task of taskListArray) {
+  taskListArray.forEach(taskID => {
+    const task = getTaskFromTable(taskID);
     const taskListItem = document.createElement('li');
     taskListElement.appendChild(taskListItem);
 
@@ -75,15 +99,28 @@ function createTaskListItem(taskListElement, taskListArray) {
     
     const label = document.createElement('label');
     label.setAttribute('for', task);
-    label.textContent = task;
+    label.textContent = task.name;
 
     taskListItem.appendChild(inputCheckbox);
     taskListItem.appendChild(label);
-  }
+  });
 }
 
 function calculateTaskCompletion(projectID) {
-  
+  const selectedProject = getProjectFromTable(projectID);
+  const taskList = selectedProject.taskList;
+  if (taskList.length !== 0) {
+    let numberCompleted = 0;
+    let totalTasks = taskList.length;
+    taskList.forEach(taskID => {
+      const task = getTaskFromTable(taskID);
+      if (task.completed === true) {numberCompleted++};
+    });
+    let percentCompleted = Math.trunc((numberCompleted / totalTasks) * 100);
+    return percentCompleted;
+  } else {
+    return -1;
+  }
 }
 
 function init() {
