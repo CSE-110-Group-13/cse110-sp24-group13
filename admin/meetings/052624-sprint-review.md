@@ -15,7 +15,7 @@ Meeting ended: [2:30 PM]
 - Addy
 
 ## Agenda:
-- Sprint review of spring from 5/19 to 5/26
+- Sprint review of current sprint progress from 5/19 to 5/26
 - Go over each team's progress
 
 ## Meeting Notes:
