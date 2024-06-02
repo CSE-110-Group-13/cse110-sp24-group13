@@ -117,18 +117,22 @@ class linkedProject extends HTMLElement {
         }
 
         .currentProjects {
-            background-color: #F8F8F8;
             border-radius: 10px;
             align-items: center;
-            width: 90%;
             margin: auto;
-            box-shadow: 0em 0em 0.3em rgba(0, 0, 0, 0.2);
-        }
-
-        .currentProjects p {
             text-align: center;
             font-weight: 525;
-            padding: 10px;
+            padding: 5px;
+            width: 80%;
+        } 
+
+        .currentProjects button {
+            width: 100%;
+            margin: 2px auto;
+        }
+
+        .selected {
+            background-color: #e0e0e0;
         }
 
         `;
@@ -177,26 +181,48 @@ class linkedProject extends HTMLElement {
 
         // Get projects from local storage
         const projectTable = getProjectTableFromStorage(); 
-        
+
+        // Create a form element
+        const form = document.createElement('form');
+        projectContainer.appendChild(form);
+
         // Load projects under currentProjects;
         for(const[key, value] of Object.entries(projectTable)) {
             // Create currentProjects container
             const currentProjects = document.createElement('div');
             currentProjects.classList = "currentProjects";
-            projectContainer.appendChild(currentProjects);
+            form.appendChild(currentProjects);
 
             // Add title of the project
-            const projectElement = document.createElement('p');
+            const projectElement = document.createElement('button');
+            projectElement.type = 'button';
             projectElement.textContent = value.title;
+            projectElement.addEventListener('click', () => {
+                projectElement.classList.toggle('selected');
+            });
             currentProjects.appendChild(projectElement);
         }
     
 
         // Add confirm button
         const confirmButton = document.createElement('button');
+        confirmButton.type = 'submit';
         confirmButton.id = 'confirm-button';
         confirmButton.textContent = 'Confirm';
         projectContainer.appendChild(confirmButton);
+
+        // Add event listener for form submission
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            // Get selected projects
+            const selectedProjects = form.querySelectorAll('.selected');
+
+            // Add what to do when clicked (add project tag? add project description below?)
+            selectedProjects.forEach((project) => {
+
+            });
+        })
 
         // Add event listener for when add project button is pressed
         lButton.addEventListener('click', () => {
