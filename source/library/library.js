@@ -49,24 +49,36 @@ function createNoteElement(noteObject){
     //append note container to wrapper container. 
     noteContainerMain.appendChild(noteContainer);
 
+    //create left, middle and right sections for formatting notes entries
+
+    // left (text, date, and lastEdited)
+    const leftDiv = document.createElement("div");
+    leftDiv.className = "left-div";
+    noteContainer.appendChild(leftDiv);
+
+    // middle (tags and projects)
+    const middleDiv = document.createElement("div");
+    middleDiv.className = "middle-div";
+    noteContainer.appendChild(middleDiv);
+
+    // right (favorite button)
+    const rightDiv = document.createElement("div");
+    rightDiv.className = "right-div";
+    noteContainer.appendChild(rightDiv);
+
     // Create a header
     const headerElement = document.createElement('header');
     noteContainer.appendChild(headerElement);
 
-    // Create a container for the content (text, date, and lastEdited)
-    const contentContainer = document.createElement('div');
-    contentContainer.classList.add('content-container');
-    noteContainer.appendChild(contentContainer);
+    // Title of note
+    const titleElement = document.createElement('h3');
+    titleElement.textContent = noteObject.title;
+    leftDiv.appendChild(titleElement);
 
     // Create a date container
     const dateContainer = document.createElement('div');
     dateContainer.classList.add('dates');
-    contentContainer.appendChild(dateContainer);
-
-    // Title of note
-    const titleElement = document.createElement('h2');
-    titleElement.textContent = noteObject.title;
-    headerElement.appendChild(titleElement);
+    leftDiv.appendChild(dateContainer);
 
     // Call the function getFormattedDate()
     const date = getFormattedDate(noteObject.date);
@@ -74,7 +86,7 @@ function createNoteElement(noteObject){
 
     // Date Started of note
     const dateElement = document.createElement('p');
-    dateElement.textContent = `Started ${date}`;
+    dateElement.textContent = `Started: ${date}`;
     dateContainer.appendChild(dateElement);
 
     // Last Edited of note
@@ -82,16 +94,10 @@ function createNoteElement(noteObject){
     lastEditedElement.textContent = `Worked on: ${lastEdited}`;
     dateContainer.appendChild(lastEditedElement);
 
-    // Text of note
-    const textElement = document.createElement('p');
-    textElement.id = 'note-text';
-    textElement.textContent = noteObject.text;
-    contentContainer.appendChild(textElement);
-
     // Create a tags-project container
     const tagsProjectContainer = document.createElement('div');
     tagsProjectContainer.classList.add('tags-project');
-    headerElement.appendChild(tagsProjectContainer);
+    middleDiv.appendChild(tagsProjectContainer);
 
     // Add each tag separately
     noteObject.tags.forEach(tag => {
@@ -114,10 +120,14 @@ function createNoteElement(noteObject){
     tagsProjectContainer.appendChild(projectElement);
     });
 
+    // Text of note
+    const textElement = document.createElement('p');
+    textElement.id = 'note-text';
+    textElement.textContent = noteObject.text;
+    middleDiv.appendChild(textElement);
 
     //Favorite button of the note. 
     let favorited = noteObject.favorited;
-
 
     const button = document.createElement("button");
     button.dataset.noteID = noteObject.noteID;
@@ -138,7 +148,7 @@ function createNoteElement(noteObject){
         
     
     //Append favorite button to the wrapper container. 
-    noteContainerMain.appendChild(button);
+    rightDiv.appendChild(button);
 
     return noteContainerMain;
 }
@@ -150,13 +160,13 @@ function createNoteElement(noteObject){
     */
 function getFormattedDate(dateString) {
     if (!dateString){
-        return "Invalid Date";
+        return null;
     }
 
     const date = new Date(dateString);
 
     if (isNaN(date)){
-        return "Invalid Date";
+        return "Invalid Date (NaN)";
     }
 
     const day = date.getDate();
