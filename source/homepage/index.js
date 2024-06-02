@@ -2,8 +2,14 @@ import {
   getNoteTableFromStorage,getNoteFromTable,modifyNoteFavorited,
 } from "../backend/NoteTable.js";
 
+import {
+  getProjectTableFromStorage, getProjectFromTable,
+
+}from "../backend/ProjectTable.js"
 
 window.addEventListener("DOMContentLoaded", init);
+
+
 
 
 //Function to create a Note Element;
@@ -53,21 +59,13 @@ function createNoteElement(noteObject){
   lastEditedElement.textContent = `Worked on: ${lastEdited}`;
   dateContainer.appendChild(lastEditedElement);
 
+  
   // Text of note
   const textElement = document.createElement('p');
   textElement.id = 'note-text';
-  let greaterThan1300 = false;
-  if(noteObject.text.length > 1300){
-      greaterThan1300 = true;
-  }
-  let textMax1500Characters = noteObject.text.slice(0,1300);
-  if(greaterThan1300){
-     let  textMax1500Characterss = textMax1500Characters + "...";
-      textMax1500Characters = textMax1500Characterss;
-  }
-  textElement.textContent = textMax1500Characters;
-
+  textElement.textContent = noteObject.text;
   contentContainer.appendChild(textElement);
+
 
   // Create a tags-project container
   const tagsProjectContainer = document.createElement('div');
@@ -135,6 +133,9 @@ const favorite = document.getElementById("favorites");
 favorite.appendChild(favoriteContainer);
 favoriteContainer.id = "favoritesContainer";
 
+
+
+
 function init(){
   
   
@@ -167,6 +168,8 @@ function init(){
 
 
 }
+
+
 
 function reset() {
   const recentsContainer = document.getElementById('recentsContainer');
@@ -237,6 +240,8 @@ function getFormattedDate(dateString) {
 
   return `${formattedDate} ${day}${suffix}`;
 }
+
+
 
 
 
