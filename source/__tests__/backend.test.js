@@ -41,6 +41,32 @@ import {
 
 import { generateID, getIDContainerFromStorage, saveIDContainerToStorage } from "../backend/generateID.js";
 
-test('Sample Test', () => {
-  expect(1).toBe(1);
+import puppeteer from 'puppeteer';
+
+describe('Tests for backend', () => {
+  let browser;
+  let page;
+
+  // Before all tests, launch a browser and open a new page
+  beforeAll(async () => {
+    browser = await puppeteer.launch({ headless: true }); // Set to true if you don't want to see the browser UI
+    page = await browser.newPage();
+    await page.goto('http://127.0.0.1:5500'); // Doesn't matter because we are just focusing on localStorage
+    
+    await page.evaluate(() => {
+      window.localStorage.clear();
+    });
+  });
+
+  // After all tests, close the browser
+  afterAll(async () => {
+    await page.evaluate(() => {
+      window.localStorage.clear();
+    });
+    await browser.close();
+  });
+
+  it('Sample test', async () => {
+    await expect(1).toBe(1);
+  });
 });
