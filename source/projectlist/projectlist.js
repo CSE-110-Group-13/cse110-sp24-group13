@@ -42,7 +42,7 @@ function createProjects() {
 
     projectContainer.innerHTML = `
       <div class="titlePercentCompletedContainer">
-        <priority-icon></priority-icon>
+        <div class="priority-icon"></div>
         <h1 class="title"></h1>
       </div>
       <div class="deadlineConatiner">
@@ -60,7 +60,7 @@ function createProjects() {
     `;
     const titlePercentCompletedContainer = projectContainer.querySelector('.titlePercentCompletedContainer');
 
-    const priorityIcon = projectContainer.querySelector('priority-icon');
+    const priorityIcon = projectContainer.querySelector('.priority-icon');
     priorityIcon.classList.add(`${value.priority}`);
 
     const title = projectContainer.querySelector('.title');
