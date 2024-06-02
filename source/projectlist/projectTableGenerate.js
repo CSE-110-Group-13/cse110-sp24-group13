@@ -68,7 +68,7 @@ function init() {
     let newTaskTable = getTaskTableFromStorage();
     let aTask = Object.values(newTaskTable)[0];
     let aTask2 = Object.values(newTaskTable)[1];
-    createNewProjectObject("Project1", "Description1", [`${aTask.taskID}`, `${aTask2.taskID}`], "2024-05-30", "Priority1");
+    createNewProjectObject("Project1", "Description1", [`${aTask.taskID}`, `${aTask2.taskID}`], "2024-05-30", "low");
     // createNewProjectObject("Project2", "Description2", ['task1', 'task2', 'task3'], "2024-05-30", "Priority2");
     // createNewProjectObject("Project3", "Description3", ['task1', 'task2', 'task3'], "2024-05-30", "Priority3");
     // createNewProjectObject("Project3", "Description3", ['task1', 'task2', 'task3'], "2024-05-30", "Priority3");

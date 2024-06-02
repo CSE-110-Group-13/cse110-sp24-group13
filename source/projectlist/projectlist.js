@@ -60,6 +60,9 @@ function createProjects() {
     `;
     const titlePercentCompletedContainer = projectContainer.querySelector('.titlePercentCompletedContainer');
 
+    const priorityIcon = projectContainer.querySelector('priority-icon');
+    priorityIcon.classList.add(`${value.priority}`);
+
     const title = projectContainer.querySelector('.title');
     title.textContent = value.title;
 

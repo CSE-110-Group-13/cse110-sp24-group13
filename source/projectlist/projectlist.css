@@ -49,6 +49,23 @@ main > div {
 
 }
 
+priority-icon {
+  height: 3vh;
+  width: 3vw;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+priority-icon.low {
+  background-color: red;
+}
+priority-icon.medium {
+  background-color: red;
+}
+priority-icon.high {
+  background-color: red;
+}
+
 .titlePercentCompletedContainer {
 
 }
