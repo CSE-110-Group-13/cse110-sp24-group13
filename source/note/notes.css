@@ -103,7 +103,7 @@ main >.projectContainer {
     align-items: center;
     border-radius: 25px; 
     width: 88vw;
-    gap: 2vw;
+    gap: 5vw;
 }
 
 .description {

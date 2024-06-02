@@ -1,3 +1,7 @@
+import { 
+    getProjectTableFromStorage
+  } from "../backend/ProjectTable.js"; 
+
 class linkedProject extends HTMLElement {
     constructor() {
         super();
@@ -13,13 +17,13 @@ class linkedProject extends HTMLElement {
         styles.innerHTML = `
         #lButton {
             display: flex;
-            width: 136px;
+            width: 158px;
             justify-content: center;
             align-items: center;
             background-color: #F8F8F8;
             box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
             border-radius: 10px;
-            padding: 10px 15px; 
+            padding: 25px 20px; 
             text-decoration: none; 
             color: black; 
             font-size: 16px;
@@ -28,6 +32,12 @@ class linkedProject extends HTMLElement {
 
         #lButton:hover {
             background-color: #e0e0e0; /* Change background color on hover */
+        }
+
+        #lButton svg {
+            margin-left: 10px; /* Add space between icon and text */
+            width: 25px;
+            height: 25px;
         }
 
         .addProjectContainer.close {
@@ -44,6 +54,7 @@ class linkedProject extends HTMLElement {
             padding: 15px;
             border-radius: 10px;
             box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
+            overflow: auto;
         }
 
         h1 {
@@ -69,7 +80,7 @@ class linkedProject extends HTMLElement {
             left: -25px;
         }
 
-        .addProjectContainer p {
+        #instructions {
             text-align: center;
             color: #7C7C7C;
         }
@@ -92,9 +103,6 @@ class linkedProject extends HTMLElement {
         }
 
         #confirm-button {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
             cursor: pointer;
             border: none;
             background-color: #fff;
@@ -102,6 +110,25 @@ class linkedProject extends HTMLElement {
             box-shadow: 0em 0em 0.5em rgba(0, 0, 0, 0.2);
             font-size: 15px;
             width: 75px;
+            position: relative;
+            margin-left: auto;
+            margin-right: 10px;
+            
+        }
+
+        .currentProjects {
+            background-color: #F8F8F8;
+            border-radius: 10px;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+            box-shadow: 0em 0em 0.3em rgba(0, 0, 0, 0.2);
+        }
+
+        .currentProjects p {
+            text-align: center;
+            font-weight: 525;
+            padding: 10px;
         }
 
         `;
@@ -113,7 +140,7 @@ class linkedProject extends HTMLElement {
         // Create a button to link a project
         const lButton = document.createElement('button');
         lButton.id = 'lButton';
-        lButton.textContent = 'Add Project';
+        lButton.innerHTML = `Add Project <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>`
         container.appendChild(lButton);
         
         // Create overlay 
@@ -144,8 +171,26 @@ class linkedProject extends HTMLElement {
 
         // Create instructions
         const instructions = document.createElement('p');
+        instructions.id = 'instructions';
         instructions.textContent = 'Select the project that you worked on in this log';
         projectContainer.appendChild(instructions);
+
+        // Get projects from local storage
+        const projectTable = getProjectTableFromStorage(); 
+        
+        // Load projects under currentProjects;
+        for(const[key, value] of Object.entries(projectTable)) {
+            // Create currentProjects container
+            const currentProjects = document.createElement('div');
+            currentProjects.classList = "currentProjects";
+            projectContainer.appendChild(currentProjects);
+
+            // Add title of the project
+            const projectElement = document.createElement('p');
+            projectElement.textContent = value.title;
+            currentProjects.appendChild(projectElement);
+        }
+    
 
         // Add confirm button
         const confirmButton = document.createElement('button');
