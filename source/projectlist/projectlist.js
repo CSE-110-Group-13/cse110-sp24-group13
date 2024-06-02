@@ -72,9 +72,9 @@ function createProjects() {
     progressBar.id = 'progressBar';
     progressBar.value = `${calculateTaskCompletion(value.projectID)}`;
     progressBar.max = '100';
-    titlePercentCompletedContainer.appendChild(labelForProgressBar);
+    labelForProgressBar.textContent = `${progressBar.value}% of tasks completed`;
     titlePercentCompletedContainer.appendChild(progressBar);
-
+    titlePercentCompletedContainer.appendChild(labelForProgressBar);
 
     const startedDate = projectContainer.querySelector('.startedDate');
     startedDate.textContent = `Deadline: ${value.deadline}`;
