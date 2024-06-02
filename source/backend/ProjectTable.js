@@ -112,6 +112,7 @@ function deleteProjectFromTable(projectID) {
  * @param {String} priority - the priority of the project
  * @param {String} dateCreated - the date the project was created
  * @param {Array<String>} tasksCompleted - the list of task IDs that are completed in the project
+ * @param {String} lastWorked - the date project was last worked on or edited
  * @returns {Object} the project object that was created
  */
 function createNewProjectObject(title="", description="", taskList=[], deadline="", priority="", dateCreated="", tasksCompleted=[], lastWorked="") {
@@ -232,6 +233,11 @@ function removeCompletedTaskFromProject(projectID, taskID) {
   saveProjectToTable(projectID, projectObject);
 }
 
+/**
+ * Modify the date the project was last worked on of a project object that maps to the given ID and update the local storage
+ * @param {String} projectID - the ID of the project to modify
+ * @param {String} newLastWorked- the new date the project was last worked on
+ */
 function modifyProjectLastWorked(projectID, newLastWorked) {
   const projectObject = getProjectFromTable(projectID);
   projectObject["lastWorked"] = newLastWorked;
