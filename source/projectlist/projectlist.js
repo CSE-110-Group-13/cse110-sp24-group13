@@ -82,6 +82,10 @@ function createTaskListItem(taskListElement, taskListArray) {
   }
 }
 
+function calculateTaskCompletion(projectID) {
+  
+}
+
 function init() {
   createProjects();
 }

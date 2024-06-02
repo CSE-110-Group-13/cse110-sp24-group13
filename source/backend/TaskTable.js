@@ -12,7 +12,7 @@
  * {
  *    "taskID" : "",
  *    "name" : "",
- *    "completed" : ""
+ *    "completed" : false
  * }
  */
 
@@ -125,11 +125,11 @@ function modifyTaskName(taskID, newTitle) {
 /**
  * Modify the title of a task object that maps to the given ID and update the local storage
  * @param {String} taskID - the ID of the task to modify
- * @param {String} newTitle - the new title of the task
+ * @param {Boolean} newCompleted- true or false whether task completed
  */
-function modifyTaskCompleted(taskID, newTitle) {
+function modifyTaskCompleted(taskID, newCompleted) {
   const taskObject = getTaskFromTable(taskID);
-  taskObject["title"] = newTitle;
+  taskObject["completed"] = newCompleted;
   saveTaskToTable(taskID, taskObject);
 }
 
