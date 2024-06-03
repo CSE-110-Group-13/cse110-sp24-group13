@@ -3,6 +3,7 @@
 /** ---------------------------- */ 
 
 import { getNoteTableFromStorage, createNewNoteObject} from "../backend/NoteTable.js";
+import { getNoteElement, getFormattedDate, toggleFavorite} from "../homepage/index.js";
     
 window.addEventListener("DOMContentLoaded", init);
 
