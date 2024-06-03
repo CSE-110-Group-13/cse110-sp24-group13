@@ -18,6 +18,8 @@
  *    "priority" : ""
  *    "dateCreated" : "",
  *    "tasksCompleted" : [],
+ *    "linkedNotes" : [],
+ *    "lastWorkedOn" : "",  
  * }
  */
 
@@ -230,6 +232,40 @@ function removeCompletedTaskFromProject(projectID, taskID) {
   saveProjectToTable(projectID, projectObject);
 }
 
+
+/**
+ * Append a note ID to the linked notes list of a project object that maps to the given ID and update the local storage
+ * @param {String} projectID - the ID of the project to modify
+ * @param {String} noteID - the ID of the note to append
+ */
+function appendLinkedNoteToProject(projectID, noteID) {
+  const projectObject = getProjectFromTable(projectID);
+  projectObject["linkedNotes"].push(noteID);
+  saveProjectToTable(projectID, projectObject);
+}
+
+/**
+ * Remove a note ID from the linked notes list of a project object that maps to the given ID and update the local storage
+ * @param {String} projectID - the ID of the project to modify
+ * @param {String} noteID - the ID of the note to remove
+ */
+function removeLinkedNoteFromProject(projectID, noteID) {
+  const projectObject = getProjectFromTable(projectID);
+  projectObject["linkedNotes"] = projectObject["linkedNotes"].filter(note => note !== noteID);
+  saveProjectToTable(projectID, projectObject);
+}
+
+/**
+ * Modify the last worked on date of a project object that maps to the given ID and update the local storage
+ * @param {String} projectID - the ID of the project to modify
+ * @param {String} newLastWorkedOnDate - the new last worked on date of the project
+ */
+function modifyLastWorkedOn(projectID, newLastWorkedOnDate) {
+  const projectObject = getProjectFromTable(projectID);
+  projectObject["lastWorkedOn"] = newLastWorkedOnDate;
+  saveProjectToTable(projectID, projectObject);
+}
+
 export {
   getProjectTableFromStorage,
   saveProjectTableToStorage,
@@ -245,5 +281,8 @@ export {
   modifyProjectPriority,
   modifyProjectDateCreated,
   appendCompletedTaskToProject,
-  removeCompletedTaskFromProject
+  removeCompletedTaskFromProject,
+  appendLinkedNoteToProject,
+  removeLinkedNoteFromProject,
+  modifyLastWorkedOn
 }
