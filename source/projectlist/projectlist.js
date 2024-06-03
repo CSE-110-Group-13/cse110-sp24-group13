@@ -74,7 +74,7 @@ function createProjects() {
     const labelForProgressBar = document.createElement('label');
     labelForProgressBar.setAttribute('for', 'progressBar');
     const progressBar = document.createElement('progress');
-    progressBar.id = 'progressBar';
+    progressBar.classList.add('progressBar');
     progressBar.value = `${calculateTaskCompletion(value.projectID)}`;
     progressBar.max = '100';
     labelForProgressBar.textContent = `${progressBar.value}% of tasks completed`;
@@ -110,11 +110,31 @@ function createTaskListItem(taskListElement, taskListArray) {
     inputCheckbox.id = taskID;
     
     const label = document.createElement('label');
-    label.setAttribute('for', task);
+    label.setAttribute('for', taskID);
     label.textContent = task.name;
 
+    if (task.completed === true) {
+      inputCheckbox.checked = true;
+    }
+
+    updateTaskCompletionStatusEventListener(inputCheckbox);
     taskListItem.appendChild(inputCheckbox);
     taskListItem.appendChild(label);
+  });
+}
+
+function updateTaskCompletionStatusEventListener(singleInputCheckbox) {
+  singleInputCheckbox.addEventListener('change', () => {
+    const taskID = singleInputCheckbox.id;
+    const task = getTaskFromTable(taskID);
+    // unchecked to checked
+    if (singleInputCheckbox.checked === true && task.completed === false) {
+      modifyTaskCompleted(taskID, true);
+    }
+    // checked to unchecked
+    if (singleInputCheckbox.checked === false && task.completed === true) {
+      modifyTaskCompleted(taskID, false);
+    }
   });
 }
 
