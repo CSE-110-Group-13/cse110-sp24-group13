@@ -1,6 +1,7 @@
 // Note: remember to turn on live server before running the test
 
 import puppeteer from 'puppeteer';
+import { URL } from '../__global__.js';
 
 describe('End to end tests of the app', () => {
   let browser;
@@ -10,11 +11,18 @@ describe('End to end tests of the app', () => {
   beforeAll(async () => {
     browser = await puppeteer.launch({ headless: false }); // Set to true if you don't want to see the browser UI
     page = await browser.newPage();
-    await page.goto('http://127.0.0.1:5500/source/homepage/index.html');
+    await page.goto(URL + '/homepage/index.html');
+
+    await page.evaluate(() => {
+      window.localStorage.clear();
+    });
   });
 
-  // After all tests, close the browser
+  // After all tests, close the browser and clear local storage
   afterAll(async () => {
+    await page.evaluate(() => {
+      window.localStorage.clear();
+    });
     await browser.close();
   });
 
