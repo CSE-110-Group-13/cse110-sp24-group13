@@ -5,14 +5,25 @@
 //TODO - Populate Tasks container
 
 import {
-    createNewProjectObject, 
-    modifyProjectText, 
-    modifyProjectDate, 
-    modifyProjectTitle, 
-    getProjectFromTable
+    getProjectTableFromStorage,
+    saveProjectTableToStorage,
+    getProjectFromTable,
+    saveProjectToTable,
+    deleteProjectFromTable,
+    createNewProjectObject,
+    modifyProjectTitle,
+    modifyProjectDescription,
+    appendTaskToProjectTaskList,
+    removeTaskFromProjectTaskList,
+    modifyProjectDeadline,
+    modifyProjectPriority,
+    appendCompletedTaskToProject,
+    removeCompletedTaskFromProject
 } from '../backend/ProjectTable.js';
 
 let PROJECT_ID = "";
+let progress = 0;
+const taskUpdate = document.querySelectorAll('input[type="checkbox"]');
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -41,12 +52,38 @@ function init() {
  */
 function attachSaveButtonListener() {
     document.querySelector('save-button button').addEventListener('click', saveProject);
+    console.log("Save Clicked");
 }
 
 function attachCancelButtonListener() {
     document.querySelector('cancel-button button').addEventListener('click', cancelEdit);
 }
 
+// Function to handle checkbox change events
+function updateProgress(event) {
+    const progressBar = document.getElementById('progressBar').value;
+    const progressLabel = document.getElementById('progressLabel').innerText;
+    if (event.target.checked) {
+        console.log(`Task ${event.target.id} checked`);
+        progress++;
+    } else {
+        console.log(`Task ${event.target.id} unchecked`);
+        progress--;
+    }
+
+    progressBar = progress;
+    progressLabel = PROJECT_ID.taskList.length+"%";
+    
+    
+}
+
+// Get all checkboxes
+
+
+// Add event listeners to each checkbox
+taskUpdate.forEach(checkbox => {
+    checkbox.addEventListener('change', updateProgress);
+});
 
 /**
  * Saves the current state of the project to the local storage.
@@ -59,8 +96,9 @@ function saveProject() {
     const projectDeadline = document.querySelector('.date input').value;
     // Modify the project
     modifyProjectTitle(PROJECT_ID, projectTitle);
-    modifyProjectText(PROJECT_ID, projectDescription);
-    modifyProjectDate(PROJECT_ID, projectDeadline);
+    modifyProjectDescription(PROJECT_ID, projectDescription);
+    modifyProjectDeadline(PROJECT_ID, projectDeadline);
+
     window.location.href = './view-project.html#' + PROJECT_ID;
     
 }
