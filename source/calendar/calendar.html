@@ -10,11 +10,15 @@
     </style>
 </head>
 <body>
+    <!--
     <nav>
     <a href="../markdown/markdown.html">Markdown</a>
     <a href="../calendar/calendar.html">Calendar</a>
     <a href="../homepage/index.html">Homepage</a>
     </nav>
+    -->
+
+    <vertical-navbar></vertical-navbar>
 
 
     <div class="container">
@@ -28,7 +32,7 @@
             <div class="search-bar">
                 <input type="text" id="search" placeholder="Search tasks...">
             </div>
-            <button id="create-task-btn">Create Task</button>
+            <!--<button id="create-task-btn">Create Task</button>-->
         </header>
         <div id="calendar">
             <div class="week-days">
@@ -43,11 +47,13 @@
             <div id="calendar-days" class="days-grid"></div>
         </div>
     </div>
-
+    
     <div id="task-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Create New Task</h2>
+            
+            <!--<h2>Create New Task</h2> -->
+            
             <form id="task-form">
                 <label for="task-date">Date:</label>
                 <input type="date" id="task-date" required>
@@ -57,10 +63,17 @@
                 <textarea id="task-description" required></textarea>
                 <button type="submit">Add Task</button>
             </form>
+            
         </div>
+
     </div>
+    
+    <add-new-btn></add-new-btn>
+   
 <!--     <vertical-navbar currentPage="anchorToCalendar"></vertical-navbar> -->
 
     <script type="module" src="calendar.js"></script>
+    <script type="module" src="../addNewbutton/addNew.js"></script>
+    <script type="module" src="../verticalnavbar/verticalnavbar.js"></script>
 </body>
 </html>

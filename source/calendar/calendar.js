@@ -6,7 +6,7 @@ import {
 } from "../backend/NoteTable.js"
 
 document.addEventListener("DOMContentLoaded", () => {
-    const createTaskBtn = document.getElementById("create-task-btn");
+    //const createTaskBtn = document.getElementById("create-task-btn");
     const taskModal = document.getElementById("task-modal");
     const closeBtn = document.getElementsByClassName("close")[0];
     const taskForm = document.getElementById("task-form");
@@ -34,9 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
     monthSelect.value = currentMonth;
     yearInput.value = currentYear;
 
-    createTaskBtn.addEventListener("click", () => {
-        taskModal.style.display = "block";
-    });
+
+    //createTaskBtn.addEventListener("click", () => {
+    //    taskModal.style.display = "block";
+    //});
 
     closeBtn.addEventListener("click", () => {
         taskModal.style.display = "none";

@@ -3,15 +3,22 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+    display: flex;
 }
+vertical-nav-bar {
+    flex-shrink: 0;
+}
+
 
 .container {
     width: 80%;
-    height: 80vh;
+    height: 95vh;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+    flex-grow: 1;
 }
 
 header {
