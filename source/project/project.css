@@ -99,12 +99,26 @@ p{
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    background-color: #F8F8F8;
+    background-color: #ffffff;
 
     resize: none; /*remove the resize handle on the bottom right*/
 
   }
 
+#projectTitle{
+    font-size: 30px;
+    font-weight: bold;
+    width: 40%;
+
+    border: 1px solid #9b9b9b;
+    border-radius: 5px;
+    overflow: auto;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #ffffff;
+  }
 
 .projectDue{
     display: flex;
@@ -113,7 +127,7 @@ p{
 }
 
 .projectDue svg{
-    margin: 1% 1%;
+    margin: 0 0% 0 1%;
     min-width: 20px;
     height: 20px;
 }
@@ -131,6 +145,7 @@ p{
 .projectHeader{
     display: flex; 
     align-items: center; 
+    margin: 1vh 0vh ;
 }
 
 .progress{
