@@ -198,7 +198,11 @@ class linkedProject extends HTMLElement {
             projectElement.type = 'button';
             projectElement.textContent = value.title;
             projectElement.addEventListener('click', () => {
-                projectElement.classList.toggle('selected');
+                const selectProject = document.querySelector('.selected');
+                if (selectProject) {
+                    selectProject.classList.remove('selected');
+                } 
+                projectElement.classList.add('selected');
             });
             currentProjects.appendChild(projectElement);
         }
