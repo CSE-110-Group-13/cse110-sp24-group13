@@ -1,8 +1,9 @@
 import { 
     getProjectTableFromStorage
-  } from "../backend/ProjectTable.js"; 
+} from "../backend/ProjectTable.js"; 
 import {
-    appendProjectToNoteProjectList
+    appendProjectToNoteProjectList,
+    getNoteTableFromStorage
 } from "../backend/NoteTable.js";
 
 class linkedProject extends HTMLElement {
@@ -12,8 +13,36 @@ class linkedProject extends HTMLElement {
 
     connectedCallback() {
         this.render();
+        this.loadProject();
+
     }
 
+    loadProject() {
+        console.log("loadProject")
+        let Note_ID = window.location.hash.substring(1);
+        if (Note_ID !== "") {
+            let note = getNoteTableFromStorage(Note_ID);
+            if (note.projectList !== undefined) {
+                this.populateProject(note.projectList[0]);
+            }    
+        }
+        
+    }    
+
+    populateProject(projectID) {
+        console.log("populateProject");
+        projectContainer.classList.toggle("open");
+        linkedProject.classList.toggle("open");
+        let project = getProjectFromTable(projectID);
+        let projectTitle = document.getElementById('projectTitle');
+        let projectDue = document.querySelector('.projectDue p');
+        let projectDesc = document.querySelector('.projectDetails p');
+        let projectProgress = document.querySelector('progress');
+        projectTitle.textContent = project.title;
+        projectDue.textContent = project.dueDate;
+        projectDesc.textContent = project.description;
+        projectProgress.value = project.progress;
+    }
     render() {
         // Styling 
         const styles = document.createElement('style');
@@ -182,6 +211,39 @@ class linkedProject extends HTMLElement {
         instructions.textContent = 'Select the project that you worked on in this log';
         projectContainer.appendChild(instructions);
 
+        //creating the linked project container
+        const linkedProject = document.createElement('div');
+        linkedProject.classList = 'linkedProject';
+        container.appendChild(projectContainer);
+        linkedProject.innerHTML = `
+        <div class="container">
+            <div class="projectHeader">
+                <span class="priorityDot"></span>
+                <h1 id="projectTitle">Project Name</h1>
+                <div class="progress">
+                    <label for="progressBar">placeholder%</label>
+                    <progress id="progressBar" value="33" max="100">200000</progress>
+                </div>
+            </div>
+            <div class="projectDetails">
+                <div class="projectDue">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/>
+                    </svg>
+                    <p>placeholder: 1 Week, 2 Days, 3 hours till Deadline</p>
+                </div>
+                <h3><label for="projectDesc">Description</label></h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus beatae eum perferendis accusantium quasi odio vel voluptatem temporibus nihil sed reprehenderit quo eveniet delectus reiciendis dolor itaque, nemo quas dolore!</p>
+                <!-- minimize button -->
+                <svg id="descDropdown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
+                </svg>
+            </div>
+        </div>`;
+        linkedProject.classList.toggle("close");
+
         // Get projects from local storage
         const projectTable = getProjectTableFromStorage(); 
 
@@ -236,6 +298,8 @@ class linkedProject extends HTMLElement {
             appendProjectToNoteProjectList(NOTE_ID, selectedProject.id);
             projectContainer.classList.toggle("open");
             overlay.classList.toggle("open");
+            this.populateProject(selectedProject.id);
+            
         })
 
         // Add event listener for when add project button is pressed
