@@ -21,7 +21,6 @@ import {
 
 import { mockObjects, initializeLocalStorage } from "../__mocks__/index.js";
 
-
 /**
  * Tests for project table functions
  */

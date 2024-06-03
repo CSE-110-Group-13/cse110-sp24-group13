@@ -21,7 +21,23 @@ describe('Tests for backend: ID', () => {
     window.localStorage.clear();
   });
 
-  it('', async () => {
-    await expect(1).toBe(1);
+  it('Test generate some IDs', () => {
+    // Generate some IDs
+    for (let i = 0; i < 1000; i++) {
+      generateID();
+    }
+
+    // Check if the IDs are unique
+    const idContainer = getIDContainerFromStorage();
+    expect(Object.keys(idContainer).length).toBe(1000);
+  });    
+
+  it ('Test save the ID container to storage', () => {
+    // Save the ID container to storage
+    saveIDContainerToStorage({});
+
+    // Fetch the ID container and check
+    const newIDContainer = getIDContainerFromStorage();
+    expect(Object.keys(newIDContainer).length).toBe(0);
   });
 });
