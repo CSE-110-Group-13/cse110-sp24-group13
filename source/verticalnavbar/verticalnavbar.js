@@ -165,8 +165,7 @@ class VerticalNavbar extends HTMLElement {
     anchorToProjectList.id = "anchorToProjectList";
     const anchorToSettings = document.createElement("a");
     anchorToSettings.id = "anchorToSettings";
-    const anchorToNotIcon = document.createElement("a");
-    anchorToNotIcon.id = "anchorToNotIcon";
+
 
     // Add href property to anchors
     anchorToHome.href = "../homepage/index.html";
@@ -235,9 +234,16 @@ class VerticalNavbar extends HTMLElement {
 
   // Function that will change the other icons to gray
   changeToCurrentPage() {
-    const currentPageAttributes = ["anchorToHome", "anchorToFavorites", "anchorToLibrary", "anchorToCalendar", "anchorToProjectList", "anchorToSettings", "anchorToNotIcon"];
+    const currentPageAttributes = ["anchorToHome", "anchorToFavorites", "anchorToLibrary", "anchorToCalendar", "anchorToProjectList", "anchorToSettings"];
     const currentPage = this.getAttribute("currentPage");
     if (currentPageAttributes.includes(currentPage)) {
+      currentPageAttributes.forEach((attribute) => {
+        if (attribute !== currentPage) {
+          this.shadowRoot.querySelector(`#${attribute} svg path`).style.fill = "gray";
+        }
+      });
+    }
+    else  {
       currentPageAttributes.forEach((attribute) => {
         if (attribute !== currentPage) {
           this.shadowRoot.querySelector(`#${attribute} svg path`).style.fill = "gray";

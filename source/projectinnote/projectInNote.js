@@ -1,6 +1,9 @@
 import { 
     getProjectTableFromStorage
   } from "../backend/ProjectTable.js"; 
+import {
+    appendProjectToNoteProjectList
+} from "../backend/NoteTable.js";
 
 class linkedProject extends HTMLElement {
     constructor() {
@@ -63,7 +66,7 @@ class linkedProject extends HTMLElement {
             font-weight: 525;
         }
 
-        hr {
+        #overlay hr {
             border: 1px solid #000;
             border-width: 0 0 1.5px 0;
             width: 90%;
@@ -204,6 +207,7 @@ class linkedProject extends HTMLElement {
             const projectElement = document.createElement('button');
             projectElement.type = 'button';
             projectElement.textContent = value.title;
+            projectElement.id = key;
             projectElement.addEventListener('click', () => {
                 const selectProject = document.querySelector('.selected');
                 if (selectProject) {
@@ -222,15 +226,16 @@ class linkedProject extends HTMLElement {
         confirmButton.textContent = 'Confirm';
         projectContainer.appendChild(confirmButton);
 
+        
         // Add event listener for form submission
-        form.addEventListener('submit', (event) => {
+        confirmButton.addEventListener('click', (event) => {
             event.preventDefault();
-
-            // Get selected projects
-            const selectedProject = form.querySelector('.selected');
-
             // Add project to projectList for the note
-            
+            const selectedProject = form.querySelector('.selected');
+            let NOTE_ID = window.location.hash.substring(1);
+            appendProjectToNoteProjectList(NOTE_ID, selectedProject.id);
+            projectContainer.classList.toggle("open");
+            overlay.classList.toggle("open");
         })
 
         // Add event listener for when add project button is pressed
