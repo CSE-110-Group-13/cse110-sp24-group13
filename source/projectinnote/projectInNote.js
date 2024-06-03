@@ -21,9 +21,12 @@ class linkedProject extends HTMLElement {
         console.log("loadProject")
         let Note_ID = window.location.hash.substring(1);
         if (Note_ID !== "") {
-            let note = getNoteTableFromStorage(Note_ID);
-            if (note.projectList !== undefined) {
-                this.populateProject(note.projectList[0]);
+            let table = getNoteTableFromStorage(Note_ID);
+            let note = table[Note_ID];
+            console.log(note);
+            console.log(note["projectList"])
+            if (note["projectList"] !== undefined) {
+                this.populateProject(note["projectList"][0]);
             }    
         }
         
@@ -31,17 +34,17 @@ class linkedProject extends HTMLElement {
 
     populateProject(projectID) {
         console.log("populateProject");
-        projectContainer.classList.toggle("open");
-        linkedProject.classList.toggle("open");
+        console.log(linkedProjectComponent);
+        linkedProjectComponent.classList.toggle("open");
         let project = getProjectFromTable(projectID);
         let projectTitle = document.getElementById('projectTitle');
         let projectDue = document.querySelector('.projectDue p');
         let projectDesc = document.querySelector('.projectDetails p');
         let projectProgress = document.querySelector('progress');
-        projectTitle.textContent = project.title;
-        projectDue.textContent = project.dueDate;
-        projectDesc.textContent = project.description;
-        projectProgress.value = project.progress;
+        projectTitle.textContent = project["title"];
+        projectDue.textContent = project["dueDate"];
+        projectDesc.textContent = project["description"];
+        projectProgress.value = project["progress"];
     }
     render() {
         // Styling 
@@ -212,11 +215,9 @@ class linkedProject extends HTMLElement {
         projectContainer.appendChild(instructions);
 
         //creating the linked project container
-        const linkedProject = document.createElement('div');
-        linkedProject.classList = 'linkedProject';
-        container.appendChild(projectContainer);
-        linkedProject.innerHTML = `
-        <div class="container">
+        const linkedProjectComponent = document.createElement('div');
+        linkedProjectComponent.classList = 'linkedProject';
+        linkedProjectComponent.innerHTML = `
             <div class="projectHeader">
                 <span class="priorityDot"></span>
                 <h1 id="projectTitle">Project Name</h1>
@@ -242,7 +243,9 @@ class linkedProject extends HTMLElement {
                 </svg>
             </div>
         </div>`;
-        linkedProject.classList.toggle("close");
+        container.appendChild(linkedProjectComponent);
+        linkedProjectComponent.classList.toggle("close");
+
 
         // Get projects from local storage
         const projectTable = getProjectTableFromStorage(); 
