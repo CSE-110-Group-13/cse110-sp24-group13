@@ -19,10 +19,9 @@ header {
   height: 10vh;
 
   margin-bottom: 1vh;
-  /* box-sizing: border-box; */
 }
 
-/* Task Box */
+/* Project list Box */
 main {
   display: flex;
   flex-direction: column;
@@ -41,8 +40,6 @@ main > div {
   background-color: #F8F8F8;
   border-radius: 25px;
   width: 80vw;
-  /* height: 50%; */
-
   gap: 1vh;
 }
 
@@ -135,13 +132,3 @@ progress {
   list-style-type: none;
   padding: 0;
 }
-
-/* h1, p, h2, ul, li {
-  margin: 0;
-  padding: 0;
-} */
-
-/* * {
-  padding: 0;
-  margin: 0;
-} */
