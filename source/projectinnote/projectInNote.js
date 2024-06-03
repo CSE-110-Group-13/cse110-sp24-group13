@@ -238,6 +238,10 @@ class linkedProject extends HTMLElement {
         backButton.addEventListener('click', () => {
             projectContainer.classList.toggle("open");
             overlay.classList.toggle("open");
+            const selectedProject = form.querySelector('.selected');
+            if (selectedProject) {
+                selectedProject.classList.remove('selected');
+            }
         });
 
 
