@@ -26,7 +26,7 @@ header {
 main {
   display: flex;
   flex-direction: column;
-  gap: 1vh;
+  gap: 2vh;
 
   height: 89vh;
   overflow-y: auto;
@@ -133,6 +133,7 @@ progress {
 
 .taskListContainer > .taskList {
   list-style-type: none;
+  padding: 0;
 }
 
 /* h1, p, h2, ul, li {

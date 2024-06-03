@@ -60,14 +60,16 @@ function init() {
     // createNewNoteObject("this is text5", "2024-05-29", "2024-05-31", "this is title5", ["project1", "project2"], true, ["tag1", "tag2", "tag3"]);
   }
   if (Object.keys(taskTable).length < 2) {
-    createNewTaskObject("do stuff", true);
-    createNewTaskObject("do stuff2", false);
+    createNewTaskObject("do stuffLorem ipsum blah blah do this blah lorem", true);
+    createNewTaskObject("do stuff2Lorem ipsum blah blah do this blah lorem", false);
   }
 
-  if (Object.keys(projectTable).length < 1) {
+  if (Object.keys(projectTable).length < 3) {
     let newTaskTable = getTaskTableFromStorage();
     let aTask = Object.values(newTaskTable)[0];
     let aTask2 = Object.values(newTaskTable)[1];
+    createNewProjectObject("Project1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", [`${aTask.taskID}`, `${aTask2.taskID}`], "2024-06-29", "low", "2024-05-30", [], "2024-05-31");
+    createNewProjectObject("Project1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", [`${aTask.taskID}`, `${aTask2.taskID}`], "2024-06-29", "low", "2024-05-30", [], "2024-05-31");
     createNewProjectObject("Project1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", [`${aTask.taskID}`, `${aTask2.taskID}`], "2024-06-29", "low", "2024-05-30", [], "2024-05-31");
     // createNewProjectObject("Project2", "Description2", ['task1', 'task2', 'task3'], "2024-05-30", "Priority2");
     // createNewProjectObject("Project3", "Description3", ['task1', 'task2', 'task3'], "2024-05-30", "Priority3");
