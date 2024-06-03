@@ -9,7 +9,7 @@ describe('End to end tests of the app', () => {
 
   // Before all tests, launch a browser and open a new page
   beforeAll(async () => {
-    browser = await puppeteer.launch({ headless: false }); // Set to true if you don't want to see the browser UI
+    browser = await puppeteer.launch({ headless: true }); // Set to true if you don't want to see the browser UI
     page = await browser.newPage();
     await page.goto(URL + '/homepage/index.html');
 
@@ -27,6 +27,6 @@ describe('End to end tests of the app', () => {
   });
 
   it('Sample test', async () => {
-    // expect(1 + 1).toBe(2);
+    expect(1).toBe(1);
   });
 });
