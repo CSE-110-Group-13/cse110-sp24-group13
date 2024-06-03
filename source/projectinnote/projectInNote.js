@@ -34,8 +34,9 @@ class linkedProject extends HTMLElement {
 
     populateProject(projectID) {
         console.log("populateProject");
-        console.log(linkedProjectComponent);
-        linkedProjectComponent.classList.toggle("open");
+        //TODO: Make linkedProject/ LinkedProjectComponent appear
+        //TODO: Also style it correctly
+        linkedProject.classList.toggle('open');
         let project = getProjectFromTable(projectID);
         let projectTitle = document.getElementById('projectTitle');
         let projectDue = document.querySelector('.projectDue p');
@@ -170,6 +171,16 @@ class linkedProject extends HTMLElement {
             background-color: #e0e0e0;
         }
 
+        .linkedProject.close {
+            display: none;
+        }
+
+        .linkedProject.open {
+            width: 80%;
+            padding: 5px;
+            margin: auto;
+
+        }   
         `;
 
         // Create the main container
