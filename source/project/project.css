@@ -15,7 +15,7 @@ vertical-navbar {
 
 #restOfScreen {
     flex: 1;
-    margin-left: 10%;
+    margin-left: 11%;
 }
 
 p{
@@ -31,7 +31,7 @@ p{
 .selectBar{
     position: absolute;
     top: 0;
-    margin: 2% 1% 0 10%;
+    margin: 2% 1% 0 1%;
     min-width: fit-content;
     display: flex;
     gap: 10px;
