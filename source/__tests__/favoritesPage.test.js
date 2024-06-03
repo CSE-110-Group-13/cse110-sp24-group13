@@ -1,5 +1,3 @@
-// Note: remember to turn on live server before running the test
-
 import puppeteer from 'puppeteer';
 import { URL } from '../__global__.js';
 
