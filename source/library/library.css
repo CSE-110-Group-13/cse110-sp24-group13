@@ -17,6 +17,16 @@ body > #SearchBar {
   background-color: black; /* PLACEHOLDER */
 }
 
+.note-wrapper {
+  position: relative;
+  transition: transform 0.8s ease-in-out, opacity 0.8s ease;
+}
+
+.collapsed .note-wrapper {
+  transform: translateY(-50px); /* Adjust the translate value as needed */
+  opacity: 0;
+}
+
 .sort{
   margin: 10%;
   display: flex;
