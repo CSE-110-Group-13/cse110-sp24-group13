@@ -106,18 +106,6 @@ main >.projectContainer {
     gap: 5vw;
 }
 
-.description {
-    width: 60vw;
-    background-color: #F8F8F8;
-    border-radius: 25px; 
-    padding: 5px 20px;
-}
-
-.description p {
-    margin-top: -15px;
-    margin-left: 20px;
-}
-
 .container {
     display: flex;
     flex-direction: column;

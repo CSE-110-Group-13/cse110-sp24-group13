@@ -51,19 +51,24 @@ class linkedProject extends HTMLElement {
         // Styling 
         const styles = document.createElement('style');
         styles.innerHTML = `
+        #container {
+            width: 90vw;
+        }
         #lButton {
-            display: flex;
-            width: 158px;
-            justify-content: center;
-            align-items: center;
+            display: flex; 
+            width: 20%;
+            justify-content: center; 
+            align-items: center; 
             background-color: #F8F8F8;
             box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
             border-radius: 10px;
-            padding: 25px 20px; 
+            padding: 25px 5px; 
             text-decoration: none; 
             color: black; 
-            font-size: 16px;
+            font-size: min(2.5vw, min(16px, 2.5vw));
             border-width: 0px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         #lButton:hover {
@@ -71,7 +76,7 @@ class linkedProject extends HTMLElement {
         }
 
         #lButton svg {
-            margin-left: 10px; /* Add space between icon and text */
+            margin-left: 8px; /* Add space between icon and text */
             width: 25px;
             height: 25px;
         }
@@ -180,12 +185,34 @@ class linkedProject extends HTMLElement {
             padding: 5px;
             margin: auto;
 
-        }   
+        }  
+        
+        .description {
+            width: 60vw;
+            background-color: #F8F8F8;
+            border-radius: 25px; 
+            padding: 5px 20px;
+        }
+        
+        .description p {
+            margin-top: -15px;
+            margin-left: 20px;
+        }
         `;
-
         // Create the main container
         const container = document.createElement('div');
         container.id = 'container';
+
+        // Create a container the description of linking a project
+        const descriptionContainer = document.createElement('div');
+        descriptionContainer.classList = "description";
+        const linkProject = document.createElement('h3');
+        linkProject.textContent = "Link a Project";
+        descriptionContainer.appendChild(linkProject);
+        const description = document.createElement('p');
+        description.textContent = "This allows you to to update a specific task. Once you select a speific task, you can then check off which subtask you have completed in this specific note";
+        descriptionContainer.appendChild(description);
+        container.appendChild(descriptionContainer);
 
         // Create a button to link a project
         const lButton = document.createElement('button');
