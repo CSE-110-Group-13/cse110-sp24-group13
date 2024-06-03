@@ -57,7 +57,7 @@ class linkedProject extends HTMLElement {
             overflow: auto;
         }
 
-        .container h1 {
+        #overlay h1 {
             text-align: center;
             margin-bottom: 10px;
             font-weight: 525;
