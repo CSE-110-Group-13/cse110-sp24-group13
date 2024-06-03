@@ -1,5 +1,6 @@
 import { 
-    getNoteFromTable
+    getNoteFromTable,
+    deleteNoteFromTable
 } from '../backend/NoteTable.js';
 
 let NOTE_ID = "";
@@ -20,14 +21,16 @@ function attachEditButtonListener() {
 }
 
 function attachCancelButtonListener() {
-    document.querySelector('cancel-button button').addEventListener('click', cancelEdit);
+    document.querySelector('delete-button button').addEventListener('click', deleteNote);
 }
 
 function editNote() {
     window.location.href = './edit-note.html#' + NOTE_ID;
 }
 
-function cancelEdit() {
+function deleteNote() {
+    console.log("delete note")
+    deleteNoteFromTable(NOTE_ID);
     window.location.href = "../homepage/index.html";
 }
 /**
