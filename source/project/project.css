@@ -3,6 +3,11 @@ html body {
     padding: 0;
     margin: 2% 1% 2% 1%;
 }
+vertical-navbar {
+    position: fixed;
+    top:0;
+
+}
 
 #container {
     display: flex;
@@ -10,7 +15,7 @@ html body {
 
 #restOfScreen {
     flex: 1;
-    margin-left: 1%;
+    margin-left: 10%;
 }
 
 p{
@@ -26,7 +31,7 @@ p{
 .selectBar{
     position: absolute;
     top: 0;
-    margin: 2% 1% 0 1%;
+    margin: 2% 1% 0 10%;
     min-width: fit-content;
     display: flex;
     gap: 10px;
