@@ -42,11 +42,16 @@ function createProjects() {
 
     projectContainer.innerHTML = `
       <div class="titlePercentCompletedContainer">
-        <div class="priority-icon"></div>
-        <h1 class="title"></h1>
+        <div class="containerForPriorityIconTitle">
+          <div class="priority-icon"></div>
+          <h1 class="title"></h1>
+        </div>
       </div>
-      <div class="deadlineConatiner">
-        <p class="startedDate"></p>
+      <div class="deadlineContainer">
+        <div class="containerForStartedDateLastWorked"> 
+          <p class="startedDate"></p>
+          <p class="lastWorked"></p>
+        </div>
         <p class="timeTillDeadline"></p>
       </div>
       <div class="descriptionContainer">
@@ -77,7 +82,11 @@ function createProjects() {
     titlePercentCompletedContainer.appendChild(labelForProgressBar);
 
     const startedDate = projectContainer.querySelector('.startedDate');
-    startedDate.textContent = `Deadline: ${value.deadline}`;
+    startedDate.textContent = `Started: ${dateToString(value.dateCreated)}`;
+    const lastWorked = projectContainer.querySelector('.lastWorked');
+    lastWorked.textContent = `Last Worked on: ${dateToString(value.lastWorked)}`;
+    const deadline = projectContainer.querySelector('.timeTillDeadline');
+    deadline.textContent = `${timeTillDeadline(value.deadline)}`;
 
     const description = projectContainer.querySelector('.projectDescription');
     description.textContent = value.description;
@@ -98,7 +107,7 @@ function createTaskListItem(taskListElement, taskListArray) {
 
     const inputCheckbox = document.createElement('input');
     inputCheckbox.setAttribute('type', 'checkbox');
-    inputCheckbox.id = task;
+    inputCheckbox.id = taskID;
     
     const label = document.createElement('label');
     label.setAttribute('for', task);
@@ -123,6 +132,49 @@ function calculateTaskCompletion(projectID) {
     return percentCompleted;
   } else {
     return -1;
+  }
+}
+
+function dateToString(dateStr) {
+    const months = ["January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"];
+
+    const [year, month, day] = dateStr.split("-");
+
+    const monthName = months[parseInt(month, 10) - 1];
+
+    const dayInt = parseInt(day, 10);
+    const suffix = (dayInt === 1 || dayInt === 21 || dayInt === 31) ? "st" :
+                   (dayInt === 2 || dayInt === 22) ? "nd" :
+                   (dayInt === 3 || dayInt === 23) ? "rd" : "th";
+
+    return `${monthName} ${dayInt}${suffix}`;
+}
+
+function timeTillDeadline(deadline) {
+  const currentDate = new Date();
+  const deadlineDate = new Date(deadline);
+
+  const differenceInTimeMilliseconds = deadlineDate - currentDate;
+  if (differenceInTimeMilliseconds <= 0) {
+    return "Deadline has already passed.";
+  }
+
+  const differenceInDays = Math.floor(differenceInTimeMilliseconds/ (1000 * 60 * 60 * 24));
+  const weeksLeft = Math.floor(differenceInDays / 7);
+  const daysLeft = differenceInDays % 7;
+
+  if (weeksLeft > 1 && daysLeft > 1) {
+    return `${weeksLeft} Weeks, ${daysLeft} Days till deadline: ${dateToString(deadline)}`;
+  }
+  else if (weeksLeft <= 1 && daysLeft > 1) {
+    return `${weeksLeft} Week, ${daysLeft} Days till deadline: ${dateToString(deadline)}`;
+  }
+  else if (weeksLeft > 1 && daysLeft <= 1) {
+    return `${weeksLeft} Weeks, ${daysLeft} Day till deadline: ${dateToString(deadline)}`;
+  }
+  else if (weeksLeft <= 1 && daysLeft <= 1) {
+    return `${weeksLeft} Week, ${daysLeft} Day till deadline: ${dateToString(deadline)}`;
   }
 }
 
