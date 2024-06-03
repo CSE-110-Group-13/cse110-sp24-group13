@@ -86,12 +86,12 @@ function saveProjectToTable(projectID, projectObject) {
  * @param {String} projectID - the ID of the project to delete
  */
 function deleteProjectFromTable(projectID) {
-  const projectTable = getNoteTableFromStorage();
+  const projectTable = getProjectTableFromStorage();
 
   if (projectID in projectTable) {
     // Delete the projectID from the projectTable
     delete projectTable[projectID];
-    saveNoteTableToStorage(projectTable);
+    saveProjectTableToStorage(projectTable);
   
     // Filter and remove the projectID from the IDContainer
     const IDToRemove = projectID.split("-")[1];
@@ -113,9 +113,11 @@ function deleteProjectFromTable(projectID) {
  * @param {String} priority - the priority of the project
  * @param {String} dateCreated - the date the project was created
  * @param {Array<String>} tasksCompleted - the list of task IDs that are completed in the project
+ * @param {Array<String>} linkedNotes - the list of note IDs that are linked to the project
+ * @param {String} lastWorkedOn - the date the project was last worked on
  * @returns {Object} the project object that was created
  */
-function createNewProjectObject(title="", description="", taskList=[], deadline="", priority="", dateCreated="", tasksCompleted=[]) {
+function createNewProjectObject(title="", description="", taskList=[], deadline="", priority="", dateCreated="", tasksCompleted=[], linkedNotes=[], lastWorkedOn="") {
   const newProjectObject = {
     "projectID" : `project-${generateID()}`,
     "title" : title,
@@ -124,7 +126,9 @@ function createNewProjectObject(title="", description="", taskList=[], deadline=
     "deadline" : deadline,
     "priority" : priority,
     "dateCreated" : dateCreated,
-    "tasksCompleted" : tasksCompleted
+    "tasksCompleted" : tasksCompleted,
+    "linkedNotes" : linkedNotes,
+    "lastWorkedOn" : lastWorkedOn
   }
 
   const projectTable = getProjectTableFromStorage();
