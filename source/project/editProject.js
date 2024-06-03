@@ -23,6 +23,17 @@ import {
     removeCompletedTaskFromProject
 } from '../backend/ProjectTable.js';
 
+import {
+    getTaskTableFromStorage,
+    saveTaskTableToStorage,
+    getTaskFromTable,
+    saveTaskToTable,
+    deleteTaskFromTable,
+    createNewTaskObject,
+    modifyTaskName,
+    modifyTaskCompleted
+  } from "../backend/TaskTable.js"
+
 let PROJECT_ID = "";
 let progress = 0;
 const taskUpdate = document.querySelectorAll('input[type="checkbox"]');
@@ -45,6 +56,7 @@ function init() {
     } else {
         populateProject();
     }
+    attachAddTaskListener
     attachSaveButtonListener();
     attachCancelButtonListener();
 }
@@ -59,6 +71,11 @@ function attachSaveButtonListener() {
 
 function attachCancelButtonListener() {
     document.querySelector('cancel-button button').addEventListener('click', cancelEdit);
+}
+
+function attachAddTaskListener() {
+    console.log("here")
+    document.querySelector('addTask button').addEventListener('click',addTask);
 }
 
 // Function to handle checkbox change events
@@ -76,13 +93,9 @@ function updateProgress(event) {
     progressBar = progress;
     document.getElementById('progressBar').max = getTaskListLength(PROJECT_ID);
     progressLabel = progress/getTaskListLength(PROJECT_ID)+"%";
-    
-    
 }
 
 // Get all checkboxes
-
-
 // Add event listeners to each checkbox
 taskUpdate.forEach(checkbox => {
     checkbox.addEventListener('change', updateProgress);
@@ -131,11 +144,12 @@ function cancelEdit() {
 }
 
 function addTask(){
-    
-}
+    const newTask = createNewTaskObject();
+    const taskName = querySelector('.addTask text').value;
 
-function populateTask(){
-    
+    modifyTaskName(newTask.taskID, taskName);
+
+    appendTaskToProjectTaskList(PROJECT_ID, newTask.taskID);
 }
 
 
@@ -150,6 +164,8 @@ function populateLinkedNotes(){
  */
 function populateProject() {
     const project = getProjectFromTable(PROJECT_ID);
+    let progressBar = document.getElementById('progressBar').value;
+
     console.log(project.title)
     document.querySelector('#projectTitle').value = project.title;
     document.querySelector('#deadline').value = project.deadline;

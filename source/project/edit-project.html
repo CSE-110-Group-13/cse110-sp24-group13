@@ -59,15 +59,12 @@
         <div class = "container">
             <div class = "tasks">
                 <h2>Tasks</h2>
-                <input type="checkbox" id="task1" name="task1" value="task1" checked>
-                <label for="task1">Task 1</label>
-                <br>
-                <input type="checkbox" id="task2" name="task2" value="task2">
-                <label for="task2">Task 2</label>
-                <br>
-                <input type="checkbox" id="task3" name="task3" value="task3">
-                <label for="task3">Task 3</label>
-                <add-task></add-task>   <!-- Add task component-->
+                <ul class = "taskList"></ul>
+                <form class="addTask">
+                    <button>+</button>
+                    <input type="text" placeholder="Add new task">
+                </form>
+                
             </div>
         </div>
     

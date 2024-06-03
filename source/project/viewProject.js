@@ -9,8 +9,6 @@ import {
     saveProjectToTable,
     deleteProjectFromTable,
     createNewProjectObject,
-    modifyProjectTitle,
-    modifyProjectDescription,
     appendTaskToProjectTaskList,
     removeTaskFromProjectTaskList,
     modifyProjectDeadline,
