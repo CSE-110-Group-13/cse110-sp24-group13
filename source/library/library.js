@@ -2,7 +2,7 @@
 
 /** ---------------------------- */ 
 
-import { getNoteTableFromStorage, getNoteFromTable, createNewNoteObject} from "../backend/NoteTable.js";
+import { getNoteTableFromStorage, getNoteFromTable, modifyNoteFavorited, createNewNoteObject} from "../backend/NoteTable.js";
 
 const filteredTags = [];
 window.addEventListener("DOMContentLoaded", init);
@@ -195,8 +195,7 @@ function toggleFavorite(button){
       button.style.backgroundColor = ''; // Revert to default or another style
     }
   }
-  reset();
-  init();
+  loadNotes();
 }
 
 /**
@@ -210,8 +209,7 @@ function filterByTag(tag)
     filteredTags.push(tag);
   else
     filteredTags.splice(idx, 1);
-  reset();
-  init();
+  loadNotes();
 };
 
 /**
