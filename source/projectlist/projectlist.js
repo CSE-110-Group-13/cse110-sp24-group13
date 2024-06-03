@@ -1,38 +1,23 @@
 import {
   getProjectTableFromStorage,
-  saveProjectTableToStorage,
   getProjectFromTable,
-  saveProjectToTable,
-  deleteProjectFromTable,
-  createNewProjectObject,
-  modifyProjectTitle,
-  modifyProjectDescription,
-  appendTaskToProjectTaskList,
-  removeTaskFromProjectTaskList,
-  modifyProjectDeadline,
-  modifyProjectPriority,
-  modifyProjectDateCreated,
   appendCompletedTaskToProject,
   removeCompletedTaskFromProject,
-  modifyProjectLastWorked
 } from "../backend/ProjectTable.js"
 
 import {
-  getTaskTableFromStorage,
-  saveTaskTableToStorage,
   getTaskFromTable,
-  saveTaskToTable,
-  deleteTaskFromTable,
-  createNewTaskObject,
-  modifyTaskName,
   modifyTaskCompleted
 } from "../backend/TaskTable.js"
 
-
 window.addEventListener("DOMContentLoaded", init);
 
+// Element that contains the project list
 const main = document.querySelector('main');
 
+/**
+ * Loops through Project Table from localStorage and renders the project list
+ */
 function createProjects() {
   const projectTable = getProjectTableFromStorage();
   for (const [key, value] of Object.entries(projectTable)) {
@@ -77,8 +62,6 @@ function createProjects() {
     progressBar.classList.add('progressBar');
     progressBar.value = `${calculateTaskCompletion(value.projectID)}`;
     progressBar.max = '100';
-    // progressBar.value = `${value.taskList.length}`;
-    // progressBar.max = `${value.tasksCompleted.length}`
     labelForProgressBar.textContent = `${progressBar.value}% of tasks completed`;
     titlePercentCompletedContainer.appendChild(progressBar);
     titlePercentCompletedContainer.appendChild(labelForProgressBar);
@@ -100,7 +83,14 @@ function createProjects() {
   }
 }
 
-// Change this to store task id in the checkbox in some way
+/**
+ * Generates the task list for a project
+ *
+ * @param {Object} taskListElement - li element for task list
+ * @param {Array<String>} taskListArray - task list array for one project
+ * @param {String} projectID - id of a project
+ * @param {Object} progressBar - progress element for progress bar
+ */
 function createTaskListItem(taskListElement, taskListArray, projectID, progressBar) {
   taskListArray.forEach(taskID => {
     const task = getTaskFromTable(taskID);
@@ -125,6 +115,13 @@ function createTaskListItem(taskListElement, taskListArray, projectID, progressB
   });
 }
 
+/**
+ * Adds event listener to checkbox task li elements, modifies in localStorage
+ *
+ * @param {Object} singleInputCheckbox - input element for task
+ * @param {String} projectID - id for task's respective project
+ * @param {Object} progressBar - progress element for progress bar
+ */
 function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID, progressBar) {
   singleInputCheckbox.addEventListener('change', () => {
     const taskID = singleInputCheckbox.id;
@@ -144,6 +141,12 @@ function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID,
   });
 }
 
+/**
+ * Returns the percent of tasks completed for a project
+ *
+ * @param {String} projectID - id of a project
+ * @returns {Number} - % of tasks completed for a project as an integer
+ */
 function calculateTaskCompletion(projectID) {
   const selectedProject = getProjectFromTable(projectID);
   const taskList = selectedProject.taskList;
@@ -161,6 +164,12 @@ function calculateTaskCompletion(projectID) {
   }
 }
 
+/**
+ * Given a date of the format YYYY-MM-DD, returns string for it
+ *
+ * @param {String} dateStr - date in YYYY-MM-DD format
+ * @returns {String} - date in string format: Month DayXX
+ */
 function dateToString(dateStr) {
     const months = ["January", "February", "March", "April", "May", "June",
               "July", "August", "September", "October", "November", "December"];
@@ -177,6 +186,12 @@ function dateToString(dateStr) {
     return `${monthName} ${dayInt}${suffix}`;
 }
 
+/**
+ * Given deadline in YYYY-MM-DD format, returns string for time till deadline
+ *
+ * @param {String} deadline - date in YYYY-MM-DD format
+ * @returns {String} - Time till deadline: X Week(s), X Day(s) till deadline
+ */
 function timeTillDeadline(deadline) {
   const currentDate = new Date();
   const deadlineDate = new Date(deadline);
@@ -204,6 +219,9 @@ function timeTillDeadline(deadline) {
   }
 }
 
+/**
+ * Does an initial rendering of project list on page load
+ */
 function init() {
   createProjects();
 }
