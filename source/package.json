@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@babel/core": "^7.24.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.24.6",
     "@babel/preset-env": "^7.24.5",
     "babel-jest": "^27.5.1",
     "jest": "^27.5.1",
@@ -12,10 +13,12 @@
   },
   "jest": {
     "preset": "jest-puppeteer",
-    "verbose": true
+    "verbose": true,
+    "testPathIgnorePatterns": ["__mocks__"]
   },
   "type": "module",
   "dependencies": {
-    "@wysimark/standalone": "^3.0.20"
+    "@wysimark/standalone": "^3.0.20",
+    "node-localstorage": "^3.0.5"
   }
 }
