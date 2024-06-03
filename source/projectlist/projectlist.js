@@ -77,6 +77,8 @@ function createProjects() {
     progressBar.classList.add('progressBar');
     progressBar.value = `${calculateTaskCompletion(value.projectID)}`;
     progressBar.max = '100';
+    // progressBar.value = `${value.taskList.length}`;
+    // progressBar.max = `${value.tasksCompleted.length}`
     labelForProgressBar.textContent = `${progressBar.value}% of tasks completed`;
     titlePercentCompletedContainer.appendChild(progressBar);
     titlePercentCompletedContainer.appendChild(labelForProgressBar);
@@ -92,14 +94,14 @@ function createProjects() {
     description.textContent = value.description;
 
     const taskList = projectContainer.querySelector('.taskList');
-    createTaskListItem(taskList, value.taskList)
+    createTaskListItem(taskList, value.taskList, value.projectID, progressBar)
 
     main.appendChild(projectContainer);
   }
 }
 
 // Change this to store task id in the checkbox in some way
-function createTaskListItem(taskListElement, taskListArray) {
+function createTaskListItem(taskListElement, taskListArray, projectID, progressBar) {
   taskListArray.forEach(taskID => {
     const task = getTaskFromTable(taskID);
     const taskListItem = document.createElement('li');
@@ -117,23 +119,27 @@ function createTaskListItem(taskListElement, taskListArray) {
       inputCheckbox.checked = true;
     }
 
-    updateTaskCompletionStatusEventListener(inputCheckbox);
+    updateTaskCompletionStatusEventListener(inputCheckbox, projectID, progressBar);
     taskListItem.appendChild(inputCheckbox);
     taskListItem.appendChild(label);
   });
 }
 
-function updateTaskCompletionStatusEventListener(singleInputCheckbox) {
+function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID, progressBar) {
   singleInputCheckbox.addEventListener('change', () => {
     const taskID = singleInputCheckbox.id;
     const task = getTaskFromTable(taskID);
     // unchecked to checked
     if (singleInputCheckbox.checked === true && task.completed === false) {
       modifyTaskCompleted(taskID, true);
+      appendCompletedTaskToProject(projectID, taskID);
+      progressBar.value = calculateTaskCompletion(projectID);
     }
     // checked to unchecked
     if (singleInputCheckbox.checked === false && task.completed === true) {
       modifyTaskCompleted(taskID, false);
+      removeCompletedTaskFromProject(projectID, taskID);
+      progressBar.value = calculateTaskCompletion(projectID);
     }
   });
 }
