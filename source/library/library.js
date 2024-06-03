@@ -2,7 +2,7 @@
 
 /** ---------------------------- */ 
 
-import { getNoteTableFromStorage, createNewNoteObject} from "../backend/NoteTable.js";
+import { getNoteTableFromStorage, getNoteFromTable, createNewNoteObject} from "../backend/NoteTable.js";
 
 const filteredTags = [];
 window.addEventListener("DOMContentLoaded", init);
@@ -248,45 +248,3 @@ function getFormattedDate(dateString) {
 
   return `${formattedDate} ${day}${suffix}`;
 }
-
-
-
-const expandIcon = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
-  <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
-</svg>`;
-
-const collapseIcon = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
-  <path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/>
-</svg>`;
-
-let isRecentsCollapsed = false;
-let isFavoritesCollapsed = false;
-
-function toggleCollapse(event, type) {
-  event.preventDefault();
-
-  if (type === 'recents') {
-    const recentsContainer = document.getElementById('recents');
-    recentsContainer.classList.toggle('collapsed');
-    isRecentsCollapsed = !isRecentsCollapsed;
-    const collapseButton = document.getElementById('collapseButton1');
-    collapseButton.innerHTML = isRecentsCollapsed ? collapseIcon : expandIcon;
-
-  } else if (type === 'favorites') {
-    const favoritesContainer = document.getElementById('favorites');
-    favoritesContainer.classList.toggle('collapsed');
-    isFavoritesCollapsed = !isFavoritesCollapsed;
-    const collapseButton = document.getElementById('collapseButton2');
-    collapseButton.innerHTML = isFavoritesCollapsed ? collapseIcon : expandIcon;
-  }
-}
-
-const recentsCollapseButton = document.getElementById('collapseButton1');
-recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'recents'));
-recentsCollapseButton.innerHTML = expandIcon;
-
-const favoritesCollapseButton = document.getElementById('collapseButton2');
-favoritesCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'favorites'));
-recentsCollapseButton.innerHTML = expandIcon;
