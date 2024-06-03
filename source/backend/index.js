@@ -40,6 +40,8 @@
 // } from "./ProjectTable.js";
 
 // import {
+//   getTaskTableFromStorage,
+//   saveTaskTableToStorage,
 //   getTaskFromTable,
 //   saveTaskToTable,
 //   deleteTaskFromTable,
