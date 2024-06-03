@@ -3,6 +3,7 @@ import {
   getProjectFromTable,
   appendCompletedTaskToProject,
   removeCompletedTaskFromProject,
+  modifyLastWorkedOn
 } from "../backend/ProjectTable.js"
 
 import {
@@ -69,7 +70,7 @@ function createProjects() {
     const startedDate = projectContainer.querySelector('.startedDate');
     startedDate.textContent = `Started: ${dateToString(value.dateCreated)}`;
     const lastWorked = projectContainer.querySelector('.lastWorked');
-    lastWorked.textContent = `Last Worked on: ${dateToString(value.lastWorked)}`;
+    lastWorked.textContent = `Last Worked on: ${dateToString(value.lastWorkedOn)}`;
     const deadline = projectContainer.querySelector('.timeTillDeadline');
     deadline.textContent = `${timeTillDeadline(value.deadline)}`;
 
@@ -77,7 +78,7 @@ function createProjects() {
     description.textContent = value.description;
 
     const taskList = projectContainer.querySelector('.taskList');
-    createTaskListItem(taskList, value.taskList, value.projectID, progressBar)
+    createTaskListItem(taskList, value.taskList, value.projectID, progressBar, lastWorked);
 
     main.appendChild(projectContainer);
   }
@@ -91,7 +92,7 @@ function createProjects() {
  * @param {String} projectID - id of a project
  * @param {Object} progressBar - progress element for progress bar
  */
-function createTaskListItem(taskListElement, taskListArray, projectID, progressBar) {
+function createTaskListItem(taskListElement, taskListArray, projectID, progressBar, lastWorked) {
   taskListArray.forEach(taskID => {
     const task = getTaskFromTable(taskID);
     const taskListItem = document.createElement('li');
@@ -109,7 +110,7 @@ function createTaskListItem(taskListElement, taskListArray, projectID, progressB
       inputCheckbox.checked = true;
     }
 
-    updateTaskCompletionStatusEventListener(inputCheckbox, projectID, progressBar);
+    updateTaskCompletionStatusEventListener(inputCheckbox, projectID, progressBar, lastWorked);
     taskListItem.appendChild(inputCheckbox);
     taskListItem.appendChild(label);
   });
@@ -122,20 +123,28 @@ function createTaskListItem(taskListElement, taskListArray, projectID, progressB
  * @param {String} projectID - id for task's respective project
  * @param {Object} progressBar - progress element for progress bar
  */
-function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID, progressBar) {
+function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID, progressBar, lastWorked) {
   singleInputCheckbox.addEventListener('change', () => {
     const taskID = singleInputCheckbox.id;
     const task = getTaskFromTable(taskID);
     // unchecked to checked
     if (singleInputCheckbox.checked === true && task.completed === false) {
+      let newDate = new Date();
+      newDate = newDate.toISOString().split('T')[0];
       modifyTaskCompleted(taskID, true);
       appendCompletedTaskToProject(projectID, taskID);
+      modifyLastWorkedOn(projectID, newDate);
+      lastWorked.textContent = `Last Worked on: ${dateToString(newDate)}`;
       progressBar.value = calculateTaskCompletion(projectID);
     }
     // checked to unchecked
     if (singleInputCheckbox.checked === false && task.completed === true) {
+      let newDate = new Date();
+      newDate = newDate.toISOString().split('T')[0];
       modifyTaskCompleted(taskID, false);
       removeCompletedTaskFromProject(projectID, taskID);
+      modifyLastWorkedOn(projectID, newDate);
+      lastWorked.textContent = `Last Worked on: ${dateToString(newDate)}`;
       progressBar.value = calculateTaskCompletion(projectID);
     }
   });

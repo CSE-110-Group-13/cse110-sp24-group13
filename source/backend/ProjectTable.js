@@ -18,7 +18,8 @@
  *    "priority" : ""
  *    "dateCreated" : "",
  *    "tasksCompleted" : [],
- *    "lastWorked" : ""
+ *    "linkedNotes" : [],
+ *    "lastWorkedOn" : "",  
  * }
  */
 
@@ -85,12 +86,12 @@ function saveProjectToTable(projectID, projectObject) {
  * @param {String} projectID - the ID of the project to delete
  */
 function deleteProjectFromTable(projectID) {
-  const projectTable = getNoteTableFromStorage();
+  const projectTable = getProjectTableFromStorage();
 
   if (projectID in projectTable) {
     // Delete the projectID from the projectTable
     delete projectTable[projectID];
-    saveNoteTableToStorage(projectTable);
+    saveProjectTableToStorage(projectTable);
   
     // Filter and remove the projectID from the IDContainer
     const IDToRemove = projectID.split("-")[1];
@@ -112,10 +113,11 @@ function deleteProjectFromTable(projectID) {
  * @param {String} priority - the priority of the project
  * @param {String} dateCreated - the date the project was created
  * @param {Array<String>} tasksCompleted - the list of task IDs that are completed in the project
- * @param {String} lastWorked - the date project was last worked on or edited
+ * @param {Array<String>} linkedNotes - the list of note IDs that are linked to the project
+ * @param {String} lastWorkedOn - the date the project was last worked on
  * @returns {Object} the project object that was created
  */
-function createNewProjectObject(title="", description="", taskList=[], deadline="", priority="", dateCreated="", tasksCompleted=[], lastWorked="") {
+function createNewProjectObject(title="", description="", taskList=[], deadline="", priority="", dateCreated="", tasksCompleted=[], linkedNotes=[], lastWorkedOn="") {
   const newProjectObject = {
     "projectID" : `project-${generateID()}`,
     "title" : title,
@@ -125,7 +127,8 @@ function createNewProjectObject(title="", description="", taskList=[], deadline=
     "priority" : priority,
     "dateCreated" : dateCreated,
     "tasksCompleted" : tasksCompleted,
-    "lastWorked" : lastWorked
+    "linkedNotes" : linkedNotes,
+    "lastWorkedOn" : lastWorkedOn
   }
 
   const projectTable = getProjectTableFromStorage();
@@ -233,14 +236,37 @@ function removeCompletedTaskFromProject(projectID, taskID) {
   saveProjectToTable(projectID, projectObject);
 }
 
+
 /**
- * Modify the date the project was last worked on of a project object that maps to the given ID and update the local storage
+ * Append a note ID to the linked notes list of a project object that maps to the given ID and update the local storage
  * @param {String} projectID - the ID of the project to modify
- * @param {String} newLastWorked- the new date the project was last worked on
+ * @param {String} noteID - the ID of the note to append
  */
-function modifyProjectLastWorked(projectID, newLastWorked) {
+function appendLinkedNoteToProject(projectID, noteID) {
   const projectObject = getProjectFromTable(projectID);
-  projectObject["lastWorked"] = newLastWorked;
+  projectObject["linkedNotes"].push(noteID);
+  saveProjectToTable(projectID, projectObject);
+}
+
+/**
+ * Remove a note ID from the linked notes list of a project object that maps to the given ID and update the local storage
+ * @param {String} projectID - the ID of the project to modify
+ * @param {String} noteID - the ID of the note to remove
+ */
+function removeLinkedNoteFromProject(projectID, noteID) {
+  const projectObject = getProjectFromTable(projectID);
+  projectObject["linkedNotes"] = projectObject["linkedNotes"].filter(note => note !== noteID);
+  saveProjectToTable(projectID, projectObject);
+}
+
+/**
+ * Modify the last worked on date of a project object that maps to the given ID and update the local storage
+ * @param {String} projectID - the ID of the project to modify
+ * @param {String} newLastWorkedOnDate - the new last worked on date of the project
+ */
+function modifyLastWorkedOn(projectID, newLastWorkedOnDate) {
+  const projectObject = getProjectFromTable(projectID);
+  projectObject["lastWorkedOn"] = newLastWorkedOnDate;
   saveProjectToTable(projectID, projectObject);
 }
 
@@ -260,5 +286,7 @@ export {
   modifyProjectDateCreated,
   appendCompletedTaskToProject,
   removeCompletedTaskFromProject,
-  modifyProjectLastWorked
+  appendLinkedNoteToProject,
+  removeLinkedNoteFromProject,
+  modifyLastWorkedOn
 }
