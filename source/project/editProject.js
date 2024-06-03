@@ -4,6 +4,8 @@
 //TODO - Add functionality to Link Notes  and Priority dropdown
 //TODO - Populate Tasks container
 
+//TODO - Possibly add a popup for when save is successful
+
 import {
     getProjectTableFromStorage,
     saveProjectTableToStorage,
@@ -35,7 +37,7 @@ window.addEventListener("DOMContentLoaded", init);
  * Attaches an event listener to the save button.
  */
 function init() {
-    
+
     PROJECT_ID = window.location.hash.substring(1);
     if (!PROJECT_ID) {
         const newProject = createNewProjectObject();
@@ -52,7 +54,7 @@ function init() {
  */
 function attachSaveButtonListener() {
     document.querySelector('save-button button').addEventListener('click', saveProject);
-    console.log("Save Clicked");
+    
 }
 
 function attachCancelButtonListener() {
@@ -61,8 +63,8 @@ function attachCancelButtonListener() {
 
 // Function to handle checkbox change events
 function updateProgress(event) {
-    const progressBar = document.getElementById('progressBar').value;
-    const progressLabel = document.getElementById('progressLabel').innerText;
+    let progressBar = document.getElementById('progressBar').value;
+    let progressLabel = document.getElementById('progressLabel').innerText;
     if (event.target.checked) {
         console.log(`Task ${event.target.id} checked`);
         progress++;
@@ -72,7 +74,8 @@ function updateProgress(event) {
     }
 
     progressBar = progress;
-    progressLabel = PROJECT_ID.taskList.length+"%";
+    document.getElementById('progressBar').max = getTaskListLength(PROJECT_ID);
+    progressLabel = progress/getTaskListLength(PROJECT_ID)+"%";
     
     
 }
@@ -85,22 +88,36 @@ taskUpdate.forEach(checkbox => {
     checkbox.addEventListener('change', updateProgress);
 });
 
+// Function to get the length of the task list of a specific project
+function getTaskListLength(projectID) {
+    const projectObject = getProjectFromTable(projectID);
+    if (projectObject) {
+      return projectObject.taskList.length;
+    } else {
+      console.error(`Project with ID ${projectID} not found.`);
+      return null;
+    }
+  }
+
 /**
  * Saves the current state of the project to the local storage.
  * Retrieves the project title, markdown content, and date from the DOM.
  * Modifies the project in the backend using the project ID.
  */
 function saveProject() {
-    const projectTitle = document.querySelector('.projectTitle h1').innerText;
-    const projectDescription = document.querySelector('markdown-editor').wysimark.getMarkdown();
-    const projectDeadline = document.querySelector('.date input').value;
+    console.log("Save Clicked");
+    const projectTitle = document.querySelector('#projectTitle').value;
+    const projectDescription = document.querySelector('#projectDesc').value;
+    console.log(projectDescription);
+    const projectDeadline = document.querySelector('#deadline').value;
+    console.log(projectDeadline);
     // Modify the project
     modifyProjectTitle(PROJECT_ID, projectTitle);
     modifyProjectDescription(PROJECT_ID, projectDescription);
     modifyProjectDeadline(PROJECT_ID, projectDeadline);
+    alert("Save succesful (Replace this with a custom one later)");
 
-    window.location.href = './view-project.html#' + PROJECT_ID;
-    
+    window.location.href = './edit-project.html#' + PROJECT_ID;
 }
 
 function cancelEdit() {
@@ -112,6 +129,20 @@ function cancelEdit() {
     }
     
 }
+
+function addTask(){
+    
+}
+
+function populateTask(){
+    
+}
+
+
+function populateLinkedNotes(){
+    
+}
+
 /**
  * Populates the project with existing data from the backend.
  * Retrieves the project data using the project ID.
@@ -120,7 +151,8 @@ function cancelEdit() {
 function populateProject() {
     const project = getProjectFromTable(PROJECT_ID);
     console.log(project.title)
-    document.querySelector('#projectTitle h1').innerText = project.title;
+    document.querySelector('#projectTitle').value = project.title;
     document.querySelector('#deadline').value = project.deadline;
     document.querySelector('#projectDesc').innerText = project.description;
 }
+
