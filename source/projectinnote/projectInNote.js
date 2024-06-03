@@ -182,6 +182,13 @@ class linkedProject extends HTMLElement {
         // Get projects from local storage
         const projectTable = getProjectTableFromStorage(); 
 
+        /*
+        // If note already has a linked project then add selected
+        if(note.projectList.length > 0) {
+            note.projectList.classList.add('selected');
+        }
+        */
+
         // Create a form element
         const form = document.createElement('form');
         projectContainer.appendChild(form);
@@ -220,12 +227,10 @@ class linkedProject extends HTMLElement {
             event.preventDefault();
 
             // Get selected projects
-            const selectedProjects = form.querySelectorAll('.selected');
+            const selectedProject = form.querySelector('.selected');
 
-            // Add what to do when clicked (add project tag? add project description below?)
-            selectedProjects.forEach((project) => {
-
-            });
+            // Add project to projectList for the note
+            
         })
 
         // Add event listener for when add project button is pressed
