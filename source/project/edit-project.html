@@ -5,6 +5,7 @@
     <script src="../verticalnavbar/verticalnavbar.js"></script>
     <script src="../savecanceleditbuttons/save.js"></script>
     <script src="../savecanceleditbuttons/cancel.js"></script>
+    <script type="module" src="editProject.js"></script>
     <link rel="stylesheet" href="project.css">
     <title>PROJECT NAME | Commit</title> <!-- replace name with project name -->
 </head>
@@ -31,7 +32,7 @@
             </div>
             <div class = "actionBar" href = "#">   
                 <save-button></save-button>
-                    <cancel-button></cancel-button>
+                <cancel-button></cancel-button>
             </div>
         </div>
         <div class = "container">
@@ -39,8 +40,8 @@
                 <span class="priorityDot"></span>
                 <h1 id = "projectTitle">Project Name</h1> <!-- replace name with project name -->
                 <div class="progress">
-                    <label for="progressBar">33%</label>
-                    <progress id="progressBar" value="33" max="100"> 200000</progress>
+                    <label for="progressBar" id="progressLabel">33%</label>
+                    <progress id="progressBar" value="33" max="100"></progress>
                 </div>
             </div>
             <div class="projectDetails">
