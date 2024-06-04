@@ -61,6 +61,11 @@ body > #entries-holder{
   color: black;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 .note > .left-div {
   display: flex;
   flex-direction: column;
