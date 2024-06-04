@@ -9,10 +9,34 @@ vertical-nav-bar {
     flex-shrink: 0;
 }
 
+a:link {
+    color: black;
+    text-decoration: none;
+
+}
+
+/* visited link */
+a:visited {
+    color: green;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color: blue;
+    text-decoration: underline;
+}
+
 
 .container {
     width: 80%;
-    height: 95vh;
+    height: 100vh;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -20,6 +44,7 @@ vertical-nav-bar {
 
     flex-grow: 1;
 }
+
 
 header {
     display: flex;
@@ -75,6 +100,7 @@ header h1 {
 .week-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    border: 1px solid #888;
     background-color: #ddd;
     padding: 10px;
 }
@@ -118,7 +144,7 @@ header h1 {
 .calendar-day span {
     position: absolute;
     top: 5px;
-    right: 5px;
+    right: 10px;
     color: black;
 }
 
@@ -241,10 +267,20 @@ close:focus {
 
 }
 
+
+
 .task-title {
     white-space: nowrap;
-    font-size: 8px;
+    font-size: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 80%; /* adjust how much is displayed */
+    /*transition: max-width 0.5s ease; Add transition for smooth hover effect */
 }
+
+/**
+.task:hover .task-title {
+    max-width: 100%; Show full title on hover 
+}
+*/
+
