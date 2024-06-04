@@ -52,7 +52,7 @@ function attachEditButtonListener() {
 }
 
 function attachCancelButtonListener() {
-    document.querySelector('cancel-button button').addEventListener('click', cancelEdit);
+    document.querySelector('delete-button button').addEventListener('click', deleteNote);
 }
 
 // Function to handle checkbox change events
@@ -101,14 +101,10 @@ function editProject() {
     
 }
 
-function cancelEdit() {
-    if(!PROJECT_ID){
-        window.location.href = "../projectlist/projectlist.html";
-    }
-    else{
-        window.location.href = './view-project.html#' + PROJECT_ID;
-    }
-    
+function deleteNote() {
+    console.log("delete note")
+    deleteNoteFromTable(NOTE_ID);
+    window.location.href = "../projectlist/projectlist.html";
 }
 
 function setDeadline(datetimeInput){

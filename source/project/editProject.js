@@ -34,6 +34,7 @@ import {
   getNoteTableFromStorage,
   getNoteFromTable,
   modifyLinkedProject,
+  modifyNoteLastEdited,
 } from "../backend/NoteTable.js";
 
 let PROJECT_ID = "";
@@ -278,7 +279,61 @@ function populateOptionsLinkNotes(){
     });
 }
 
-function populateLinkedNotes() {
+function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
+
+  const linkIcon = "put svg link here";
+  const collapseIcon = "put svg link here";
+  const checkbox = "put svg link here";
+
+  linkedNotes.forEach((noteID)=>{
+    const note = getNoteFromTable(noteID);
+
+    const noteHeader = createElement("div").classList.add('linkedNote')
+    const title = document.createElement("h3").textContent;
+    title = note.title;
+
+    // Create the right side of the header which includes tags and last modified date
+    const rightSide = createElement("ul");
+    const lastModified = createElement("p").textContent;
+    lastModified = "Last modified: " + note.lastEdited;
+    rightSide.appendChild(lastModified);
+
+    (note.tags).forEach((tagName)=>{
+      const tag = createElement("li").textContent;
+      tag = tagName;
+      rightSide.appendChild(tag);
+    });
+
+    // Add the parts of the header to the linked notes container
+    noteHeader.appendChild(title);
+    noteHeader.appendChild(linkIcon);
+    noteHeader.appendChild(rightSide);
+    noteHeader.appendChild(collapseIcon);
+
+    // Create container for the completed tasks
+    const completedContainer = createElement("div").classList.add('completedTasks');
+    const completedTasks = getProjectFromTable(PROJECT_ID).tasksCompleted;
+
+    const completedTitle = createElement("i").textContent;
+    completedTitle = "Completed Tasks";
+    completedContainer.appendChild(completedTitle);
+    completedContainer.appendChild(document.createElement("br"));
+
+    completedTasks.forEach((taskID)=>{
+      const task = getTaskFromTable(taskID);
+      const taskName = createElement("p").textContent;
+      taskName = task.name;
+
+      const taskSpan = createElement("span").classList.add('taskSpan');
+      taskSpan.appendChild(checkbox);
+      taskSpan.appendChild(taskName);
+    });
+
+    
+    elementLinkedNotes.appendChild(noteHeader);
+    elementLinkedNotes.appendChild(completedContainer);
+    elementLinkedNotes.appendChild(document.createElement("hr"));
+  });
 
 }
 
@@ -300,4 +355,7 @@ function populateProject() {
 
   const taskList = document.querySelector(".taskList");
   createTaskListItem(taskList, project.taskList);
+
+  const linkedNotes = document.querySelector(".linkedNotes");
+  populateLinkedNotes(project.linkedNotes, linkedNotes);
 }
