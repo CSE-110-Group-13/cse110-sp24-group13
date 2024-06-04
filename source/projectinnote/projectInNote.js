@@ -57,6 +57,7 @@ class linkedProject extends HTMLElement {
         projectProgress.innerHTML = `${project.progress}`;
 
     }
+
     render() {
         // Styling 
         const styles = document.createElement('style');
@@ -64,6 +65,8 @@ class linkedProject extends HTMLElement {
         linked-project #container {
             display: flex;
             flex-direction: column;
+            width: 85vw;
+            
         }
 
         .linkAProject {
@@ -206,6 +209,7 @@ class linkedProject extends HTMLElement {
             margin-bottom: 20px;
             margin-right: auto;
             margin-left: auto;
+            width: 100%;
 
 
         }  
@@ -263,8 +267,24 @@ class linkedProject extends HTMLElement {
             height: 20px;
         }
 
+        .descHeader {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
 
-        
+        #descDropdown {
+            border: none;
+            background-color: transparent;
+            outline: none;
+            box-shadow: none;
+            cursor: pointer;
+        }
+
+        #projectDescContent.close {
+            display: none;
+        }
+
         .description {
             width: 60vw;
             background-color: #F8F8F8;
@@ -356,13 +376,17 @@ class linkedProject extends HTMLElement {
                     </svg>
                     <p>placeholder: 1 Week, 2 Days, 3 hours till Deadline</p>
                 </div>
-                <h3><label for="projectDesc">Description</label></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus beatae eum perferendis accusantium quasi odio vel voluptatem temporibus nihil sed reprehenderit quo eveniet delectus reiciendis dolor itaque, nemo quas dolore!</p>
-                <!-- minimize button -->
-                <svg id="descDropdown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                    <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
-                </svg>
+                <div class="descHeader">
+                    <h3><label for="projectDesc">Description</label></h3>
+                    <!-- minimize button -->
+                    <button id="descDropdown">
+                        <svg id="descDropdown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https: fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                            <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
+                        </svg>
+                    </button>
+                </div>
+                <p id="projectDescContent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus beatae eum perferendis accusantium quasi odio vel voluptatem temporibus nihil sed reprehenderit quo eveniet delectus reiciendis dolor itaque, nemo quas dolore!</p>
                 <div class="projectTaskList">
                     <h3>Tasks</h3>
                     <div class="tasks">
@@ -454,6 +478,24 @@ class linkedProject extends HTMLElement {
             }
         });
 
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const descDropdownButton = document.getElementById('descDropdown');
+            const projectDescContent = document.getElementById('projectDescContent');
+        
+            // Add event listener for when the descDropdown button is clicked
+            descDropdownButton.addEventListener('click', function() {
+                projectDescContent.classList.toggle('close');
+
+                if(projectDescContent.classList.contains('close')) {
+                    descDropdownButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>'
+                }
+                else {
+                    descDropdownButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>'
+                }
+            });
+        });
+        
 
         this.appendChild(styles);
         this.appendChild(container);
