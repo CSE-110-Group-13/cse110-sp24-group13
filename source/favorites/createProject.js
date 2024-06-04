@@ -2,6 +2,10 @@ import {
     getProjectTableFromStorage, getProjectFromTable,
   
   }from "../backend/ProjectTable.js"
+
+  import{
+    getTaskTableFromStorage, getTaskFromTable,
+  }from "../backend/TaskTable.js"
   
   window.addEventListener("DOMContentLoaded", createProjectTable);
   
@@ -20,20 +24,20 @@ import {
   
   //Function to create the elements of the three projects displayed. 
   function createProjectTable(){  
-  
-  
-  
-  const projectTable = getProjectTableFromStorage();
-  
-  //counter to make sure only three projects
-  let counter = 0;
-  
-  //Case of no projects
-  if(projectTable.length == 0){
-    const noProjectsCase = document.createElement("p");
-    noProjectsCase.textContent = "Projects will be displayed here";
-  }
-  
+    const projectTable = getProjectTableFromStorage();
+
+    // Counter to make sure only three projects
+    let counter = 0;
+    
+    // Case of no projects
+    if (!projectTable || Object.keys(projectTable).length === 0) {
+        console.log("No projects found");
+        const noProjectsCase = document.createElement("p");
+        noProjectsCase.textContent = "Projects will be displayed here";
+        // Append the created element to the DOM
+        projectContainer.appendChild(noProjectsCase);
+    }
+
   //only three projects in module.
   for(const [key, value] of Object.entries(projectTable)){
       if(counter>2){
@@ -49,11 +53,11 @@ import {
       priority.className = "circle";
       newProject.appendChild(priority);
   
-      if (value.priority === "high") {
+      if (value.priority === "Priority1") {
         priority.style.backgroundColor = '#FF000F';
-      } else if (value.priority === "medium") {
+      } else if (value.priority === "Priority2") {
         priority.style.backgroundColor = '#FFD600';
-      } else if (value.priority === "low") {
+      } else if (value.priority === "Priority3") {
         priority.style.backgroundColor = '#0AB73B';
       }
   
@@ -66,12 +70,15 @@ import {
       
       let percentofTasksComplete = 0;
       let count = 0;
-      //check how many tasks completed
+
       for(const task of value.taskList){
-        if(task.completed == true){
-          count++;
-        }
+          const taskFromTable = getTaskFromTable(task);
+          if(taskFromTable.completed == true){
+            count++;
+          }
       }
+
+   
   
       percentofTasksComplete = Math.floor((count/value.taskList.length)*100);
   

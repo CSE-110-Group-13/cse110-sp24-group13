@@ -19,7 +19,7 @@
   .percentage-container {
     display: flex;
     align-items: center;
-    margin-right: 11px;
+    margin-right: 24px;
     flex-shrink: 0; /* Prevents shrinking */
   }
   
