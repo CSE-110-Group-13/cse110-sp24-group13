@@ -41,7 +41,7 @@ a:active {
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-
+    box-sizing: border-box;
     flex-grow: 1;
 }
 
