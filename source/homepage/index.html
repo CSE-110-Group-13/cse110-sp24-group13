@@ -3,36 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Commit</title>
+  <title>homepage</title>
   <link rel="stylesheet" href="../homepage/index.css">
   <link rel="stylesheet" href="../homepage/note.css">
+  <link rel="stylesheet" href="../homepage/project.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
   </style>
   <script type="module" src="index.js"></script>
   <script src="../verticalnavbar/verticalnavbar.js"></script>
   <script src="../addNewbutton/addNew.js" defer></script>
+  <script type="module" src="createProject.js"></script>
 </head>
 
 
 
 <body>
+  <div id="container">  
+    <vertical-navbar currentPage="anchorToHome"></vertical-navbar>
+  </div>
 
-  <search-bar></search-bar>
-  <vertical-navbar currentPage="anchorToHome"></vertical-navbar>
   <add-new-btn></add-new-btn>
 
-  <div id="project-section">
-    <div class="project-container">
-      <!-- <img src=path_depending_on_priority> -->
-      <h4 class="project name"> <!-- Project name goes here--> </h4>      <!-- This section can be done like the JS, just a placeholder for now-->
-      <progress-bar></progress-bar>
-      <div class="time-remaining">
-        <!-- Time remaining goes here-->
-    </div>
-  </div>
   
+
   <div id="main-content">
+
+    <div id="project-section"> </div>
+
     <div id="recents">
       <div class="recents-header">
         <div class="recents-content">

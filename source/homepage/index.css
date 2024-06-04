@@ -6,17 +6,27 @@ html, body {
   height: 100%;
 }
 
+#container{
+  position: fixed; /* Make the navbar fixed */
+  top: 0;
+  left: 0;
+  height: 100%; /* Make it full height */
+  width: auto; 
+}
+
 body {
-  display: flex;
   margin: 0;
   padding: 0;
+}
+
+#main-content {
+  padding-top: 20px; /* Adjust padding as needed */
 }
 
 #recents {
   padding: 20px; /* Changed to auto to allow scrolling */
   position:relative;
   width: 70vw;
-  top:24%;
   left: 17%;
 }
 
@@ -29,10 +39,12 @@ body {
 }
 
 
+
 #recents-header {
   display: flex;              /* Use flexbox for horizontal alignment */
   align-items: center;        /* Vertically center the items */
   justify-content: space-between; /* Space items out evenly */
+
 }
 
 .recents-content, .favorites-content {
@@ -52,6 +64,7 @@ body {
 .recents-content span, .favorites-content span {
   font-size: inherit;         /* Inherit the font size from .recents-content */
   font-weight: inherit;       /* Inherit the font weight from .recents-content */
+  margin-right: 40px;
 }
 
 #collapseButton1, #collapseButton2 {
@@ -59,6 +72,7 @@ body {
   border: none; /* Remove border */
   padding: 5px; /* Add some padding */
   cursor: pointer; /* Change the cursor to a pointer */
+  margin-left:950px;
 }
 
 #collapseButton1 svg, #collapseButton2 svg {
