@@ -48,7 +48,9 @@ window.addEventListener("DOMContentLoaded", init);
  * Attaches an event listener to the save button.
  */
 function init() {
-
+    // localStorage.setItem("ProjectTable", JSON.stringify({}));
+    // localStorage.setItem("IDContainer", JSON.stringify([]));
+    // localStorage.setItem("TaskTable", JSON.stringify([]));
     PROJECT_ID = window.location.hash.substring(1);
     if (!PROJECT_ID) {
         const newProject = createNewProjectObject();
@@ -56,7 +58,7 @@ function init() {
     } else {
         populateProject();
     }
-    attachAddTaskListener
+    attachAddTaskListener();
     attachSaveButtonListener();
     attachCancelButtonListener();
 }
@@ -73,13 +75,14 @@ function attachCancelButtonListener() {
     document.querySelector('cancel-button button').addEventListener('click', cancelEdit);
 }
 
-function attachAddTaskListener() {
-    console.log("here")
-    document.querySelector('addTask button').addEventListener('click',addTask);
+function attachAddTaskListener(){
+    document.querySelector('#addTaskButton').addEventListener('click', addTask);
 }
+
 
 // Function to handle checkbox change events
 function updateProgress(event) {
+    const project = getProjectFromTable(PROJECT_ID)
     let progressBar = document.getElementById('progressBar').value;
     let progressLabel = document.getElementById('progressLabel').innerText;
     if (event.target.checked) {
@@ -90,25 +93,48 @@ function updateProgress(event) {
         progress--;
     }
 
-    progressBar = progress;
-    document.getElementById('progressBar').max = getTaskListLength(PROJECT_ID);
-    progressLabel = progress/getTaskListLength(PROJECT_ID)+"%";
+    progressBar = calculateTaskCompletion(PROJECT_ID);
+    document.getElementById('progressBar').max = project.taskList.length;
+    progressLabel = Math.floor(progress/project.taskList.length)+"%";
 }
 
-// Get all checkboxes
-// Add event listeners to each checkbox
-taskUpdate.forEach(checkbox => {
-    checkbox.addEventListener('change', updateProgress);
-});
+function createTaskListItem(taskListElement, taskListArray) {
+    taskListArray.forEach(taskID => {
+      const task = getTaskFromTable(taskID);
+  
+      const inputCheckbox = document.createElement('input');
+      inputCheckbox.setAttribute('type', 'checkbox');
+      inputCheckbox.id = taskID;
+      
+      const label = document.createElement('label');
+      label.setAttribute('for', taskID);
+      label.textContent = task.name;
+      console.log(task.name);
+  
+      if (task.completed === "complete") {
+        inputCheckbox.checked = true;
+      }
+  
+    //   updateTaskCompletionStatusEventListener(inputCheckbox, projectID);
+    taskListElement.appendChild(inputCheckbox);
+    taskListElement.appendChild(label);
+    taskListElement.append(document.createElement('br'));
+    });
+  }
 
-// Function to get the length of the task list of a specific project
-function getTaskListLength(projectID) {
-    const projectObject = getProjectFromTable(projectID);
-    if (projectObject) {
-      return projectObject.taskList.length;
+
+function calculateTaskCompletion(projectID) {
+    const selectedProject = getProjectFromTable(projectID);
+    const taskList = selectedProject.taskList;
+    if (taskList.length !== 0) {
+      let numberCompleted = 0;
+      taskList.forEach(taskID => {
+        const task = getTaskFromTable(taskID);
+        if (task.completed === "complete") {numberCompleted++};
+      });
+      return numberCompleted;
     } else {
-      console.error(`Project with ID ${projectID} not found.`);
-      return null;
+      return -1;
     }
   }
 
@@ -144,12 +170,27 @@ function cancelEdit() {
 }
 
 function addTask(){
-    const newTask = createNewTaskObject();
-    const taskName = querySelector('.addTask text').value;
+    const taskName = document.querySelector('#addTaskInput').value;
+    console.log(taskName);
+    if(!taskName){
+        alert("Task must have a description");
+        return;
+    }
 
-    modifyTaskName(newTask.taskID, taskName);
+    const newTask = createNewTaskObject(taskName,"incomplete");
+
+    console.log(newTask.taskID);
 
     appendTaskToProjectTaskList(PROJECT_ID, newTask.taskID);
+    console.log(newTask.taskID, newTask.name, taskName);
+
+    //re-render task list with new item added
+    const taskList = document.querySelector('.taskList')
+    const project = getProjectFromTable(PROJECT_ID);
+
+    createTaskListItem(taskList, project.taskList);
+
+    return;
 }
 
 
@@ -164,11 +205,15 @@ function populateLinkedNotes(){
  */
 function populateProject() {
     const project = getProjectFromTable(PROJECT_ID);
-    let progressBar = document.getElementById('progressBar').value;
+    document.title = "PROJECT | " + project.title;
+    console.log(document.title)
 
     console.log(project.title)
     document.querySelector('#projectTitle').value = project.title;
     document.querySelector('#deadline').value = project.deadline;
     document.querySelector('#projectDesc').innerText = project.description;
+
+    const taskList = document.querySelector('.taskList')
+    createTaskListItem(taskList, project.taskList);
 }
 

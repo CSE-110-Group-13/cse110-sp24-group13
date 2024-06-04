@@ -7,7 +7,7 @@
     <script src="../savecanceleditbuttons/cancel.js"></script>
     <script type="module" src="editProject.js"></script>
     <link rel="stylesheet" href="project.css">
-    <title>PROJECT NAME | Commit</title> <!-- replace name with project name -->
+    <title>PROJECT | Title</title> <!-- replace name with project name -->
 </head>
 <body>
     <div id="container">
@@ -59,12 +59,9 @@
         <div class = "container">
             <div class = "tasks">
                 <h2>Tasks</h2>
-                <ul class = "taskList"></ul>
-                <form class="addTask">
-                    <button>+</button>
-                    <input type="text" placeholder="Add new task">
-                </form>
-                
+                <div class = "taskList"></div>
+                <button id="addTaskButton">+</button>
+                <input id="addTaskInput" type="text" placeholder="Add new task">    
             </div>
         </div>
     
