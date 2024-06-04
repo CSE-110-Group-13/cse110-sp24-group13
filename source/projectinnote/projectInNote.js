@@ -203,7 +203,7 @@ class linkedProject extends HTMLElement {
             padding: 10px;
             background-color: #F8F8F8;
             border-radius: 25px; 
-            margin-top: 20px;
+            margin-bottom: 20px;
             margin-right: auto;
             margin-left: auto;
 
@@ -257,7 +257,6 @@ class linkedProject extends HTMLElement {
         // Create link a project container
         const linkAProject = document.createElement('div');
         linkAProject.classList = 'linkAProject';
-        container.appendChild(linkAProject);
 
         // Create a container the description of linking a project
         const descriptionContainer = document.createElement('div');
@@ -273,7 +272,7 @@ class linkedProject extends HTMLElement {
         // Create a button to link a project
         const lButton = document.createElement('button');
         lButton.id = 'lButton';
-        lButton.innerHTML = `Add Project <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>`
+        lButton.innerHTML = `Link a Project <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>`
         linkAProject.appendChild(lButton);
         
         // Create overlay 
@@ -310,15 +309,14 @@ class linkedProject extends HTMLElement {
 
         //creating the linked project container
         const linkedProjectComponent = document.createElement('div');
-        linkedProjectComponent.classList = 'linkedProject';
-        container.appendChild(linkedProjectComponent);
+        linkedProjectComponent.classList = 'linkedProject';  
         linkedProjectComponent.innerHTML = `
             <div class="projectHeader">
                 <span class="priorityDot"></span>
                 <h1 id="projectTitle">Project Name</h1>
                 <div class="progress">
-                    <label for="progressBar">placeholder%</label>
                     <progress id="progressBar" value="33" max="100">200000</progress>
+                    <label for="progressBar">placeholder%</label>
                 </div>
             </div>
             <div class="projectDetails">
@@ -336,9 +334,17 @@ class linkedProject extends HTMLElement {
                     <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                     <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
                 </svg>
+                <div class="projectTaskList">
+                    <h3>Tasks</h3>
+                    <div class="tasks">
+                    </div>   
+                    <button id="addTasks">Add Tasks</button>
+                    <p>This is the project linked to this note, check off tasks that you have completed for this note</p>
+                </div>
             </div>
         </div>`;
         container.appendChild(linkedProjectComponent);
+        container.appendChild(linkAProject);
         linkedProjectComponent.classList.toggle("close");
 
 
