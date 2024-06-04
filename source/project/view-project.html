@@ -17,18 +17,21 @@
         <div class = "content"> 
             <div class = "header">
                 <div class="selectBar">
-                    <select name="linkNotes" id="linkNotes">
-                        <option value="" disabled selected>Link Note(s)</option>
-                        <option value="note1ID">Note 1 Title</option>
-                        <option value="note2ID">Note 1 Title</option>
-                        <option value="note3ID">Note 1 Title</option>
-                    </select>
-                    <select name="priority" id="priority">
-                        <option value="" disabled selected>Update Priority</option>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
+                    <span class="select-wrapper">
+                        <select name="linkNotes" id="linkNotes">
+                            <option value="" disabled selected>Link Note(s)</option>
+                        </select>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                    </span>
+                    <span class="select-wrapper">
+                        <select name="priority" id="priority">
+                            <option value="" disabled selected>Update Priority</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>
+                    </span>
                 </div>
                 <div class = "actionBar" href = "#">   
                     <edit-button></edit-button>
@@ -40,14 +43,14 @@
                     <span class="priorityDot"></span>
                     <h1>Project Name</h1> <!-- replace name with project name -->
                     <div class="progress">
-                        <label for="progressBar" id="progressLabel">33%</label>
-                        <progress id="progressBar" value="33" max="100"> 200000</progress>
+                        <label for="progressBar" id="progressLabel">0%</label>
+                        <progress id="progressBar" value="0" max="100"></progress>
                     </div>
                 </div>
                 <div class="projectDetails">
                     <div class = "projectDue">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></svg>
-                        <p>1 Week, 2 Days, 3 hours till Deadline</p>
+                        <p>No Deadline Set</p>
                     </div> 
                     <h3>Description</h3>
                     <p id="projectDesc"></p>
@@ -58,15 +61,9 @@
             <div class = "container">
                 <h2>Tasks</h2>
                 <div class = "tasks">
-                    <input type="checkbox" id="task1" name="task1" value="task1" checked>
-                    <label for="task1">Task 1</label>
-                    <br>
-                    <input type="checkbox" id="task2" name="task2" value="task2">
-                    <label for="task2">Task 2</label>
-                    <br>
-                    <input type="checkbox" id="task3" name="task3" value="task3">
-                    <label for="task3">Task 3</label>
-                    <add-task></add-task>   <!-- Add task component-->
+                <div class = "taskList"></div>
+                <button id="addTaskButton">+</button>
+                <input id="addTaskInput" type="text" placeholder="Add new task">  
                 </div>
             </div>
         

@@ -19,18 +19,22 @@ import {
   removeCompletedTaskFromProject,
   appendLinkedNoteToProject,
   removeLinkedNoteFromProject,
+  modifyProjectDateCreated,
 } from "../backend/ProjectTable.js";
 
 import {
-  getTaskTableFromStorage,
-  saveTaskTableToStorage,
   getTaskFromTable,
-  saveTaskToTable,
   deleteTaskFromTable,
   createNewTaskObject,
   modifyTaskName,
   modifyTaskCompleted,
 } from "../backend/TaskTable.js";
+
+import {
+  getNoteTableFromStorage,
+  getNoteFromTable,
+  modifyLinkedProject,
+} from "../backend/NoteTable.js";
 
 let PROJECT_ID = "";
 let progress = 0;
@@ -45,19 +49,28 @@ window.addEventListener("DOMContentLoaded", init);
  * Attaches an event listener to the save button.
  */
 function init() {
-  localStorage.setItem("ProjectTable", JSON.stringify({}));
-  localStorage.setItem("IDContainer", JSON.stringify([]));
-  localStorage.setItem("TaskTable", JSON.stringify([]));
+  // localStorage.setItem("ProjectTable", JSON.stringify({}));
+  // localStorage.setItem("IDContainer", JSON.stringify([]));
+  // localStorage.setItem("TaskTable", JSON.stringify([]));
   PROJECT_ID = window.location.hash.substring(1);
-  if (!PROJECT_ID) {
-    const newProject = createNewProjectObject();
-    PROJECT_ID = newProject.projectID;
-  } else {
+  if (PROJECT_ID) {
     populateProject();
   }
-  document.querySelector("#priority").addEventListener("change", updatePriority);
-  document.querySelectorAll("checkbox").addEventListener("change",updateProgress);
-  document.querySelector("#addTaskButton").addEventListener("click", addTask);
+  populateOptionsLinkNotes()
+  document
+    .querySelectorAll("#linkNotes")
+    .addEventListener("change", addLinkedNotes);
+  document
+    .querySelector("#priority")
+    .addEventListener("change", updatePriority);
+  document
+    .querySelectorAll("input[type='checkbox']")
+    .forEach(function (checkbox) {
+      checkbox.addEventListener("change", updateProgress);
+    });
+  document
+    .querySelector("#addTaskButton")
+    .addEventListener("click", addNewTask);
   attachSaveButtonListener();
   attachCancelButtonListener();
 }
@@ -77,43 +90,71 @@ function attachCancelButtonListener() {
     .addEventListener("click", cancelEdit);
 }
 
+function updatePriority() {
+  const priority = document.querySelector("#priority").value;
+  let lowPriority = "#0AB73B";
+  let mediumPriority = "#FFD600";
+  let highPriority = "#FF000F";
+  let color = "";
 
-function updatePriority(){
-    const priority = document.querySelector("#priority").value;
-    let lowPriority = "#0AB73B";
-    let mediumPriority = "#FFD600";
-    let highPriority = "#FF000F";
-    let color = "";
+  switch (priority) {
+    case "high":
+      color = highPriority;
+      break;
+    case "medium":
+      color = mediumPriority;
+      break;
+    case "low":
+      color = lowPriority;
+      break;
+    default:
+      // Handle cases where priority doesn't match any expected values
+      console.warn("Unexpected priority value:", priority);
+      return;
+  }
 
-    switch (priority) {
-        case "high":
-            color = highPriority;
-            break;
-        case "medium":
-            color = mediumPriority;
-            break;
-        case "low":
-            color = lowPriority;
-            break;
-        default:
-            // Handle cases where priority doesn't match any expected values
-            console.warn("Unexpected priority value:", priority);
-            return;
-    }
-
-    document.querySelector(".priorityDot").style.backgroundColor = color;
-    modifyProjectPriority(PROJECT_ID, priority);
+  document.querySelector(".priorityDot").style.backgroundColor = color;
+  modifyProjectPriority(PROJECT_ID, priority);
 }
 
 // Function to handle checkbox change events
-function updateProgress(event) {
+function updateProgress() {
   const project = getProjectFromTable(PROJECT_ID);
+  console.log("In progress");
   let progressBar = document.getElementById("progressBar").value;
-  let progressLabel = document.getElementById("progressLabel").innerText;
+  //   let progressLabel = document.getElementById("progressLabel").innerText;
 
-  progressBar = calculateTaskCompletion(PROJECT_ID);
-  document.getElementById("progressBar").max = project.taskList.length;
-  progressLabel = Math.floor(progress / project.taskList.length) + "%";
+  progressBar = calculateTaskCompletion(PROJECT_ID) * 100;
+  //   document.getElementById("progressBar").max = project.taskList.length;
+  //   progressLabel = Math.floor(progress / project.taskList.length) + "%";
+}
+
+function addNewTask() {
+  const taskName = document.querySelector("#addTaskInput").value;
+  console.log(taskName);
+
+  if (!taskName) {
+    alert("Task must have a description");
+    return;
+  }
+
+  const newTask = createNewTaskObject();
+
+  appendTaskToProjectTaskList(PROJECT_ID, newTask.taskID);
+  console.log(newTask.taskID, newTask.name, taskName);
+
+  modifyTaskName(newTask.taskID, taskName);
+
+  console.log(getTaskFromTable(newTask.taskID), newTask.name);
+
+  const taskList = document.querySelector(".taskList");
+  const project = getProjectFromTable(PROJECT_ID);
+
+  // Re-render task list with new item added
+  createTaskListItem(taskList, project.taskList);
+
+  // Clear the input field after adding the task
+  document.querySelector("#addTaskInput").value = "";
 }
 
 function createTaskListItem(taskListElement, taskListArray) {
@@ -129,58 +170,55 @@ function createTaskListItem(taskListElement, taskListArray) {
     label.textContent = task.name;
     console.log(task.name);
 
-    if (task.completed === true) {
+    if (task.completed) {
       inputCheckbox.checked = true;
     }
 
-    updateTaskCompletionStatusEventListener(inputCheckbox, projectID);
+    updateTaskCompletionStatusEventListener(inputCheckbox, task.projectID);
     taskListElement.appendChild(inputCheckbox);
     taskListElement.appendChild(label);
     taskListElement.append(document.createElement("br"));
   });
 }
 
-function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID) {
-    singleInputCheckbox.addEventListener('change', () => {
-    const progressBar = document.querySelector('progress');
-      const taskID = singleInputCheckbox.id;
-      const task = getTaskFromTable(taskID);
-      // unchecked to checked
-      if (singleInputCheckbox.checked === true && task.completed === false) {
-        let newDate = new Date();
-        newDate = newDate.toISOString().split('T')[0];
-        modifyTaskCompleted(taskID, true);
-        appendCompletedTaskToProject(projectID, taskID);
-        modifyLastWorkedOn(projectID, newDate);
-        progressBar.value = calculateTaskCompletion(projectID);
-      }
-      // checked to unchecked
-      if (singleInputCheckbox.checked === false && task.completed === true) {
-        let newDate = new Date();
-        newDate = newDate.toISOString().split('T')[0];
-        modifyTaskCompleted(taskID, false);
-        removeCompletedTaskFromProject(projectID, taskID);
-        modifyLastWorkedOn(projectID, newDate);
-        progressBar.value = calculateTaskCompletion(projectID);
-      }
-    });
-  }
+function updateTaskCompletionStatusEventListener(
+  singleInputCheckbox,
+  projectID
+) {
+  singleInputCheckbox.addEventListener("change", () => {
+    const progressBar = document.querySelector("progress");
+    const taskID = singleInputCheckbox.id;
+    const task = getTaskFromTable(taskID);
+
+    let newDate = new Date().toISOString().split("T")[0];
+
+    if (singleInputCheckbox.checked && !task.completed) {
+      modifyTaskCompleted(taskID, true);
+      appendCompletedTaskToProject(projectID, taskID);
+    } else if (!singleInputCheckbox.checked && task.completed) {
+      modifyTaskCompleted(taskID, false);
+      removeCompletedTaskFromProject(projectID, taskID);
+    }
+
+    modifyLastWorkedOn(projectID, newDate);
+    progressBar.value = calculateTaskCompletion(projectID);
+  });
+}
 
 function calculateTaskCompletion(projectID) {
   const selectedProject = getProjectFromTable(projectID);
   const taskList = selectedProject.taskList;
-  if (taskList.length !== 0) {
-    let numberCompleted = 0;
-    taskList.forEach((taskID) => {
-      const task = getTaskFromTable(taskID);
-      if (task.completed === true) {
-        numberCompleted++;
-      }
-    });
-    return numberCompleted;
-  } else {
-    return -1;
+
+  if (taskList.length === 0) {
+    return 0;
   }
+
+  const numberCompleted = taskList.reduce((count, taskID) => {
+    const task = getTaskFromTable(taskID);
+    return count + (task.completed ? 1 : 0);
+  }, 0);
+
+  return (numberCompleted / taskList.length) * 100; // Return the percentage of completion
 }
 
 /**
@@ -190,6 +228,15 @@ function calculateTaskCompletion(projectID) {
  */
 function saveProject() {
   console.log("Save Clicked");
+  if (!PROJECT_ID) {
+    const newProject = createNewProjectObject();
+    PROJECT_ID = newProject.projectID;
+    modifyProjectDateCreated(
+      PROJECT_ID,
+      new Date().toISOString().split("T")[0]
+    );
+    populateProject();
+  }
   const projectTitle = document.querySelector("#projectTitle").value;
   const projectDescription = document.querySelector("#projectDesc").value;
   console.log(projectDescription);
@@ -212,31 +259,28 @@ function cancelEdit() {
   }
 }
 
-function addTask() {
-  const taskName = document.querySelector("#addTaskInput").value;
-  console.log(taskName);
-  if (!taskName) {
-    alert("Task must have a description");
-    return;
-  }
+function addLinkedNotes() {
 
-  const newTask = createNewTaskObject(taskName, false);
-
-  console.log(newTask.taskID);
-
-  appendTaskToProjectTaskList(PROJECT_ID, newTask.taskID);
-  console.log(newTask.taskID, newTask.name, taskName);
-
- 
-  const taskList = document.querySelector(".taskList");
-  const project = getProjectFromTable(PROJECT_ID);
-  // Re-render task list with new item added
-  createTaskListItem(taskList, project.taskList);
-
-  return;
 }
 
-function populateLinkedNotes() {}
+function populateOptionsLinkNotes(){
+    const allNotes = getNoteTableFromStorage();
+    const selectElement = document.querySelector("#linkNotes");
+  
+    allNotes.forEach((noteID) => {
+      const note = getNoteFromTable(noteID);
+  
+      const option = document.createElement("option");
+      option.value = taskID;
+      option.innerText = note.title;
+      
+      selectElement.appendChild(option);
+    });
+}
+
+function populateLinkedNotes() {
+
+}
 
 /**
  * Populates the project with existing data from the backend.
