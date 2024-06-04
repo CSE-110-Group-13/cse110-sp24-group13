@@ -53,11 +53,11 @@ import {
       priority.className = "circle";
       newProject.appendChild(priority);
   
-      if (value.priority === "Priority1") {
+      if (value.priority === "high") {
         priority.style.backgroundColor = '#FF000F';
-      } else if (value.priority === "Priority2") {
+      } else if (value.priority === "medium") {
         priority.style.backgroundColor = '#FFD600';
-      } else if (value.priority === "Priority3") {
+      } else if (value.priority === "low") {
         priority.style.backgroundColor = '#0AB73B';
       }
   
