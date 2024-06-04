@@ -115,6 +115,7 @@ class deleteButton extends HTMLElement {
             }
             
             popup.style.display = 'none';
+            window.location.href = '../homapege/index.html';
         });
 
         cancelDelete.addEventListener('click', () => {
