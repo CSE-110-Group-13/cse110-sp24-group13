@@ -132,3 +132,7 @@ progress {
   list-style-type: none;
   padding: 0;
 }
+
+label {
+  pointer-events:none;
+}
