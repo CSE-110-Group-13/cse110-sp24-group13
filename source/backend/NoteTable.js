@@ -15,7 +15,7 @@
  *    "date" : "",
  *    "lastEdited" : "",
  *    "title" : "", 
- *    "projectList" : [],
+ *    "linkedProject" : "",
  *    "favorited" : False,
  *    "tags" : []
  * }
@@ -108,19 +108,19 @@ function deleteNoteFromTable(noteID) {
  * @param {String} date - the date of the note
  * @param {String} lastEdited - the last edited date of the note
  * @param {String} title - the title of the note
- * @param {Array<String>} projectList - the list of project the note belongs to
+ * @param {String} linkedProject - the projectID that the note is linked to
  * @param {Boolean} favorited - whether the note is favorited
  * @param {Array<String>} tags - the list of tags of the note
  * @returns {Object} the note object that was created
  */
-function createNewNoteObject(text="", date="", lastEdited="", title="", projectList=[], favorited="", tags=[]) {
+function createNewNoteObject(text="", date="", lastEdited="", title="", linkedProject="", favorited="", tags=[]) {
   const newNoteObject = {
     "noteID" : `note-${generateID()}`,
     "text" : text,
     "date" : date,
     "lastEdited" : lastEdited,
     "title" : title, 
-    "projectList" : projectList,
+    "linkedProject" : linkedProject,
     "favorited" : favorited,
     "tags" : tags
   }
@@ -176,24 +176,13 @@ function modifyNoteTitle(noteID, newTitle) {
 }
 
 /**
- * Append a new project to the project list of a note object that maps to the given ID and update the local storage
+ * Modify the projectID that a note is linked to in the note object that maps to the given ID and update the local storage
  * @param {String} noteID - the ID of the note to modify
- * @param {String} projectID - the ID of the project to append to
+ * @param {String} newLinkedProject - the new projectID that the note is linked to
  */
-function appendProjectToNoteProjectList(noteID, projectID) {
+function modifyLinkedProject(noteID, newLinkedProject) {
   const noteObject = getNoteFromTable(noteID);
-  noteObject["projectList"].push(projectID);
-  saveNoteToTable(noteID, noteObject);
-}
-
-/**
- * Remove a project from the project list of a note object that maps to the given ID and update the local storage
- * @param {String} noteID - the ID of the note to modify
- * @param {String} projectID - the ID of the project to remove
- */
-function removeProjectFromNoteProjectList(noteID, projectID) {
-  const noteObject = getNoteFromTable(noteID);
-  noteObject["projectList"] = noteObject["projectList"].filter(project => project !== projectID);
+  noteObject["linkedProject"] = newLinkedProject;
   saveNoteToTable(noteID, noteObject);
 }
 
@@ -242,8 +231,7 @@ export {
   modifyNoteDate, 
   modifyNoteLastEdited, 
   modifyNoteTitle, 
-  appendProjectToNoteProjectList, 
-  removeProjectFromNoteProjectList, 
+  modifyLinkedProject,
   modifyNoteFavorited, 
   appendTagToNoteTags, 
   removeTagFromNoteTags
