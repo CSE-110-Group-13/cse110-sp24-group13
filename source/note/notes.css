@@ -9,6 +9,7 @@ hmtl, body {
     display: flex;
 }
 
+
 #restOfScreen {
     flex: 1;
     margin-left: 1%;

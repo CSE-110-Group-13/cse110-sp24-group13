@@ -1,5 +1,6 @@
 import { 
-    getProjectTableFromStorage
+    getProjectTableFromStorage,
+    getProjectFromTable
 } from "../backend/ProjectTable.js"; 
 import {
     appendProjectToNoteProjectList,
@@ -36,23 +37,39 @@ class linkedProject extends HTMLElement {
         console.log("populateProject");
         //TODO: Make linkedProject/ LinkedProjectComponent appear
         //TODO: Also style it correctly
+        
+        const linkedProject = document.querySelector('.linkedProject');
         linkedProject.classList.toggle('open');
         let project = getProjectFromTable(projectID);
         let projectTitle = document.getElementById('projectTitle');
         let projectDue = document.querySelector('.projectDue p');
         let projectDesc = document.querySelector('.projectDetails p');
         let projectProgress = document.querySelector('progress');
+        /*
         projectTitle.textContent = project["title"];
         projectDue.textContent = project["dueDate"];
         projectDesc.textContent = project["description"];
         projectProgress.value = project["progress"];
+        */
+        projectTitle.innerHTML = `${project.title}`;
+        projectDue.innerHTML = `${project.dueDate}`;
+        projectDesc.innerHTML = `${project.description}`;
+        projectProgress.innerHTML = `${project.progress}`;
+
     }
     render() {
         // Styling 
         const styles = document.createElement('style');
         styles.innerHTML = `
-        #container {
-            width: 90vw;
+        linked-project #container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .linkAProject {
+            display: flex;
+            flex-direction: row;
+
         }
         #lButton {
             display: flex; 
@@ -181,11 +198,45 @@ class linkedProject extends HTMLElement {
         }
 
         .linkedProject.open {
-            width: 80%;
-            padding: 5px;
-            margin: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background-color: #F8F8F8;
+            border-radius: 25px; 
+            margin-top: 20px;
+            margin-right: auto;
+            margin-left: auto;
+
 
         }  
+
+        .linkedProject svg {
+            width: 25px;
+            height: 25px;
+        }
+
+        .projectHeader {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .projectHeader h1 {
+            margin-right: 15px;
+        }
+
+        .projectDue {
+            display: flex;
+            flex-direction: row;
+            align-items: center; 
+            margin-top: -15px;
+        }
+
+        .projectDue svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
         
         .description {
             width: 60vw;
@@ -203,6 +254,11 @@ class linkedProject extends HTMLElement {
         const container = document.createElement('div');
         container.id = 'container';
 
+        // Create link a project container
+        const linkAProject = document.createElement('div');
+        linkAProject.classList = 'linkAProject';
+        container.appendChild(linkAProject);
+
         // Create a container the description of linking a project
         const descriptionContainer = document.createElement('div');
         descriptionContainer.classList = "description";
@@ -212,13 +268,13 @@ class linkedProject extends HTMLElement {
         const description = document.createElement('p');
         description.textContent = "This allows you to to update a specific task. Once you select a speific task, you can then check off which subtask you have completed in this specific note";
         descriptionContainer.appendChild(description);
-        container.appendChild(descriptionContainer);
+        linkAProject.appendChild(descriptionContainer);
 
         // Create a button to link a project
         const lButton = document.createElement('button');
         lButton.id = 'lButton';
         lButton.innerHTML = `Add Project <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>`
-        container.appendChild(lButton);
+        linkAProject.appendChild(lButton);
         
         // Create overlay 
         const overlay = document.createElement('div');
@@ -255,6 +311,7 @@ class linkedProject extends HTMLElement {
         //creating the linked project container
         const linkedProjectComponent = document.createElement('div');
         linkedProjectComponent.classList = 'linkedProject';
+        container.appendChild(linkedProjectComponent);
         linkedProjectComponent.innerHTML = `
             <div class="projectHeader">
                 <span class="priorityDot"></span>
