@@ -31,7 +31,7 @@ head {
   font-family: 'Varela Round', sans-serif;
   font-size: 1.5em;           /* Make the text bigger */
   font-weight: bold;          /* Make the text bold */
-  margin-left: 65px;
+  margin-left: 57px;
 }
 
 .favorites-content svg {
@@ -48,10 +48,11 @@ head {
 
 
 #favorites {
-  margin: 15px auto; /* Center the container horizontally */
-  height: 450px;
+  margin: 5px auto; /* Center the container horizontally */
+  height: 475px;
   width: 100%; /* Ensure it takes the full width of the parent */
   max-width: calc(100% - 30px); /* Ensure there's no horizontal overflow */
+  
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(1300px, 1fr)); /* Define columns */
@@ -59,7 +60,7 @@ head {
 }
 
 #favorites::-webkit-scrollbar {
-  width: 10px;
+  width: 7.5px;
 }
 
 
