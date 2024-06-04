@@ -19,7 +19,7 @@
   .percentage-container {
     display: flex;
     align-items: center;
-    margin-right: 24px;
+    margin-right: 25px;
     flex-shrink: 0; /* Prevents shrinking */
   }
   
@@ -62,7 +62,7 @@
     background-color: rgba(169, 169, 169, 0.3);
     border-radius: 10px;
     overflow: hidden; 
-    margin-right: 20px;
+    margin-right: 14px;
   }
   
   .progress-bar {
