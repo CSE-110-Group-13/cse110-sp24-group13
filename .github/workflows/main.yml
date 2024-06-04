@@ -1,12 +1,10 @@
 name: Testing Suite # name of the test
 
 # the Github Action will activate "on" the event that you "make a pr" to main
-# on:
-#   pull_request:
-#     branches:
-#       - main
-
-on: [push]
+on:
+  pull_request:
+    branches:
+      - main
 
 jobs: # the things being executed
   tests: # the name of your status check, will become important when you do branch protection
@@ -27,4 +25,4 @@ jobs: # the things being executed
         
       - name: Unit Test
         working-directory: ./source
-        run: npm test
+        run: npm run test

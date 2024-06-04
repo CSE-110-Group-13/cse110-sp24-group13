@@ -377,6 +377,7 @@ function toggleCollapse(event, type) {
     isRecentsCollapsed = !isRecentsCollapsed;
     const collapseButton = document.getElementById('collapseButton1');
     collapseButton.innerHTML = isRecentsCollapsed ? collapseIcon : expandIcon;
+
   } else if (type === 'favorites') {
     const favoritesContainer = document.getElementById('favorites');
     favoritesContainer.classList.toggle('collapsed');
@@ -388,7 +389,10 @@ function toggleCollapse(event, type) {
 
 const recentsCollapseButton = document.getElementById('collapseButton1');
 recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'recents'));
+recentsCollapseButton.innerHTML = expandIcon;
 
+const favoritesCollapseButton = document.getElementById('collapseButton2');
+favoritesCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'favorites'));
 recentsCollapseButton.innerHTML = expandIcon;
 
 

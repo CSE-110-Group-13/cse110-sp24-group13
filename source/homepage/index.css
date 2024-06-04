@@ -72,8 +72,7 @@ body {
 }
 
 .collapsed .note-wrapper {
-  transform: translateY(-50px); /* Adjust the translate value as needed */
-  opacity: 0;
+  display: none;
 }
 
 a {
