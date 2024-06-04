@@ -282,8 +282,8 @@ function populateOptionsLinkNotes(){
 function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
 
   const linkIcon = "put svg link here";
-  const collapseIcon = "put svg link here";
   const checkbox = "put svg link here";
+  const collapseIcon = "put svg link here";
 
   linkedNotes.forEach((noteID)=>{
     const note = getNoteFromTable(noteID);
@@ -303,6 +303,8 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
       tag = tagName;
       rightSide.appendChild(tag);
     });
+    
+    collapseIcon.setAttribute("id", noteID);
 
     // Add the parts of the header to the linked notes container
     noteHeader.appendChild(title);
@@ -312,6 +314,7 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
 
     // Create container for the completed tasks
     const completedContainer = createElement("div").classList.add('completedTasks');
+    completedContainer.setAttribute(id, noteID);
     const completedTasks = getProjectFromTable(PROJECT_ID).tasksCompleted;
 
     const completedTitle = createElement("i").textContent;
