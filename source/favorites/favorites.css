@@ -13,11 +13,11 @@ html, body {
   }
   
   #favorites{
-    padding: 20px;
+    padding: 0px;
     position: fixed;
-    top: 30%;
+    top: 10vh;
     left: 17%;
-    width: 70%;
+    width: 70vw;
   }
   
   .favorites-content {
