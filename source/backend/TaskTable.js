@@ -125,7 +125,7 @@ function modifyTaskName(taskID, newName) {
 /**
  * Modify the completed status of a task object that maps to the given ID and update the local storage
  * @param {String} taskID - the ID of the task to modify
- * @param {String} newCompleted - the new completed status of the task
+ * @param {Boolean} newCompleted - the new completed status of the task
  */
 function modifyTaskCompleted(taskID, newCompleted) {
   const taskObject = getTaskFromTable(taskID);
