@@ -2,6 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: 'Varela Round', sans-serif;
 }
 
 #container {
@@ -18,14 +19,13 @@ header {
   height: 10vh;
 
   margin-bottom: 1vh;
-  /* box-sizing: border-box; */
 }
 
-/* Task Box */
+/* Project list Box */
 main {
   display: flex;
   flex-direction: column;
-  gap: 1vh;
+  gap: 2vh;
 
   height: 89vh;
   overflow-y: auto;
@@ -40,31 +40,95 @@ main > div {
   background-color: #F8F8F8;
   border-radius: 25px;
   width: 80vw;
-
   gap: 1vh;
 }
 
 .titlePercentCompletedContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 
+  padding-left: 2%;
+  padding-right: 2%;
+  box-sizing: border-box;
 }
 
-.titlePercentCompletedContainer {
-
+progress {
+  height: 70%;
+  width: 50%;
 }
 
-.deadlineConatiner {
+.containerForPriorityIconTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
+.priority-icon {
+  height: 3vh;
+  width: 3vh;
+  background-color: #bbb;
+  border-radius: 50%;
+}
+.priority-icon.low {
+  background-color: green;
+}
+.priority-icon.medium {
+  background-color: yellow;
+}
+.priority-icon.high {
+  background-color: red;
+}
+
+.titlePercentCompletedContainer h1 {
+  margin-block-start: 0.33em;
+  margin-block-end: 0.33em;
+}
+
+.deadlineContainer p {
+  margin: 0;
+  padding: 0;
+  opacity: 0.6;
+  font-size: 80%;
+}
+
+.deadlineContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
+  box-sizing: border-box;
 }
 
 .descriptionContainer {
+  width: 100%;
+  padding-left: 2%;
+  padding-right: 2%;
+  box-sizing: border-box;
+}
 
+.descriptionContainer h2 {
+  text-align: center;
+  margin-block-start: 0.33em;
+  margin-block-end: 0.33em;
+}
+
+.taskListContainer {
+  width: 100%;
+  padding-left: 2%;
+  padding-right: 2%;
+  box-sizing: border-box;
+}
+
+.taskListContainer h2 {
+  text-align: center;
+  margin-block-start: 0.33em;
+  margin-block-end: 0.33em;
 }
 
 .taskListContainer > .taskList {
   list-style-type: none;
-}
-
-/* * {
   padding: 0;
-  margin: 0;
-} */
+}
