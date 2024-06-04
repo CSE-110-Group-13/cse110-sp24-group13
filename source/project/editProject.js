@@ -1,11 +1,11 @@
 // editProject.js
 
-//TODO - Linked notes section needs to be implemented (may be done with webcomponent)
-//TODO - Add functionality to Link Notes  and Priority dropdown
-//TODO - Populate Tasks container
+// TODO - Linked notes section needs to be implemented (may be done with webcomponent)
+// TODO - Add functionality to Link Notes and Priority dropdown
+// TODO - Populate Tasks container
+// TODO - Possibly add a popup for when save is successful
 
-//TODO - Possibly add a popup for when save is successful
-
+// Importing necessary functions from backend modules
 import {
   getProjectFromTable,
   createNewProjectObject,
@@ -33,69 +33,70 @@ import {
 import {
   getNoteTableFromStorage,
   getNoteFromTable,
+  createNewNoteObject,
+  modifyNoteTitle,
   modifyLinkedProject,
   modifyNoteLastEdited,
 } from "../backend/NoteTable.js";
 
-let PROJECT_ID = "";
-let progress = 0;
-const taskUpdate = document.querySelectorAll('input[type="checkbox"]');
-
-window.addEventListener("DOMContentLoaded", init);
+let PROJECT_ID;
 
 /**
- * Initializes the project editing process.
- * If a project ID is not set, creates a new project object.
- * If a project ID is set, populates the project with existing data.
- * Attaches an event listener to the save button.
+ * Initializes the edit project page by setting up event listeners,
+ * retrieving project information, and populating the page with data.
  */
 function init() {
+  // Uncomment these if you want to initialize storage
   // localStorage.setItem("ProjectTable", JSON.stringify({}));
   // localStorage.setItem("IDContainer", JSON.stringify([]));
   // localStorage.setItem("TaskTable", JSON.stringify([]));
+  // localStorage.setItem("NoteTable", JSON.stringify({}));
+  // const placeholderNoteTable = createNewNoteObject();
+  // modifyNoteTitle(placeholderNoteTable.noteID, "New Note to Add");
+
   PROJECT_ID = window.location.hash.substring(1);
-  if (PROJECT_ID) {
-    populateProject();
+  if (!PROJECT_ID) {
+    const project = createNewProjectObject();
+    PROJECT_ID = project.projectID;
   }
-  populateOptionsLinkNotes()
-  document
-    .querySelectorAll("#linkNotes")
-    .addEventListener("change", addLinkedNotes);
-  document
-    .querySelector("#priority")
-    .addEventListener("change", updatePriority);
-  document
-    .querySelectorAll("input[type='checkbox']")
-    .forEach(function (checkbox) {
-      checkbox.addEventListener("change", updateProgress);
-    });
-  document
-    .querySelector("#addTaskButton")
-    .addEventListener("click", addNewTask);
+  populateProject();
+  populateOptionsLinkNotes();
+
+  appendTaskToProjectTaskList(PROJECT_ID, getTaskFromTable(createNewTaskObject()).taskID);
+
   attachSaveButtonListener();
   attachCancelButtonListener();
+
+  document.querySelector("#linkNotes").addEventListener("change", addLinkedNotes);
+  document.querySelector("#priority").addEventListener("change", updatePriority);
+  document.querySelectorAll("input[type='checkbox']").forEach(function (checkbox) {
+    checkbox.addEventListener("change", updateProgress);
+  });
+  document.querySelector("#addTaskButton").addEventListener("click", addNewTask);
 }
 
 /**
  * Attaches an event listener to the save button.
  */
 function attachSaveButtonListener() {
-  document
-    .querySelector("save-button button")
-    .addEventListener("click", saveProject);
+  document.querySelector('save-button button').addEventListener('click', saveProject);
 }
 
+/**
+ * Attaches an event listener to the cancel button.
+ */
 function attachCancelButtonListener() {
-  document
-    .querySelector("cancel-button button")
-    .addEventListener("click", cancelEdit);
+  document.querySelector('cancel-button button').addEventListener('click', cancelEdit);
 }
 
+/**
+ * Updates the project's priority color based on the selected priority.
+ */
 function updatePriority() {
   const priority = document.querySelector("#priority").value;
-  let lowPriority = "#0AB73B";
-  let mediumPriority = "#FFD600";
-  let highPriority = "#FF000F";
+  const lowPriority = "#0AB73B";
+  const mediumPriority = "#FFD600";
+  const highPriority = "#FF000F";
   let color = "";
 
   switch (priority) {
@@ -109,7 +110,6 @@ function updatePriority() {
       color = lowPriority;
       break;
     default:
-      // Handle cases where priority doesn't match any expected values
       console.warn("Unexpected priority value:", priority);
       return;
   }
@@ -118,18 +118,20 @@ function updatePriority() {
   modifyProjectPriority(PROJECT_ID, priority);
 }
 
-// Function to handle checkbox change events
+/**
+ * Updates the project's progress bar based on the completion status of tasks.
+ */
 function updateProgress() {
   const project = getProjectFromTable(PROJECT_ID);
   console.log("In progress");
-  let progressBar = document.getElementById("progressBar").value;
-  //   let progressLabel = document.getElementById("progressLabel").innerText;
+  let progressBar = document.getElementById("progressBar");
 
-  progressBar = calculateTaskCompletion(PROJECT_ID) * 100;
-  //   document.getElementById("progressBar").max = project.taskList.length;
-  //   progressLabel = Math.floor(progress / project.taskList.length) + "%";
+  progressBar.value = calculateTaskCompletion(PROJECT_ID);
 }
 
+/**
+ * Adds a new task to the project.
+ */
 function addNewTask() {
   const taskName = document.querySelector("#addTaskInput").value;
   console.log(taskName);
@@ -140,6 +142,10 @@ function addNewTask() {
   }
 
   const newTask = createNewTaskObject();
+  if (!newTask) {
+    alert("Failed to create a new task");
+    return;
+  }
 
   appendTaskToProjectTaskList(PROJECT_ID, newTask.taskID);
   console.log(newTask.taskID, newTask.name, taskName);
@@ -151,14 +157,19 @@ function addNewTask() {
   const taskList = document.querySelector(".taskList");
   const project = getProjectFromTable(PROJECT_ID);
 
-  // Re-render task list with new item added
   createTaskListItem(taskList, project.taskList);
 
-  // Clear the input field after adding the task
   document.querySelector("#addTaskInput").value = "";
 }
 
+/**
+ * Creates and appends task list items to the specified task list element.
+ * @param {HTMLElement} taskListElement - The task list element to populate.
+ * @param {Array} taskListArray - An array of task IDs.
+ */
 function createTaskListItem(taskListElement, taskListArray) {
+  taskListElement.innerHTML = ""; // Clear the task list before rendering
+
   taskListArray.forEach((taskID) => {
     const task = getTaskFromTable(taskID);
 
@@ -178,14 +189,16 @@ function createTaskListItem(taskListElement, taskListArray) {
     updateTaskCompletionStatusEventListener(inputCheckbox, task.projectID);
     taskListElement.appendChild(inputCheckbox);
     taskListElement.appendChild(label);
-    taskListElement.append(document.createElement("br"));
+    taskListElement.appendChild(document.createElement("br"));
   });
 }
 
-function updateTaskCompletionStatusEventListener(
-  singleInputCheckbox,
-  projectID
-) {
+/**
+ * Adds an event listener to a task checkbox to update its completion status.
+ * @param {HTMLInputElement} singleInputCheckbox - The task checkbox element.
+ * @param {string} projectID - The ID of the project containing the task.
+ */
+function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID) {
   singleInputCheckbox.addEventListener("change", () => {
     const progressBar = document.querySelector("progress");
     const taskID = singleInputCheckbox.id;
@@ -206,6 +219,11 @@ function updateTaskCompletionStatusEventListener(
   });
 }
 
+/**
+ * Calculates the completion percentage of tasks in a project.
+ * @param {string} projectID - The ID of the project.
+ * @returns {number} - The completion percentage of tasks.
+ */
 function calculateTaskCompletion(projectID) {
   const selectedProject = getProjectFromTable(projectID);
   const taskList = selectedProject.taskList;
@@ -219,23 +237,18 @@ function calculateTaskCompletion(projectID) {
     return count + (task.completed ? 1 : 0);
   }, 0);
 
-  return (numberCompleted / taskList.length) * 100; // Return the percentage of completion
+  return (numberCompleted / taskList.length) * 100;
 }
 
 /**
- * Saves the current state of the project to the local storage.
- * Retrieves the project title, markdown content, and date from the DOM.
- * Modifies the project in the backend using the project ID.
+ * Saves the project with the current state of inputs and tasks.
  */
 function saveProject() {
   console.log("Save Clicked");
   if (!PROJECT_ID) {
     const newProject = createNewProjectObject();
     PROJECT_ID = newProject.projectID;
-    modifyProjectDateCreated(
-      PROJECT_ID,
-      new Date().toISOString().split("T")[0]
-    );
+    modifyProjectDateCreated(PROJECT_ID, new Date().toISOString().split("T")[0]);
     populateProject();
   }
   const projectTitle = document.querySelector("#projectTitle").value;
@@ -243,15 +256,18 @@ function saveProject() {
   console.log(projectDescription);
   const projectDeadline = document.querySelector("#deadline").value;
   console.log(projectDeadline);
-  // Modify the project
+
   modifyProjectTitle(PROJECT_ID, projectTitle);
   modifyProjectDescription(PROJECT_ID, projectDescription);
   modifyProjectDeadline(PROJECT_ID, projectDeadline);
-  alert("Save succesful (Replace this with a custom one later)");
+  alert("Save successful (Replace this with a custom one later)");
 
   window.location.href = "./edit-project.html#" + PROJECT_ID;
 }
 
+/**
+ * Cancels the edit and redirects to the appropriate page.
+ */
 function cancelEdit() {
   if (!PROJECT_ID) {
     window.location.href = "../projectlist/projectlist.html";
@@ -260,105 +276,107 @@ function cancelEdit() {
   }
 }
 
+/**
+ * Adds a linked note to the project based on the selected value.
+ */
 function addLinkedNotes() {
+  const selectedNote = document.querySelector("#linkNotes");
+  console.log(selectedNote);
 
-}
-
-function populateOptionsLinkNotes(){
-    const allNotes = getNoteTableFromStorage();
-    const selectElement = document.querySelector("#linkNotes");
-  
-    allNotes.forEach((noteID) => {
-      const note = getNoteFromTable(noteID);
-  
-      const option = document.createElement("option");
-      option.value = taskID;
-      option.innerText = note.title;
-      
-      selectElement.appendChild(option);
-    });
-}
-
-function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
-
-  const linkIcon = "put svg link here";
-  const checkbox = "put svg link here";
-  const collapseIcon = "put svg link here";
-
-  linkedNotes.forEach((noteID)=>{
-    const note = getNoteFromTable(noteID);
-
-    const noteHeader = createElement("div").classList.add('linkedNote')
-    const title = document.createElement("h3").textContent;
-    title = note.title;
-
-    // Create the right side of the header which includes tags and last modified date
-    const rightSide = createElement("ul");
-    const lastModified = createElement("p").textContent;
-    lastModified = "Last modified: " + note.lastEdited;
-    rightSide.appendChild(lastModified);
-
-    (note.tags).forEach((tagName)=>{
-      const tag = createElement("li").textContent;
-      tag = tagName;
-      rightSide.appendChild(tag);
-    });
-    
-    collapseIcon.setAttribute("id", noteID);
-
-    // Add the parts of the header to the linked notes container
-    noteHeader.appendChild(title);
-    noteHeader.appendChild(linkIcon);
-    noteHeader.appendChild(rightSide);
-    noteHeader.appendChild(collapseIcon);
-
-    // Create container for the completed tasks
-    const completedContainer = createElement("div").classList.add('completedTasks');
-    completedContainer.setAttribute(id, noteID);
-    const completedTasks = getProjectFromTable(PROJECT_ID).tasksCompleted;
-
-    const completedTitle = createElement("i").textContent;
-    completedTitle = "Completed Tasks";
-    completedContainer.appendChild(completedTitle);
-    completedContainer.appendChild(document.createElement("br"));
-
-    completedTasks.forEach((taskID)=>{
-      const task = getTaskFromTable(taskID);
-      const taskName = createElement("p").textContent;
-      taskName = task.name;
-
-      const taskSpan = createElement("span").classList.add('taskSpan');
-      taskSpan.appendChild(checkbox);
-      taskSpan.appendChild(taskName);
-    });
-
-    
-    elementLinkedNotes.appendChild(noteHeader);
-    elementLinkedNotes.appendChild(completedContainer);
-    elementLinkedNotes.appendChild(document.createElement("hr"));
-  });
-
+  if (selectedNote.value != "") {
+    console.log("Adding linked note");
+    appendLinkedNoteToProject(PROJECT_ID, selectedNote.value);
+    selectedNote.value = "";
+  }
 }
 
 /**
- * Populates the project with existing data from the backend.
- * Retrieves the project data using the project ID.
- * Sets the project title, deadline, and date in the DOM.
+ * Populates the options for linking notes from the note table.
+ */
+function populateOptionsLinkNotes() {
+  const noteTable = getNoteTableFromStorage();
+  const selectElement = document.querySelector("#linkNotes");
+
+  for (const [key, value] of Object.entries(noteTable)) {
+    const option = document.createElement("option");
+    option.value = value.noteID;
+    option.innerText = value.title;
+    selectElement.appendChild(option);
+  }
+}
+
+/**
+ * Populates the linked notes section with notes linked to the project.
+ * @param {Array} linkedNotes - An array of linked note IDs.
+ * @param {HTMLElement} elementLinkedNotes - The DOM element where the linked notes should be added.
+ */
+function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
+  const linkIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  linkIcon.setAttribute("viewBox", "0 0 448 512");
+  linkIcon.innerHTML = `<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>`;
+
+  const checkbox = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  checkbox.setAttribute("viewBox", "0 0 448 512");
+  checkbox.innerHTML = `<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-65-65c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L192 271l111-111c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>`;
+
+  linkedNotes.forEach((noteID) => {
+    const linkedNote = getNoteFromTable(noteID);
+    const linkedNoteElement = document.createElement("li");
+
+    const noteLink = document.createElement("a");
+    noteLink.href = "../notes/edit-note.html#" + noteID;
+    noteLink.textContent = linkedNote.title;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "deleteNote";
+    deleteButton.setAttribute("aria-label", "Delete note");
+
+    deleteButton.appendChild(checkbox);
+
+    deleteButton.addEventListener("click", function () {
+      console.log(noteID);
+      removeLinkedNoteFromProject(PROJECT_ID, noteID);
+      linkedNoteElement.remove();
+    });
+
+    linkedNoteElement.appendChild(linkIcon.cloneNode(true));
+    linkedNoteElement.appendChild(noteLink);
+    linkedNoteElement.appendChild(deleteButton);
+
+    elementLinkedNotes.appendChild(linkedNoteElement);
+  });
+}
+
+/**
+ * Populates the project details in the UI based on the project ID.
  */
 function populateProject() {
   const project = getProjectFromTable(PROJECT_ID);
-  document.title = "PROJECT | " + project.title;
-  console.log(document.title);
+  if (!project) {
+    return;
+  }
 
-  console.log(project.title);
+  const titleElement = document.querySelector("#projectTitle");
+  const descriptionElement = document.querySelector("#projectDesc");
+  const deadlineElement = document.querySelector("#deadline");
+  const priorityElement = document.querySelector("#priority");
+  const taskListElement = document.querySelector(".taskList");
+  const linkedNotesElement = document.querySelector(".linkedNotes");
+  const progressBar = document.querySelector("progress");
+
+  titleElement.value = project.title;
+  descriptionElement.value = project.description;
+  deadlineElement.value = project.deadline;
+  priorityElement.value = project.priority;
+
+  createTaskListItem(taskListElement, project.taskList);
+
+  updateProgress();
+
+  populateLinkedNotes(project.linkedNotes, linkedNotesElement);
   updatePriority();
-  document.querySelector("#projectTitle").value = project.title;
-  document.querySelector("#deadline").value = project.deadline;
-  document.querySelector("#projectDesc").innerText = project.description;
-
-  const taskList = document.querySelector(".taskList");
-  createTaskListItem(taskList, project.taskList);
-
-  const linkedNotes = document.querySelector(".linkedNotes");
-  populateLinkedNotes(project.linkedNotes, linkedNotes);
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  init();
+});
