@@ -17,18 +17,21 @@
     <div class = "content"> 
         <div class = "header">
             <div class="selectBar">
-                <select name="linkNotes" id="linkNotes">
-                    <option value="" disabled selected>Link Note(s)</option>
-                    <option value="note1ID">Note 1 Title</option>
-                    <option value="note2ID">Note 1 Title</option>
-                    <option value="note3ID">Note 1 Title</option>
-                </select>
-                <select name="priority" id="priority">
-                    <option value="" disabled selected>Update Priority</option>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                </select>
+                <span class="select-wrapper">
+                    <select name="linkNotes" id="linkNotes">
+                        <option value="" disabled selected>Link Note(s)</option>
+                    </select>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                </span>
+                <span class="select-wrapper">
+                    <select name="priority" id="priority">
+                        <option value="" disabled selected>Update Priority</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>
+                </span>
             </div>
             <div class = "actionBar" href = "#">   
                 <save-button></save-button>
@@ -38,10 +41,10 @@
         <div class = "container">
             <div class="projectHeader">
                 <span class="priorityDot"></span>
-                <input type="text" placeholder="Enter Project Title" id = "projectTitle" value =""> <!-- replace value with project name -->
+                <input type="text" placeholder=" Enter Project Title" id = "projectTitle" value =""> <!-- replace value with project name -->
                 <div class="progress">
-                    <label for="progressBar" id="progressLabel">33%</label>
-                    <progress id="progressBar" value="33" max="100"></progress>
+                    <label for="progressBar" id="progressLabel">0%</label>
+                    <progress id="progressBar" value="0" max="100"></progress>
                 </div>
             </div>
             <div class="projectDetails">
