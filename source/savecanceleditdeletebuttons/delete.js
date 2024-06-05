@@ -50,6 +50,37 @@ class deleteButton extends HTMLElement {
         Delete
         `;
         console.log("initailized delete button")
+
+        dButton.addEventListener('click', () => {
+            const currentPage = window.location.href;
+            console.log("Current page:", currentPage);
+            if (currentPage.includes("note")) {
+                const noteID = currentPage.split("/").pop();
+                console.log("Note ID:", noteID);
+                const noteTable = getNoteTableFromStorage();
+                if (noteID in noteTable) {
+                    delete noteTable[noteID];
+                    saveNoteTableToStorage(noteTable);
+                    window.location.href = "/";
+                }
+                else {
+                    alert(`NoteID: ${noteID} does not exist to delete in the table`);
+                }
+            }
+            else if(currentPage.includes("project")) {
+                const projectID = currentPage.split("/").pop();
+                console.log("Project ID:", projectID);
+                const projectTable = getProjectTableFromStorage();
+                if (projectID in projectTable) {
+                    delete projectTable[projectID];
+                    saveProjectTableToStorage(projectTable);
+                    window.location.href = "/";
+                }
+                else {
+                    alert(`ProjectID: ${projectID} does not exist to delete in the table`);
+                }
+            }
+        });
     }
 }    
 
