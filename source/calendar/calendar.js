@@ -6,7 +6,7 @@ import {
 } from "../backend/NoteTable.js"
 
 document.addEventListener("DOMContentLoaded", () => {
-    const createTaskBtn = document.getElementById("create-task-btn");
+    //const createTaskBtn = document.getElementById("create-task-btn");
     const taskModal = document.getElementById("task-modal");
     const closeBtn = document.getElementsByClassName("close")[0];
     const taskForm = document.getElementById("task-form");
@@ -34,9 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
     monthSelect.value = currentMonth;
     yearInput.value = currentYear;
 
-    createTaskBtn.addEventListener("click", () => {
-        taskModal.style.display = "block";
-    });
+
+    //createTaskBtn.addEventListener("click", () => {
+    //    taskModal.style.display = "block";
+    //});
 
     closeBtn.addEventListener("click", () => {
         taskModal.style.display = "none";
@@ -196,6 +197,24 @@ function getRandomColor() {
     return color;
 }
 
+//get icon color based on how far in future deadline is
+function getIconColor(deadline) {
+    const currentDate = new Date();
+    const deadlineDate = new Date(deadline);
+    const oneDay = 24 * 60 * 60 * 1000; // milliseconds in one day
+    const diffDays = (deadlineDate - currentDate) / oneDay;
+
+    if (diffDays < 0) {
+        return '#808080'; // Grey if date has passed
+    } else if (diffDays <= 7) {
+        return '#FF0000'; // Red if within a week
+    } else if (diffDays <= 14) {
+        return '#FFFF00'; // Yellow if between one and two weeks
+    } else {
+        return '#008000'; // Green if over two weeks in future
+    }
+}
+/** 
 function addNotesAndProjectsToCalendar() {
     const noteTable = getNoteTableFromStorage();
     const projectTable = getProjectTableFromStorage();
@@ -212,7 +231,7 @@ function addNotesAndProjectsToCalendar() {
 
             const icon = document.createElement('div');
             icon.className = 'task-icon';
-            icon.style.backgroundColor = getRandomColor();
+            icon.style.backgroundColor = '#0000FF'; //always blue for notes
 
             const title = document.createElement('div');
             title.className = 'task-title';
@@ -233,7 +252,65 @@ function addNotesAndProjectsToCalendar() {
 
             const icon = document.createElement('div');
             icon.className = 'task-icon';
-            icon.style.backgroundColor = getRandomColor();
+            //get icon color based on date
+            icon.style.backgroundColor = getIconColor(value.deadline);
+
+            const title = document.createElement('div');
+            title.className = 'task-title';
+            title.textContent = value.title;
+
+            projectElement.appendChild(icon);
+            projectElement.appendChild(title);
+            dayElement.querySelector(".tasks").appendChild(projectElement);
+        }
+    }
+    console.log('test');
+}
+*/
+function addNotesAndProjectsToCalendar() {
+    const noteTable = getNoteTableFromStorage();
+    const projectTable = getProjectTableFromStorage();
+
+    // Date is saved as year-month-day 2024-05-30
+    // const dayElement = document.querySelector(`[data-date='${taskDate}']`);
+
+    for (const [key, value] of Object.entries(noteTable)) {
+        const dayElement = document.querySelector(`[data-date='${value.date}']`);
+        console.log(value.date);
+        if (dayElement) {
+            const noteElement = document.createElement('a');
+            noteElement.className = "task";
+            // REPLACE WITH PROPER LINK
+            noteElement.href = `LINKHERE?noteId=${key}`; 
+
+
+            const icon = document.createElement('div');
+            icon.className = 'task-icon';
+            icon.style.backgroundColor = '#0000FF'; //always blue for notes
+
+            const title = document.createElement('div');
+            title.className = 'task-title';
+            title.textContent = value.title;
+
+            noteElement.appendChild(icon);
+            noteElement.appendChild(title);
+            dayElement.querySelector(".tasks").appendChild(noteElement);
+        }
+    }
+
+    for (const [key, value] of Object.entries(projectTable)) {
+        const dayElement = document.querySelector(`[data-date='${value.deadline}']`);
+        console.log(value.deadline);
+        if (dayElement) {
+            const projectElement = document.createElement('a');
+            projectElement.className = "task";
+            //REPLACE WITH PROPER LINK
+            projectElement.href = `LINKHERE?projectId=${key}`;
+
+            const icon = document.createElement('div');
+            icon.className = 'task-icon';
+            //get icon color based on date
+            icon.style.backgroundColor = getIconColor(value.deadline);
 
             const title = document.createElement('div');
             title.className = 'task-title';

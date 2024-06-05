@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calendar</title>
     <link rel="stylesheet" href="calendar.css">
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
     </style>
 </head>
 <body>
+    <!--
     <nav>
     <a href="../markdown/markdown.html">Markdown</a>
     <a href="../calendar/calendar.html">Calendar</a>
     <a href="../homepage/index.html">Homepage</a>
     </nav>
+    -->
 
+    <vertical-navbar currentPage="anchorToCalendar"></vertical-navbar>
+    
 
     <div class="container">
         <header>
@@ -28,7 +32,8 @@
             <div class="search-bar">
                 <input type="text" id="search" placeholder="Search tasks...">
             </div>
-            <button id="create-task-btn">Create Task</button>
+            <add-new-btn></add-new-btn>
+            <!--<button id="create-task-btn">Create Task</button>-->
         </header>
         <div id="calendar">
             <div class="week-days">
@@ -42,12 +47,15 @@
             </div>
             <div id="calendar-days" class="days-grid"></div>
         </div>
+        
     </div>
-
+    
     <div id="task-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Create New Task</h2>
+            
+            <!--<h2>Create New Task</h2> -->
+            
             <form id="task-form">
                 <label for="task-date">Date:</label>
                 <input type="date" id="task-date" required>
@@ -57,10 +65,16 @@
                 <textarea id="task-description" required></textarea>
                 <button type="submit">Add Task</button>
             </form>
+            
         </div>
+        
     </div>
+    
+    
 <!--     <vertical-navbar currentPage="anchorToCalendar"></vertical-navbar> -->
 
     <script type="module" src="calendar.js"></script>
+    <script type="module" src="../addNewbutton/addNew.js"></script>
+    <script type="module" src="../verticalnavbar/verticalnavbar.js"></script>
 </body>
 </html>

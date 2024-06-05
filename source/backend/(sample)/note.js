@@ -2,6 +2,8 @@
 
 // Import all functions from NoteTable.js
 import { 
+  getNoteTableFromStorage,
+  saveNoteTableToStorage,
   getNoteFromTable, 
   saveNoteToTable, 
   deleteNoteFromTable, 
@@ -10,8 +12,7 @@ import {
   modifyNoteDate, 
   modifyNoteLastEdited, 
   modifyNoteTitle, 
-  appendProjectToNoteProjectList, 
-  removeProjectFromNoteProjectList, 
+  modifyLinkedProject,
   modifyNoteFavorited, 
   appendTagToNoteTags, 
   removeTagFromNoteTags
@@ -33,8 +34,7 @@ function init() {
   addModifyNoteDateEvent();
   addModifyLastEditedEvent();
   addModifyNoteTitleEvent();
-  addProjectListEvent();
-  addRemoveProjectListEvent();
+  addModifyLinkedProjectEvent();
   addModifyFavoritedEvent();
   addTagsEvent();
   addRemoveTagsEvent();
@@ -120,28 +120,13 @@ function addModifyNoteTitleEvent() {
   });
 }
 
-// Add to project list
-function addProjectListEvent() {
-  const addProjectListForm = document.getElementById("modifyProjectListForm");
-  addProjectListForm.addEventListener("submit", (event) => {
+// Modify linked project
+function addModifyLinkedProjectEvent() {
+  const projectListForm = document.getElementById("modifyLinkedProjectForm");
+  projectListForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const projectList = addProjectListForm.querySelector("input").value;
-    appendProjectToNoteProjectList(NOTE_ID, projectList);
-
-    // "ReUpdate component again to reflect changes"
-    const noteItem = document.querySelector("Note-Item")
-    const paragraph = noteItem.querySelector("p");
-    paragraph.textContent = JSON.stringify(getNoteFromTable(NOTE_ID));
-  });
-}
-
-// Remove from project list
-function addRemoveProjectListEvent() {
-  const removeProjectListForm = document.getElementById("removeProjectListForm");
-  removeProjectListForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const projectList = removeProjectListForm.querySelector("input").value;
-    removeProjectFromNoteProjectList(NOTE_ID, projectList);
+    const projectID = projectListForm.querySelector("input").value;
+    modifyLinkedProject(NOTE_ID, projectID);
 
     // "ReUpdate component again to reflect changes"
     const noteItem = document.querySelector("Note-Item")
