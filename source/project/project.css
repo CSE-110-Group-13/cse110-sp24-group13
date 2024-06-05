@@ -208,8 +208,7 @@ margin-right: 10px;
 
 select {
     font-size: 16px;
-    padding: .75vh 1.5vw;
-    padding-right: 8vw;
+    padding: .75vh 7vw .75vh 7vw;
     color: #6d6d6d; 
     background-color: transparent;
     /* Remove default CSS */
@@ -222,7 +221,8 @@ select {
 }
 
 #priority{
-    padding-right: 1vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
 }
 
 

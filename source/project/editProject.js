@@ -1,9 +1,7 @@
 // editProject.js
 
-// TODO - Linked notes section needs to be implemented (may be done with webcomponent)
-// TODO - Add functionality to Link Notes and Priority dropdown
-// TODO - Populate Tasks container
-// TODO - Possibly add a popup for when save is successful
+// TODO - Implement remove for tasks, make sure to remove it from both project and taskTable
+// TODO - Possibly add a custom popup for when save is successful
 
 // Importing necessary functions from backend modules
 import {
@@ -34,10 +32,8 @@ import {
 import {
   getNoteTableFromStorage,
   getNoteFromTable,
-  createNewNoteObject,
-  modifyNoteTitle,
   modifyLinkedProject,
-  modifyNoteLastEdited,
+
 } from "../backend/NoteTable.js";
 
 let PROJECT_ID;
@@ -47,14 +43,6 @@ let PROJECT_ID;
  * retrieving project information, and populating the page with data.
  */
 function init() {
-  // Uncomment these if you want to initialize storage
-  // localStorage.setItem("ProjectTable", JSON.stringify({}));
-  // localStorage.setItem("IDContainer", JSON.stringify([]));
-  // localStorage.setItem("TaskTable", JSON.stringify([]));
-  // localStorage.setItem("NoteTable", JSON.stringify({}));
-  // const placeholderNoteTable = createNewNoteObject();
-  // modifyNoteTitle(placeholderNoteTable.noteID, "New Note to Add");
-
   PROJECT_ID = window.location.hash.substring(1);
   if (!PROJECT_ID) {
     const project = createNewProjectObject();
@@ -328,17 +316,7 @@ function populateOptionsLinkNotes() {
   }
 }
 
-document.getElementById("descDropdown").addEventListener("click", function() {
-    const angleBracket = document.getElementById("descDropdown");
-    const projectDesc = document.getElementById("projectDesc");
-    if (projectDesc.style.display === "none") {
-      projectDesc.style.display = "block";
-      angleBracket.classList.remove("flip");
-    } else {
-      projectDesc.style.display = "none";
-      angleBracket.classList.add("flip");
-    }
-  });
+
 
 
 
@@ -406,7 +384,6 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
     trashIcons.forEach((icon) => {
         icon.addEventListener('click', () => {
             const noteID = icon.getAttribute('id');
-            // Call a function passing the noteID
             removeLinkedNote(noteID);
         });
     });
@@ -414,6 +391,7 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
 
 function removeLinkedNote(noteID) {
     removeLinkedNoteFromProject(PROJECT_ID,noteID);
+    modifyLinkedProject(noteID, null);
     const linkedNotesElement = document.querySelector(".linkedNotes");
     const project = getProjectFromTable(PROJECT_ID);
     populateLinkedNotes(project.linkedNotes, linkedNotesElement)
@@ -451,6 +429,18 @@ function populateProject() {
   populateLinkedNotes(project.linkedNotes, linkedNotesElement);
   updatePriority();
 }
+
+document.getElementById("descDropdown").addEventListener("click", function() {
+    const angleBracket = document.getElementById("descDropdown");
+    const projectDesc = document.getElementById("projectDesc");
+    if (projectDesc.style.display === "none") {
+      projectDesc.style.display = "block";
+      angleBracket.classList.remove("flip");
+    } else {
+      projectDesc.style.display = "none";
+      angleBracket.classList.add("flip");
+    }
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   init();
