@@ -243,6 +243,7 @@ class linkedProject extends HTMLElement {
 
         .projectHeader h1 {
             margin-right: 15px;
+            font-size:25px;
         }
 
         .projectHeader a {
