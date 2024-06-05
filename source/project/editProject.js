@@ -20,6 +20,7 @@ import {
   appendLinkedNoteToProject,
   removeLinkedNoteFromProject,
   modifyProjectDateCreated,
+  modifyLastWorkedOn,
 } from "../backend/ProjectTable.js";
 
 import {
@@ -61,8 +62,6 @@ function init() {
   }
   populateProject();
   populateOptionsLinkNotes();
-
-  appendTaskToProjectTaskList(PROJECT_ID, getTaskFromTable(createNewTaskObject()).taskID);
 
   attachSaveButtonListener();
   attachCancelButtonListener();
@@ -127,6 +126,8 @@ function updateProgress() {
   let progressBar = document.getElementById("progressBar");
 
   progressBar.value = calculateTaskCompletion(PROJECT_ID);
+
+  document.querySelector(".progress label").textContent = progressBar.value+"%";
 }
 
 /**
@@ -185,8 +186,8 @@ function createTaskListItem(taskListElement, taskListArray) {
     if (task.completed) {
       inputCheckbox.checked = true;
     }
-
-    updateTaskCompletionStatusEventListener(inputCheckbox, task.projectID);
+    console.log(task)
+    updateTaskCompletionStatusEventListener(inputCheckbox, PROJECT_ID);
     taskListElement.appendChild(inputCheckbox);
     taskListElement.appendChild(label);
     taskListElement.appendChild(document.createElement("br"));
@@ -213,9 +214,13 @@ function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID)
       modifyTaskCompleted(taskID, false);
       removeCompletedTaskFromProject(projectID, taskID);
     }
-
+    console.log(projectID);
     modifyLastWorkedOn(projectID, newDate);
     progressBar.value = calculateTaskCompletion(projectID);
+
+    const linkedNotesElement = document.querySelector(".linkedNotes");
+    const project = getProjectFromTable(PROJECT_ID);
+    populateLinkedNotes(project.linkedNotes, linkedNotesElement)
   });
 }
 
@@ -287,7 +292,12 @@ function addLinkedNotes() {
     console.log("Adding linked note");
     appendLinkedNoteToProject(PROJECT_ID, selectedNote.value);
     selectedNote.value = "";
+    selectedNote.ariaPlaceholder = "Linked Note(s)";
+    console.log(getProjectFromTable(PROJECT_ID).linkedNotes[0]);
   }
+  const linkedNotesElement = document.querySelector(".linkedNotes");
+  const project = getProjectFromTable(PROJECT_ID);
+  populateLinkedNotes(project.linkedNotes, linkedNotesElement)
 }
 
 /**
@@ -311,41 +321,53 @@ function populateOptionsLinkNotes() {
  * @param {HTMLElement} elementLinkedNotes - The DOM element where the linked notes should be added.
  */
 function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
-  const linkIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  linkIcon.setAttribute("viewBox", "0 0 448 512");
-  linkIcon.innerHTML = `<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>`;
+    // Create SVG icons for linking and checkboxes
+    elementLinkedNotes.innerHTML = '';
+    const linkIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    linkIcon.setAttribute("viewBox", "0 0 640 512");
+    linkIcon.innerHTML = `<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/>`;
+  
+    const checkbox = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    checkbox.setAttribute("viewBox", "0 0 448 512");
+    checkbox.innerHTML = `<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>`;
+  
+    // Iterate through each linked note
+    linkedNotes.forEach((noteID) => {
+      const note = getNoteFromTable(noteID);
+  
+      // Create the note header
+      const noteHeader = document.createElement("div");
+      noteHeader.classList.add("linkedNote");
+  
+      const title = document.createElement("h3");
+      title.textContent = note.title;
+  
+      // Create the right side of the header which includes tags and last modified date
+      const rightSide = document.createElement("ul");
+  
+      const lastModified = document.createElement("p");
+      lastModified.textContent = "Last modified: " + note.lastEdited;
+      rightSide.appendChild(lastModified);
+  
+      note.tags.forEach((tagName) => {
+        const tag = document.createElement("li");
+        tag.textContent = tagName;
+        rightSide.appendChild(tag);
+      });
+  
+      // Add the parts of the header to the linked notes container
+      noteHeader.appendChild(title);
+      noteHeader.appendChild(linkIcon.cloneNode(true));
+      noteHeader.appendChild(rightSide);
 
-  const checkbox = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  checkbox.setAttribute("viewBox", "0 0 448 512");
-  checkbox.innerHTML = `<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-65-65c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L192 271l111-111c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>`;
-
-  linkedNotes.forEach((noteID) => {
-    const linkedNote = getNoteFromTable(noteID);
-    const linkedNoteElement = document.createElement("li");
-
-    const noteLink = document.createElement("a");
-    noteLink.href = "../notes/edit-note.html#" + noteID;
-    noteLink.textContent = linkedNote.title;
-
-    const deleteButton = document.createElement("button");
-    deleteButton.className = "deleteNote";
-    deleteButton.setAttribute("aria-label", "Delete note");
-
-    deleteButton.appendChild(checkbox);
-
-    deleteButton.addEventListener("click", function () {
-      console.log(noteID);
-      removeLinkedNoteFromProject(PROJECT_ID, noteID);
-      linkedNoteElement.remove();
+      
+  
+      // Append the note header and completed tasks to the linked notes element
+      elementLinkedNotes.appendChild(noteHeader);
+      elementLinkedNotes.appendChild(document.createElement("hr"));
     });
-
-    linkedNoteElement.appendChild(linkIcon.cloneNode(true));
-    linkedNoteElement.appendChild(noteLink);
-    linkedNoteElement.appendChild(deleteButton);
-
-    elementLinkedNotes.appendChild(linkedNoteElement);
-  });
-}
+  }
+  
 
 /**
  * Populates the project details in the UI based on the project ID.

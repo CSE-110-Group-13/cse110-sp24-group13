@@ -179,13 +179,20 @@ vertical-navbar {
 }
 
 .progress progress{
-width: 100px;
-scale: 250%;
-margin-right: 90px;
+width: 300px;
+height: 30px;
+margin-right: 10px;
+
 }
+
+#progressBar{
+    accent-color: green;
+}
+
+
 .progress label{
     font-size: larger;
-    font-weight: 1000;
+    font-weight:bold;
     
 }
 
@@ -260,5 +267,6 @@ li{
 }
 
 hr{
-    color:#00000056;
+    border-color: rgba(0, 0, 0, 0.147);
+    border-width: 1px;
 }
