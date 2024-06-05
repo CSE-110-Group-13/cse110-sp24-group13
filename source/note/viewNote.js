@@ -10,6 +10,7 @@ window.addEventListener("DOMContentLoaded", init);
 
 function init() {
     NOTE_ID = window.location.hash.substring(1);
+    makeUneditable();
     console.log(NOTE_ID);
     populateNote();   
     attachEditButtonListener();
@@ -32,6 +33,15 @@ function deleteNote() {
     console.log("delete note")
     deleteNoteFromTable(NOTE_ID);
     window.location.href = "../homepage/index.html";
+}
+
+function makeUneditable() {
+    // Hide toolbar
+    const toolbar = document.querySelector('.css-hnubqc');
+    toolbar.style.display = 'none';
+    // Make textbox uneditable
+    const contentBox = document.querySelector('[role="textbox"]');
+    contentBox.setAttribute('contenteditable', 'false');
 }
 /**
  * Populates the note with existing data from the backend.
