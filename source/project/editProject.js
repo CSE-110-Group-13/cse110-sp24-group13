@@ -157,30 +157,77 @@ function addNewTask() {
  * @param {Array} taskListArray - An array of task IDs.
  */
 function createTaskListItem(taskListElement, taskListArray) {
-  taskListElement.innerHTML = ""; // Clear the task list before rendering
+    taskListElement.innerHTML = ""; // Clear the task list before rendering
+  
+    const trashIconTemplate = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    trashIconTemplate.setAttribute("viewBox", "0 0 448 512");
+    trashIconTemplate.setAttribute("class", "removeNote");
+    trashIconTemplate.innerHTML = `<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>`;
+  
+    taskListArray.forEach((taskID) => {
+      const task = getTaskFromTable(taskID);
+      const taskContainer = document.createElement("div");
+      taskContainer.classList.add("taskContainer");
+  
+      const inputCheckbox = document.createElement("input");
+      inputCheckbox.setAttribute("type", "checkbox");
+      inputCheckbox.id = taskID;
+  
+      const taskName = document.createElement("input");
+      taskName.setAttribute("type", "text");
+      taskName.id = taskID;
+      taskName.value = task.name;
+  
+      const trashIcon = trashIconTemplate.cloneNode(true);
+      trashIcon.id = taskID;
+  
+      if (task.completed) {
+        inputCheckbox.checked = true;
+      }
+  
+      // Event listener for the trash icon
+      trashIcon.addEventListener("click", () => {
+        removeTask(taskID); // Call the function with the task ID
+      });
+  
+// Event listener for the text input to wait for Enter key
+    taskName.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        updateTaskName(taskID, event.target.value); // Call the function with the task ID and new value
+      }
+    });
+  
+      updateTaskCompletionStatusEventListener(inputCheckbox, PROJECT_ID);
+      taskContainer.appendChild(inputCheckbox);
+      taskContainer.appendChild(taskName);
+      taskContainer.appendChild(trashIcon);
+      taskListElement.appendChild(taskContainer);
+    });
+  }
+  
+  // Example function to remove a task
+  function removeTask(taskID) {
+    removeTaskFromProjectTaskList(PROJECT_ID,taskID);
+    deleteTaskFromTable(taskID);
+    console.log("deleteed task?")
 
-  taskListArray.forEach((taskID) => {
-    const task = getTaskFromTable(taskID);
+    const taskList = document.querySelector(".taskList");
+    const project = getProjectFromTable(PROJECT_ID);
 
-    const inputCheckbox = document.createElement("input");
-    inputCheckbox.setAttribute("type", "checkbox");
-    inputCheckbox.id = taskID;
+    createTaskListItem(taskList, project.taskList);
+  }
+  
+  // Example function to update task name
+  function updateTaskName(taskID, newName) {
+    console.log(newName);
+    modifyTaskName(taskID, newName);
 
-    const label = document.createElement("label");
-    label.setAttribute("for", taskID);
-    label.textContent = task.name;
-    console.log(task.name);
+    const taskList = document.querySelector(".taskList");
+    const project = getProjectFromTable(PROJECT_ID);
 
-    if (task.completed) {
-      inputCheckbox.checked = true;
-    }
-    console.log(task)
-    updateTaskCompletionStatusEventListener(inputCheckbox, PROJECT_ID);
-    taskListElement.appendChild(inputCheckbox);
-    taskListElement.appendChild(label);
-    taskListElement.appendChild(document.createElement("br"));
-  });
-}
+    createTaskListItem(taskList, project.taskList);
+  }
+  
 
 /**
  * Adds an event listener to a task checkbox to update its completion status.
@@ -233,41 +280,7 @@ function calculateTaskCompletion(projectID) {
   return (numberCompleted / taskList.length) * 100;
 }
 
-/**
- * Saves the project with the current state of inputs and tasks.
- */
-function saveProject() {
-  console.log("Save Clicked");
-  if (!PROJECT_ID) {
-    const newProject = createNewProjectObject();
-    PROJECT_ID = newProject.projectID;
-    modifyProjectDateCreated(PROJECT_ID, new Date().toISOString().split("T")[0]);
-    populateProject();
-  }
-  const projectTitle = document.querySelector("#projectTitle").value;
-  const projectDescription = document.querySelector("#projectDesc").value;
-  console.log(projectDescription);
-  const projectDeadline = document.querySelector("#deadline").value;
-  console.log(projectDeadline);
 
-  modifyProjectTitle(PROJECT_ID, projectTitle);
-  modifyProjectDescription(PROJECT_ID, projectDescription);
-  modifyProjectDeadline(PROJECT_ID, projectDeadline);
-  alert("Save successful (Replace this with a custom one later)");
-
-  window.location.href = "./edit-project.html#" + PROJECT_ID;
-}
-
-/**
- * Cancels the edit and redirects to the appropriate page.
- */
-function cancelEdit() {
-  if (!PROJECT_ID) {
-    window.location.href = "../projectlist/projectlist.html";
-  } else {
-    window.location.href = "./view-project.html#" + PROJECT_ID;
-  }
-}
 
 /**
  * Adds a linked note to the project based on the selected value.
@@ -315,10 +328,6 @@ function populateOptionsLinkNotes() {
     }
   }
 }
-
-
-
-
 
 /**
  * Populates the linked notes section with notes linked to the project.
@@ -399,6 +408,41 @@ function removeLinkedNote(noteID) {
 
 }
 
+/**
+ * Saves the project with the current state of inputs and tasks.
+ */
+function saveProject() {
+    console.log("Save Clicked");
+    if (!PROJECT_ID) {
+      const newProject = createNewProjectObject();
+      PROJECT_ID = newProject.projectID;
+      modifyProjectDateCreated(PROJECT_ID, new Date().toISOString().split("T")[0]);
+      populateProject();
+    }
+    const projectTitle = document.querySelector("#projectTitle").value;
+    const projectDescription = document.querySelector("#projectDesc").value;
+    console.log(projectDescription);
+    const projectDeadline = document.querySelector("#deadline").value;
+    console.log(projectDeadline);
+  
+    modifyProjectTitle(PROJECT_ID, projectTitle);
+    modifyProjectDescription(PROJECT_ID, projectDescription);
+    modifyProjectDeadline(PROJECT_ID, projectDeadline);
+    alert("Save successful (Replace this with a custom one later)");
+  
+    window.location.href = "./edit-project.html#" + PROJECT_ID;
+  }
+  
+  /**
+   * Cancels the edit and redirects to the appropriate page.
+   */
+  function cancelEdit() {
+    if (!PROJECT_ID) {
+      window.location.href = "../projectlist/projectlist.html";
+    } else {
+      window.location.href = "./view-project.html#" + PROJECT_ID;
+    }
+  }
 
 /**
  * Populates the project details in the UI based on the project ID.
@@ -433,14 +477,23 @@ function populateProject() {
 document.getElementById("descDropdown").addEventListener("click", function() {
     const angleBracket = document.getElementById("descDropdown");
     const projectDesc = document.getElementById("projectDesc");
+    const line = document.createElement("hr");
+    
     if (projectDesc.style.display === "none") {
       projectDesc.style.display = "block";
       angleBracket.classList.remove("flip");
+      // If you want to remove the line when showing the description
+      if (angleBracket.previousElementSibling && angleBracket.previousElementSibling.tagName === "HR") {
+        angleBracket.previousElementSibling.remove();
+      }
     } else {
       projectDesc.style.display = "none";
       angleBracket.classList.add("flip");
+      // Insert the line above the angleBracket
+      angleBracket.parentNode.insertBefore(line, angleBracket);
     }
 });
+
 
 document.addEventListener("DOMContentLoaded", function () {
   init();
