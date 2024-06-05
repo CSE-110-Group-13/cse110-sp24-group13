@@ -535,11 +535,12 @@ class linkedProject extends HTMLElement {
             }
         });
 
-        const changeButton = document.querySelector('.projectFooter button');
+        //TODO::Make this event listener work. RN it cant queryselect right
+        /*const changeButton = document.querySelector('.projectFooter button');
         changeButton.addEventListener('click', () => {
             projectContainer.classList.toggle("open");
             overlay.classList.toggle("open");
-        });
+        });*/
 
 
         document.addEventListener('DOMContentLoaded', () => {
