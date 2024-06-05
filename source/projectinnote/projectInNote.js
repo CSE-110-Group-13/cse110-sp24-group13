@@ -25,10 +25,10 @@ class linkedProject extends HTMLElement {
             let table = getNoteTableFromStorage(Note_ID);
             let note = table[Note_ID];
             console.log(note);
-            console.log(note["linkedProject"])
-            if (note["linkedProject"] !== undefined) {
-                this.populateProject(note["linkedProject"]);
-            }    
+            console.log(note["projectList"]);
+            if (note["projectList"].length > 0) {
+                this.populateProject(note["projectList"][0]);
+            }
         }
         
     }    
@@ -40,6 +40,8 @@ class linkedProject extends HTMLElement {
         
         const linkedProject = document.querySelector('.linkedProject');
         linkedProject.classList.toggle('open');
+        const linkAProject = document.querySelector('.linkAProject');
+        linkAProject.classList.toggle('close');
         let project = getProjectFromTable(projectID);
         let projectTitle = document.getElementById('projectTitle');
         let projectDue = document.querySelector('.projectDue p');
@@ -78,11 +80,16 @@ class linkedProject extends HTMLElement {
             
         }
 
-        .linkAProject {
+        .linkAProject.open{
             display: flex;
             flex-direction: row;
 
         }
+
+        .linkAProject.close{
+            display: none;
+        }
+
         #lButton {
             display: flex; 
             width: 20%;
@@ -351,7 +358,8 @@ class linkedProject extends HTMLElement {
 
         // Create link a project container
         const linkAProject = document.createElement('div');
-        linkAProject.classList = 'linkAProject';
+        linkAProject.classList = "linkAProject";
+        linkAProject.classList.toggle("open");
 
         // Create a container the description of linking a project
         const descriptionContainer = document.createElement('div');
