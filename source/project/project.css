@@ -50,7 +50,7 @@ vertical-navbar {
 
 .select-wrapper svg{
     margin-right: 1vw;
-    margin-left: -1.5vw;
+    margin-left: -2vw;
     width: 18px;
     height: 18px;
     color:#6d6d6d;
@@ -208,8 +208,8 @@ margin-right: 10px;
 
 select {
     font-size: 16px;
-    padding: 10px 20px;
-    padding-right: 30px;
+    padding: .75vh 1.5vw;
+    padding-right: 8vw;
     color: #6d6d6d; 
     background-color: transparent;
     /* Remove default CSS */
@@ -221,13 +221,22 @@ select {
     z-index: 1;
 }
 
+#priority{
+    padding-right: 1vw;
+}
+
 
 
 select:hover{
     cursor: pointer;
 }
 
+.linkedNotes{
+    margin: 0 .75vw 0 .75vw;
+}
+
 .linkedNote{
+    margin-right: 2vw;
     justify-content: start;
     align-items: center;
     min-width: fit-content;
@@ -269,4 +278,13 @@ li{
 hr{
     border-color: rgba(0, 0, 0, 0.147);
     border-width: 1px;
+    align-items: center;
+}
+
+.removeNote{
+    fill:#760000e3;
+}
+
+.flip {
+    transform: rotate(180deg);
 }
