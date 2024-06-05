@@ -6,7 +6,8 @@ import {
     modifyNoteTitle, 
     appendTagToNoteTags, 
     removeTagFromNoteTags,
-    getNoteFromTable
+    getNoteFromTable,
+    modifyNoteLastEdited
   } from '../backend/NoteTable.js';
 
 let NOTE_ID = "";
@@ -59,6 +60,7 @@ function saveNote() {
     modifyNoteTitle(NOTE_ID, noteTitle);
     modifyNoteText(NOTE_ID, noteMarkdown);
     modifyNoteDate(NOTE_ID, noteDate);
+    modifyNoteLastEdited(NOTE_ID, new Date().toISOString().slice(0,10));
     window.location.href = './view-note.html#' + NOTE_ID;
     
 }
