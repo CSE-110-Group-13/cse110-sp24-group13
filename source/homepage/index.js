@@ -99,14 +99,15 @@ function createNoteElement(noteObject){
 
     tagsProjectContainer.appendChild(tagElement);
   });
-  
+  /*
   // Add line separating the tags and projects
   if(noteObject.projectList.length != 0) {
     const verticalLine = document.createElement('div');
     verticalLine.id = 'vertical-line';
     tagsProjectContainer.appendChild(verticalLine);
   }
-  
+  */
+  /*
   // Add each project separately
   noteObject.projectList.forEach(project => {
     const projectElement = document.createElement('span');
@@ -116,6 +117,7 @@ function createNoteElement(noteObject){
     projectElement.appendChild(linkElement);
     tagsProjectContainer.appendChild(projectElement);
   });
+  */
 
 
   //Favorite button of the note. 
@@ -173,7 +175,7 @@ function init(){
   // loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
 
   //Testing Values for console. 
-  /*
+  
     const notesTable = {
     "ABC": {
         "noteID": "ABC",
@@ -181,7 +183,7 @@ function init(){
         "date": "2024-5-21",
         "lastEdited": "2025-5-23",
         "title": "to do at grocery store",
-        "projectList": [],
+        "linkedProject": "",
         "favorited": false,
         "tags": ["bb", "cc"]
     },
@@ -191,7 +193,7 @@ function init(){
         "date": "2024-5-22",
         "lastEdited": "2026-5-22",
         "title": "chores",
-        "projectList": ["Ash"],
+        "linkedProject": "",
         "favorited": false,
         "tags": ["a"]
     },
@@ -201,7 +203,7 @@ function init(){
         "date": "2024-5-21",
         "lastEdited": "2025-5-23",
         "title": "to do at grocery store",
-        "projectList": [],
+        "linkedProject": "",
         "favorited": false,
         "tags": []
     } 
@@ -216,7 +218,7 @@ const ID = ["ABC", "21kfasde", "XYZ"];
 
 // Store the ID array in local storage
 localStorage.setItem('IDContainer', JSON.stringify(ID));
-*/
+
 
   //For all the loadedNOtes upload them unto homepage 
   // for(let i = 0; i < loadedNotes.length; i++){

@@ -1,11 +1,18 @@
 import { 
     getProjectTableFromStorage,
-    getProjectFromTable
+    getProjectFromTable,
+    appendCompletedTaskToProject,
+    removeCompletedTaskFromProject,
+    modifyLastWorkedOn
 } from "../backend/ProjectTable.js"; 
 import {
     modifyLinkedProject,
     getNoteTableFromStorage
 } from "../backend/NoteTable.js";
+import {
+    getTaskFromTable,
+    modifyTaskCompleted
+  } from "../backend/TaskTable.js"
 
 class linkedProject extends HTMLElement {
     constructor() {
@@ -25,15 +32,124 @@ class linkedProject extends HTMLElement {
             let table = getNoteTableFromStorage(Note_ID);
             let note = table[Note_ID];
             console.log(note);
-            console.log(note["projectList"]);
-            if (note["projectList"].length > 0) {
-                this.populateProject(note["projectList"][0]);
+            console.log(note["linkedProject"]);
+            if (note["linkedProject"].length > 0) {
+                this.populateProject(note["linkedProject"][0]);
             }
         }
         
     }    
 
-    populateProject(projectID) {
+    createTaskListItem(taskListElement, taskListArray, projectID, progressBar) {
+        taskListArray.forEach(taskID => {
+          const task = getTaskFromTable(taskID);
+          const taskListItem = document.createElement('li');
+          taskListElement.appendChild(taskListItem);
+      
+          const inputCheckbox = document.createElement('input');
+          inputCheckbox.setAttribute('type', 'checkbox');
+          inputCheckbox.id = taskID;
+          
+          const label = document.createElement('label');
+          label.setAttribute('for', taskID);
+          label.textContent = task.name;
+      
+          if (task.completed === true) {
+            inputCheckbox.checked = true;
+          }
+      
+          this.updateTaskCompletionStatusEventListener(inputCheckbox, projectID, progressBar);
+          taskListItem.appendChild(inputCheckbox);
+          taskListItem.appendChild(label);
+        });
+    }
+
+    updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID, progressBar){
+        singleInputCheckbox.addEventListener('change', () => {
+          const taskID = singleInputCheckbox.id;
+          const task = getTaskFromTable(taskID);
+          // unchecked to checked
+          if (singleInputCheckbox.checked === true && task.completed === false) {
+            let newDate = new Date();
+            newDate = newDate.toISOString().split('T')[0];
+            modifyTaskCompleted(taskID, true);
+            appendCompletedTaskToProject(projectID, taskID);
+            modifyLastWorkedOn(projectID, newDate);
+            progressBar.value = this.calculateTaskCompletion(projectID);
+          }
+          // checked to unchecked
+          if (singleInputCheckbox.checked === false && task.completed === true) {
+            let newDate = new Date();
+            newDate = newDate.toISOString().split('T')[0];
+            modifyTaskCompleted(taskID, false);
+            removeCompletedTaskFromProject(projectID, taskID);
+            modifyLastWorkedOn(projectID, newDate);
+            progressBar.value = this.calculateTaskCompletion(projectID);
+          }
+        });
+    }
+
+    calculateTaskCompletion(projectID) {
+        const selectedProject = getProjectFromTable(projectID);
+        const taskList = selectedProject.taskList;
+        if (taskList.length !== 0) {
+          let numberCompleted = 0;
+          let totalTasks = taskList.length;
+          taskList.forEach(taskID => {
+            const task = getTaskFromTable(taskID);
+            if (task.completed === true) {numberCompleted++};
+          });
+          let percentCompleted = Math.trunc((numberCompleted / totalTasks) * 100);
+          return percentCompleted;
+        } else {
+          return -1;
+        }
+      }
+
+    dateToString(dateStr) {
+        const months = ["January", "February", "March", "April", "May", "June",
+                  "July", "August", "September", "October", "November", "December"];
+    
+        const [year, month, day] = dateStr.split("-");
+    
+        const monthName = months[parseInt(month, 10) - 1];
+    
+        const dayInt = parseInt(day, 10);
+        const suffix = (dayInt === 1 || dayInt === 21 || dayInt === 31) ? "st" :
+                       (dayInt === 2 || dayInt === 22) ? "nd" :
+                       (dayInt === 3 || dayInt === 23) ? "rd" : "th";
+    
+        return `${monthName} ${dayInt}${suffix}`;
+    }
+
+    timeTillDeadline(deadline) {
+        const currentDate = new Date();
+        const deadlineDate = new Date(deadline);
+      
+        const differenceInTimeMilliseconds = deadlineDate - currentDate;
+        if (differenceInTimeMilliseconds <= 0) {
+          return "Deadline has already passed.";
+        }
+      
+        const differenceInDays = Math.floor(differenceInTimeMilliseconds/ (1000 * 60 * 60 * 24));
+        const weeksLeft = Math.floor(differenceInDays / 7);
+        const daysLeft = differenceInDays % 7;
+      
+        if (weeksLeft > 1 && daysLeft > 1) {
+          return `${weeksLeft} Weeks, ${daysLeft} Days till deadline: ${this.dateToString(deadline)}`;
+        }
+        else if (weeksLeft <= 1 && daysLeft > 1) {
+          return `${weeksLeft} Week, ${daysLeft} Days till deadline: ${this.dateToString(deadline)}`;
+        }
+        else if (weeksLeft > 1 && daysLeft <= 1) {
+          return `${weeksLeft} Weeks, ${daysLeft} Day till deadline: ${this.dateToString(deadline)}`;
+        }
+        else if (weeksLeft <= 1 && daysLeft <= 1) {
+          return `${weeksLeft} Week, ${daysLeft} Day till deadline: ${this.dateToString(deadline)}`;
+        }
+    }
+
+      populateProject(projectID) {
         console.log("populateProject");
         //TODO: Make linkedProject/ LinkedProjectComponent appear
         //TODO: Also style it correctly
@@ -45,7 +161,7 @@ class linkedProject extends HTMLElement {
         let project = getProjectFromTable(projectID);
         let projectTitle = document.getElementById('projectTitle');
         let projectDue = document.querySelector('.projectDue p');
-        let projectDesc = document.querySelector('.projectDetails p');
+        let projectDesc = document.getElementById('projectDescContent');
         let projectProgress = document.querySelector('progress');
         /*
         projectTitle.textContent = project["title"];
@@ -53,20 +169,30 @@ class linkedProject extends HTMLElement {
         projectDesc.textContent = project["description"];
         projectProgress.value = project["progress"];
         */
-        projectTitle.innerHTML = `${project.title}`;
-        projectDue.innerHTML = `${project.dueDate}`;
-        projectDesc.innerHTML = `${project.description}`;
-        projectProgress.innerHTML = `${project.progress}`;
+        projectTitle.textContent = project.title;
+        projectDue.textContent = this.timeTillDeadline(project.deadline);
+        projectDesc.textContent = project.description;
 
-        //TODO: Add tasks to the task container
-        let taskContainer = document.getElementsByClassName('tasks');
+        // TODO: progress bar and % completed does not update correctly think its with calculate task completion
+        projectProgress.value = `${this.calculateTaskCompletion(projectID)}`;
+        let progressLabel = document.getElementById("progressLabel");
+        progressLabel.textContent = `${projectProgress.value}% of tasks completed`;
 
+        //Add tasks to the task container
+        let taskList = document.querySelector('.tasks');
+        this.createTaskListItem(taskList, project.taskList, projectID, projectProgress);
+    
         //TODO: Add hrefs to projectView and projectChange
         let projectViewLink = document.querySelector('.projectHeader a');
 
 
 
     }
+
+      
+      
+      
+
 
     render() {
         // Styling 
@@ -328,6 +454,10 @@ class linkedProject extends HTMLElement {
             margin-left: auto;
             margin-right: 10px;
             cursor: pointer;
+            outline: none;
+            box-shadow: none;
+            border: none;
+            background-color: transparent;
             
         }
 
@@ -418,8 +548,8 @@ class linkedProject extends HTMLElement {
                 <span class="priorityDot"></span>
                 <h1 id="projectTitle">Project Name</h1>
                 <div class="progress">
-                    <progress id="progressBar" value="33" max="100">200000</progress>
-                    <label for="progressBar">placeholder%</label>
+                    <progress id="progressBar" value="33" max="100">2000000</progress>
+                    <label for="progressBar" id="progressLabel">placeholder%</label>
                 </div>
                 <a id=projectView><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg></a>
             </div>
