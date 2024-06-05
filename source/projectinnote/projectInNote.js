@@ -3,7 +3,7 @@ import {
     getProjectFromTable
 } from "../backend/ProjectTable.js"; 
 import {
-    appendProjectToNoteProjectList,
+    modifyLinkedProject,
     getNoteTableFromStorage
 } from "../backend/NoteTable.js";
 
@@ -25,9 +25,9 @@ class linkedProject extends HTMLElement {
             let table = getNoteTableFromStorage(Note_ID);
             let note = table[Note_ID];
             console.log(note);
-            console.log(note["projectList"])
-            if (note["projectList"] !== undefined) {
-                this.populateProject(note["projectList"][0]);
+            console.log(note["linkedProject"])
+            if (note["linkedProject"] !== undefined) {
+                this.populateProject(note["linkedProject"]);
             }    
         }
         
@@ -501,10 +501,10 @@ class linkedProject extends HTMLElement {
         // Add event listener for form submission
         confirmButton.addEventListener('click', (event) => {
             event.preventDefault();
-            // Add project to projectList for the note
+            // Add project to linkedProject for the note
             const selectedProject = form.querySelector('.selected');
             let NOTE_ID = window.location.hash.substring(1);
-            appendProjectToNoteProjectList(NOTE_ID, selectedProject.id);
+            modifyLinkedProject(NOTE_ID, selectedProject.id);
             projectContainer.classList.toggle("open");
             overlay.classList.toggle("open");
             this.populateProject(selectedProject.id);
