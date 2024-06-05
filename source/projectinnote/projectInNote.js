@@ -7,7 +7,8 @@ import {
 } from "../backend/ProjectTable.js"; 
 import {
     modifyLinkedProject,
-    getNoteTableFromStorage
+    getNoteTableFromStorage,
+    getNoteFromTable
 } from "../backend/NoteTable.js";
 import {
     getTaskFromTable,
@@ -33,8 +34,8 @@ class linkedProject extends HTMLElement {
             let note = table[Note_ID];
             console.log(note);
             console.log(note["linkedProject"]);
-            if (note["linkedProject"].length > 0) {
-                this.populateProject(note["linkedProject"][0]);
+            if (note["linkedProject"] !== "") {
+                this.populateProject(note["linkedProject"]);
             }
         }
         
@@ -408,6 +409,8 @@ class linkedProject extends HTMLElement {
             cursor: pointer;
             width: 100%;
             justify-content: start;
+            margin-left: -2px;
+            margin-top: -35px;
         }
 
         .projectTaskList p {
@@ -416,8 +419,9 @@ class linkedProject extends HTMLElement {
 
         #addTasks svg {
             margin-right: 8px; /* Add space between icon and text */
-            width: 20px;
-            height: 20px;
+            width: 15px;
+            height: 15px;
+            
         }
 
         .descHeader {
@@ -442,6 +446,18 @@ class linkedProject extends HTMLElement {
             display: flex;
             flex-direction: row;
             align-items: center;
+        }
+
+        .tasks {
+            list-style-type: none;
+            margin-right: 8px;
+            margin-top: -10px;
+            padding: 10px;
+        }
+
+        .tasks input {
+            margin-right: 8px;
+            accent-color: black;
         }
 
         .projectFooter button {
@@ -590,16 +606,8 @@ class linkedProject extends HTMLElement {
         container.appendChild(linkAProject);
         linkedProjectComponent.classList.toggle("close");
 
-
         // Get projects from local storage
         const projectTable = getProjectTableFromStorage(); 
-
-        /*
-        // If note already has a linked project then add selected
-        if(note.projectList.length > 0) {
-            note.projectList.classList.add('selected');
-        }
-        */
 
         // Create a form element
         const form = document.createElement('form');
@@ -611,12 +619,19 @@ class linkedProject extends HTMLElement {
             const currentProjects = document.createElement('div');
             currentProjects.classList = "currentProjects";
             form.appendChild(currentProjects);
-
+            // Get note_id and noe
+            let note_id = window.location.hash.substring(1);
+            let note = getNoteFromTable(note_id);
             // Add title of the project
             const projectElement = document.createElement('button');
             projectElement.type = 'button';
             projectElement.textContent = value.title;
             projectElement.id = key;
+            // Add selected if the project is in the projectList
+            if(note.linkedProject === key) {
+                projectElement.classList.add('selected');
+            }
+            
             projectElement.addEventListener('click', () => {
                 const selectProject = document.querySelector('.selected');
                 if (selectProject) {
