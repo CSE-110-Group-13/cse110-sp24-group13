@@ -261,8 +261,15 @@ function populateOptionsLinkNotes() {
   const noteTable = getNoteTableFromStorage();
   const linkedNotes = getProjectFromTable(PROJECT_ID).linkedNotes;
   const selectElement = document.querySelector("#linkNotes");
-  
-  selectElement.innerHTML = ""
+  selectElement.innerHTML = "";
+
+  const placeHolder = document.createElement("option");
+  placeHolder.value = "default";
+  placeHolder.setAttribute("disabled", "disabled");
+  placeHolder.setAttribute("selected", "selected");
+  placeHolder.innerText = "Link Note(s)";
+
+  selectElement.appendChild(placeHolder);
 
   for (const [key, value] of Object.entries(noteTable)) {
     let isLinked = false;
