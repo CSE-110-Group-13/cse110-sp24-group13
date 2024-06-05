@@ -47,13 +47,16 @@ function attachCancelButtonListener() {
     document.querySelector('cancel-button button').addEventListener('click', cancelEdit);
 }
 
+//TODO: Make it properly save and populate the title form
+
 /**
  * Saves the current state of the note to the local storage.
  * Retrieves the note title, markdown content, and date from the DOM.
  * Modifies the note in the backend using the note ID.
  */
 function saveNote() {
-    const noteTitle = document.querySelector('.noteTitle h1').innerText;
+    const noteTitle = document.querySelector('.noteTitle').value;
+    console.log(noteTitle);
     const noteMarkdown = document.querySelector('markdown-editor').wysimark.getMarkdown();
     const noteDate = document.querySelector('.date input').value;
     // Modify the note
@@ -75,8 +78,7 @@ function cancelEdit() {
  */
 function populateNote() {
     const note = getNoteFromTable(NOTE_ID);
-    console.log(note.title)
-    document.querySelector('.noteTitle h1').innerText = note.title;
+    document.querySelector('.noteTitle').value = note.title;
     document.querySelector('markdown-editor').wysimark.setMarkdown(note.text);
     document.querySelector('.date input').value = note.date;
 }
