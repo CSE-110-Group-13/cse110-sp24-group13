@@ -49,6 +49,7 @@ head {
 
 #favorites {
   margin: 5px auto; /* Center the container horizontally */
+  margin-left: 25px;
   height: 475px;
   width: 100%; /* Ensure it takes the full width of the parent */
   max-width: calc(100% - 30px); /* Ensure there's no horizontal overflow */
@@ -76,10 +77,10 @@ head {
 
 .note-wrapper {
   position: relative;
-  margin-left: 25px;
+  margin-left: 20px;
   margin-right:14px;
   border-radius: 10px; /* Rounded corners */
-  max-width: 100%; /* Ensure it takes the full width of the grid column */
+  max-width: 80%; /* Ensure it takes the full width of the grid column */
   display: block;
 }
 
