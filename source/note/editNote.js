@@ -7,7 +7,7 @@ import {
     appendTagToNoteTags, 
     removeTagFromNoteTags,
     getNoteFromTable,
-    modifyNoteLastEdited
+    modifyNoteLastEdited,
   } from '../backend/NoteTable.js';
 
 let NOTE_ID = "";
@@ -31,6 +31,7 @@ function init() {
         NOTE_ID = newNote.noteID;
     } else {
         populateNote();
+        populateTag();
     }
     attachSaveButtonListener();
     attachCancelButtonListener();
@@ -62,6 +63,7 @@ function saveNote() {
     modifyNoteText(NOTE_ID, noteMarkdown);
     modifyNoteDate(NOTE_ID, noteDate);
     modifyNoteLastEdited(NOTE_ID, new Date().toISOString().slice(0,10));
+
     window.location.href = './view-note.html#' + NOTE_ID;
 }
 
@@ -79,3 +81,33 @@ function populateNote() {
     document.querySelector('markdown-editor').wysimark.setMarkdown(note.text);
     document.querySelector('.date input').value = note.date;
 }
+
+function populateTag() {
+    const note = getNoteFromTable(NOTE_ID);
+    const tags = note.tags;
+    const tagsContainer = document.querySelector('.tagContainer');
+    tags.forEach(tag => {
+        const newTag = document.createElement('li');
+        newTag.textContent = tag;
+        tagsContainer.appendChild(newTag);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const newTagForm = document.getElementById("newTag");
+    const newTagInput = document.getElementById("newTagInput");
+    newTagForm.addEventListener('submit', () => {
+        const tag = newTagInput.value.trim();
+
+        if (tag) {
+            appendTagToNoteTags(NOTE_ID, tag);
+            newTagInput.value = '';
+            populateTag();
+        }
+    });
+});
+
+export {
+    populateTag
+}
+

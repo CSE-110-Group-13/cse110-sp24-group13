@@ -143,6 +143,7 @@ main >.projectContainer {
 .tags {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 10px;
     /* background-color: orange;  TESTING */
 }
@@ -171,8 +172,9 @@ main >.projectContainer {
     border: none;
     padding: 5 10 5 10;
     border-radius: 25px;
-    height: 30px;
+    height: 20px;
     width: fit-content;
+    font-size: 12px;
 }
 
 .projectTag {

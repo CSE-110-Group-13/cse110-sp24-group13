@@ -3,6 +3,10 @@ import {
     deleteNoteFromTable
 } from '../backend/NoteTable.js';
 
+import {
+    populateTag
+} from '../note/editNote.js';
+
 let NOTE_ID = "";
 
 window.addEventListener("DOMContentLoaded", init);
@@ -15,6 +19,7 @@ function init() {
     populateNote();   
     attachEditButtonListener();
     attachCancelButtonListener();
+    populateTag();
 }
 
 function attachEditButtonListener() {
@@ -54,3 +59,17 @@ function populateNote() {
     document.querySelector('markdown-editor').wysimark.setMarkdown(note.text);
     document.querySelector('.date input').value = note.date;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const newTagForm = document.getElementById("newTag");
+    const newTagInput = document.getElementById("newTagInput");
+    newTagForm.addEventListener('submit', () => {
+        const tag = newTagInput.value.trim();
+
+        if (tag) {
+            appendTagToNoteTags(NOTE_ID, tag);
+            newTagInput.value = '';
+            populateTag();
+        }
+    });
+});
