@@ -13,6 +13,11 @@ async function fetchSvg(url) {
 }
 
 class AddNewBtn extends HTMLElement {
+    /**
+   * Constructs a new instance of the class and initializes it.
+   * Attaches a shadow root to the element with 'open' mode.
+   * @constructor
+   */
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
