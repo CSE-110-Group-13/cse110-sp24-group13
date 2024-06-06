@@ -181,6 +181,7 @@ class linkedProject extends HTMLElement {
         let progressLabel = document.getElementById("progressLabel");
         progressLabel.textContent = `${projectProgress.value}% of tasks completed`;
 
+        // TODO: before adding tasks remove tasks rn if you switch projects it adds the old tasks
         //Add tasks to the task container
         let taskList = document.querySelector('.tasks');
         this.createTaskListItem(taskList, project.taskList, projectID, projectProgress, progressLabel);
@@ -701,6 +702,12 @@ class linkedProject extends HTMLElement {
             // Change Project Button
             const changeButton = document.querySelector('.projectFooter button');
             changeButton.addEventListener('click', () => {
+                let note_id = window.location.hash.substring(1);
+                let note = getNoteFromTable(note_id);
+                let selectedProject = form.querySelector(`#${note.linkedProject}`)
+                if (!selectedProject.classList.contains('selected')) {
+                    selectedProject.classList.add('selected');
+                }
                 projectContainer.classList.toggle("open");
                 overlay.classList.toggle("open");
             });
