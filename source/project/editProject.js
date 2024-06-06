@@ -1,6 +1,5 @@
 // editProject.js
 
-// TODO - Implement remove for tasks, make sure to remove it from both project and taskTable
 // TODO - Possibly add a custom popup for when save is successful
 
 // Importing necessary functions from backend modules
@@ -307,8 +306,10 @@ function addLinkedNotes() {
   console.log(selectedNote);
 
   if (selectedNote.value != "") {
+
     console.log("Adding linked note");
     appendLinkedNoteToProject(PROJECT_ID, selectedNote.value);
+    modifyLinkedProject(selectedNote.value, PROJECT_ID);
     selectedNote.value = "";
     selectedNote.ariaPlaceholder = "Linked Note(s)";
     console.log(getProjectFromTable(PROJECT_ID).linkedNotes[0]);
