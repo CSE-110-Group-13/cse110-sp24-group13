@@ -54,7 +54,7 @@ function init() {
   populateOptionsLinkNotes();
 
   attachEditButtonListener();
-//   attachDeleteButtonListener();
+  attachDeleteButtonListener();
 
   document.querySelector("#linkNotes").addEventListener("change", addLinkedNotes);
   document.querySelector("#priority").addEventListener("change", updatePriority);
