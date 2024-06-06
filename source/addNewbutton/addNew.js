@@ -135,7 +135,7 @@ class AddNewBtn extends HTMLElement {
     addProjectButton.innerHTML = addProjSvg;
     addProjectButton.classList.add("svg-button");
     addProjectButton.onclick = () => {
-      window.location.href = "#"; 
+      window.location.href = "../project/edit-project.html"; 
     };
     actionContainer.appendChild(addProjectButton);
 

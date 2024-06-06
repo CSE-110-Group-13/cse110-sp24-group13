@@ -127,23 +127,35 @@ function createNoteElement(noteObject){
     tagsProjectContainer.appendChild(tagElement);
   });
   
+  // // Add line separating the tags and projects
+  // if(noteObject.projectList.length != 0) {
+  //   const verticalLine = document.createElement('div');
+  //   verticalLine.id = 'vertical-line';
+  //   tagsProjectContainer.appendChild(verticalLine);
+  // }
+  
+  // // Add each project separately
+  // noteObject.projectList.forEach(project => {
+  //   const projectElement = document.createElement('span');
+  //   const linkElement = document.createElement('a');
+  //   linkElement.href="../project/view-project.html";
+  //   linkElement.textContent = project;
+  //   projectElement.appendChild(linkElement);
+  //   tagsProjectContainer.appendChild(projectElement);
+  // });
   // Add line separating the tags and projects
-  if(noteObject.projectList.length != 0) {
+  if(noteObject.linkedProject != "") {
     const verticalLine = document.createElement('div');
     verticalLine.id = 'vertical-line';
     tagsProjectContainer.appendChild(verticalLine);
-  }
-  
-  // Add each project separately
-  noteObject.projectList.forEach(project => {
-    const projectElement = document.createElement('span');
-    const linkElement = document.createElement('a');
-    linkElement.href="../project/view-project.html";
-    linkElement.textContent = project;
-    projectElement.appendChild(linkElement);
-    tagsProjectContainer.appendChild(projectElement);
-  });
 
+    const projectElement = document.createElement('span');
+    const linkProjectElement = document.createElement('a');
+    linkProjectElement.href="../project/view-project.html" + "#" + noteObject.linkedProject;
+    linkProjectElement.textContent = noteObject.linkedProject;
+    projectElement.appendChild(linkProjectElement);
+    tagsProjectContainer.appendChild(projectElement);
+  };
 
   //Favorite button of the note. 
   let favorited = noteObject.favorited;

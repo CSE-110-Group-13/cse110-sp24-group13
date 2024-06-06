@@ -1,3 +1,50 @@
+import {
+    getProjectTableFromStorage,
+    saveProjectTableToStorage,
+    getProjectFromTable,
+    saveProjectToTable,
+    deleteProjectFromTable,
+    createNewProjectObject,
+    modifyProjectTitle,
+    modifyProjectDescription,
+    appendTaskToProjectTaskList,
+    removeTaskFromProjectTaskList,
+    modifyProjectDeadline,
+    modifyProjectPriority,
+    modifyProjectDateCreated,
+    appendCompletedTaskToProject,
+    removeCompletedTaskFromProject
+  } from "../backend/ProjectTable.js"
+  
+  import {
+    getNoteTableFromStorage,
+    saveNoteTableToStorage,
+    getNoteFromTable, 
+    saveNoteToTable, 
+    deleteNoteFromTable, 
+    createNewNoteObject, 
+    modifyNoteText, 
+    modifyNoteDate, 
+    modifyNoteLastEdited, 
+    modifyNoteTitle, 
+    // appendProjectToNoteProjectList, 
+    // removeProjectFromNoteProjectList, 
+    modifyNoteFavorited, 
+    appendTagToNoteTags, 
+    removeTagFromNoteTags
+  } from "../backend/NoteTable.js"
+  
+  import {
+    getTaskTableFromStorage,
+    saveTaskTableToStorage,
+    getTaskFromTable,
+    saveTaskToTable,
+    deleteTaskFromTable,
+    createNewTaskObject,
+    modifyTaskName,
+    modifyTaskCompleted
+  } from "../backend/TaskTable.js"
+
 class deleteButton extends HTMLElement {
     constructor() {
         super();
@@ -68,7 +115,8 @@ class deleteButton extends HTMLElement {
                 }
             }
             else if(currentPage.includes("project")) {
-                const projectID = currentPage.split("/").pop();
+                // const projectID = currentPage.split("/").pop();
+                const projectID = window.location.hash.substring(1);
                 console.log("Project ID:", projectID);
                 const projectTable = getProjectTableFromStorage();
                 if (projectID in projectTable) {
