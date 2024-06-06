@@ -23,6 +23,10 @@ window.addEventListener("DOMContentLoaded", init);
 // Global variable to store the current note ID
 var NOTE_ID = "";
 
+/**
+ * Initializes the application.
+ * Sets up local storage and adds event listeners.
+ */
 function init() {
   // Clear storage every time the page is loaded (don't do this in the actual project code!!!)
   localStorage.setItem("NoteTable", JSON.stringify({}));
@@ -41,7 +45,10 @@ function init() {
   addDeleteNoteEvent();
 }
 
-// Initialize new note
+/**
+ * Adds an event listener to the "initialize note" button.
+ * When clicked, the button clears local storage, creates a new note, and updates the UI.
+ */
 function addInitializeNoteEvent() {
   const initializeNoteButton = document.getElementById("initializeNoteButton");
   initializeNoteButton.addEventListener("click", () => {
