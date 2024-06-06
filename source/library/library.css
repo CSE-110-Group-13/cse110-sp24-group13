@@ -1,5 +1,4 @@
 body {
-  font-family: Helvetica, Arial, sans-serif;
   padding: 0;
   margin: 0% 1% 2% 0%;
   display: flex;
@@ -17,6 +16,7 @@ body > #SearchBar {
 }
 
 .content {
+  margin-left: 12.5%;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -26,18 +26,20 @@ body > #SearchBar {
 
 .sort{
   display: flex;
+  align-items: center;
   width: 100%;
   gap: 10px;
 }
 
 .sort label {
   size: normal;
+  font-size: 20px;
 }
 
 .sort > #sort-select {
-  border: none;
   font-size: normal;
   font-style: bold;
+  padding: 3px 0px 3px 5px;
 }
 
 body > #entries-holder{

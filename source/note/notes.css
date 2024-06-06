@@ -12,7 +12,7 @@ hmtl, body {
 
 #restOfScreen {
     flex: 1;
-    margin-left: 1%;
+    /* margin-left: 1%; */
 }
 
 button {
@@ -154,11 +154,11 @@ main >.projectContainer {
     gap: 10px;
 }
 
-.tags li {
+/* .tags li {
     background-color: #E2E2E2;
     padding: 5 10 5 10;
     border-radius: 25px;
-}
+} */
 
 .newTag {
     display: flex;

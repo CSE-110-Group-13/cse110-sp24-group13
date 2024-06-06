@@ -6,6 +6,26 @@ body {
     font-family: 'Varela Round', sans-serif;
 }
 
+vertical-navbar{
+    position:fixed;
+    margin-right: 2vw;
+    z-index: 2
+}
+
+
+
+#restOfScreen{
+    margin-left: 10%;
+}
+
+select{
+    font-size: 16px;
+    color: #6d6d6d; 
+    background-color: transparent;
+    /* Remove default CSS */
+    border-radius: 10px;
+}
+
 input[type=checkbox] {
     margin-left: 0px;
     margin-right: 10px;
@@ -41,7 +61,14 @@ input[type=datetime-local] {
     width: fit-content;
 }
 
+
 progress{
     accent-color: green;
 }    
 
+.tags li {
+    background-color: #E2E2E2;
+    width:fit-content;
+    padding: 5px 10px;
+    border-radius: 25px;
+}
