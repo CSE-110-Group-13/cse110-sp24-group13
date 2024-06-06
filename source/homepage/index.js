@@ -277,7 +277,7 @@ localStorage.setItem('IDContainer', JSON.stringify(ID));
    }
    let favoritesCount = 0;
    // Load notes under favorites section
-   for (const note of loadedNotes) {
+   /*for (const note of loadedNotes) {
      if(favoritesCount<favoriteCounter){
        if (note.favorited === true) {
          const noteElement = createNoteElement(note);
@@ -285,7 +285,7 @@ localStorage.setItem('IDContainer', JSON.stringify(ID));
          favoritesCount++;
        }
      }
-   }
+   }*/
 }
 
 function reset() {
