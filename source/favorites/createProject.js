@@ -45,8 +45,11 @@ import {
       }
   
       //Wrapper for each of the three projects
-      const newProject = document.createElement("div");
+      const newProject = document.createElement("a");
       newProject.className = "project-wrapper";
+      newProject.href = "../project/view-project.html" + "#" + value.projectID;
+
+      
   
       //circle
       const priority = document.createElement("span");
@@ -66,7 +69,8 @@ import {
       title.textContent = value.title;
       title.className = "project-title";
       newProject.appendChild(title);
-  
+      
+
       
       let percentofTasksComplete = 0;
       let count = 0;

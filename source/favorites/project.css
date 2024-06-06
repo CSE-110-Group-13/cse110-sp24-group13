@@ -73,7 +73,9 @@
 }
 
 
-
+a {
+  text-decoration: none;
+}
 
 .project-wrapper {
   display: flex;

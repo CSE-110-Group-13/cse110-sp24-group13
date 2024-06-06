@@ -85,7 +85,9 @@ head {
 }
 
 
- 
+a {
+  text-decoration: none;
+}
 
 
 a {

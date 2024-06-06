@@ -43,9 +43,10 @@ import {
         break;
       }
   
-      //Wrapper for each of the three projects
-      const newProject = document.createElement("div");
-      newProject.className = "project-wrapper";
+       //Wrapper for each of the three projects
+       const newProject = document.createElement("a");
+       newProject.className = "project-wrapper";
+       newProject.href = "../project/view-project.html" + "#" + value.projectID;
   
       //circle
       const priority = document.createElement("span");
