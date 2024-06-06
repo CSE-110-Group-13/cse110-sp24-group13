@@ -41,6 +41,11 @@ class deleteButton extends HTMLElement {
             border-width: 0px;
         }
 
+        #dButton.confirm {
+            background-color: #d35858e3;
+        }
+        
+
         #dButton:hover {
             background-color: #e0e0e0; /* Change background color on hover */
         }
@@ -49,6 +54,14 @@ class deleteButton extends HTMLElement {
             margin-right: 8px; /* Add space between icon and text */
             width: 25px;
             height: 25px;
+        }
+
+        #dButton.confirm:hover{
+            background-color: #9c4343e3;
+        }
+
+        #dButton.confirm svg{
+            color: white;
         }
         `;
         container.appendChild(dButton);
@@ -65,8 +78,10 @@ class deleteButton extends HTMLElement {
         dButton.addEventListener('click', () => {
             if (dButton.textContent.trim() === "Delete") {
                 dButton.innerHTML = `${trashIcon}Confirm?`;
+                dButton.classList.add('confirm');
                 clearTimeout(this.confirmationTimeout);
                 this.confirmationTimeout = setTimeout(() => {
+                    dButton.classList.remove('confirm');
                     dButton.innerHTML = `${trashIcon}Delete`;
                 }, 3000); // allow 3 seconds to confirm deletion
             } else{
