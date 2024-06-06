@@ -3,8 +3,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../verticalnavbar/verticalnavbar.js"></script>
+    <script src="../savecanceleditbuttons/save.js"></script>
+    <script src="../savecanceleditbuttons/cancel.js"></script>
+    <script type="module" src="editProject.js"></script>
     <link rel="stylesheet" href="project.css">
-    <title>PROJECT NAME | Commit</title> <!-- replace name with project name -->
+    <title>PROJECT | Title</title> <!-- replace name with project name -->
 </head>
 <body>
     <div id="container">
@@ -14,42 +17,34 @@
     <div class = "content"> 
         <div class = "header">
             <div class="selectBar">
-                <select name="linkNotes" id="linkNotes">
-                    <option value="" disabled selected>Link Note(s)</option>
-                    <option value="note1ID">Note 1 Title</option>
-                    <option value="note2ID">Note 1 Title</option>
-                    <option value="note3ID">Note 1 Title</option>
-                </select>
-                <select name="priority" id="priority">
-                    <option value="" disabled selected>Update Priority</option>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                </select>
+                <span class="select-wrapper">
+                    <select name="linkNotes" id="linkNotes">
+                        <option value="hello" disabled selected>Link Note(s)</option>
+                    </select>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                </span>
+                <span class="select-wrapper">
+                    <select name="priority" id="priority">
+                        <option value="" disabled selected>Update Priority</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>
+                </span>
             </div>
             <div class = "actionBar" href = "#">   
-                <a id = "save"> <!-- link needs to be replaced with corresponding -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                        <!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                        <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
-                    </svg>
-                    Save
-                </a>
-                <a id = "Cancel" href = "#"> <!-- link needs to be replaced with corresponding action -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                        <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
-                    Cancel
-                </a> 
+                <save-button></save-button>
+                <cancel-button></cancel-button>
             </div>
         </div>
         <div class = "container">
             <div class="projectHeader">
                 <span class="priorityDot"></span>
-                <h1 id = "projectTitle">Project Name</h1> <!-- replace name with project name -->
+                <input type="text" placeholder="Enter Project Title" id = "projectTitle" value =""> <!-- replace value with project name -->
                 <div class="progress">
-                    <label for="progressBar">33%</label>
-                    <progress id="progressBar" value="33" max="100"> 200000</progress>
+                    <progress id="progressBar" value="0" max="100"></progress>
+                    <label for="progressBar" id="progressLabel">0%</label>
                 </div>
             </div>
             <div class="projectDetails">
@@ -59,7 +54,7 @@
                         <input id="deadline" type="datetime-local">
                 </div> 
                 <h3><label for="projectDesc">Description</label></h3>
-                <textarea id="projectDesc" name="projectDesc" rows="4" cols="100">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus beatae eum perferendis accusantium quasi odio vel voluptatem temporibus nihil sed reprehenderit quo eveniet delectus reiciendis dolor itaque, nemo quas dolore!</textarea>
+                <textarea id="projectDesc" name="projectDesc" rows="4" cols="100" placeholder="Enter project description..."></textarea>
                 <!-- minimize button -->
                 <svg id = "descDropdown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>
             </div>
@@ -67,62 +62,19 @@
         <div class = "container">
             <div class = "tasks">
                 <h2>Tasks</h2>
-                <input type="checkbox" id="task1" name="task1" value="task1" checked>
-                <label for="task1">Task 1</label>
-                <br>
-                <input type="checkbox" id="task2" name="task2" value="task2">
-                <label for="task2">Task 2</label>
-                <br>
-                <input type="checkbox" id="task3" name="task3" value="task3">
-                <label for="task3">Task 3</label>
-                <add-task></add-task>   <!-- Add task component-->
+                <div class = "taskList"></div>
+                <div class = addTask>
+                    <svg id="addTaskButton" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM200 344V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg></button>
+                    <input id="addTaskInput" type="text" placeholder="Add new task">    
+                </div>
             </div>
         </div>
     
         <div class = "container">
+            <h2>Linked Notes</h2>
             <div class = "linkedNotes">
-                <h2>Linked Notes</h2>
-                    <div class = "linkedNote">
-                        <h3>Linked Note 1</h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>
-                        
-                        <ul>
-                            <p>Last modified: X/Y/Z</p>
-                            <li>Tag 1</li>
-                            <li>Tag 2</li>
-                        </ul>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>
-                    </div>
-                    <i>Completed Tasks</i>
-                    <div class = "completedTasks">
-                        <input type="checkbox" id="task1" name="task1" value="task1" checked>
-                        <label for="task1">Task 1</label>
-                    </div>
-                    <hr>
-                    <div class = "linkedNote">
-                        <h3>Linked Note 2</h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>
-                        <ul>
-                            <p>Last modified: X/Y/Z</p>
-                            <li>Tag 1</li>
-                            <li>Tag 2</li>
-                        </ul>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
-                    </div>
-                    <hr>
-                    <div class = "linkedNote">
-                        <h3>Linked Note 3</h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>
-                        <ul>
-                            <p>Last modified: X/Y/Z</p>
-                            <li>Tag 1</li>
-                            <li>Tag 2</li>
-                        </ul>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
-                    </div>
-                    </div>
-                </div>
-                
+            </div>
+        </div> 
             </div>
         </div>
     </div>

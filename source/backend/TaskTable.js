@@ -98,7 +98,7 @@ function deleteTaskFromTable(taskID) {
 }
 
 
-function createNewTaskObject(name="", completed="") {
+function createNewTaskObject(name="", completed=false) {
   const newTaskObject = {
     "taskID" : `task-${generateID()}`,
     "name" : name,

@@ -1,7 +1,13 @@
 html body {
     font-family: Helvetica, Arial, sans-serif;
+    font-size: 18px;
     padding: 0;
     margin: 2% 1% 2% 1%;
+}
+vertical-navbar {
+    position: fixed;
+    top:0;
+
 }
 
 #container {
@@ -10,12 +16,9 @@ html body {
 
 #restOfScreen {
     flex: 1;
-    margin-left: 1%;
+    margin-left: 11%;
 }
 
-p{
-    margin: 0 2%;
-}
 .header {
     min-width: fit-content;
     display: flex;
@@ -31,6 +34,31 @@ p{
     display: flex;
     gap: 10px;
 }
+
+.select-wrapper{
+    display: flex;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #00000017;
+    text-decoration: none; 
+    font-size: 16px;
+
+}
+
+.select-wrapper svg{
+    margin-right: 1vw;
+    margin-left: -2vw;
+    width: 18px;
+    height: 18px;
+    color:#6d6d6d;
+    stroke: #6d6d6d;
+    stroke-width: 30;
+}
+
 
 .actionBar {
     position: absolute;
@@ -85,8 +113,10 @@ p{
     margin: -1% 0 0 0;
     padding: 10px;
     width: 100%;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
 
-    border: 1px solid #9b9b9b;
+    border: 1px solid #00000017;
     border-radius: 5px;
     overflow: auto;
     outline: none;
@@ -94,12 +124,27 @@ p{
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    background-color: #F8F8F8;
+    background-color: #ffffff;
 
     resize: none; /*remove the resize handle on the bottom right*/
 
   }
 
+#projectTitle{
+    padding-left: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    width: 40%;
+
+    border: 1px solid #00000017;
+    border-radius: 5px;
+    overflow: auto;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #ffffff;
+  }
 
 .projectDue{
     display: flex;
@@ -108,7 +153,7 @@ p{
 }
 
 .projectDue svg{
-    margin: 1% 1%;
+    margin: 0 0% 0 1%;
     min-width: 20px;
     height: 20px;
 }
@@ -126,13 +171,33 @@ p{
 .projectHeader{
     display: flex; 
     align-items: center; 
+    margin: 1vh 0vh ;
 }
 
 .progress{
     margin-left: auto; 
     margin-right: 1%;
+    display: flex;
+    align-items: center;
 }
 
+.progress progress{
+width: 300px;
+height: 30px;
+margin-right: 10px;
+
+}
+
+#progressBar{
+    accent-color: green;
+}
+
+
+.progress label{
+    font-size: larger;
+    font-weight:bold;
+    
+}
 
 .priorityDot{
     margin: 10px;
@@ -145,36 +210,100 @@ p{
 
 
 select {
-    display: flex;
-    width: auto;
-    justify-content: center;
-    align-items: center;
-    
-    background-color: #F8F8F8;
-    box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
-    border-radius: 10px;
-    border-style: none;
-    padding: 10px 15px; 
-    text-decoration: none; 
-    color: black; 
     font-size: 16px;
-    
+    padding: .75vh 7vw .75vh 7vw;
+    color: #6d6d6d; 
+    background-color: transparent;
     /* Remove default CSS */
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    /* Change select dropdown icon */
-    background-image: 'url(put path to icon here)';
-      background-repeat: no-repeat, repeat;
-      background-position: right .7em top 50%, 0 0;
-      background-size: .65em auto, 100%;
-  }
+    border-style: none;
+
+    z-index: 1;
+}
+
+#priority{
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+
+
+.addTask{
+    display:flex;
+    align-items: center;
+    margin-bottom: 10px
+}
+
+.addTask svg{
+    height: 20px;
+    width: 18px;
+    margin-right: 10px;
+    stroke: black;
+    stroke-width: 10;
+}
+
+.taskContainer {
+    display: flex;
+    align-items:center;
+    margin-bottom: 10px;
+}
+
+.taskContainer svg{
+    height: 18px;
+    width: 18px;
+    margin-left: 10px;
+}
+
+
+input[type=text]{
+
+    width: 95%;
+    border: 1px solid #00000017;
+    border-radius: 5px;
+    overflow: auto;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #ffffff;
+}
+
+input[type=checkbox] {
+    margin-left: 0px;
+    margin-right: 10px;
+
+    height:18px;
+    width:18px;
+    border: px solid #1e5180;
+
+    accent-color: black;
+}
+
+input[type=checkbox]:before {
+	font-family: "FontAwesome";
+    content: "\f00c";
+    font-size: 15px;
+    color: transparent !important;
+    display: block;
+    width: 13.5px;
+    height: 13.5px;
+    border: 2.5px solid black;
+    border-radius: 2.5px;
+
+}
 
 select:hover{
     cursor: pointer;
 }
 
+.linkedNotes{
+    margin: 0 .75vw 0 .75vw;
+}
+
 .linkedNote{
+    margin-right: 2vw;
     justify-content: start;
     align-items: center;
     min-width: fit-content;
@@ -185,6 +314,10 @@ select:hover{
 .linkedNote svg{
     width: 20px;
     height: 20px;
+}
+
+p{
+    margin: 0 2%;
 }
 
 ul{
@@ -207,5 +340,19 @@ li{
     color: black; 
     scale: 70%;
  
+}
+
+hr{
+    border-color: rgba(0, 0, 0, 0.147);
+    border-width: 1px;
+    align-items: center;
+}
+
+.removeNote{
+    fill:#760000e3;
+}
+
+.flip {
+    transform: rotate(180deg);
 }
 
