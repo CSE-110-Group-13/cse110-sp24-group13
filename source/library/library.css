@@ -49,19 +49,7 @@ body > #entries-holder{
   gap: 10px;
 }
 
-.note {
-  display: flex;
-  flex-direction: row;
-  margin: 1vh 0 1vh 0;
-  background-color: #f8f8f8;
-  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
-  padding: 1vh 2vh 1vh 2vh;
-  border-radius: 10px;
-  width: 99%;
-  height: fit-content;
-  text-decoration: none;
-  color: black;
-}
+
 
 a {
   text-decoration: none;

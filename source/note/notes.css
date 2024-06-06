@@ -12,7 +12,7 @@ hmtl, body {
 
 #restOfScreen {
     flex: 1;
-    /* margin-left: 1%; */
+    margin-left: 13%;
 }
 
 button {
@@ -111,7 +111,7 @@ main >.noteContainer {
     background-color: #F8F8F8;
     border-radius: 25px;
     width: 88vw;
-  
+    
     margin-bottom: 2%;
 }
 
@@ -122,6 +122,7 @@ main >.projectContainer {
     border-radius: 25px; 
     width: 88vw;
     gap: 5vw;
+    
 }
 
 .container {
@@ -129,6 +130,7 @@ main >.projectContainer {
     flex-direction: column;
     gap: 10px;
     background-color: #F8F8F8;
+    
 }
 
 .noteTitle {

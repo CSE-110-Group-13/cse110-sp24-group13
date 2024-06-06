@@ -32,19 +32,6 @@
     flex-shrink: 0; /* Prevents shrinking */
   }
   
-  .project-title {
-    width: 100px; /* Fixed width for all project titles */
-    font-weight: bold;
-    overflow: hidden; /* Ensures text does not overflow */
-    text-overflow: ellipsis; /* Adds ellipsis to overflowing text */
-    white-space: nowrap; /* Prevents text wrapping */
-    flex-shrink: 0; /* Prevents shrinking */
-    display: flex; /* Makes the element a flex container */
-    justify-content: center; /* Centers the text horizontally */
-    align-items: center; /* Centers the text vertically */
-    text-align: center; /* Centers text within the element */
-  }
-  
   .project-container {
     background-color: #f8f8f8;
     display: flex;
