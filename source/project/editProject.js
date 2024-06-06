@@ -46,6 +46,8 @@ function init() {
   if (!PROJECT_ID) {
     const project = createNewProjectObject();
     PROJECT_ID = project.projectID;
+    let newDate = new Date().toISOString().split("T")[0];
+    modifyProjectDateCreated(PROJECT_ID, newDate)
   }
   populateProject();
   populateOptionsLinkNotes();
@@ -108,7 +110,7 @@ function updatePriority() {
       color = lowPriority;
       break;
     default:
-      console.warn("Unexpected priority value:", priority);
+      color = "#6d6d6d";
       return;
   }
 
@@ -161,6 +163,7 @@ function addNewTask() {
   createTaskListItem(taskList, project.taskList);
 
   document.querySelector("#addTaskInput").value = "";
+  updateProgress();
 }
 
 /**
@@ -270,7 +273,8 @@ function updateTaskCompletionStatusEventListener(
 
     const linkedNotesElement = document.querySelector(".linkedNotes");
     const project = getProjectFromTable(PROJECT_ID);
-    populateLinkedNotes(project.linkedNotes, linkedNotesElement);
+    // populateLinkedNotes(project.linkedNotes, linkedNotesElement);
+    updateProgress();
   });
 }
 
@@ -420,6 +424,7 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
     icon.addEventListener("click", () => {
       const noteID = icon.getAttribute("id");
       removeLinkedNote(noteID);
+      modifyLinkedProject(noteID, null);
     });
   });
 }
