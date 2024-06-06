@@ -46,9 +46,9 @@
   
   .tags-project span {
     background-color: #e2e2e2;
-    padding: 0px 10px;
+    padding: 3px 10px;
     margin-right: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     height: 20px;
     color: #000;
     transition: 0.5s;

@@ -12,7 +12,7 @@ body {
   padding: 0;
 }
 
-#main-content{
+#restOfScreen{
   display: flex;
   flex-direction: column;
 }
@@ -38,6 +38,7 @@ body {
   align-items: center;        /* Vertically center the items */
   justify-content: space-between; /* Space items out evenly */
 }
+
 
 .recents-content, .favorites-content {
   display: flex;              /* Use flexbox for horizontal alignment */
