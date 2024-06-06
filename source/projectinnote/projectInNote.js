@@ -41,7 +41,7 @@ class linkedProject extends HTMLElement {
         
     }    
 
-    createTaskListItem(taskListElement, taskListArray, projectID, progressBar) {
+    createTaskListItem(taskListElement, taskListArray, projectID, progressBar, progressLabel) {
         taskListArray.forEach(taskID => {
           const task = getTaskFromTable(taskID);
           const taskListItem = document.createElement('li');
@@ -59,13 +59,13 @@ class linkedProject extends HTMLElement {
             inputCheckbox.checked = true;
           }
       
-          this.updateTaskCompletionStatusEventListener(inputCheckbox, projectID, progressBar);
+          this.updateTaskCompletionStatusEventListener(inputCheckbox, projectID, progressBar, progressLabel);
           taskListItem.appendChild(inputCheckbox);
           taskListItem.appendChild(label);
         });
     }
 
-    updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID, progressBar){
+    updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID, progressBar, progressLabel){
         singleInputCheckbox.addEventListener('change', () => {
           const taskID = singleInputCheckbox.id;
           const task = getTaskFromTable(taskID);
@@ -77,6 +77,7 @@ class linkedProject extends HTMLElement {
             appendCompletedTaskToProject(projectID, taskID);
             modifyLastWorkedOn(projectID, newDate);
             progressBar.value = this.calculateTaskCompletion(projectID);
+            progressLabel.textContent = `${progressBar.value}% of tasks completed`;
           }
           // checked to unchecked
           if (singleInputCheckbox.checked === false && task.completed === true) {
@@ -86,6 +87,7 @@ class linkedProject extends HTMLElement {
             removeCompletedTaskFromProject(projectID, taskID);
             modifyLastWorkedOn(projectID, newDate);
             progressBar.value = this.calculateTaskCompletion(projectID);
+            progressLabel.textContent = `${progressBar.value}% of tasks completed`;
           }
         });
     }
@@ -174,14 +176,14 @@ class linkedProject extends HTMLElement {
         projectDue.textContent = this.timeTillDeadline(project.deadline);
         projectDesc.textContent = project.description;
 
-        // TODO: progress bar and % completed does not update correctly think its with calculate task completion
+        // Update progress bar
         projectProgress.value = `${this.calculateTaskCompletion(projectID)}`;
         let progressLabel = document.getElementById("progressLabel");
         progressLabel.textContent = `${projectProgress.value}% of tasks completed`;
 
         //Add tasks to the task container
         let taskList = document.querySelector('.tasks');
-        this.createTaskListItem(taskList, project.taskList, projectID, projectProgress);
+        this.createTaskListItem(taskList, project.taskList, projectID, projectProgress, progressLabel);
     
         //TODO: Add hrefs to projectView and projectChange
         let projectViewLink = document.querySelector('.projectHeader a');
@@ -377,7 +379,7 @@ class linkedProject extends HTMLElement {
             margin-right: 10px;
             cursor: pointer;
         }
-
+    
         .projectHeader .progress {
             margin-left: 20px;
             margin-right: auto;
