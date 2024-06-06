@@ -1,9 +1,21 @@
 class AddNewBtnOld extends HTMLElement {
+
+  /**
+   * Constructs a new instance of the class and initializes it.
+   * Attaches a shadow root to the element with 'open' mode.
+   * @constructor
+   */
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
   }
 
+  /**
+   * The connectedCallback method is a lifecycle callback that is invoked when the custom element is first connected to the document's DOM.
+   * This method creates a style element, SVG buttons, and appends them to the shadow root of this element.
+   * The SVG buttons include an "add new" button, a "back" button, an "add note" button, and an "add project" button.
+   * Each button has a specific behavior when clicked.
+   */
   connectedCallback() {
     const styles = document.createElement('style');
     styles.innerHTML = `

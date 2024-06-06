@@ -1,3 +1,11 @@
+
+/**
+ * Fetches an SVG from a given URL.
+ *
+ * @param {string} url - The URL of the SVG to fetch.
+ * @returns {Promise<string>} A promise that resolves to the SVG as a string.
+ * @throws {Error} If there's an error while fetching the SVG.
+ */
 async function fetchSvg(url) {
   const response = await fetch(url);
   const text = await response.text();
@@ -5,11 +13,22 @@ async function fetchSvg(url) {
 }
 
 class AddNewBtn extends HTMLElement {
+    /**
+   * Constructs a new instance of the class and initializes it.
+   * Attaches a shadow root to the element with 'open' mode.
+   * @constructor
+   */
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
   }
 
+  /**
+   * Called when elemented is added to the DOM.
+   * Creates the styles for the buttons and the buttons themselves.
+   * The SVG buttons include an "add new" button, a "back" button, an "add note" button, and an "add project" button.
+   * Each button has a specific behavior when clicked.
+   */
   async connectedCallback() {
     const styles = document.createElement('style');
     styles.innerHTML = `
