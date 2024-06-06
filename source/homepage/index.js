@@ -2,6 +2,11 @@ import {
   getNoteTableFromStorage,getNoteFromTable,modifyNoteFavorited,
 } from "../backend/NoteTable.js";
 
+import {
+  getProjectTableFromStorage, getProjectFromTable,
+
+}from "../backend/ProjectTable.js"
+
 
 const filteredTags = [];
 window.addEventListener("DOMContentLoaded", init);
@@ -111,11 +116,12 @@ function createNoteElement(noteObject) {
     const projectElement = document.createElement('span');
     const linkProjectElement = document.createElement('a');
     linkProjectElement.href="../project/view-project.html" + "#" + noteObject.linkedProject;
-    linkProjectElement.textContent = noteObject.linkedProject;
+
+    const project = getProjectFromTable(noteObject.linkedProject)
+    linkProjectElement.textContent = project.title; 
     projectElement.appendChild(linkProjectElement);
     tagsProjectContainer.appendChild(projectElement);
   };
-  
 
 
   //Favorite button of the note. 
@@ -157,80 +163,6 @@ favoriteContainer.id = "favoritesContainer";
 
 function init(){
   
-  //Appended those two as children of the recents module.
-
-  //Get list of all notes from id container. 
-  // const IDContainer = JSON.parse(window.localStorage.getItem("IDContainer"));
-  //Define an array to store all the notes from id container. 
-  // let loadedNotes = [];
-  // Upload notes to array
-  // for(let i = 0; i < IDContainer.length; i++){
-  //   loadedNotes.push(getNoteFromTable(IDContainer[i]));
-  // }
-     // Sort notes based off last edited. WORK IN PROGRESS NOT FULLY FUNCTIONAL. 
-  // loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
-
-  //Testing Values for console. 
-  /*
-    const notesTable = {
-    "ABC": {
-        "noteID": "ABC",
-        "text": "buy eggs",
-        "date": "2024-5-21",
-        "lastEdited": "2025-5-23",
-        "title": "to do at grocery store",
-        "linkedProject": "",
-        "favorited": false,
-        "tags": ["bb", "cc"]
-    },
-    "21kfasde": {
-        "noteID": "21kfasde",
-        "text": "mow lawn",
-        "date": "2024-5-22",
-        "lastEdited": "2026-5-22",
-        "title": "chores",
-        "linkedProject": "",
-        "favorited": false,
-        "tags": ["a"]
-    },
-    "XYZ": {
-        "noteID": "XYZ",
-        "text": "buy eggs",
-        "date": "2024-5-21",
-        "lastEdited": "2025-5-23",
-        "title": "to do at grocery store",
-        "linkedProject": "",
-        "favorited": false,
-        "tags": []
-    } 
-  };
-
-
-// Store the combined notesTable in local storage
-localStorage.setItem('NoteTable', JSON.stringify(notesTable));
-
-// Define the ID array correctly
-const ID = ["ABC", "21kfasde", "XYZ"];
-
-// Store the ID array in local storage
-localStorage.setItem('IDContainer', JSON.stringify(ID));
-*/
-
-  //For all the loadedNOtes upload them unto homepage 
-  // for(let i = 0; i < loadedNotes.length; i++){
-  //   let noteID = loadedNotes[i].noteID;
-
-    
-  //   // Check if the noteID already exists in recentContainer
-
-  //   // If the noteID doesn't exist, create and append the note element
- 
-  //       const noteObject = getNoteFromTable(noteID);
-  //       const noteElement = createNoteElement(noteObject);
-  //       recentContainer.appendChild(noteElement);
-    
-  // }
-
   // Get notes from local storage
   let noteTable = getNoteTableFromStorage();
   // Load notes under recent section
@@ -411,6 +343,9 @@ const recentsCollapseButton = document.getElementById('collapseButton1');
 recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'recents'));
 recentsCollapseButton.innerHTML = expandIcon;
 
+const favoritesCollapseButton = document.getElementById('collapseButton2');
+//favoritesCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'favorites'));
+recentsCollapseButton.innerHTML = expandIcon;
 
 
 // Export functions for creating a note
