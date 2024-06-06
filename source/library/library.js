@@ -1,164 +1,249 @@
+
+
+/** ---------------------------- */ 
+
 import { 
-    getNoteFromTable,
-  } from "./NoteTable.js";
+  getNoteTableFromStorage,getNoteFromTable,modifyNoteFavorited,
+} from "../backend/NoteTable.js";
 
-
-/**
- * Description placeholder
- *
- * @param {*} entry
- * @returns {*}
- */
-function loadEntry(entry) {
-    // create a new div element
-    const newNote = document.createElement("div");
-
-    //assign attributes for sorting/display purposes. Some of these may be unnecessary or would be more clean to obtain from the child divs.
-    newNote.setAttribute("class", "note");
-    newNote.setAttribute("noteID", entry["noteID"]);
-    newNote.setAttribute("text", entry["text"]);
-    newNote.setAttribute("date", entry["date"]);
-    newNote.setAttribute("lastEdited", entry["lastEdited"]);
-    newNote.setAttribute("title", entry["title"]);
-    newNote.setAttribute("projectList", entry["projectList"]);
-    newNote.setAttribute("favorited", entry["favorited"]);
-
-    //elements that must be displayed: title, date, lastEdited, tags, project, text
-    //Everything else can be attributes
-    const titleText = document.createElement("div");
-    titleText.setAttribute("class", "title");
-    titleText.innerText = entry["title"];
-    newNote.insertBefore(titleText, null);
-
-    const dateText = document.createElement("div");
-    dateText.setAttribute("class", "date");
-    dateText.innerText = "Created on: " + entry["date"];
-    newNote.insertBefore(dateText, null);
-
-    const lastEdited = document.createElement("div");
-    lastEdited.setAttribute("class", "date");
-    lastEdited.innerText = "Last worked on: " + entry["date"];
-    newNote.insertBefore(lastEdited, null);
-
-    const noteText = document.createElement("div");
-    noteText.setAttribute("class", "body-text");
-    noteText.innerText = entry['text'];
-    newNote.insertBefore(noteText, null);
-
-    return newNote;
-}
-
-/**
- * TODO: make it load, display, and sort entries from local storage.
- */
-
-// Run the init() function when the page has loaded
+const filteredTags = [];
+    
 window.addEventListener("DOMContentLoaded", init);
 
-// Starts the program, all function calls trace back here
-/**
- * Description placeholder
- */
-function init() {
-  // Initialize the tables in local storage if they do not exist
-    const tables = ["NoteTable", "ProjectTable", "TaskTable"];
-    tables.forEach(table => {
-        if (window.localStorage.getItem(table) === null) {
-            localStorage.setItem(table, JSON.stringify({}));
-        }
-    })
+function init(){
+    loadNotes();
+    document.getElementById('sort-select').addEventListener('change', loadNotes);
+}
 
-  // Initialize the ID container to check whether an ID is used
-    if (window.localStorage.getItem("IDContainer") === null) {
-        localStorage.setItem("IDContainer", JSON.stringify([]));
-    }
-    const IDContainer = JSON.parse(window.localStorage.getItem("IDContainer"));
+function loadNotes(){
+    const noteTable = getNoteTableFromStorage();
+    const entriesHolder = document.getElementById('entries-holder');
+    entriesHolder.innerHTML = ''; // clear existing to reload
 
-    let loadedNotes = [];
+    const sortBy = document.getElementById('sort-select').value;
+    const notesArray = Object.values(noteTable);
 
-    //get and store all notes in an array
-    for(let i = 0; i < IDContainer.length; i++)
-        loadedNotes.push(loadEntry(getNoteFromTable(IDContainer[i])));
+    notesArray.sort((a, b) => {
+        if (sortBy === 'title') {
+            return a.title.localeCompare(b.title);
+          } else if (sortBy === 'date') {
+            return new Date(a.date) - new Date(b.date);
+          } else if (sortBy === 'lastEdited') {
+            return new Date(b.lastEdited) - new Date(a.lastEdited);
+          }
+        });
 
-    //Adding my own notes for testing. Remove later.
-    const testNote1 = {
-        "noteID" : "ABC",
-        "text" : "buy eggs",
-        "date" : "2024-5-21",
-        "lastEdited" : "2024-5-23",
-        "title" : "to do at grocery store",
-        "projectList" : [],
-        "favorited" : false,
-        "tags" : []
-    };
-
-    const testNote2 = {
-        "noteID" : "21kfasde",
-        "text" : "mow lawn",
-        "date" : "2024-5-22",
-        "lastEdited" : "2024-5-22",
-        "title" : "chores",
-        "projectList" : [],
-        "favorited" : false,
-        "tags" : []
-    };
-
-    loadedNotes.push(loadEntry(testNote1));
-    loadedNotes.push(loadEntry(testNote2));
-
-    //init sort functions
-    function titleSort (noteA, noteB) {
-        const titleA = noteA.getAttribute('title'),
-        titleB = noteB.getAttribute('title');
-        if(titleA > titleB)
-            return 1;
-        else if(titleA < titleB)
-            return -1;
-        return 0;
-    }
-
-    function dateSort(noteA, noteB) {
-        let da = new Date(noteA.getAttribute('date')),
-            db = new Date(noteB.getAttribute('date'));
-        return da - db;
-    }
-
-    function recencySort(noteA, noteB) {
-        let da = new Date(noteA.getAttribute('lastEdited')),
-            db = new Date(noteB.getAttribute('lastEdited'));
-        return da - db;
-    }
-    //sort notes by title to start
-    //NOTE: would not be opposed to saving the last sort-type used in local storage so we can use that.
-    loadedNotes.sort(titleSort);
-    const sortBox = document.querySelector("select");
-
-    //display notes
-    //NOTE: would like to add pagination
-    const entriesHolder = document.querySelector("#entries-holder");
-    function displayNotes()
-    {
-        //clear current display 
-        const children = entriesHolder.children;
-        while(children.length != 0)
-            entriesHolder.removeChild(children[0]);
-
-        //put all the notes in the html
-        for(let i = 0; i < loadedNotes.length; i++)
-        {
-            entriesHolder.insertBefore(loadedNotes[i], null);
-        }
-    }
-    displayNotes();
-
-    sortBox.addEventListener("input", function sortAndDisplay(event)
-    {
-        if(event.target.value == "title")
-            loadedNotes.sort(titleSort);
-        else if(event.target.value == "date")
-            loadedNotes.sort(dateSort);
-        else if(event.target.value == "lastEdited")
-            loadedNotes.sort(recencySort);
-        displayNotes();
+    notesArray.forEach(note => {
+        const noteElement = createNoteElement(note);
+        entriesHolder.appendChild(noteElement);
     });
+}
+
+//Function to create a Note Element;
+function createNoteElement(noteObject){
+  //Wrapper container for a note Element. That will incude a note Contianer and a button.
+  //check if
+  let relevantTag = false;
+  noteObject.tags.forEach(tag => {
+    filteredTags.forEach(otherTag => {
+      if(tag === otherTag)
+        relevantTag = true;
+    });
+  });
+
+  if(filteredTags.length > 0 && !relevantTag)
+    return document.createElement("div"); 
+
+  const noteContainerMain = document.createElement("span");
+  noteContainerMain.className = "note-wrapper";
+
+  //Note Container that is an anchor to another page. 
+  const noteContainer = document.createElement("div");
+  //noteContainer.href = "../library/library.html";
+  noteContainer.className = "note";
+
+  //append note container to wrapper container. 
+  noteContainerMain.appendChild(noteContainer);
+  
+  // Create a header
+  const headerElement = document.createElement('header');
+  noteContainer.appendChild(headerElement);
+
+  // Create a container for the content (text, date, and lastEdited)
+  const contentContainer = document.createElement('a');
+  contentContainer.classList.add('content-container');
+  contentContainer.href="../note/view-note.html" + "#" + noteObject.noteID;
+  noteContainer.appendChild(contentContainer);
+
+  // Create a date container
+  const dateContainer = document.createElement('div');
+  dateContainer.classList.add('dates');
+  contentContainer.appendChild(dateContainer);
+
+  // Title of note
+  const titleElement = document.createElement('h2');
+  const linkElement = document.createElement('a');
+  linkElement.href = "../note/view-note.html" + "#" + noteObject.noteID;
+  linkElement.textContent = noteObject.title;
+  titleElement.appendChild(linkElement);
+  headerElement.appendChild(titleElement);
+
+  // Call the function getFormattedDate()
+  const date = getFormattedDate(noteObject.date);
+  const lastEdited = getFormattedDate(noteObject.lastEdited);
+
+  // Date Started of note
+  const dateElement = document.createElement('p');
+  dateElement.textContent = `Started ${date}`;
+  dateContainer.appendChild(dateElement);
+
+  // Last Edited of note
+  const lastEditedElement = document.createElement('p');
+  lastEditedElement.textContent = `Worked on: ${lastEdited}`;
+  dateContainer.appendChild(lastEditedElement);
+
+  // Text of note
+  const textElement = document.createElement('p');
+  textElement.id = 'note-text';
+  textElement.textContent = noteObject.text;
+  contentContainer.appendChild(textElement);
+
+  // Create a tags-project container
+  const tagsProjectContainer = document.createElement('div');
+  tagsProjectContainer.classList.add('tags-project');
+  headerElement.appendChild(tagsProjectContainer);
+
+  // Add each tag separately
+  noteObject.tags.forEach(tag => {
+    const tagElement = document.createElement('span');
+    tagElement.textContent = tag;
+    if(filteredTags.indexOf(tag) != -1)
+      tagElement.setAttribute("filtered", true);
+    else
+      tagElement.setAttribute("filtered", false)
+
+    tagElement.addEventListener("click", () => filterByTag(tag));
+
+    tagsProjectContainer.appendChild(tagElement);
+  });
+  
+  // Add line separating the tags and projects
+  if(noteObject.projectList.length != 0) {
+    const verticalLine = document.createElement('div');
+    verticalLine.id = 'vertical-line';
+    tagsProjectContainer.appendChild(verticalLine);
+  }
+  
+  // Add each project separately
+  noteObject.projectList.forEach(project => {
+    const projectElement = document.createElement('span');
+    const linkElement = document.createElement('a');
+    linkElement.href="../project/view-project.html";
+    linkElement.textContent = project;
+    projectElement.appendChild(linkElement);
+    tagsProjectContainer.appendChild(projectElement);
+  });
+
+
+  //Favorite button of the note. 
+  let favorited = noteObject.favorited;
+
+
+  const button = document.createElement("button");
+  button.dataset.noteID = noteObject.noteID;
+  button.dataset.favorited = noteObject.favorited;
+  if( favorited == true){
+   button.innerText = "Favorited";
+   button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>`;
+  }
+
+  else{
+    button.innerText = "Note Favorited"; 
+    button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24" opacity = "0.2"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>`;
+  }
+
+  button.className = "favorite-button";
+  button.onclick = () => toggleFavorite(button);
+
+      
+  
+  //Append favorite button to the wrapper container. 
+  headerElement.appendChild(button);
+
+  return noteContainerMain;
+
+}
+
+
+/**
+    * Takes in a date string and converts it to the format Month Day with the corresponding suffix
+    * @param {string}  dateString string in the format YYYY-MM-DD
+    * @return {string} a string in the correct format
+    */
+function getFormattedDate(dateString) {
+    if (!dateString){
+        return null;
+    }
+
+    const date = new Date(dateString);
+
+    if (isNaN(date)){
+        return "Invalid Date (NaN)";
+    }
+
+    const day = date.getDate();
+    let suffix = "";
+  
+    // Determine the suffix based on the day
+    if (day === 1 || day === 21 || day === 31) {
+      suffix = "st";
+    }
+    else if (day === 2 || day === 22) {
+      suffix = "nd";
+    }
+    else if (day === 3 || day === 23) {
+      suffix = "rd";
+    }
+    else {
+      suffix = "th";
+    }
+  
+    // Format the string
+    const options = { month: 'long' };
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+  
+    return `${formattedDate} ${day}${suffix}`;
+}
+
+function filterByTag(tag)
+{
+  let idx = filteredTags.indexOf(tag);
+  if(idx == -1)
+    filteredTags.push(tag);
+  else
+    filteredTags.splice(idx, 1);
+  loadNotes();
+};
+
+  
+//Function to change favorite button from highlighted to note highlighted. 
+function toggleFavorite(button){
+
+  const noteID = button.dataset.noteID;
+  const note = getNoteFromTable(noteID);
+
+  if(note){
+    const newFavoritedStatus = !note.favorited;
+
+    modifyNoteFavorited(noteID, newFavoritedStatus);
+    if (newFavoritedStatus) {
+      button.innerText = 'Favorited';
+      button.dataset.favorited = newFavoritedStatus;
+    } else {
+      button.innerText = 'Not Favorited';
+      button.dataset.favorited = newFavoritedStatus;
+      button.style.backgroundColor = ''; // Revert to default or another style
+    }
+  }
+  loadNotes();
 }

@@ -1,51 +1,118 @@
 body {
-  display: grid;
-  grid-template-columns: [first] 10vw [line2] 10vw [line3] 10vw [line4] 10vw [line5] 20vw [line6] 10vw [line7] 10vw [line8] auto [lastCol];
-  grid-template-rows: [first] 5vh [line2] 5vh [line3] 90vh [lastRow];
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0% 1% 2% 0%;
+  display: flex;
+  overflow-y: hidden;
+}
+
+vertical-navbar{
+  left: 0;
+  top: 0;
+  min-width: fit-content;
 }
 
 body > #SearchBar {
-  grid-column: line5 / line6;
-  grid-row: first / line2;
-  text-align: center;
+  background-color: black; /* PLACEHOLDER */
 }
 
-body > #sort-select {
-  grid-column: line2 / line4;
-  grid-row: line2 / line3;
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  padding: 2% 1% 2% 1%;
+}
+
+.sort{
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.sort label {
+  size: normal;
+}
+
+.sort > #sort-select {
+  border: none;
+  font-size: normal;
+  font-style: bold;
 }
 
 body > #entries-holder{
   display: flex;
   flex-direction: column;
-  grid-column: line3 / line8;
-  grid-row: line3 / lastRow;
+  width: 100%;
+  gap: 10px;
 }
-#add-new-button {
-  grid-column: line8 / lastCol;
-}
+
 .note {
   display: flex;
+  flex-direction: row;
+  margin: 1vh 0 1vh 0;
+  background-color: #f8f8f8;
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
+  padding: 1vh 2vh 1vh 2vh;
+  border-radius: 10px;
+  width: 99%;
+  height: fit-content;
+  text-decoration: none;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.note > .left-div {
+  display: flex;
   flex-direction: column;
-  background-color: #dddddd;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
-  margin-top: 2.5vh;
-  margin-bottom: 0vh;
-  font-size: larger;
+  gap: 5px;
+  width: 20%;
 }
 
-.note > .date {
-  color: #f0f0f0;
-  font-size: small;
+h3 {
+  font-size: normal;
+  font-weight: 600;
 }
 
-.note > .title {
-  color: black;
-  font-size: x-large;
-  font-weight: 700;
-}
-.note > .body-text{
-  color: black;
+.dates p {
+  color: #7C7C7C;
   font-size: small;
+  font-weight: 500;
+  margin-top: 0;
 }
+
+.note > .middle-div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 75%;
+}
+
+.tags-project {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.tags-project span {
+  font-size: small;
+  font-weight: 500;
+  background-color: #e2e2e2;
+  padding: 2px 5px 2px 5px;
+  border-radius: 5px;
+}
+
+.tags-project span:hover {
+  background-color: #d9d9d9;
+}
+
+#note-text {
+  font-size: normal;
+  font-weight: 500;
+}
+
+
