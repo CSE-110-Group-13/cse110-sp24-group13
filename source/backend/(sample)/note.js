@@ -23,6 +23,10 @@ window.addEventListener("DOMContentLoaded", init);
 // Global variable to store the current note ID
 var NOTE_ID = "";
 
+/**
+ * Initializes the application.
+ * Sets up local storage and adds event listeners.
+ */
 function init() {
   // Clear storage every time the page is loaded (don't do this in the actual project code!!!)
   localStorage.setItem("NoteTable", JSON.stringify({}));
@@ -41,7 +45,10 @@ function init() {
   addDeleteNoteEvent();
 }
 
-// Initialize new note
+/**
+ * Adds an event listener to the "initialize note" button.
+ * When clicked, the button clears local storage, creates a new note, and updates the UI.
+ */
 function addInitializeNoteEvent() {
   const initializeNoteButton = document.getElementById("initializeNoteButton");
   initializeNoteButton.addEventListener("click", () => {
@@ -60,7 +67,10 @@ function addInitializeNoteEvent() {
   });
 }
 
-// Modify note text
+/**
+ * Adds an event listener to the "modify note text" form.
+ * When submitted, the form modifies the text of the current note and updates the UI.
+ */
 function addModifyNoteTextEvent() {
   const textForm = document.getElementById("modifyNoteTextForm");
   textForm.addEventListener("submit", (event) => {
@@ -75,7 +85,10 @@ function addModifyNoteTextEvent() {
   });
 }
 
-// Modify note date
+/**
+ * Adds an event listener to the "modify note date" form.
+ * When submitted, the form modifies the date of the current note and updates the UI.
+ */
 function addModifyNoteDateEvent() {
   const dateForm = document.getElementById("modifyNoteDateForm");
   dateForm.addEventListener("submit", (event) => {
@@ -90,7 +103,10 @@ function addModifyNoteDateEvent() {
   });
 }
 
-// Modify note last edited
+/**
+ * Adds an event listener to the "modify note last edited" form.
+ * When submitted, the form modifies the last edited date of the current note and updates the UI.
+ */
 function addModifyLastEditedEvent() {
   const lastEditedForm = document.getElementById("modifyNoteLastEditedForm");
   lastEditedForm.addEventListener("submit", (event) => {
@@ -105,7 +121,10 @@ function addModifyLastEditedEvent() {
   });
 }
 
-// Modify note title
+/**
+ * Adds an event listener to the "modify note title" form.
+ * When submitted, the form modifies the title of the current note and updates the UI.
+ */
 function addModifyNoteTitleEvent() {
   const titleForm = document.getElementById("modifyNoteTitleForm");
   titleForm.addEventListener("submit", (event) => {
@@ -120,7 +139,10 @@ function addModifyNoteTitleEvent() {
   });
 }
 
-// Modify linked project
+/**
+ * Adds an event listener to the "modify linked project" form.
+ * When submitted, the form modifies the linked project of the current note and updates the UI.
+ */
 function addModifyLinkedProjectEvent() {
   const projectListForm = document.getElementById("modifyLinkedProjectForm");
   projectListForm.addEventListener("submit", (event) => {
@@ -135,7 +157,10 @@ function addModifyLinkedProjectEvent() {
   });
 }
 
-// Modify favorited 
+/**
+ * Adds an event listener to the "modify favorited" form.
+ * When submitted, the form modifies the favorited status of the current note and updates the UI.
+ */
 function addModifyFavoritedEvent() {
   const favoritedForm = document.getElementById("modifyFavoritedForm");
   favoritedForm.addEventListener("submit", (event) => {
@@ -150,7 +175,10 @@ function addModifyFavoritedEvent() {
   });
 }
 
-// Add tags
+/**
+ * Adds an event listener to the "modify tags" form.
+ * When submitted, the form appends a tag to the tags of the current note and updates the UI.
+ */
 function addTagsEvent() {
   const addTagsForm = document.getElementById("modifyTagsForm");
   addTagsForm.addEventListener("submit", (event) => {
@@ -165,7 +193,10 @@ function addTagsEvent() {
   });
 }
 
-// Remove tags
+/**
+ * Adds an event listener to the "remove tags" form.
+ * When submitted, the form removes a tag from the tags of the current note and updates the UI.
+ */
 function addRemoveTagsEvent() {
   const removeTagsForm = document.getElementById("removeTagsForm");
   removeTagsForm.addEventListener("submit", (event) => {
@@ -180,7 +211,10 @@ function addRemoveTagsEvent() {
   });
 }
 
-// Delete note
+/**
+ * Adds an event listener to the "delete note" button.
+ * When clicked, the button deletes the current note.
+ */
 function addDeleteNoteEvent() {
   const deleteNoteButton = document.getElementById("deleteNoteButton");
   deleteNoteButton.addEventListener("click", () => {
