@@ -139,7 +139,10 @@ function addModifyNoteTitleEvent() {
   });
 }
 
-// Modify linked project
+/**
+ * Adds an event listener to the "modify linked project" form.
+ * When submitted, the form modifies the linked project of the current note and updates the UI.
+ */
 function addModifyLinkedProjectEvent() {
   const projectListForm = document.getElementById("modifyLinkedProjectForm");
   projectListForm.addEventListener("submit", (event) => {
@@ -154,7 +157,10 @@ function addModifyLinkedProjectEvent() {
   });
 }
 
-// Modify favorited 
+/**
+ * Adds an event listener to the "modify favorited" form.
+ * When submitted, the form modifies the favorited status of the current note and updates the UI.
+ */
 function addModifyFavoritedEvent() {
   const favoritedForm = document.getElementById("modifyFavoritedForm");
   favoritedForm.addEventListener("submit", (event) => {
