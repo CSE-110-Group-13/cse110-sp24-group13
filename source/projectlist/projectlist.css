@@ -72,13 +72,13 @@ progress {
   border-radius: 50%;
 }
 .priority-icon.low {
-  background-color: green;
+  background-color: #0AB73B;
 }
 .priority-icon.medium {
-  background-color: yellow;
+  background-color: #FFD600;
 }
 .priority-icon.high {
-  background-color: red;
+  background-color: #FF000F;
 }
 
 .titlePercentCompletedContainer a {
