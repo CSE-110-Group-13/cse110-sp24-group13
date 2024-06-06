@@ -30,7 +30,7 @@ function createProjects() {
       <div class="titlePercentCompletedContainer">
         <div class="containerForPriorityIconTitle">
           <div class="priority-icon"></div>
-          <a class="title"></a>
+          <h1 class="title"></h1>
         </div>
       </div>
       <div class="deadlineContainer">
@@ -56,7 +56,6 @@ function createProjects() {
 
     const title = projectContainer.querySelector('.title');
     title.textContent = value.title;
-    title.href = "../project/view-project.html" + "#" + value.projectID;
 
     const labelForProgressBar = document.createElement('label');
     labelForProgressBar.setAttribute('for', 'progressBar');
