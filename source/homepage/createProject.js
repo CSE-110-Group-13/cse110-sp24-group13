@@ -31,7 +31,6 @@ import {
     
     // Case of no projects
     if (!projectTable || Object.keys(projectTable).length === 0) {
-        console.log("No projects found");
         const noProjectsCase = document.createElement("p");
         noProjectsCase.textContent = "Projects will be displayed here";
         // Append the created element to the DOM
@@ -153,6 +152,7 @@ import {
     const weeks = Math.floor(differenceMs / (1000 * 60 * 60 * 24 * 7));
     const days = Math.floor((differenceMs % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
     const hours = Math.floor((differenceMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    console.log(days);
   
     // Construct the result string
     let result = "";

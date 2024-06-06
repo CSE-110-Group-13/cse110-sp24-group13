@@ -1,18 +1,18 @@
 #project-section {
-  position: relative;
-  left: 35px;
-  top:40px;
-  width: 1200px;
-  height: 125px;
-  margin-bottom: 70px;
-}
+    position: relative;
+    left: 35px;
+    top:40px;
+    width: 1200px;
+    height: 125px;
+    margin-bottom: 70px;
+  }
   
   .circle {
     width: 20px; 
     height: 20px; 
     border-radius: 50%; 
     background-color: rgb(208, 225, 208);
-    margin-right: 17px;
+    margin-right: 22px;
     margin-left: 12px;
     flex-shrink: 0; /* Prevents shrinking */
   }
