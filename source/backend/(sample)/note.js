@@ -103,7 +103,10 @@ function addModifyNoteDateEvent() {
   });
 }
 
-// Modify note last edited
+/**
+ * Adds an event listener to the "modify note last edited" form.
+ * When submitted, the form modifies the last edited date of the current note and updates the UI.
+ */
 function addModifyLastEditedEvent() {
   const lastEditedForm = document.getElementById("modifyNoteLastEditedForm");
   lastEditedForm.addEventListener("submit", (event) => {
@@ -118,7 +121,10 @@ function addModifyLastEditedEvent() {
   });
 }
 
-// Modify note title
+/**
+ * Adds an event listener to the "modify note title" form.
+ * When submitted, the form modifies the title of the current note and updates the UI.
+ */
 function addModifyNoteTitleEvent() {
   const titleForm = document.getElementById("modifyNoteTitleForm");
   titleForm.addEventListener("submit", (event) => {
