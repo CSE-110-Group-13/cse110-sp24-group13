@@ -1,3 +1,11 @@
+
+/**
+ * Fetches an SVG from a given URL.
+ *
+ * @param {string} url - The URL of the SVG to fetch.
+ * @returns {Promise<string>} A promise that resolves to the SVG as a string.
+ * @throws {Error} If there's an error while fetching the SVG.
+ */
 async function fetchSvg(url) {
   const response = await fetch(url);
   const text = await response.text();
