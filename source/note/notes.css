@@ -145,25 +145,35 @@ main >.projectContainer {
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    /* background-color: orange;  TESTING */
 }
-
+.tagContainer {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+/*
 .tags ul {
     list-style-type: none;
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 5px;
 }
+*/
 
 .tags li {
     background-color: #E2E2E2;
-    padding: 5 10 5 10;
-    border-radius: 25px;
+    padding: 0px 10px;
+    height: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    
 }
 
 .newTag {
     display: flex;
-    flex-direction: row;
+    flex-direction: row; 
     align-items: center;
 }
 
@@ -171,7 +181,24 @@ main >.projectContainer {
     background-color: #E2E2E2;
     border: none;
     padding: 5 10 5 10;
-    border-radius: 25px;
+    border-radius: 5px;
+    height: 20px;
+    width: fit-content;
+    font-size: 12px;
+}
+
+.newTagView {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    margin-top: 12px;
+}
+
+.newTagView input{
+    background-color: #E2E2E2;
+    border: none;
+    padding: 5 10 5 10;
+    border-radius: 5px;
     height: 20px;
     width: fit-content;
     font-size: 12px;

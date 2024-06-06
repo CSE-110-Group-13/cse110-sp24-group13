@@ -69,6 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (tag) {
             appendTagToNoteTags(NOTE_ID, tag);
             newTagInput.value = '';
+            const tagsContainer = document.querySelector('.tagContainer');
+            tagsContainer.innerHTML = '';
             populateTag();
         }
     });

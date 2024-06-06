@@ -89,6 +89,10 @@ function populateTag() {
     tags.forEach(tag => {
         const newTag = document.createElement('li');
         newTag.textContent = tag;
+        newTag.addEventListener('dblclick', () => {
+            removeTagFromNoteTags(NOTE_ID, tag);
+            newTag.remove();
+        });
         tagsContainer.appendChild(newTag);
     });
 }
@@ -102,6 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (tag) {
             appendTagToNoteTags(NOTE_ID, tag);
             newTagInput.value = '';
+            const tagsContainer = document.querySelector('.tagContainer');
+            tagsContainer.innerHTML = '';
             populateTag();
         }
     });
