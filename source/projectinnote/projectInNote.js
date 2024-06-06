@@ -154,24 +154,21 @@ class linkedProject extends HTMLElement {
 
       populateProject(projectID) {
         console.log("populateProject");
-        //TODO: Make linkedProject/ LinkedProjectComponent appear
-        //TODO: Also style it correctly
-        
+    
         const linkedProject = document.querySelector('.linkedProject');
-        linkedProject.classList.toggle('open');
+        if(!linkedProject.classList.contains('open')) {
+            linkedProject.classList.toggle('open');
+        }
         const linkAProject = document.querySelector('.linkAProject');
-        linkAProject.classList.toggle('close');
+        if(!linkAProject.classList.contains('close')){
+            linkAProject.classList.toggle('close');
+        }
         let project = getProjectFromTable(projectID);
         let projectTitle = document.getElementById('projectTitle');
         let projectDue = document.querySelector('.projectDue p');
         let projectDesc = document.getElementById('projectDescContent');
         let projectProgress = document.querySelector('progress');
-        /*
-        projectTitle.textContent = project["title"];
-        projectDue.textContent = project["dueDate"];
-        projectDesc.textContent = project["description"];
-        projectProgress.value = project["progress"];
-        */
+        
         projectTitle.textContent = project.title;
         projectDue.textContent = this.timeTillDeadline(project.deadline);
         projectDesc.textContent = project.description;
@@ -181,22 +178,14 @@ class linkedProject extends HTMLElement {
         let progressLabel = document.getElementById("progressLabel");
         progressLabel.textContent = `${projectProgress.value}% of tasks completed`;
 
-        // TODO: before adding tasks remove tasks rn if you switch projects it adds the old tasks
         //Add tasks to the task container
         let taskList = document.querySelector('.tasks');
+        taskList.innerHTML = '';
         this.createTaskListItem(taskList, project.taskList, projectID, projectProgress, progressLabel);
     
         //TODO: Add hrefs to projectView and projectChange
         let projectViewLink = document.querySelector('.projectHeader a');
-
-
-
     }
-
-      
-      
-      
-
 
     render() {
         // Styling 
@@ -663,9 +652,9 @@ class linkedProject extends HTMLElement {
             modifyLinkedProject(NOTE_ID, selectedProject.id);
             projectContainer.classList.toggle("open");
             overlay.classList.toggle("open");
-            this.populateProject(selectedProject.id);
-            
-        })
+            linkAProject.classList.toggle("close");
+            this.populateProject(selectedProject.id);          
+        });
 
         // Add event listener for when add project button is pressed
         lButton.addEventListener('click', () => {
