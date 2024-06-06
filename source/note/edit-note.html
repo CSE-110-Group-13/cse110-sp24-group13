@@ -37,12 +37,11 @@
             <div class = "noteDetails">
                 <div class = "tags"> <!-- new tag tag allows user to type, pressing on a tag will delete -->
                     <h4>Tags:</h4>
-                    <ul>
-                        <li>Tag 1</li>
-                        <li>Tag 2</li>
-                    </ul>
+                    <ul class="tagContainer"></ul>
                     <div class = "newTag">
-                        <input type = "text" placeholder = "+ Add new tag">
+                        <form id = "newTag">
+                            <input type = "text" placeholder = "+ Add new tag" id="newTagInput">
+                        </form>
                     </div>
                     <div class="vr"></div>
                     <div class = "projectTag">
