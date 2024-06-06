@@ -376,9 +376,7 @@ function editProject() {
 }
 
 function deleteNote() {
-    console.log("delete note")
-    deleteNoteFromTable(NOTE_ID);
-    window.location.href = "../projectlist/projectlist.html";
+    console.log("Delete clicked")
 }
 
 function setDeadline(datetimeInput){
