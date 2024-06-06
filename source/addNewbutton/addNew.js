@@ -23,6 +23,12 @@ class AddNewBtn extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
+  /**
+   * Called when elemented is added to the DOM.
+   * Creates the styles for the buttons and the buttons themselves.
+   * The SVG buttons include an "add new" button, a "back" button, an "add note" button, and an "add project" button.
+   * Each button has a specific behavior when clicked.
+   */
   async connectedCallback() {
     const styles = document.createElement('style');
     styles.innerHTML = `
