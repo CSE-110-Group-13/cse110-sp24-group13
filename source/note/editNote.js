@@ -6,7 +6,8 @@ import {
     modifyNoteTitle, 
     appendTagToNoteTags, 
     removeTagFromNoteTags,
-    getNoteFromTable
+    getNoteFromTable,
+    modifyNoteLastEdited
   } from '../backend/NoteTable.js';
 
 let NOTE_ID = "";
@@ -46,21 +47,22 @@ function attachCancelButtonListener() {
     document.querySelector('cancel-button button').addEventListener('click', cancelEdit);
 }
 
+
 /**
  * Saves the current state of the note to the local storage.
  * Retrieves the note title, markdown content, and date from the DOM.
  * Modifies the note in the backend using the note ID.
  */
 function saveNote() {
-    const noteTitle = document.querySelector('.noteTitle h1').innerText;
+    const noteTitle = document.querySelector('.noteTitle input').value;
     const noteMarkdown = document.querySelector('markdown-editor').wysimark.getMarkdown();
     const noteDate = document.querySelector('.date input').value;
     // Modify the note
     modifyNoteTitle(NOTE_ID, noteTitle);
     modifyNoteText(NOTE_ID, noteMarkdown);
     modifyNoteDate(NOTE_ID, noteDate);
+    modifyNoteLastEdited(NOTE_ID, new Date().toISOString().slice(0,10));
     window.location.href = './view-note.html#' + NOTE_ID;
-    
 }
 
 function cancelEdit() {
@@ -73,8 +75,7 @@ function cancelEdit() {
  */
 function populateNote() {
     const note = getNoteFromTable(NOTE_ID);
-    console.log(note.title)
-    document.querySelector('.noteTitle h1').innerText = note.title;
+    document.querySelector('.noteTitle input').value = note.title;
     document.querySelector('markdown-editor').wysimark.setMarkdown(note.text);
     document.querySelector('.date input').value = note.date;
 }
