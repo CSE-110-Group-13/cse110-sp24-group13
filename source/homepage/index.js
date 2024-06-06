@@ -411,9 +411,6 @@ const recentsCollapseButton = document.getElementById('collapseButton1');
 recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'recents'));
 recentsCollapseButton.innerHTML = expandIcon;
 
-const favoritesCollapseButton = document.getElementById('collapseButton2');
-favoritesCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'favorites'));
-recentsCollapseButton.innerHTML = expandIcon;
 
 
 // Export functions for creating a note
