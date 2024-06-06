@@ -110,11 +110,11 @@ function createNoteElement(noteObject) {
 
     const projectElement = document.createElement('span');
     const linkProjectElement = document.createElement('a');
-    linkProjectElement.href="../project/view-project.html";
+    linkProjectElement.href="../project/view-project.html" + "#" + noteObject.linkedProject;
     linkProjectElement.textContent = noteObject.linkedProject;
     projectElement.appendChild(linkProjectElement);
     tagsProjectContainer.appendChild(projectElement);
-  });
+  };
   
 
 
@@ -232,7 +232,7 @@ localStorage.setItem('IDContainer', JSON.stringify(ID));
   // }
 
   // Get notes from local storage
-  const noteTable = getNoteTableFromStorage();
+  let noteTable = getNoteTableFromStorage();
   // Load notes under recent section
   for (const[key, value] of Object.entries(noteTable)) {
     const noteElement = createNoteElement(value);
@@ -249,7 +249,7 @@ localStorage.setItem('IDContainer', JSON.stringify(ID));
   recentContainer.innerHTML = "";
   favoriteContainer.innerHTML = "";
    // Get notes from local storage
-   const noteTable = getNoteTableFromStorage();
+   noteTable = getNoteTableFromStorage();
    // Load notes under recent section
    let loadedNotes = [];
  
