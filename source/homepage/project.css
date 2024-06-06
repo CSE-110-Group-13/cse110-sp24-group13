@@ -2,7 +2,7 @@
     position: relative;
     left: 35px;
     top:40px;
-    width: 1200px;
+    width: fit-content;
     height: 125px;
     margin-bottom: 70px;
   }
@@ -28,7 +28,7 @@
     width: 50px; /* Adjusted to fit within the container */
     padding: 0;
     font-weight: bold;
-    font-size: 1.7em;
+    font-size: 1.4em;
     flex-shrink: 0; /* Prevents shrinking */
   }
   

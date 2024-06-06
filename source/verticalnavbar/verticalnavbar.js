@@ -20,7 +20,7 @@ class VerticalNavbar extends HTMLElement {
         background-color: #F8F8F8;
         transition: transform 0.5s ease-in-out;
         transform: translateX(0vw);
-        box-shadow: 0.4em 0em 0.5em rgba(0, 0, 0, 0.2); 
+        box-shadow: 0.1em 0em .5em rgba(0, 0, 0, 0.15); 
         border-top-right-radius: 0.8em;
         border-bottom-right-radius: 0.8em;
       }

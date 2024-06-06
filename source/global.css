@@ -1,0 +1,47 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+/* Now you can use the font in your styles */
+body {
+    font-family: 'Varela Round', sans-serif;
+}
+
+input[type=checkbox] {
+    margin-left: 0px;
+    margin-right: 10px;
+    height:18px;
+    width:18px;
+    border: px solid #1e5180;
+
+    accent-color: black;
+}
+
+input[type=checkbox]:before {
+	font-family: "FontAwesome";
+    content: "\f00c";
+    font-size: 15px;
+    color: transparent !important;
+    display: block;
+    width: 13.5px;
+    height: 13.5px;
+    border: 2.5px solid black;
+    border-radius: 4px;
+
+}
+
+input[type=datetime-local] {
+    margin-left: 5px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #7C7C7C;
+    border: none;
+    padding: 5 10 5 10;
+    border-radius: 25px;
+    border: .5px solid #7c7c7c51;
+    height: 30px;
+    width: fit-content;
+}
+
+progress{
+    accent-color: green;
+}    
+

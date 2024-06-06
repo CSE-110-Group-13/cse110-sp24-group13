@@ -190,6 +190,7 @@ margin-right: 10px;
 
 #progressBar{
     accent-color: green;
+    transition: width 0.3s ease-in-out;
 }
 
 
