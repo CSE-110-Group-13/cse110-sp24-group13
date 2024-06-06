@@ -13,7 +13,10 @@ import {
 import {
     getTaskFromTable,
     modifyTaskCompleted
-  } from "../backend/TaskTable.js"
+  } from "../backend/TaskTable.js";
+import {
+    populateProjectTag
+} from '../note/viewNote.js';
 
 class linkedProject extends HTMLElement {
     constructor() {
@@ -202,6 +205,8 @@ class linkedProject extends HTMLElement {
         else if (project.priority === "low") {
             priority.style.backgroundColor = '#0AB73B';
         }
+
+        populateProjectTag();
     }
 
     render() {

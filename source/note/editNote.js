@@ -10,6 +10,10 @@ import {
     modifyNoteLastEdited
   } from '../backend/NoteTable.js';
 
+import {
+    populateProjectTag
+} from '../note/viewNote.js';
+
 let NOTE_ID = "";
 
 window.addEventListener("DOMContentLoaded", init);
@@ -34,6 +38,7 @@ function init() {
     }
     attachSaveButtonListener();
     attachCancelButtonListener();
+    populateProjectTag();
 }
 
 /**
