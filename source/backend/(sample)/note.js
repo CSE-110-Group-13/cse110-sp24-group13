@@ -67,7 +67,10 @@ function addInitializeNoteEvent() {
   });
 }
 
-// Modify note text
+/**
+ * Adds an event listener to the "modify note text" form.
+ * When submitted, the form modifies the text of the current note and updates the UI.
+ */
 function addModifyNoteTextEvent() {
   const textForm = document.getElementById("modifyNoteTextForm");
   textForm.addEventListener("submit", (event) => {
@@ -82,7 +85,10 @@ function addModifyNoteTextEvent() {
   });
 }
 
-// Modify note date
+/**
+ * Adds an event listener to the "modify note date" form.
+ * When submitted, the form modifies the date of the current note and updates the UI.
+ */
 function addModifyNoteDateEvent() {
   const dateForm = document.getElementById("modifyNoteDateForm");
   dateForm.addEventListener("submit", (event) => {
