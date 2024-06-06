@@ -6,6 +6,12 @@ import {
   getNoteTableFromStorage,getNoteFromTable,modifyNoteFavorited,
 } from "../backend/NoteTable.js";
 
+import {
+  getProjectTableFromStorage, getProjectFromTable,
+
+}from "../backend/ProjectTable.js"
+
+
 const filteredTags = [];
     
 window.addEventListener("DOMContentLoaded", init);
@@ -152,7 +158,9 @@ function createNoteElement(noteObject){
     const projectElement = document.createElement('span');
     const linkProjectElement = document.createElement('a');
     linkProjectElement.href="../project/view-project.html" + "#" + noteObject.linkedProject;
-    linkProjectElement.textContent = noteObject.linkedProject;
+
+    const project = getProjectFromTable(noteObject.linkedProject)
+    linkProjectElement.textContent = project.title; 
     projectElement.appendChild(linkProjectElement);
     tagsProjectContainer.appendChild(projectElement);
   };
