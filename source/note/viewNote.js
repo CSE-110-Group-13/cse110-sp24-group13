@@ -35,9 +35,7 @@ function editNote() {
 }
 
 function deleteNote() {
-    console.log("delete note")
-    deleteNoteFromTable(NOTE_ID);
-    window.location.href = "../homepage/index.html";
+    console.log("Delete clicked")
 }
 
 function makeUneditable() {
