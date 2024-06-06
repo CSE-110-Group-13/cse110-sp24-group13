@@ -5,22 +5,25 @@
   <script src="../verticalnavbar/verticalnavbar.js"></script>
     <script src="https://www.unpkg.com/wysimark-standalone/dist/javascript/index.cjs.js"></script>
     <script src="../markdown/markdown.js"></script>
-    <script src="../savecanceleditbuttons/cancel.js"></script>
-    <script src="../savecanceleditbuttons/edit.js"></script>
-    <script src="../projectinnote/projectInNote.js"></script>
+    <script src="../savecanceleditdeletebuttons/delete.js"></script>
+    <script src="../savecanceleditdeletebuttons/edit.js"></script>
+    <script type="module" src="../projectinnote/projectInNote.js"></script>
   <script type="module" src="viewNote.js"></script>
-  <link rel="stylesheet" href="notes.css">
+  <link rel="stylesheet" href="./notes.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+  </style>
   <title>Note Title | Commit </title> <!-- with JS, this can be switched to the note title -->
 </head>
 <body>
     <div id="container">
-        <vertical-navbar currentPage="anchorToEditNote"></vertical-navbar>
+        <vertical-navbar currentPage="anchorToNotIcon"></vertical-navbar>
         <div id="restOfScreen">
             <main>
                 <header>
                     <div class = "actionBar" href = "#">
                         <edit-button></edit-button>
-                        <cancel-button></cancel-button>
+                        <delete-button></delete-button>
                     </div>
                 </header>
                 <div class = "noteTitle">

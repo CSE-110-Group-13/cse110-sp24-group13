@@ -23,6 +23,7 @@ class AddNewBtn extends HTMLElement {
         justify-content: center;
         user-select: none;
         font-family: 'Varela Round', sans-serif;
+        z-index: 1000;
       }
       
       .svg-button {
@@ -92,10 +93,10 @@ class AddNewBtn extends HTMLElement {
     buttonsContainer.id = "buttonsContainer";
     this.shadowRoot.appendChild(buttonsContainer);
 
-    const addNewSvg = await fetchSvg('../addNewButton/addNew.svg');
-    const backSvg = await fetchSvg('../addNewButton/back.svg');
-    const addNoteSvg = await fetchSvg('../addNewButton/addNote.svg');
-    const addProjSvg = await fetchSvg('../addNewButton/addProj.svg');
+    const addNewSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addNewbutton/addNew.svg');
+    const backSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addNewbutton/back.svg');
+    const addNoteSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addNewbutton/addNote.svg');
+    const addProjSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addNewbutton/addProj.svg');
 
     // Add New Container
     const addNewContainer = document.createElement("div");

@@ -6,6 +6,10 @@ import {
 const filteredTags = [];
 window.addEventListener("DOMContentLoaded", init);
 
+let recentsCollapsed = false; 
+let recentCounter = 3;
+
+let favoriteCounter = 1;
 
 //Function to create a Note Element;
 /**
@@ -13,9 +17,7 @@ window.addEventListener("DOMContentLoaded", init);
  * @param {*} noteObject noteObject to create the HTML off of.
  * @returns a noteObject, or an empty div if it's being passed over.
  */
-function createNoteElement(noteObject){
-  //Wrapper container for a note Element. That will incude a note Contianer and a button.
-  //check if
+function createNoteElement(noteObject) {
   let relevantTag = false;
   noteObject.tags.forEach(tag => {
     filteredTags.forEach(otherTag => {
@@ -101,21 +103,19 @@ function createNoteElement(noteObject){
   });
   
   // Add line separating the tags and projects
-  if(noteObject.projectList.length != 0) {
+  if(noteObject.linkedProject != "") {
     const verticalLine = document.createElement('div');
     verticalLine.id = 'vertical-line';
     tagsProjectContainer.appendChild(verticalLine);
-  }
-  
-  // Add each project separately
-  noteObject.projectList.forEach(project => {
+
     const projectElement = document.createElement('span');
-    const linkElement = document.createElement('a');
-    linkElement.href="../project/view-project.html";
-    linkElement.textContent = project;
-    projectElement.appendChild(linkElement);
+    const linkProjectElement = document.createElement('a');
+    linkProjectElement.href="../project/view-project.html";
+    linkProjectElement.textContent = noteObject.linkedProject;
+    projectElement.appendChild(linkProjectElement);
     tagsProjectContainer.appendChild(projectElement);
   });
+  
 
 
   //Favorite button of the note. 
@@ -138,13 +138,11 @@ function createNoteElement(noteObject){
   button.className = "favorite-button";
   button.onclick = () => toggleFavorite(button);
 
-      
-  
+
   //Append favorite button to the wrapper container. 
   noteContainerMain.appendChild(button);
 
   return noteContainerMain;
-
 }
 
 const recentContainer = document.createElement("div");
@@ -181,7 +179,7 @@ function init(){
         "date": "2024-5-21",
         "lastEdited": "2025-5-23",
         "title": "to do at grocery store",
-        "projectList": [],
+        "linkedProject": "",
         "favorited": false,
         "tags": ["bb", "cc"]
     },
@@ -191,7 +189,7 @@ function init(){
         "date": "2024-5-22",
         "lastEdited": "2026-5-22",
         "title": "chores",
-        "projectList": ["Ash"],
+        "linkedProject": "",
         "favorited": false,
         "tags": ["a"]
     },
@@ -201,7 +199,7 @@ function init(){
         "date": "2024-5-21",
         "lastEdited": "2025-5-23",
         "title": "to do at grocery store",
-        "projectList": [],
+        "linkedProject": "",
         "favorited": false,
         "tags": []
     } 
@@ -248,23 +246,46 @@ localStorage.setItem('IDContainer', JSON.stringify(ID));
     }
   }
 
-  // for(let i = 0; i < loadedNotes.length; i++){
-  //   let noteID = loadedNotes[i].noteID;
-    
-  //   // Check if the noteID already exists in favoritesContainer
-  
-    
-    
-  //   // If the noteID doesn't exist and it is favorited, create and append the note element
+  recentContainer.innerHTML = "";
+  favoriteContainer.innerHTML = "";
+   // Get notes from local storage
+   const noteTable = getNoteTableFromStorage();
+   // Load notes under recent section
+   let loadedNotes = [];
+ 
+   for(const [key, value] of Object.entries(noteTable)){
+       loadedNotes.push(value);
+   }
+ 
+   loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
+ 
+   let recentsCount =0;
+ 
+   for (const note of loadedNotes) {
+     if(recentsCount < recentCounter){
+       const noteElement = createNoteElement(note);
+       recentContainer.appendChild(noteElement);
+       recentsCount++;
+     }
+   }
    
-  //       let noteObject = getNoteFromTable(noteID);
-  //       if (noteObject.favorited === true) {
-  //           const noteElement = createNoteElement(noteObject);
-  //           favoritesContainer.appendChild(noteElement);
-        
-  //   }
-  // }
-
+   if(recentsCollapsed){
+    favoriteCounter = 3;
+   }
+   else{
+    favoriteCounter = 1;
+   }
+   let favoritesCount = 0;
+   // Load notes under favorites section
+   for (const note of loadedNotes) {
+     if(favoritesCount<favoriteCounter){
+       if (note.favorited === true) {
+         const noteElement = createNoteElement(note);
+         favoriteContainer.appendChild(noteElement);
+         favoritesCount++;
+       }
+     }
+   }
 }
 
 function reset() {
@@ -299,7 +320,6 @@ function toggleFavorite(button){
       button.style.backgroundColor = ''; // Revert to default or another style
     }
   }
-  reset();
   init();
 }
 
@@ -314,7 +334,6 @@ function filterByTag(tag)
     filteredTags.push(tag);
   else
     filteredTags.splice(idx, 1);
-  reset();
   init();
 };
 
@@ -348,8 +367,7 @@ function getFormattedDate(dateString) {
 
   // Format the string
   const options = { month: 'long' };
-  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
-
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date); 
   return `${formattedDate} ${day}${suffix}`;
 }
 
@@ -377,13 +395,15 @@ function toggleCollapse(event, type) {
     isRecentsCollapsed = !isRecentsCollapsed;
     const collapseButton = document.getElementById('collapseButton1');
     collapseButton.innerHTML = isRecentsCollapsed ? collapseIcon : expandIcon;
-
+    recentsCollapsed = !recentsCollapsed;
+    init();
   } else if (type === 'favorites') {
     const favoritesContainer = document.getElementById('favorites');
     favoritesContainer.classList.toggle('collapsed');
     isFavoritesCollapsed = !isFavoritesCollapsed;
     const collapseButton = document.getElementById('collapseButton2');
     collapseButton.innerHTML = isFavoritesCollapsed ? collapseIcon : expandIcon;
+    init();
   }
 }
 

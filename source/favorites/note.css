@@ -13,6 +13,13 @@
   }
   
   
+  .note:hover {
+    background-color: #f5f5f5; /* Slightly darker background color */
+    transform: scale(1.002); /* Slightly scale up the element */
+    transition: background-color 0.15s, box-shadow 0.15s, transform 0.15s; /* Add transitions for all style changes */
+    }
+  
+
   header h2 > a {
     font-weight: bold;
     color: #000;
