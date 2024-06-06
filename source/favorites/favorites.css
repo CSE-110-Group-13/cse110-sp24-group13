@@ -25,7 +25,7 @@ head {
 
 
 .favorites-content {
-  margin-top: 140px;
+  margin-top: 120px;
   display: flex;              /* Use flexbox for horizontal alignment */
   align-items: center;        /* Vertically center the items */
   font-family: 'Varela Round', sans-serif;
@@ -78,9 +78,13 @@ head {
   position: relative;
   margin-left: 25px;
   margin-right:14px;
+  border-radius: 10px; /* Rounded corners */
   max-width: 100%; /* Ensure it takes the full width of the grid column */
   display: block;
 }
+
+
+ 
 
 
 a {

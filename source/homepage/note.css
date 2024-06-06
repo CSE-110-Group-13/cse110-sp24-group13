@@ -5,13 +5,18 @@
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-radius: 20px;
-  display: flex;         /* Use flexbox for horizontal alignement */
+  display: flex;         /* Use flexbox for horizontal alignment */
   flex-direction: column;
   justify-content: flex-start; 
   overflow: hidden;      /* hide the overflowed text */
   position: relative;
 }
 
+.note:hover {
+  background-color: #f5f5f5; /* Slightly darker background color */
+  transform: scale(1.002); /* Slightly scale up the element */
+  transition: background-color 0.15s, box-shadow 0.15s, transform 0.15s; /* Add transitions for all style changes */
+  }
 
 header h2 > a {
   font-weight: bold;
@@ -46,26 +51,27 @@ header {
   color: #000;
   transition: 0.5s;
 }
+
 .tags-project span > a {
   text-decoration: none;
   color: #000;
 }
+
+
 .tags-project span:hover {
   background-color: #D2D2D2;
   transition: 0.5s;
 }
 
-.tags-project span[filtered="true"]
-{
+.tags-project span[filtered="true"] {
   background-color: #212121;
-  color:#F8F8F8;
+  color: #F8F8F8;
   transition: 0.5s;
 }
 
-.tags-project span[filtered="true"]:hover
-{
+.tags-project span[filtered="true"]:hover {
   background-color: #000;
-  color:#F8F8F8;
+  color: #F8F8F8;
   transition: 0.5s;
 }
 
@@ -99,12 +105,15 @@ header {
   left: 25%;
   margin-top: -5px;
   margin-right: 10px;
+  max-width: 975px;
   font-size: 12px;
   color: #000;
   overflow: hidden;             /* Hide any overflow */
-  -webkit-box-orient: vertical; 
-  -webkit-line-clamp: 3;       /* set amount of lines of text allowed */
-  display: -webkit-box;
+  white-space: normal;          /* Allow text to wrap */
+  word-break: break-all;        /* Break long words to prevent overflow */
+  display: -webkit-box;         /* Flexbox display for line clamping */
+  -webkit-line-clamp: 3;        /* Limit text to 3 lines */
+  -webkit-box-orient: vertical; /* Vertical orientation for flexbox */
 }
 
 .favorite-button {

@@ -12,20 +12,24 @@ body {
   padding: 0;
 }
 
+#main-content{
+  display: flex;
+  flex-direction: column;
+}
+
 #recents {
-  padding: 20px; /* Changed to auto to allow scrolling */
+  padding: 10px; /* Changed to auto to allow scrolling */
   position:relative;
-  width: 70vw;
-  top:24%;
-  left: 17%;
+  width: 85vw;
+  left: 35px;
 }
 
 #favorites{
-  padding: 20px;
+  padding: 10px;
   position: relative;
-  top: 70%;
-  left: 17%;
-  width: 70vw;
+  margin-top:25px;
+  left: 35px;
+  width: 85vw;
 }
 
 
@@ -52,27 +56,41 @@ body {
 .recents-content span, .favorites-content span {
   font-size: inherit;         /* Inherit the font size from .recents-content */
   font-weight: inherit;       /* Inherit the font weight from .recents-content */
+  margin-right: 100px;
 }
 
 #collapseButton1, #collapseButton2 {
+  margin-left: 1000px;
   background-color: transparent; /* Transparent background */
   border: none; /* Remove border */
-  padding: 5px; /* Add some padding */
+  padding: 6px; /* Add some padding */
   cursor: pointer; /* Change the cursor to a pointer */
 }
 
 #collapseButton1 svg, #collapseButton2 svg {
-  width: 24px; /* Set the width of the SVG icon */
-  height: 24px; /* Set the height of the SVG icon */
+  margin-left: 150px;
+  width: 16px; /* Set the width of the SVG icon */
+  height: 16px; /* Set the height of the SVG icon */
+  margin-top:4px
 }
 
 .note-wrapper {
-  position: relative;
-  transition: transform 0.8s ease-in-out, opacity 0.8s ease;
+ position: relative;
+  margin-right:14px;
+  max-width: 98%; /* Ensure it takes the full width of the grid column */
+  display: block;
 }
+
+
+
 
 .collapsed .note-wrapper {
   display: none;
+}
+
+#line {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* Adjust the alpha channel (last value) to control opacity */
+  margin-top: 10px; /* Adjust the top margin as needed */
 }
 
 a {
@@ -80,16 +98,13 @@ a {
 }
 
 #collapseButton1 {
-  position: auto;
-  padding: 2vh;
+  padding-top: 2vh;
+  padding-left: 2vh;
 }
 
 #collapseButton2 {
-  position: auto;
   padding-top: 2vh;
 }
 
 
-#end-block {
-  display: none;
-}
+
