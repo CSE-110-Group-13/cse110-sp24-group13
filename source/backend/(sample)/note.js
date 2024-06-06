@@ -175,7 +175,10 @@ function addModifyFavoritedEvent() {
   });
 }
 
-// Add tags
+/**
+ * Adds an event listener to the "modify tags" form.
+ * When submitted, the form appends a tag to the tags of the current note and updates the UI.
+ */
 function addTagsEvent() {
   const addTagsForm = document.getElementById("modifyTagsForm");
   addTagsForm.addEventListener("submit", (event) => {
@@ -190,7 +193,10 @@ function addTagsEvent() {
   });
 }
 
-// Remove tags
+/**
+ * Adds an event listener to the "remove tags" form.
+ * When submitted, the form removes a tag from the tags of the current note and updates the UI.
+ */
 function addRemoveTagsEvent() {
   const removeTagsForm = document.getElementById("removeTagsForm");
   removeTagsForm.addEventListener("submit", (event) => {
