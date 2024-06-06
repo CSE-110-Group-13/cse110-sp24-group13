@@ -57,6 +57,7 @@ class linkedProject extends HTMLElement {
       
           if (task.completed === true) {
             inputCheckbox.checked = true;
+            label.classList.add('strikethrough');
           }
       
           this.updateTaskCompletionStatusEventListener(inputCheckbox, projectID, progressBar, progressLabel, label);
@@ -186,8 +187,21 @@ class linkedProject extends HTMLElement {
         taskList.innerHTML = '';
         this.createTaskListItem(taskList, project.taskList, projectID, projectProgress, progressLabel);
     
-        //TODO: Add hrefs to projectView and projectChange
+        // Add hrefs to projectView 
         let projectViewLink = document.querySelector('.projectHeader a');
+        projectViewLink.href = "../project/view-project.html" + "#" + projectID;
+
+        // Add priority
+        let priority = document.querySelector('.priorityDot');
+        if(project.priority === "high") {
+            priority.style.backgroundColor = '#FF000F';
+        }
+        else if (project.priority === "medium") {
+            priority.style.backgroundColor = '#FFD600';
+        }
+        else if (project.priority === "low") {
+            priority.style.backgroundColor = '#0AB73B';
+        }
     }
 
     render() {
@@ -351,6 +365,16 @@ class linkedProject extends HTMLElement {
 
         }  
 
+        .priorityDot {
+            width: 20px; 
+            height: 20px; 
+            border-radius: 50%; 
+            background-color: rgb(208, 225, 208);
+            margin-right: 15px;
+            margin-left: 0px;
+            flex-shrink: 0; /* Prevents shrinking */
+          }
+
         .linkedProject svg {
             width: 25px;
             height: 25px;
@@ -377,6 +401,10 @@ class linkedProject extends HTMLElement {
             margin-left: 20px;
             margin-right: auto;
         }
+        
+        .projectDetails {
+            margin-left: 32px;
+        }
 
         .projectDue {
             display: flex;
@@ -386,9 +414,9 @@ class linkedProject extends HTMLElement {
         }
 
         .projectDue svg {
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
         }
         
         .projectTaskList {
@@ -404,6 +432,7 @@ class linkedProject extends HTMLElement {
             display: flex;
             flex-direction: row;
             align-items: center;
+            
         }
 
         #descDropdown {
@@ -438,6 +467,10 @@ class linkedProject extends HTMLElement {
 
         .strikethrough {
             text-decoration: line-through;
+        }
+
+        .projectFooter {
+            margin-left: 32px;
         }
 
         .projectFooter button {
