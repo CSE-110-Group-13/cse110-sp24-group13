@@ -2,6 +2,8 @@
 
 // Note: all the functions in import are the only functions that are exposed to the frontend, if you want to expose more functions, talk to the backend team
 // import { 
+//   getNoteTableFromStorage,
+//   saveNoteTableToStorage,
 //   getNoteFromTable, 
 //   saveNoteToTable, 
 //   deleteNoteFromTable, 
@@ -10,14 +12,15 @@
 //   modifyNoteDate, 
 //   modifyNoteLastEdited, 
 //   modifyNoteTitle, 
-//   appendProjectToNoteProjectList, 
-//   removeProjectFromNoteProjectList, 
+//   modifyLinkedProject,
 //   modifyNoteFavorited, 
 //   appendTagToNoteTags, 
 //   removeTagFromNoteTags
 // } from "./NoteTable.js";
 
 // import {
+//   getProjectTableFromStorage,
+//   saveProjectTableToStorage,
 //   getProjectFromTable,
 //   saveProjectToTable,
 //   deleteProjectFromTable,
@@ -30,10 +33,15 @@
 //   modifyProjectPriority,
 //   modifyProjectDateCreated,
 //   appendCompletedTaskToProject,
-//   removeCompletedTaskFromProject
+//   removeCompletedTaskFromProject,
+//   appendLinkedNoteToProject,
+//   removeLinkedNoteFromProject,
+//   modifyLastWorkedOn
 // } from "./ProjectTable.js";
 
 // import {
+//   getTaskTableFromStorage,
+//   saveTaskTableToStorage,
 //   getTaskFromTable,
 //   saveTaskToTable,
 //   deleteTaskFromTable,

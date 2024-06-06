@@ -26,7 +26,19 @@ class VerticalNavbar extends HTMLElement {
       }
 
       #verticalNavbar.close {
-        transform: translateX(-7.5vw); 
+        transform: translateX(-6.5vw); 
+      }
+
+      #verticalNavbar.close a svg {
+        visibility: hidden;
+        transform: translateX(-2vw);
+        transition: visibility 0.5s linear, transform 0.5s linear;
+      }
+
+      #verticalNavbar.close a span {
+        visibility: hidden;
+        transform: translateX(-2vw);
+        transition: visibility 0.5s linear, transform 0.5s linear;
       }
       
       nav {

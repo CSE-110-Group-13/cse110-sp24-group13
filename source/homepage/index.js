@@ -3,30 +3,49 @@ import {
 } from "../backend/NoteTable.js";
 
 
+const filteredTags = [];
 window.addEventListener("DOMContentLoaded", init);
 
 
 //Function to create a Note Element;
+/**
+ * creates HTML element based on the object and returns it.
+ * @param {*} noteObject noteObject to create the HTML off of.
+ * @returns a noteObject, or an empty div if it's being passed over.
+ */
 function createNoteElement(noteObject){
   //Wrapper container for a note Element. That will incude a note Contianer and a button.
+  //check if
+  let relevantTag = false;
+  noteObject.tags.forEach(tag => {
+    filteredTags.forEach(otherTag => {
+      if(tag === otherTag)
+        relevantTag = true;
+    });
+  });
+
+  if(filteredTags.length > 0 && !relevantTag)
+    return document.createElement("div"); 
+
   const noteContainerMain = document.createElement("span");
   noteContainerMain.className = "note-wrapper";
 
   //Note Container that is an anchor to another page. 
-  const noteContainer = document.createElement("a");
-  noteContainer.href = "../library/library.html";
+  const noteContainer = document.createElement("div");
+  //noteContainer.href = "../library/library.html";
   noteContainer.className = "note";
 
   //append note container to wrapper container. 
   noteContainerMain.appendChild(noteContainer);
-
+  
   // Create a header
   const headerElement = document.createElement('header');
   noteContainer.appendChild(headerElement);
 
   // Create a container for the content (text, date, and lastEdited)
-  const contentContainer = document.createElement('div');
+  const contentContainer = document.createElement('a');
   contentContainer.classList.add('content-container');
+  contentContainer.href="../note/view-note.html" + "#" + noteObject.noteID;
   noteContainer.appendChild(contentContainer);
 
   // Create a date container
@@ -36,7 +55,10 @@ function createNoteElement(noteObject){
 
   // Title of note
   const titleElement = document.createElement('h2');
-  titleElement.textContent = noteObject.title;
+  const linkElement = document.createElement('a');
+  linkElement.href = "../note/view-note.html" + "#" + noteObject.noteID;
+  linkElement.textContent = noteObject.title;
+  titleElement.appendChild(linkElement);
   headerElement.appendChild(titleElement);
 
   // Call the function getFormattedDate()
@@ -68,6 +90,13 @@ function createNoteElement(noteObject){
   noteObject.tags.forEach(tag => {
     const tagElement = document.createElement('span');
     tagElement.textContent = tag;
+    if(filteredTags.indexOf(tag) != -1)
+      tagElement.setAttribute("filtered", true);
+    else
+      tagElement.setAttribute("filtered", false)
+
+    tagElement.addEventListener("click", () => filterByTag(tag));
+
     tagsProjectContainer.appendChild(tagElement);
   });
   
@@ -81,7 +110,10 @@ function createNoteElement(noteObject){
   // Add each project separately
   noteObject.projectList.forEach(project => {
     const projectElement = document.createElement('span');
-    projectElement.textContent = project;
+    const linkElement = document.createElement('a');
+    linkElement.href="../project/view-project.html";
+    linkElement.textContent = project;
+    projectElement.appendChild(linkElement);
     tagsProjectContainer.appendChild(projectElement);
   });
 
@@ -212,7 +244,7 @@ localStorage.setItem('IDContainer', JSON.stringify(ID));
   for (const[key, value] of Object.entries(noteTable)) {
     if (value.favorited === true) {
       const noteElement = createNoteElement(value);
-      favoritesContainer.appendChild(noteElement);
+      favoriteContainer.appendChild(noteElement);
     }
   }
 
@@ -248,9 +280,6 @@ function reset() {
   
 }
 
-
-
-
 //Function to change favorite button from highlighted to note highlighted. 
 function toggleFavorite(button){
 
@@ -275,15 +304,34 @@ function toggleFavorite(button){
 }
 
 /**
+ * adds a tag to filteredTags[] and reloads the notes based on it.
+ * @param {*} tag 
+ */
+function filterByTag(tag)
+{
+  let idx = filteredTags.indexOf(tag);
+  if(idx == -1)
+    filteredTags.push(tag);
+  else
+    filteredTags.splice(idx, 1);
+  reset();
+  init();
+};
+
+/**
   * Takes in a date string and converts it to the format Month Day with the corresponding suffix
   * @param {string}  dateString string in the format YYYY-MM-DD
   * @return {string} a string in the correct format
   */
 function getFormattedDate(dateString) {
+  //catches exception where a date is left blank.
+  if(dateString == "")
+  {
+    return "";
+  }
   const date = new Date(dateString);
   const day = date.getDate();
   let suffix = "";
-
   // Determine the suffix based on the day
   if (day === 1 || day === 21 || day === 31) {
     suffix = "st";
@@ -329,6 +377,7 @@ function toggleCollapse(event, type) {
     isRecentsCollapsed = !isRecentsCollapsed;
     const collapseButton = document.getElementById('collapseButton1');
     collapseButton.innerHTML = isRecentsCollapsed ? collapseIcon : expandIcon;
+
   } else if (type === 'favorites') {
     const favoritesContainer = document.getElementById('favorites');
     favoritesContainer.classList.toggle('collapsed');
@@ -340,13 +389,17 @@ function toggleCollapse(event, type) {
 
 const recentsCollapseButton = document.getElementById('collapseButton1');
 recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'recents'));
+recentsCollapseButton.innerHTML = expandIcon;
 
+const favoritesCollapseButton = document.getElementById('collapseButton2');
+favoritesCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'favorites'));
 recentsCollapseButton.innerHTML = expandIcon;
 
 
 // Export functions for creating a note
 export {
   createNoteElement,
+  filterByTag,
   getFormattedDate,
   toggleFavorite
 }

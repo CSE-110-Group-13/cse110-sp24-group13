@@ -64,8 +64,8 @@ Backend:
 - Write unit tests and puppeteer
 - Don't use shadow doms if unnecessary
 
-# BIG GOAL FOR NEXT SPRINT (STARTING 5/26)
-- Skeleton and core functionality to be done fully by June 2nd (completion of second sprint)
+# BIG GOAL FOR NEXT SPRINT (STARTING 5/26 till 06/09)
+- Skeleton and core functionality to be done fully by June 2nd ~~(completion of second sprint)~~ **changed to June 9th for a 2 week sprint**
 - Create tests and setup CI/CD
 
 -—

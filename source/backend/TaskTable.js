@@ -84,10 +84,10 @@ function deleteTaskFromTable(taskID) {
   if (taskID in taskTable) {
     // Delete the taskID from the taskTable
     delete taskTable[taskID];
-    saveNoteTableToStorage(taskTable);
+    saveTaskTableToStorage(taskTable);
   
-    // Filter and remove the projectID from the IDContainer
-    const IDToRemove = projectID.split("-")[1];
+    // Filter and remove the taskID from the IDContainer
+    const IDToRemove = taskID.split("-")[1];
     const IDContainer = getIDContainerFromStorage();
     const newIDContainer = IDContainer.filter(ID => ID !== IDToRemove);
     saveIDContainerToStorage(newIDContainer);
@@ -112,24 +112,24 @@ function createNewTaskObject(name="", completed="") {
 }
 
 /**
- * Modify the title of a task object that maps to the given ID and update the local storage
+ * Modify the name of a task object that maps to the given ID and update the local storage
  * @param {String} taskID - the ID of the task to modify
- * @param {String} newTitle - the new title of the task
+ * @param {String} newName - the new name of the task
  */
-function modifyTaskName(taskID, newTitle) {
+function modifyTaskName(taskID, newName) {
   const taskObject = getTaskFromTable(taskID);
-  taskObject["title"] = newTitle;
+  taskObject["name"] = newName;
   saveTaskToTable(taskID, taskObject);
 }
 
 /**
- * Modify the title of a task object that maps to the given ID and update the local storage
+ * Modify the completed status of a task object that maps to the given ID and update the local storage
  * @param {String} taskID - the ID of the task to modify
- * @param {String} newTitle - the new title of the task
+ * @param {Boolean} newCompleted - the new completed status of the task
  */
-function modifyTaskCompleted(taskID, newTitle) {
+function modifyTaskCompleted(taskID, newCompleted) {
   const taskObject = getTaskFromTable(taskID);
-  taskObject["title"] = newTitle;
+  taskObject["completed"] = newCompleted;
   saveTaskToTable(taskID, taskObject);
 }
 

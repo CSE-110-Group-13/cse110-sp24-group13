@@ -1,9 +1,8 @@
 #verticalNavbar {
   height: 100vh;
   width: 20%;
-  background-color: #F8F8F8;
+  background-color: #F8F8F8;  
 }
-
 nav {
   box-sizing: border-box;
   display: flex;
