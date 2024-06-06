@@ -211,7 +211,10 @@ function addRemoveTagsEvent() {
   });
 }
 
-// Delete note
+/**
+ * Adds an event listener to the "delete note" button.
+ * When clicked, the button deletes the current note.
+ */
 function addDeleteNoteEvent() {
   const deleteNoteButton = document.getElementById("deleteNoteButton");
   deleteNoteButton.addEventListener("click", () => {
