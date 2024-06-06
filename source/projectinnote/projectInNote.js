@@ -59,13 +59,13 @@ class linkedProject extends HTMLElement {
             inputCheckbox.checked = true;
           }
       
-          this.updateTaskCompletionStatusEventListener(inputCheckbox, projectID, progressBar, progressLabel);
+          this.updateTaskCompletionStatusEventListener(inputCheckbox, projectID, progressBar, progressLabel, label);
           taskListItem.appendChild(inputCheckbox);
           taskListItem.appendChild(label);
         });
     }
 
-    updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID, progressBar, progressLabel){
+    updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID, progressBar, progressLabel, label){
         singleInputCheckbox.addEventListener('change', () => {
           const taskID = singleInputCheckbox.id;
           const task = getTaskFromTable(taskID);
@@ -78,6 +78,8 @@ class linkedProject extends HTMLElement {
             modifyLastWorkedOn(projectID, newDate);
             progressBar.value = this.calculateTaskCompletion(projectID);
             progressLabel.textContent = `${progressBar.value}% of tasks completed`;
+            label.classList.add('strikethrough');
+
           }
           // checked to unchecked
           if (singleInputCheckbox.checked === false && task.completed === true) {
@@ -88,6 +90,7 @@ class linkedProject extends HTMLElement {
             modifyLastWorkedOn(projectID, newDate);
             progressBar.value = this.calculateTaskCompletion(projectID);
             progressLabel.textContent = `${progressBar.value}% of tasks completed`;
+            label.classList.remove('strikethrough');
           }
         });
     }
@@ -393,27 +396,8 @@ class linkedProject extends HTMLElement {
             flex-direction: column; 
         }
 
-        #addTasks {
-            border: none;
-            background-color: transparent;
-            outline: none;
-            box-shadow: none;
-            cursor: pointer;
-            width: 100%;
-            justify-content: start;
-            margin-left: -2px;
-            margin-top: -35px;
-        }
-
         .projectTaskList p {
             color: #7C7C7C;
-        }
-
-        #addTasks svg {
-            margin-right: 8px; /* Add space between icon and text */
-            width: 15px;
-            height: 15px;
-            
         }
 
         .descHeader {
@@ -452,6 +436,10 @@ class linkedProject extends HTMLElement {
             accent-color: black;
         }
 
+        .strikethrough {
+            text-decoration: line-through;
+        }
+
         .projectFooter button {
             display: flex;
             justify-content: center; 
@@ -466,6 +454,7 @@ class linkedProject extends HTMLElement {
             box-shadow: none;
             border: none;
             background-color: transparent;
+            width: auto;
             
         }
 
@@ -582,11 +571,7 @@ class linkedProject extends HTMLElement {
                 <p id="projectDescContent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus beatae eum perferendis accusantium quasi odio vel voluptatem temporibus nihil sed reprehenderit quo eveniet delectus reiciendis dolor itaque, nemo quas dolore!</p>
                 <div class="projectTaskList">
                     <h3>Tasks</h3>
-                    <ul class="tasks"></ul>   
-                    <button id="addTasks">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM200 344V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-                        <i>Add new task</i>
-                    </button>
+                    <ul class="tasks"></ul>  
                 </div>
             </div>
             <footer class="projectFooter">
@@ -699,15 +684,6 @@ class linkedProject extends HTMLElement {
                 }
                 projectContainer.classList.toggle("open");
                 overlay.classList.toggle("open");
-            });
-
-            // TODO Add new tasks
-            const taskContainer = document.getElementsByClassName('tasks');
-            const addTasks = document.getElementById("addTasks");
-
-            //TODO Add event listener for when add tasks is pressed
-            addTasks.addEventListener('click', () => {
-        
             });
         });
    
