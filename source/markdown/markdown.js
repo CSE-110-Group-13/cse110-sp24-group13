@@ -28,10 +28,7 @@ connectedCallback() {
 
     // Append elements to the container
     container.appendChild(editor);
-    /*
-    container.appendChild(saveButton);
-    container.appendChild(loadButton);
-    */
+
     // Append the container to the element itself
     this.appendChild(container);
 
@@ -49,30 +46,6 @@ connectedCallback() {
     loadButton.addEventListener('click', () => this.load());
   }
 
-
-  
-/*
- * Uses the built in wysimark method to save the markdown content to local storage.
-
-save() {
-    if (this.wysimark) {
-      const markdown = this.wysimark.getMarkdown();
-      window.localStorage.setItem("markdown", markdown.toString());
-    }
-  }
-  
-  
-  /**
- * Uses built im wysimark method to load the markdown content from local storage.
- 
-load() {
-    const savedMarkdownContent = window.localStorage.getItem("markdown");
-    if (this.wysimark && savedMarkdownContent) {
-      this.wysimark.setMarkdown(savedMarkdownContent);
-      console.log(savedMarkdownContent);
-    }
-  }  
-  */
 }
 
 customElements.define('markdown-editor', markdownEditor);

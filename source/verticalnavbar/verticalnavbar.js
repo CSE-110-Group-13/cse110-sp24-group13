@@ -8,10 +8,6 @@ class VerticalNavbar extends HTMLElement {
 
   connectedCallback() {
     // Link to Stylesheet
-    // const linkToStylesheet = document.createElement('link');
-    // linkToStylesheet.rel = 'stylesheet';
-    // linkToStylesheet.href = '../verticalnavbar/verticalnavbar.css';
-    // this.shadowRoot.appendChild(linkToStylesheet);
     const styles = document.createElement("style");
     styles.innerHTML = `
       #verticalNavbar {
@@ -131,7 +127,6 @@ class VerticalNavbar extends HTMLElement {
     // Create toggle button
     const toggleButton = document.createElement("button");
     toggleButton.id = "toggleButton";
-    // toggleButton.textContent = "<";
     toggleButton.innerHTML = `<svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.5" d="M0.34363 6.98486L6.98426 0.344238C7.44324 -0.114746 8.18543 -0.114746 8.63953 0.344238L9.74304 1.44775C10.202 1.90674 10.202 2.64893 9.74304 3.10303L5.0409 7.81494L9.74793 12.522C10.2069 12.981 10.2069 13.7231 9.74793 14.1772L8.64441 15.2856C8.18543 15.7446 7.44324 15.7446 6.98914 15.2856L0.348513 8.64502C-0.115354 8.18604 -0.115354 7.44385 0.34363 6.98486Z" fill="black"/></svg>`;
 
     // Add event listener to open and close navbar
@@ -141,12 +136,8 @@ class VerticalNavbar extends HTMLElement {
       // update symbol and position
       if (navbarContainer.classList.contains("close")) {
         toggleButton.innerHTML = `<svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.74865 6.98486L3.10803 0.344238C2.64905 -0.114746 1.90686 -0.114746 1.45276 0.344238L0.349241 1.44775C-0.109744 1.90674 -0.109744 2.64893 0.349241 3.10303L5.05139 7.81494L0.344358 12.522C-0.114627 12.981 -0.114627 13.7231 0.344358 14.1772L1.44787 15.2856C1.90686 15.7446 2.64905 15.7446 3.10315 15.2856L9.74377 8.64502C10.2076 8.18604 10.2076 7.44385 9.74865 6.98486Z" fill="black"/></svg>`;
-        // toggleButton.textContent = ">";
-        // toggleButton.style.left = "0%";
       } else {
         toggleButton.innerHTML = `<svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.5" d="M0.34363 6.98486L6.98426 0.344238C7.44324 -0.114746 8.18543 -0.114746 8.63953 0.344238L9.74304 1.44775C10.202 1.90674 10.202 2.64893 9.74304 3.10303L5.0409 7.81494L9.74793 12.522C10.2069 12.981 10.2069 13.7231 9.74793 14.1772L8.64441 15.2856C8.18543 15.7446 7.44324 15.7446 6.98914 15.2856L0.348513 8.64502C-0.115354 8.18604 -0.115354 7.44385 0.34363 6.98486Z" fill="black"/></svg>`;
-        // toggleButton.textContent = "<";
-        // toggleButton.style.left = "18%";
       }
     });
     // Append toggle button to navbar
@@ -176,24 +167,6 @@ class VerticalNavbar extends HTMLElement {
     anchorToSettings.href = "../settings/settings.html";
 
     // Create image elements
-    // const homeImg = document.createElement('img');
-    // homeImg.src = '../verticalnavbar/icons/house-solid.svg';
-    // anchorToHome.appendChild(homeImg);
-    // const favoritesImg = document.createElement('img');
-    // favoritesImg.src = '../verticalnavbar/icons/star-solid.svg';
-    // anchorToFavorites.appendChild(favoritesImg);
-    // const libraryImg = document.createElement('img');
-    // libraryImg.src = '../verticalnavbar/icons/book-solid.svg';
-    // anchorToLibrary.appendChild(libraryImg);
-    // const calendarImg = document.createElement('img');
-    // calendarImg.src = '../verticalnavbar/icons/calendar-days-solid.svg';
-    // anchorToCalendar.appendChild(calendarImg);
-    // const projectListImg = document.createElement('img');
-    // projectListImg.src = '../verticalnavbar/icons/list-check-solid.svg';
-    // anchorToProjectList.appendChild(projectListImg);
-    // const settingsImg = document.createElement('img');
-    // settingsImg.src = '../verticalnavbar/icons/gear-solid.svg';
-    // anchorToSettings.appendChild(settingsImg);
     anchorToHome.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>`;
     anchorToFavorites.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>`;
     anchorToLibrary.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>`;

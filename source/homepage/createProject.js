@@ -1,10 +1,10 @@
 import {
-    getProjectTableFromStorage, getProjectFromTable,
+    getProjectTableFromStorage,
   
   }from "../backend/ProjectTable.js"
 
   import{
-    getTaskTableFromStorage, getTaskFromTable,
+    getTaskFromTable,
   }from "../backend/TaskTable.js"
   
   window.addEventListener("DOMContentLoaded", createProjectTable);

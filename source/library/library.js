@@ -7,7 +7,7 @@ import {
 } from "../backend/NoteTable.js";
 
 import {
-  getProjectTableFromStorage, getProjectFromTable,
+  getProjectFromTable,
 
 }from "../backend/ProjectTable.js"
 
@@ -133,22 +133,6 @@ function createNoteElement(noteObject){
     tagsProjectContainer.appendChild(tagElement);
   });
   
-  // // Add line separating the tags and projects
-  // if(noteObject.projectList.length != 0) {
-  //   const verticalLine = document.createElement('div');
-  //   verticalLine.id = 'vertical-line';
-  //   tagsProjectContainer.appendChild(verticalLine);
-  // }
-  
-  // // Add each project separately
-  // noteObject.projectList.forEach(project => {
-  //   const projectElement = document.createElement('span');
-  //   const linkElement = document.createElement('a');
-  //   linkElement.href="../project/view-project.html";
-  //   linkElement.textContent = project;
-  //   projectElement.appendChild(linkElement);
-  //   tagsProjectContainer.appendChild(projectElement);
-  // });
   // Add line separating the tags and projects
   if(noteObject.linkedProject != "") {
     const verticalLine = document.createElement('div');

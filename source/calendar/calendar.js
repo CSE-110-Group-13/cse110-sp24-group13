@@ -184,8 +184,6 @@ function addNotesAndProjectsToCalendar() {
     const projectTable = getProjectTableFromStorage();
 
     // Date is saved as year-month-day 2024-05-30
-    // const dayElement = document.querySelector(`[data-date='${taskDate}']`);
-
     /**
      * iterate through notetable and add notes to the calendar
      * icon color for notes is set to blue

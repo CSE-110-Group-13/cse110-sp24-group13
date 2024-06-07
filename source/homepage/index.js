@@ -3,7 +3,7 @@ import {
 } from "../backend/NoteTable.js";
 
 import {
-  getProjectTableFromStorage, getProjectFromTable,
+  getProjectFromTable,
 
 }from "../backend/ProjectTable.js"
 
@@ -207,17 +207,6 @@ function init(){
    else{
     favoriteCounter = 1;
    }
-   let favoritesCount = 0;
-   // Load notes under favorites section
-   /*for (const note of loadedNotes) {
-     if(favoritesCount<favoriteCounter){
-       if (note.favorited === true) {
-         const noteElement = createNoteElement(note);
-         favoriteContainer.appendChild(noteElement);
-         favoritesCount++;
-       }
-     }
-   }*/
 }
 
 function reset() {
@@ -342,11 +331,6 @@ function toggleCollapse(event, type) {
 const recentsCollapseButton = document.getElementById('collapseButton1');
 recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'recents'));
 recentsCollapseButton.innerHTML = expandIcon;
-
-const favoritesCollapseButton = document.getElementById('collapseButton2');
-//favoritesCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'favorites'));
-recentsCollapseButton.innerHTML = expandIcon;
-
 
 // Export functions for creating a note
 export {

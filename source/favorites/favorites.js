@@ -3,7 +3,7 @@ import {
 } from "../backend/NoteTable.js";
 
 import {
-  getProjectTableFromStorage, getProjectFromTable,
+  getProjectFromTable,
 
 }from "../backend/ProjectTable.js"
 
@@ -111,12 +111,6 @@ function createNoteElement(noteObject) {
     tagsProjectContainer.appendChild(projectElement);
   };
   
-
-  
-
- 
-
-
   //Favorite button of the note. 
   let favorited = noteObject.favorited;
 

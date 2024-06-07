@@ -272,7 +272,6 @@ function updateTaskCompletionStatusEventListener(
 
     const linkedNotesElement = document.querySelector(".linkedNotes");
     const project = getProjectFromTable(PROJECT_ID);
-    // populateLinkedNotes(project.linkedNotes, linkedNotesElement);
     updateProgress();
   });
 }
