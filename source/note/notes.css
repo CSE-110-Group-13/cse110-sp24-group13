@@ -234,5 +234,38 @@ main >.projectContainer {
     width: fit-content;
 }
 
+#projectTag {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.projectTagContainer.close {
+    display: none;
+}
 
+.projectTagContainer.open {
+    display: flex;
+    align-items: center;
+    background-color: #E2E2E2;
+    border: none;
+    padding: 5px 10px 5px 10px;
+    border-radius: 25px;
+    width: fit-content;
+    height: 20px;
+}
+
+#projectTag #linkedProjectTag {
+    text-decoration: none;
+    color: black;
+}
+
+#priority {
+    width: 15px; 
+    height: 15px; 
+    border-radius: 50%; 
+    background-color: rgb(208, 225, 208);
+    margin-right: 5px;
+    flex-shrink: 0; /* Prevents shrinking */
+  }
 
