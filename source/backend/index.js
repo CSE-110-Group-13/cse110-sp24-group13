@@ -55,6 +55,11 @@
 // Initialize local storage
 window.addEventListener("DOMContentLoaded", initializeLocalStorage);
 
+/**
+ * Initializes local storage by creating necessary tables and an ID container if they do not exist.
+ * The tables include "NoteTable", "ProjectTable", and "TaskTable".
+ * The ID container is used to check whether an ID is used.
+ */
 function initializeLocalStorage() {
   // Create the tables in local storage if they do not exist
   const tables = ["NoteTable", "ProjectTable", "TaskTable"];
