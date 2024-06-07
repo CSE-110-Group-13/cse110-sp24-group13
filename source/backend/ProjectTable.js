@@ -117,7 +117,7 @@ function deleteProjectFromTable(projectID) {
  * @param {String} lastWorkedOn - the date the project was last worked on
  * @returns {Object} the project object that was created
  */
-function createNewProjectObject(title="", description="", taskList=[], deadline="", priority="high", dateCreated="", tasksCompleted=[], linkedNotes=[], lastWorkedOn="") {
+function createNewProjectObject(title="", description="", taskList=[], deadline="", priority="low", dateCreated="", tasksCompleted=[], linkedNotes=[], lastWorkedOn="") {
   const newProjectObject = {
     "projectID" : `project-${generateID()}`,
     "title" : title,
