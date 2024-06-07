@@ -4,32 +4,26 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
+  display: flex;
 }
 
-body {
-  display: flex;
-  margin: 0;
-  padding: 0;
+vertical-navbar{
+  width: 10%;
 }
 
 #restOfScreen{
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 #recents {
-  padding: 10px; /* Changed to auto to allow scrolling */
-  position:relative;
-  width: 85vw;
-  left: 35px;
-}
-
-#favorites{
-  padding: 10px;
-  position: relative;
-  margin-top:25px;
-  left: 35px;
-  width: 85vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 1% 1%;
+  padding: 1%;
 }
 
 
@@ -39,7 +33,6 @@ body {
   justify-content: space-between; /* Space items out evenly */
 }
 
-
 .recents-content, .favorites-content {
   display: flex;              /* Use flexbox for horizontal alignment */
   align-items: center;        /* Vertically center the items */
@@ -48,10 +41,10 @@ body {
   font-weight: bold;          /* Make the text bold */
 }
 
-.recents-content svg, .favorites-content svg {
-  width: 24px;                /* Set the width of the SVG icon */
-  height: 24px;               /* Set the height of the SVG icon */
-  margin-right: 15px;         /* Add space between icon and text */
+.recents-content svg{
+  width: 1em;                /* Set the width of the SVG icon */
+  height: 1em;               /* Set the height of the SVG icon */
+  margin: 0 0.5em;           /* Add space between icon and text */
 }
 
 .recents-content span, .favorites-content span {

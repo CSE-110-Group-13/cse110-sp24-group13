@@ -1,8 +1,17 @@
+@media (min-width: 30em) and (max-width: 50em) {
+  /* ...*/
+}
+
+@media (min-width: 30em) and (max-width: 50em) {
+  /* ...*/
+}
+
+
 #project-section {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin: 1% 5% 1% 1%;
+  margin: 5% 5% 1% 1%;
   padding: 1%;
 }
 
