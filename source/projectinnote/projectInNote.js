@@ -671,7 +671,10 @@ class linkedProject extends HTMLElement {
             projectContainer.classList.toggle("open");
             overlay.classList.toggle("open");
             linkAProject.classList.toggle("close");
-            this.populateProject(selectedProject.id);          
+            this.populateProject(selectedProject.id);
+            this.dispatchEvent(new CustomEvent('projectChanged', {
+                bubbles: true,
+            }));         
         });
 
         // Add event listener for when add project button is pressed

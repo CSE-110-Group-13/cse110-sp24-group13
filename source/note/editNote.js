@@ -10,6 +10,12 @@ import {
     modifyNoteLastEdited,
   } from '../backend/NoteTable.js';
 
+import {
+    getProjectFromTable
+} from '../backend/ProjectTable.js';
+
+
+
 let NOTE_ID = "";
 
 window.addEventListener("DOMContentLoaded", init);
@@ -32,6 +38,7 @@ function init() {
     } else {
         populateNote();
         populateTag();
+        populateProjectTag();
     }
     attachSaveButtonListener();
     attachCancelButtonListener();
@@ -111,7 +118,48 @@ document.addEventListener('DOMContentLoaded', () => {
             populateTag();
         }
     });
+
+    document.addEventListener('projectChanged', () => {
+        populateProjectTag();
+    });
 });
+
+/**
+ * Populates the project tag with existing data from the backend
+ * Retrieves the note data using the note ID 
+ * Retrieves the project data using the project ID from linkedProject
+ */
+ function populateProjectTag() {
+    const linkProjectElement = document.getElementById("linkedProjectTag");
+    const projectTagContainer = document.querySelector(".projectTagContainer");
+    const note = getNoteFromTable(NOTE_ID);
+    if(note.linkedProject === "") {
+        projectTagContainer.classList.add("close");
+        if(projectTagContainer.classList.contains("open")) {
+            projectTagContainer.classList.remove("open");
+        }
+    }
+    else {
+        const project = getProjectFromTable(note.linkedProject);
+        linkProjectElement.textContent = project.title;
+        linkProjectElement.href = "../project/view-project.html" + "#" + note.linkedProject;
+        // get priority
+        const priority = document.getElementById("priority");
+        if (project.priority === "high") {
+            priority.style.backgroundColor = "#FF000F";
+        }
+        else if (project.priority === "medium") {
+            priority.style.backgroundColor = "#FFD600";
+        }
+        else if (project.priority === "low") {
+        priority.style.backgroundColor = "#0AB73B"
+        }
+        if (projectTagContainer.classList.contains("close")){
+            projectTagContainer.classList.remove("close");
+        }
+        projectTagContainer.classList.add("open");
+    }
+}
 
 export {
     populateTag
