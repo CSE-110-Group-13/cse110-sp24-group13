@@ -79,7 +79,7 @@ function createProjects() {
     description.textContent = value.description;
 
     const taskList = projectContainer.querySelector('.taskList');
-    createTaskListItem(taskList, value.taskList, value.projectID, progressBar, lastWorked);
+    createTaskListItem(taskList, value.taskList, value.projectID, progressBar, lastWorked, labelForProgressBar);
 
     main.appendChild(projectContainer);
   }
@@ -93,7 +93,7 @@ function createProjects() {
  * @param {String} projectID - id of a project
  * @param {Object} progressBar - progress element for progress bar
  */
-function createTaskListItem(taskListElement, taskListArray, projectID, progressBar, lastWorked) {
+function createTaskListItem(taskListElement, taskListArray, projectID, progressBar, lastWorked, labelForProgressBar) {
   taskListArray.forEach(taskID => {
     const task = getTaskFromTable(taskID);
     const taskListItem = document.createElement('li');
@@ -111,7 +111,7 @@ function createTaskListItem(taskListElement, taskListArray, projectID, progressB
       inputCheckbox.checked = true;
     }
 
-    updateTaskCompletionStatusEventListener(inputCheckbox, projectID, progressBar, lastWorked);
+    updateTaskCompletionStatusEventListener(inputCheckbox, projectID, progressBar, lastWorked, labelForProgressBar);
     taskListItem.appendChild(inputCheckbox);
     taskListItem.appendChild(label);
   });
@@ -124,7 +124,7 @@ function createTaskListItem(taskListElement, taskListArray, projectID, progressB
  * @param {String} projectID - id for task's respective project
  * @param {Object} progressBar - progress element for progress bar
  */
-function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID, progressBar, lastWorked) {
+function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID, progressBar, lastWorked, labelForProgressBar) {
   singleInputCheckbox.addEventListener('change', () => {
     const taskID = singleInputCheckbox.id;
     const task = getTaskFromTable(taskID);
@@ -137,6 +137,7 @@ function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID,
       modifyLastWorkedOn(projectID, newDate);
       lastWorked.textContent = `Last Worked on: ${dateToString(newDate)}`;
       progressBar.value = calculateTaskCompletion(projectID);
+      labelForProgressBar.textContent = `${progressBar.value}% of tasks completed`;
     }
     // checked to unchecked
     if (singleInputCheckbox.checked === false && task.completed === true) {
@@ -147,6 +148,7 @@ function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID,
       modifyLastWorkedOn(projectID, newDate);
       lastWorked.textContent = `Last Worked on: ${dateToString(newDate)}`;
       progressBar.value = calculateTaskCompletion(projectID);
+      labelForProgressBar.textContent = `${progressBar.value}% of tasks completed`;
     }
   });
 }
