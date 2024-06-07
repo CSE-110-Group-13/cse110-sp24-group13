@@ -31,14 +31,14 @@
   height: 1.25em; 
   border-radius: 50%; 
   background-color: rgb(208, 225, 208);
-  margin: 1% 1%;
+  margin: 0.5% 1%;
   flex-shrink: 0; /* Prevents shrinking */
 }
 
 .project-title{
   font-size: 1.25em;
   font-weight: bold;
-  margin: 1% 1%;
+  margin: 0.5% 1%;
   padding: 0;
 }
 
@@ -75,7 +75,7 @@
 .progress-bar {
   height: 100%;
   background-color: #4caf50;
-  transition: width 0.3s ease-in-out;
+  transition: width 0.5s ease-in-out;
 }
 
 .percent {
@@ -89,7 +89,7 @@
 
 .task-completed-text{
   font-size: 1em;
-  margin: 1% 1%;
+  margin: 0.5% 1%;
 }
 
 .vertical-line-project {
@@ -99,11 +99,12 @@
 }
 
 .calenderImage{
-  margin: 1% 1%;
+  margin: 0.5% 1%;
 }
 
 .timeLeft {
   font-size: 1em;
-  margin: 1% 1%;
+  margin: 0.5% 1%;
   width: 20%;
+  height: 2.5em;
 }
