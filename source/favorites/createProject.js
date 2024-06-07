@@ -31,11 +31,11 @@ import {
     
     // Case of no projects
     if (!projectTable || Object.keys(projectTable).length === 0) {
-        console.log("No projects found");
-        const noProjectsCase = document.createElement("p");
-        noProjectsCase.textContent = "Projects will be displayed here";
-        // Append the created element to the DOM
-        projectContainer.appendChild(noProjectsCase);
+      const noProjectsCase = document.createElement("div");
+      noProjectsCase.textContent = "Nothing here yet. Add a project to get started!";
+      noProjectsCase.className = "noProjectsCase";
+      // Append the created element to the DOM
+      projectContainer.appendChild(noProjectsCase);
     }
 
   //only three projects in module.
