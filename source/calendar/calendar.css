@@ -5,6 +5,7 @@ body {
     padding: 0;
     display: flex;
 }
+
 vertical-nav-bar {
     flex-shrink: 0;
 }
@@ -17,7 +18,7 @@ a:link {
 
 /* visited link */
 a:visited {
-    color: green;
+    color: purple;
     text-decoration: none;
 }
 
@@ -120,14 +121,6 @@ header h1 {
 }
 
 .calendar-day {
-    /*
-    padding: 1px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    position: relative;
-    height: 90%;
-    */
-    
     /* make it so grid does not change as tasks are added*/
     border: 1px solid #ddd;
     background-color: #f9f9f9;
@@ -251,6 +244,7 @@ close:focus {
     overflow-y: auto;
 }
 
+/* Have task titles appear in the box below the date*/
 .task {
     display: flex;
     align-items: center;
@@ -262,11 +256,7 @@ close:focus {
     height: 10px;
     border-radius: 50%;
     margin-right: 2px;
-    /*If want fixed icon color*/
-    /*background-color: #0056b3*/
-
 }
-
 
 
 .task-title {
