@@ -1,11 +1,13 @@
 import { 
     getNoteFromTable,
-    deleteNoteFromTable
+    deleteNoteFromTable,
+    appendTagToNoteTags, 
+    removeTagFromNoteTags,
 } from '../backend/NoteTable.js';
 
 import {
-    populateTag
-} from '../note/editNote.js';
+    getProjectFromTable
+} from '../backend/ProjectTable.js';
 
 let NOTE_ID = "";
 
@@ -20,6 +22,7 @@ function init() {
     attachEditButtonListener();
     attachCancelButtonListener();
     populateTag();
+    populateProjectTag();
 }
 
 function attachEditButtonListener() {
@@ -35,9 +38,7 @@ function editNote() {
 }
 
 function deleteNote() {
-    console.log("delete note")
-    deleteNoteFromTable(NOTE_ID);
-    window.location.href = "../homepage/index.html";
+    console.log("Delete clicked")
 }
 
 function makeUneditable() {
@@ -74,4 +75,61 @@ document.addEventListener('DOMContentLoaded', () => {
             populateTag();
         }
     });
+
+    document.addEventListener('projectChanged', () => {
+        populateProjectTag();
+    });
 });
+
+function populateTag() {
+    const note = getNoteFromTable(NOTE_ID);
+    const tags = note.tags;
+    const tagsContainer = document.querySelector('.tagContainer');
+    tags.forEach(tag => {
+        const newTag = document.createElement('li');
+        newTag.textContent = tag;
+        newTag.addEventListener('dblclick', () => {
+            removeTagFromNoteTags(NOTE_ID, tag);
+            newTag.remove();
+        });
+        tagsContainer.appendChild(newTag);
+    });
+}
+
+/**
+ * Populates the project tag with existing data from the backend
+ * Retrieves the note data using the note ID 
+ * Retrieves the project data using the project ID from linkedProject
+ */
+ function populateProjectTag() {
+    const linkProjectElement = document.getElementById("linkedProjectTag");
+    const projectTagContainer = document.querySelector(".projectTagContainer");
+    const note = getNoteFromTable(NOTE_ID);
+    if(note.linkedProject === "") {
+        projectTagContainer.classList.add("close");
+        if(projectTagContainer.classList.contains("open")) {
+            projectTagContainer.classList.remove("open");
+        }
+    }
+    else {
+        const project = getProjectFromTable(note.linkedProject);
+        linkProjectElement.textContent = project.title;
+        linkProjectElement.href = "../project/view-project.html" + "#" + note.linkedProject;
+        // get priority
+        const priority = document.getElementById("priority");
+        if (project.priority === "high") {
+            priority.style.backgroundColor = "#FF000F";
+        }
+        else if (project.priority === "medium") {
+            priority.style.backgroundColor = "#FFD600";
+        }
+        else if (project.priority === "low") {
+        priority.style.backgroundColor = "#0AB73B"
+        }
+        if (projectTagContainer.classList.contains("close")){
+            projectTagContainer.classList.remove("close");
+        }
+        projectTagContainer.classList.add("open");
+    }
+}
+

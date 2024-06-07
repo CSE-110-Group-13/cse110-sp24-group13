@@ -46,7 +46,9 @@ function init() {
     const project = createNewProjectObject();
     PROJECT_ID = project.projectID;
     let newDate = new Date().toISOString().split("T")[0];
-    modifyProjectDateCreated(PROJECT_ID, newDate)
+    modifyProjectDateCreated(PROJECT_ID, newDate);
+    modifyProjectTitle(PROJECT_ID, "New Project!");
+    modifyProjectPriority(PROJECT_ID, "low")
   }
   populateProject();
   populateOptionsLinkNotes();
@@ -462,8 +464,6 @@ function saveProject() {
   modifyProjectTitle(PROJECT_ID, projectTitle);
   modifyProjectDescription(PROJECT_ID, projectDescription);
   modifyProjectDeadline(PROJECT_ID, projectDeadline);
-  alert("Save successful (Replace this with a custom one later)");
-
   window.location.href = "./edit-project.html#" + PROJECT_ID;
 }
 
