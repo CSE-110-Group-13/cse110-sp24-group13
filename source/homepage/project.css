@@ -1,11 +1,3 @@
-@media (min-width: 30em) and (max-width: 50em) {
-  /* ...*/
-}
-
-@media (min-width: 30em) and (max-width: 50em) {
-  /* ...*/
-}
-
 
 #project-section {
   display: flex;
@@ -49,20 +41,7 @@
   font-weight: bold;
   margin: 0.5% 1%;
   padding: 0;
-}
-
-@media (max-width: 768px) {
-  .percentage-container {
-    display: none;
-  }
-
-  .progress-container {
-    display: none;
-  }
-
-  .progress-bar{
-    display: none;
-  }
+  width: 15%;
 }
 
 .percentage-container {
@@ -116,4 +95,62 @@
   margin: 0.5% 1%;
   width: 20%;
   height: 2.5em;
+}
+
+/* Styles for mobile devices */
+@media (max-width: 1024px) {
+  .project-wrapper {
+    justify-content: left;
+  }
+
+  .circle {
+    margin: 1% 2%;
+  }
+  
+  .project-title{
+    text-align: left;
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 20%;
+  }
+  
+  .percentage-container {
+    font-size: 1.3em;
+  }
+
+  .progress-container {
+    display: none;
+  }
+
+  .progress-bar{
+    display: none;
+  }
+  
+  .task-completed-text{
+    font-size: 1.3em;
+    width: 18%;
+    height: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+  
+  .vertical-line-project {
+    border-left: 0.15em solid #000;
+    height: 60px;
+    margin: 0% 1%;
+  }
+  
+  .calenderImage{
+    margin: 0.5% 1%;
+  }
+  
+  .timeLeft {
+    font-size: 1.5em;
+    width: 35%;
+    height: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
 }

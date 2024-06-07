@@ -8,10 +8,6 @@ html, body {
   display: flex;
 }
 
-vertical-navbar{
-  width: 10%;
-}
-
 #restOfScreen{
   display: flex;
   flex-direction: column;
@@ -99,6 +95,5 @@ a {
 #collapseButton2 {
   padding-top: 2vh;
 }
-
 
 

@@ -116,9 +116,10 @@ import {
       calenderImage.className = "calenderImage";
   
   
-      //Time till deadline Text
-      const timeTilleDeadLine = document.createElement("p");
-      timeTilleDeadLine.textContent = countTimeTillDeadline(value.deadline);
+      // Time till deadline Text
+      const timeLeft = document.createElement("div");
+      timeLeft.textContent = countTimeTillDeadline(value.deadline);
+      timeLeft.className = "timeLeft";
   
   
       //Add all the items to newProject and then ProjectContainer
@@ -127,7 +128,7 @@ import {
       newProject.appendChild(percentageRemainer);
       newProject.appendChild(verticalLineProject);
       newProject.appendChild(calenderImage);
-      newProject.appendChild(timeTilleDeadLine);
+      newProject.appendChild(timeLeft);
       projectContainer.appendChild(newProject);
       counter++;
   }
