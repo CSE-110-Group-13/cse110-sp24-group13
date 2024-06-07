@@ -39,9 +39,9 @@ a:active {
     width: 80%;
     height: 100vh;
     margin: 0 auto;
-    padding: 20px;
+    padding: 2vh;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 1.5vh rgba(0,0,0,0.1);
     box-sizing: border-box;
     flex-grow: 1;
 }
@@ -51,7 +51,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 2.5vh;
 }
 
 header h1 {
@@ -64,21 +64,21 @@ header h1 {
 }
 
 .controls select, .controls input, .controls button {
-    margin: 0 10px;
-    padding: 5px;
-    font-size: 16px;
+    margin: 0 1.5vh;
+    padding: .8vh;
+    font-size: 2vh;
 }
 
 .controls select {
-    width: 150px;
+    width: 15vh;
 }
 
 .controls input {
-    width: 80px;
+    width: 8vh;
 }
 
 .controls button {
-    font-size: 18px;
+    font-size: 2vh;
 }
 
 .search-bar {
@@ -115,16 +115,16 @@ header h1 {
 .days-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+    gap: 1.2vh;
     position: relative;
     height: 65vh; 
 }
 
 .calendar-day {
     /* make it so grid does not change as tasks are added*/
-    border: 1px solid #ddd;
+    border: .2vh solid #ddd;
     background-color: #f9f9f9;
-    padding: 1px;
+    padding: .2vh;
     height: 12vh;
     position: relative;
     box-sizing: border-box;
@@ -136,20 +136,20 @@ header h1 {
 
 .calendar-day span {
     position: absolute;
-    top: 5px;
-    right: 10px;
+    top: .5vh;
+    right: .8vh;
     color: black;
 }
 
 .current-day::before {
     content: '';
     position: absolute;
-    width: 25px; 
-    height: 25px; 
+    width: 2.5vh; 
+    height: 2.5vh; 
     background-color: #0AB73B;
     border-radius: 75%;
-    top: 2px;
-    right: 1.5px;
+    top: .5vh;
+    right: .2vh;
 }
 
 .current-day span {
@@ -157,7 +157,7 @@ header h1 {
 }
 
 .calendar-day .tasks {
-    margin-top: 10px;
+    margin-top: 1.5vh;
 }
 
 
@@ -172,22 +172,22 @@ header h1 {
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
+    padding-top: 6vh;
 }
 
 .modal-content {
     background-color: #fff;
     margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
+    padding: 2vh;
+    border: 1vh solid #888;
     width: 80%;
-    max-width: 500px;
+    max-width: 50vh;
 }
 
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 2.8vh;
     font-weight: bold;
 }
 
@@ -204,33 +204,33 @@ close:focus {
 }
 
 #task-form label {
-    margin-top: 10px;
+    margin-top: 1vh;
 }
 
 .description-label {
-    margin-top: 10px;
+    margin-top: 1vh;
     display: inline-block;
-    width: 100px;
+    width: 10vh;
 }
 
 
 #task-description {
     display: inline-block;
     width: calc(100% - 110px);
-    margin-left: 10px;
+    margin-left: 1vh;
 }
 
 
 #task-form button {
-    padding: 15px 30px;
-    font-size: 10px;
+    padding: 1.5vh 3vh;
+    font-size: 1vh;
     background-color: #007BFF;
     left: 0;
     top: 0;
     color: white;
     border: none;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 2vh;
 }
 
 #task-form button:hover {
@@ -239,7 +239,7 @@ close:focus {
 
 /*Have tasks appear as title only with an icon on calendar*/
 .tasks {
-    margin-top: 5px;
+    margin-top: .5vh;
     flex-grow: 1;
     overflow-y: auto;
 }
@@ -252,16 +252,16 @@ close:focus {
 }
 
 .task-icon {
-    width: 10px;
-    height: 10px;
+    width: 1vh;
+    height: 1vh;
     border-radius: 50%;
-    margin-right: 2px;
+    margin-right: .6vh;
 }
 
 
 .task-title {
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 2vh;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 80%; /* adjust how much is displayed */
