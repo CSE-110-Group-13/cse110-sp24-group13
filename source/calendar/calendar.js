@@ -198,7 +198,7 @@ function getRandomColor() {
 }
 
 //get icon color based on how far in future deadline is
-function getIconColor(deadline) {
+function getIconColor(deadline, priority) {
     const currentDate = new Date();
     const deadlineDate = new Date(deadline);
     const oneDay = 24 * 60 * 60 * 1000; // milliseconds in one day
@@ -206,12 +206,12 @@ function getIconColor(deadline) {
 
     if (diffDays < 0) {
         return '#808080'; // Grey if date has passed
-    } else if (diffDays <= 7) {
-        return '#FF0000'; // Red if within a week
-    } else if (diffDays <= 14) {
-        return '#FFFF00'; // Yellow if between one and two weeks
+    } else if (priority === "high") {
+        return '#FF000F'; // Red for high priority
+    } else if (priority === "medium") {
+        return '#FFD600'; // Yellow for medium priority
     } else {
-        return '#008000'; // Green if over two weeks in future
+        return '#0AB73B'; // Green for low priority
     }
 }
 /** 
@@ -299,8 +299,9 @@ function addNotesAndProjectsToCalendar() {
     }
 
     for (const [key, value] of Object.entries(projectTable)) {
-        const dayElement = document.querySelector(`[data-date='${value.deadline}']`);
-        console.log(value.deadline);
+        const deadlineDate = value.deadline.split('T')[0];
+        const dayElement = document.querySelector(`[data-date='${deadlineDate}']`);
+        console.log(deadlineDate);
         if (dayElement) {
             const projectElement = document.createElement('a');
             projectElement.className = "task";
@@ -310,7 +311,7 @@ function addNotesAndProjectsToCalendar() {
             const icon = document.createElement('div');
             icon.className = 'task-icon';
             //get icon color based on date
-            icon.style.backgroundColor = getIconColor(value.deadline);
+            icon.style.backgroundColor = getIconColor(deadlineDate, value.priority);
 
             const title = document.createElement('div');
             title.className = 'task-title';
@@ -322,4 +323,5 @@ function addNotesAndProjectsToCalendar() {
         }
     }
     console.log('test');
+    
 }
