@@ -638,11 +638,9 @@ class linkedProject extends HTMLElement {
             projectElement.textContent = value.title;
             projectElement.id = key;
             // Add selected if the project is in the projectList
-            if (note_id) {
-                if(note.linkedProject === key) {
-                    projectElement.classList.add('selected');
-                }
-            }   
+            if(note.linkedProject === key) {
+                projectElement.classList.add('selected');
+            }
             projectElement.addEventListener('click', () => {
                 const selectProject = document.querySelector('.selected');
                 if (selectProject) {
