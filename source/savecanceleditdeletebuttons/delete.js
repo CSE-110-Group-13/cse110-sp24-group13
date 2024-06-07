@@ -93,7 +93,7 @@ class deleteButton extends HTMLElement {
                     const noteTable = getNoteTableFromStorage();
                     if (noteID in noteTable) {
                         deleteNoteFromTable(noteID);
-                        window.location.href = "/source/homepage/index.html";
+                        window.location.href = "../homepage/index.html";
                     } else {
                         alert(`NoteID: ${noteID} does not exist to delete in the table`);
                     }
@@ -103,7 +103,7 @@ class deleteButton extends HTMLElement {
                     const projectTable = getProjectTableFromStorage();
                     if (projectID in projectTable) {
                         deleteProjectFromTable(projectID);
-                        window.location.href = "/source/projectlist/projectlist.html";
+                        window.location.href = "../projectlist/projectlist.html";
                     } else {
                         alert(`ProjectID: ${projectID} does not exist to delete in the table`);
                     }
