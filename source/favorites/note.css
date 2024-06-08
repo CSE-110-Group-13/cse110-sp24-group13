@@ -45,15 +45,19 @@
   }
   
   .tags-project span {
+    flex-shrink: 1;
+    max-width: 100%;
+    width:fit-content;
     background-color: #e2e2e2;
-    padding: 3px 10px;
-    margin-right: 5px;
-    border-radius: 10px;
-    height: 20px;
+    padding: .6vh 1vw 0 1vw;
+    margin-right: 0.625vh; /* 5px converted to vh */
+    border-radius: 0.625vh; /* 5px converted to vh */
+    height: 2.5vh;  /* 20px converted to vh */
     color: #000;
     transition: 0.5s;
   }
-  .tags-project span > a {
+  
+  .tags-project a {
     text-decoration: none;
     color: #000;
   }

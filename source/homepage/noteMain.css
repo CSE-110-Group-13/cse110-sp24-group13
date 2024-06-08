@@ -40,7 +40,7 @@ header h2 > a {
   flex-shrink: 1;
   display: flex;     
   align-items: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin-left: 15%;
   margin-right: 15%;
 }
@@ -48,8 +48,9 @@ header h2 > a {
 .tags-project span {
   flex-shrink: 1;
   max-width: 100%;
+  width:fit-content;
   background-color: #e2e2e2;
-  padding: 0px 1.25vh;   /* 10px converted to vh */
+  padding: .6vh 1vw 0 1vw;
   margin-right: 0.625vh; /* 5px converted to vh */
   border-radius: 0.625vh; /* 5px converted to vh */
   height: 2.5vh;  /* 20px converted to vh */
@@ -57,8 +58,7 @@ header h2 > a {
   transition: 0.5s;
 }
 
-.tags-project span > a {
-  margin-right: 25%;
+.tags-project a {
   text-decoration: none;
   color: #000;
 }
