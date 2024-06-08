@@ -1,8 +1,7 @@
 html body {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 2vh;
     padding: 0;
-    margin: 2% 1% 2% 1%;
 }
 vertical-navbar {
     position: fixed;
@@ -11,6 +10,10 @@ vertical-navbar {
 
 }
 
+p{
+    
+    overflow-wrap: break-word;
+}
 #container {
     display: flex;
 }
@@ -18,22 +21,23 @@ vertical-navbar {
 #restOfScreen {
     flex: 1;
     margin-left: 11%;
+    width: 90%;
 }
 
 .header {
     min-width: fit-content;
     display: flex;
-    gap: 10px;
-    
+    align-items: center;
+    gap: 1vw;
+    flex-wrap: wrap;
 }
 
 .selectBar{
-    position: absolute;
-    top: 0;
-    margin: 2% 1% 0 1%;
+    margin: 2% auto 0 0;
     min-width: fit-content;
     display: flex;
-    gap: 10px;
+    gap: 1vw;
+    scale: 90%;
 }
 
 .select-wrapper{
@@ -43,18 +47,18 @@ vertical-navbar {
     align-items: center;
     
     background-color: #ffffff;
-    border-radius: 8px;
-    border: 1px solid #00000017;
+    border-radius: 1em;
+    border: .1em solid #00000017;
     text-decoration: none; 
-    font-size: 16px;
+    font-size: 1vh;
 
 }
 
 .select-wrapper svg{
     margin-right: 1vw;
     margin-left: -2vw;
-    width: 18px;
-    height: 18px;
+    width: 1em;
+    height: 1em;
     color:#6d6d6d;
     stroke: #6d6d6d;
     stroke-width: 30;
@@ -62,52 +66,29 @@ vertical-navbar {
 
 
 .actionBar {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 2% 1% 0 0;
+    margin-right: 0vw;
     min-width: fit-content;
     display: flex;
-    gap: 10px;
+    gap: 1vw;
 }
 
-.actionBar a {
-    display: flex;
-    width: 136px;
-    justify-content: center;
-    align-items: center;
-
-    background-color: #F8F8F8;
-    box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
-    border-radius: 10px;
-    padding: 10px 15px; 
-    text-decoration: none; 
-    color: black; 
-    font-size: 16px;
-}
-
-.actionBar a:hover {
-    background-color: #e0e0e0; /* Change background color on hover */
-    cursor: pointer;
-}
-
-.actionBar svg {
-    margin-right: 8px; /* Add space between icon and text */
-    width: 25px;
-    height: 25px;
-}
 
 .content{
-    padding: 50px 0 0 0;
+    padding: 0 0 0 0;
 }
 
 .container {
-    margin: 2% 1% 2% 1%;
+    margin: 2% 0 2% 0;
     background-color: #F8F8F8;
     box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
     padding: 5px 20px 5px 20px;
     border-radius: 25px;
     
+}
+
+#title{
+    font-size: calc(1.5vw + 1.5vh);
+    margin-right: auto;
 }
 
 .container textarea{
@@ -125,26 +106,26 @@ vertical-navbar {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    background-color: #ffffff;
+    background-color: #00000003;
 
     resize: none; /*remove the resize handle on the bottom right*/
 
   }
 
 #projectTitle{
-    padding-left: 10px;
-    font-size: 30px;
-    font-weight: bold;
+    margin-right: auto;
+    padding-left: 1vw;
+    font-size: calc(1.5vw + 1.5vh);    font-weight: bold;
     width: 40%;
 
     border: 1px solid #00000017;
-    border-radius: 5px;
+    border-radius: .2em;
     overflow: auto;
 
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    background-color: #ffffff;
+    background-color: #00000003;
   }
 
 .projectDue{
@@ -155,14 +136,14 @@ vertical-navbar {
 
 .projectDue svg{
     margin: 0 0% 0 1%;
-    min-width: 20px;
-    height: 20px;
+    min-width: 1em;
+    height: 1em;
 }
 
 #descDropdown{
     margin: 1% 50%; /* Add space between icon and text */
-    width: 20px;
-    height: 20px;
+    width: 1em;
+    height: 1em;
 }
 
 .container svg:hover{
@@ -170,28 +151,29 @@ vertical-navbar {
 }
 
 .projectHeader{
+    flex-wrap: wrap;
     display: flex; 
     align-items: center; 
     margin: 1vh 0vh ;
 }
 
 .progress{
-    margin-left: auto; 
+    
     margin-right: 1%;
     display: flex;
     align-items: center;
 }
 
 .progress progress{
-width: 300px;
-height: 30px;
-margin-right: 10px;
+width: 30vw;
+height: 3vh;
+margin-right: 1em;
 
 }
 
 #progressBar{
     accent-color: green;
-    transition: width 0.3s ease-in-out;
+    transition: width 0.1s ease-in-out;
 }
 
 
@@ -202,17 +184,21 @@ margin-right: 10px;
 }
 
 .priorityDot{
-    margin: 10px;
-    height: 20px;
-    width: 20px;
-    background-color: red;
+    padding: .7em;
+    margin: 1vw;
+
+    background-color: rgb(123, 123, 123);
     border-radius: 50%;
     display: inline-block;
 }
 
+input[type=datetime-local]{
+    background-color: #00000003;
+}
+
 
 select {
-    font-size: 16px;
+    font-size: calc(.5vw + 1vh);    
     padding: .75vh 7vw .75vh 7vw;
     color: #6d6d6d; 
     background-color: transparent;
@@ -235,7 +221,7 @@ select {
 .addTask{
     display:flex;
     align-items: center;
-    margin-bottom: 10px
+    margin-bottom: 1vh;
 }
 
 .addTask svg{
@@ -269,7 +255,7 @@ input[type=text]{
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    background-color: #ffffff;
+    background-color: #00000003;
 }
 
 input[type=checkbox] {
@@ -302,6 +288,7 @@ select:hover{
 
 .linkedNotes{
     margin: 0 .75vw 0 .75vw;
+    
 }
 
 .linkedNote{
@@ -311,6 +298,7 @@ select:hover{
     min-width: fit-content;
     display: flex;
     gap: 10px;
+    flex-wrap:wrap;
 }
 
 .linkedNote svg{
