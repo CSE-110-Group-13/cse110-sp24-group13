@@ -360,7 +360,7 @@ function unparseMarkdown(text) {
 }
 
 const recentsCollapseButton = document.getElementById('collapseButton1');
-recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'recents'));
+//recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'recents'));
 recentsCollapseButton.innerHTML = expandIcon;
 
 const favoritesCollapseButton = document.getElementById('collapseButton2');
