@@ -12,7 +12,7 @@ const filteredTags = [];
 window.addEventListener("DOMContentLoaded", init);
 
 let recentsCollapsed = false; 
-let recentCounter = 3;
+let recentCounter = 4;
 
 let favoriteCounter = 1;
 
@@ -85,7 +85,8 @@ function createNoteElement(noteObject) {
   // Text of note
   const textElement = document.createElement('p');
   textElement.id = 'note-text';
-  textElement.textContent = noteObject.text;
+  let newText = unparseMarkdown(noteObject.text);
+  textElement.textContent = newText;
   contentContainer.appendChild(textElement);
 
   // Create a tags-project container
@@ -275,29 +276,45 @@ function filterByTag(tag)
   * @return {string} a string in the correct format
   */
 function getFormattedDate(dateString) {
-  // Catches exception where a date is left blank.
-if (dateString == "") {
-  return "";
-}
-const date = new Date(dateString);
-const day = date.getUTCDate(); // Use UTC to avoid timezone issues
-let suffix = "";
+  //catches exception where a date is left blank.
+  if(dateString == "") {
+    return "";
+  }
+  // const date = new Date(dateString);
+  // const day = date.getDate();
+  // let suffix = "";
+  // // Determine the suffix based on the day
+  // if (day === 1 || day === 21 || day === 31) {
+  //   suffix = "st";
+  // }
+  // else if (day === 2 || day === 22) {
+  //   suffix = "nd";
+  // }
+  // else if (day === 3 || day === 23) {
+  //   suffix = "rd";
+  // }
+  // else {
+  //   suffix = "th";
+  // }
 
-// Determine the suffix based on the day
-if (day === 1 || day === 21 || day === 31) {
-  suffix = "st";
-} else if (day === 2 || day === 22) {
-  suffix = "nd";
-} else if (day === 3 || day === 23) {
-  suffix = "rd";
-} else {
-  suffix = "th";
-}
+  // // Format the string
+  // const options = { month: 'long' };
+  // const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date); 
+  // return `${formattedDate} ${day}${suffix}`;
 
-// Format the string
-const options = { month: 'long', timeZone: 'UTC' }; // Ensure UTC is used
-const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
-return `${formattedDate} ${day}${suffix}`;
+  const months = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+
+  const [year, month, day] = dateString.split("-");
+
+  const monthName = months[parseInt(month, 10) - 1];
+
+  const dayInt = parseInt(day, 10);
+  const suffix = (dayInt === 1 || dayInt === 21 || dayInt === 31) ? "st" :
+        (dayInt === 2 || dayInt === 22) ? "nd" :
+        (dayInt === 3 || dayInt === 23) ? "rd" : "th";
+
+  return `${monthName} ${dayInt}${suffix}`;
 }
 
 
@@ -334,6 +351,12 @@ function toggleCollapse(event, type) {
     collapseButton.innerHTML = isFavoritesCollapsed ? collapseIcon : expandIcon;
     init();
   }
+}
+
+function unparseMarkdown(text) {
+  const regex = /[^a-zA-Z0-9.,?!]+/g;
+  const newText = text.replace(regex, ' ');
+  return newText
 }
 
 

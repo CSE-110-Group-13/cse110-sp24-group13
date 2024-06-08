@@ -47,8 +47,10 @@ function init() {
     PROJECT_ID = project.projectID;
     let newDate = new Date().toISOString().split("T")[0];
     modifyProjectDateCreated(PROJECT_ID, newDate);
+    modifyLastWorkedOn(PROJECT_ID, newDate);
     modifyProjectTitle(PROJECT_ID, "New Project!");
-    modifyProjectPriority(PROJECT_ID, "low")
+    modifyProjectPriority(PROJECT_ID, "low");
+    console.log('test');
   }
   populateProject();
   populateOptionsLinkNotes();
