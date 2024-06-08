@@ -172,7 +172,7 @@ class VerticalNavbar extends HTMLElement {
     anchorToFavorites.href = "../favorites/favorites.html";
     anchorToLibrary.href = "../library/library.html";
     anchorToCalendar.href = "../calendar/calendar.html";
-    anchorToProjectList.href = "../projectlist/projectlist.html";
+    anchorToProjectList.href = "../projectList/projectList.html";
     anchorToSettings.href = "../settings/settings.html";
 
     // Create image elements

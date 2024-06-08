@@ -64,7 +64,7 @@ save() {
   
   /**
  * Uses built im wysimark method to load the markdown content from local storage.
- 
+
 load() {
     const savedMarkdownContent = window.localStorage.getItem("markdown");
     if (this.wysimark && savedMarkdownContent) {

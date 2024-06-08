@@ -13,7 +13,7 @@ import {
 import {
     getTaskFromTable,
     modifyTaskCompleted
-  } from "../backend/TaskTable.js"
+} from "../backend/TaskTable.js"
 
 class linkedProject extends HTMLElement {
     constructor() {

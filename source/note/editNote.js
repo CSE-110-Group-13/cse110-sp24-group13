@@ -8,7 +8,7 @@ import {
     removeTagFromNoteTags,
     getNoteFromTable,
     modifyNoteLastEdited,
-  } from '../backend/NoteTable.js';
+} from '../backend/NoteTable.js';
 
 import {
     getProjectFromTable
