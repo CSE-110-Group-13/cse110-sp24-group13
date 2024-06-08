@@ -73,7 +73,8 @@ function createNoteElement(noteObject) {
   // Text of note
   const textElement = document.createElement('p');
   textElement.id = 'note-text';
-  textElement.textContent = noteObject.text;
+  let newText = unparseMarkdown(noteObject.text);
+  textElement.textContent = newText;
   contentContainer.appendChild(textElement);
 
   // Create a tags-project container
@@ -234,4 +235,10 @@ function getFormattedDate(dateString) {
   const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
 
   return `${formattedDate} ${day}${suffix}`;
+}
+
+function unparseMarkdown(text) {
+  const regex = /[^a-zA-Z0-9.,?!]+/g;
+  const newText = text.replace(regex, ' ');
+  return newText
 }
