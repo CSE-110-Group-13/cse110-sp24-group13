@@ -74,6 +74,18 @@
   flex-shrink: 0; /* Prevents shrinking */
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.project-wrapper {
+  display: flex;
+  align-items: center; /* Adjusted to reduce the gap */
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
 .task-completed-text{
   font-size: 1em;
   margin: 0.5% 1%;

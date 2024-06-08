@@ -149,6 +149,9 @@ function addNewTask() {
   createTaskListItem(taskList, project.taskList);
 
   document.querySelector("#addTaskInput").value = "";
+
+  updateProgress();
+  calculateTaskCompletion(PROJECT_ID);
 }
 
 /**
@@ -173,8 +176,11 @@ function createTaskListItem(taskListElement, taskListArray) {
 
     if (task.completed) {
       inputCheckbox.checked = true;
+      label.classList.add("checked");
+      inputCheckbox.classList.add("checked");
     }
-    console.log(task)
+    console.log(task);
+
     updateTaskCompletionStatusEventListener(inputCheckbox, PROJECT_ID);
     taskListElement.appendChild(inputCheckbox);
     taskListElement.appendChild(label);
@@ -189,26 +195,30 @@ function createTaskListItem(taskListElement, taskListArray) {
  */
 function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID) {
   singleInputCheckbox.addEventListener("change", () => {
-    const progressBar = document.querySelector("progress");
     const taskID = singleInputCheckbox.id;
     const task = getTaskFromTable(taskID);
+    const label = document.querySelector(`label[for="${taskID}"]`);
 
     let newDate = new Date().toISOString().split("T")[0];
 
     if (singleInputCheckbox.checked && !task.completed) {
       modifyTaskCompleted(taskID, true);
       appendCompletedTaskToProject(projectID, taskID);
+      label.classList.add("checked");
+      singleInputCheckbox.classList.add("checked");
     } else if (!singleInputCheckbox.checked && task.completed) {
       modifyTaskCompleted(taskID, false);
       removeCompletedTaskFromProject(projectID, taskID);
+      label.classList.remove("checked");
+      singleInputCheckbox.classList.remove("checked");
     }
-    console.log(projectID);
+
     modifyLastWorkedOn(projectID, newDate);
-    progressBar.value = calculateTaskCompletion(projectID);
+    updateProgress();
 
     const linkedNotesElement = document.querySelector(".linkedNotes");
     const project = getProjectFromTable(PROJECT_ID);
-    populateLinkedNotes(project.linkedNotes, linkedNotesElement)
+    populateLinkedNotes(project.linkedNotes, linkedNotesElement);
   });
 }
 

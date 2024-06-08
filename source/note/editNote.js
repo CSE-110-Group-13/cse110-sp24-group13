@@ -65,11 +65,24 @@ function saveNote() {
     const noteTitle = document.querySelector('.noteTitle input').value;
     const noteMarkdown = document.querySelector('markdown-editor').wysimark.getMarkdown();
     const noteDate = document.querySelector('.date input').value;
+    const tagElements = document.querySelectorAll('.tagContainer li');
     // Modify the note
     modifyNoteTitle(NOTE_ID, noteTitle);
     modifyNoteText(NOTE_ID, noteMarkdown);
     modifyNoteDate(NOTE_ID, noteDate);
     modifyNoteLastEdited(NOTE_ID, new Date().toISOString().slice(0,10));
+
+    const note = getNoteFromTable(NOTE_ID);
+    const currentTags = note.tags;
+    if (currentTags) {
+        currentTags.forEach(tag => {
+            removeTagFromNoteTags(NOTE_ID, tag);
+        });
+    }
+    for(let i = 0; i < tagElements.length; i++) {
+        const tag = tagElements[i].textContent;
+        appendTagToNoteTags(NOTE_ID, tag);
+    }
 
     window.location.href = './view-note.html#' + NOTE_ID;
 }
@@ -97,7 +110,7 @@ function populateTag() {
         const newTag = document.createElement('li');
         newTag.textContent = tag;
         newTag.addEventListener('dblclick', () => {
-            removeTagFromNoteTags(NOTE_ID, tag);
+            //removeTagFromNoteTags(NOTE_ID, tag);
             newTag.remove();
         });
         tagsContainer.appendChild(newTag);
@@ -107,15 +120,22 @@ function populateTag() {
 document.addEventListener('DOMContentLoaded', () => {
     const newTagForm = document.getElementById("newTag");
     const newTagInput = document.getElementById("newTagInput");
-    newTagForm.addEventListener('submit', () => {
+    newTagForm.addEventListener('submit', (event) => {
+        event.preventDefault();
         const tag = newTagInput.value.trim();
 
         if (tag) {
-            appendTagToNoteTags(NOTE_ID, tag);
+            // appendTagToNoteTags(NOTE_ID, tag);
             newTagInput.value = '';
             const tagsContainer = document.querySelector('.tagContainer');
-            tagsContainer.innerHTML = '';
-            populateTag();
+            const newTag = document.createElement('li');
+            newTag.textContent = tag;
+            newTag.addEventListener('dblclick', () => {
+                newTag.remove();
+            });
+            tagsContainer.appendChild(newTag);
+            //tagsContainer.innerHTML = '';
+            //populateTag();
         }
     });
 

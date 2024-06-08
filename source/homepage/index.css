@@ -51,33 +51,12 @@ html, body {
   margin-right: 100px;
 }
 
-#collapseButton1, #collapseButton2 {
-  margin-left: 1000px;
-  background-color: transparent; /* Transparent background */
-  border: none; /* Remove border */
-  padding: 6px; /* Add some padding */
-  cursor: pointer; /* Change the cursor to a pointer */
-}
-
-#collapseButton1 svg, #collapseButton2 svg {
-  margin-left: 150px;
-  width: 16px; /* Set the width of the SVG icon */
-  height: 16px; /* Set the height of the SVG icon */
-  margin-top:4px
-}
 
 .note-wrapper {
  position: relative;
   margin-right:14px;
   max-width: 98%; /* Ensure it takes the full width of the grid column */
   display: block;
-}
-
-
-
-
-.collapsed .note-wrapper {
-  display: none;
 }
 
 #line {
@@ -87,15 +66,5 @@ html, body {
 
 a {
   text-decoration: none;
+  color: black;
 }
-
-#collapseButton1 {
-  padding-top: 2vh;
-  padding-left: 2vh;
-}
-
-#collapseButton2 {
-  padding-top: 2vh;
-}
-
-

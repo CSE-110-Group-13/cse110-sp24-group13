@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -5,134 +6,125 @@ body {
     padding: 0;
     display: flex;
 }
+
+/* Vertical Navigation Bar */
 vertical-nav-bar {
     flex-shrink: 0;
 }
 
-a:link {
+/* Link Styles */
+/* Have title appear black with no underline */
+a:link, a:visited  {
     color: black;
     text-decoration: none;
-
 }
 
-/* visited link */
-a:visited {
-    color: green;
-    text-decoration: none;
-}
-
-/* mouse over link */
 a:hover {
     color: blue;
     text-decoration: underline;
 }
 
-/* selected link */
 a:active {
     color: blue;
     text-decoration: underline;
 }
 
-
+/* Main Container */
 .container {
     width: 80%;
     height: 100vh;
     margin: 0 auto;
-    padding: 20px;
+    padding: 2rem;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 1rem rgba(0,0,0,0.1);
     box-sizing: border-box;
     flex-grow: 1;
 }
 
-
+/* Header */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
 
 header h1 {
     margin: 0;
 }
 
+/* Controls Section */
 .controls {
     display: flex;
     align-items: center;
 }
 
 .controls select, .controls input, .controls button {
-    margin: 0 10px;
-    padding: 5px;
-    font-size: 16px;
+    margin: 0 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
 }
 
 .controls select {
-    width: 150px;
+    width: 10rem;
 }
 
 .controls input {
-    width: 80px;
+    width: 5rem;
 }
 
 .controls button {
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
+/* Search Bar */
 .search-bar {
     flex-grow: 1;
-    margin: 0 20px;
+    margin: 0 2rem;
 }
 
 .search-bar input {
     width: 100%;
-    padding: 10px;
+    padding: 1rem;
     box-sizing: border-box;
 }
 
+/* Calendar */
 #calendar {
     display: grid;
-    gap: 10px;
+    gap: .5rem;
     flex-grow: 1;
 }
 
+/* Weekdays Header */
 .week-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    border: 1px solid #888;
+    border: 0.0625rem solid #888;
     background-color: #ddd;
-    padding: 10px;
+    padding: .5rem;
 }
 
 .week-days div {
     text-align: center;
     font-weight: bold;
-    
 }
 
+/* Days Grid */
 .days-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+    gap: .5rem;
     position: relative;
-    height: 65vh; 
+    height: 65vh;
 }
 
+/* Individual Calendar Day */
 .calendar-day {
-    /*
-    padding: 1px;
+    border: 0.0625rem solid #ddd;
     background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    position: relative;
-    height: 90%;
-    */
-    
-    /* make it so grid does not change as tasks are added*/
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    padding: 1px;
-    height: 12vh;
+    padding: 0.1rem;
+    height: 11vh;
     position: relative;
     box-sizing: border-box;
     display: flex;
@@ -143,31 +135,33 @@ header h1 {
 
 .calendar-day span {
     position: absolute;
-    top: 5px;
-    right: 10px;
+    top: 0.5rem;
+    right: .6rem;
     color: black;
 }
 
+/* Current Day Indicator */
 .current-day::before {
     content: '';
     position: absolute;
-    width: 25px; 
-    height: 25px; 
+    width: 1.5625rem;
+    height: 1.5625rem;
     background-color: #0AB73B;
-    border-radius: 75%;
-    top: 2px;
-    right: 1.5px;
+    border-radius: 50%;
+    top: 0.125rem;
+    right: 0.09375rem;
 }
 
 .current-day span {
     color: white;
 }
 
+/* Tasks in Calendar Day */
 .calendar-day .tasks {
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
-
+/* Task Modal */
 #task-modal {
     display: none;
     position: fixed;
@@ -177,24 +171,23 @@ header h1 {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
+    padding-top: 6rem;
 }
 
 .modal-content {
     background-color: #fff;
     margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
+    padding: 2rem;
+    border: 0.0625rem solid #888;
     width: 80%;
-    max-width: 500px;
+    max-width: 31.25rem;
 }
 
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 1.75rem;
     font-weight: bold;
 }
 
@@ -205,48 +198,47 @@ close:focus {
     cursor: pointer;
 }
 
+/* Task Form */
 #task-form {
     display: flex;
     flex-direction: column;
 }
 
 #task-form label {
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
 .description-label {
-    margin-top: 10px;
+    margin-top: 1rem;
     display: inline-block;
-    width: 100px;
+    width: 6.25rem;
 }
-
 
 #task-description {
     display: inline-block;
-    width: calc(100% - 110px);
-    margin-left: 10px;
+    width: calc(100% - 6.875rem);
+    margin-left: 1rem;
 }
 
-
 #task-form button {
-    padding: 15px 30px;
-    font-size: 10px;
+    padding: 1.5rem 3rem;
+    font-size: 1rem;
     background-color: #007BFF;
     left: 0;
     top: 0;
     color: white;
     border: none;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 2rem;
 }
 
 #task-form button:hover {
     background-color: #0056b3;
 }
 
-/*Have tasks appear as title only with an icon on calendar*/
+/* Tasks List */
 .tasks {
-    margin-top: 5px;
+    margin-top: 0.5rem;
     flex-grow: 1;
     overflow-y: auto;
 }
@@ -258,29 +250,17 @@ close:focus {
 }
 
 .task-icon {
-    width: 10px;
-    height: 10px;
+    width: 0.625rem;
+    height: 0.625rem;
     border-radius: 50%;
-    margin-right: 2px;
-    /*If want fixed icon color*/
-    /*background-color: #0056b3*/
-
+    margin-right: 0.125rem;
 }
 
-
-
+/* Have tasks title appear. cut off overflow */
 .task-title {
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 0.75rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 80%; /* adjust how much is displayed */
-    /*transition: max-width 0.5s ease; Add transition for smooth hover effect */
+    max-width: 80%;
 }
-
-/**
-.task:hover .task-title {
-    max-width: 100%; Show full title on hover 
-}
-*/
-

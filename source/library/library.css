@@ -2,7 +2,7 @@ body {
   padding: 0;
   margin: 0% 1% 2% 0%;
   display: flex;
-  overflow-y: hidden;
+  /*overflow-y: hidden;*/
 }
 
 vertical-navbar{

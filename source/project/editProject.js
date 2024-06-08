@@ -464,7 +464,9 @@ function saveProject() {
   modifyProjectTitle(PROJECT_ID, projectTitle);
   modifyProjectDescription(PROJECT_ID, projectDescription);
   modifyProjectDeadline(PROJECT_ID, projectDeadline);
-  window.location.href = "./edit-project.html#" + PROJECT_ID;
+  setTimeout(() => {
+    window.location.href = "./view-project.html#" + PROJECT_ID;
+  }, 500);
 }
 
 /**
