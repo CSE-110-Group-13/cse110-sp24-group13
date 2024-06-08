@@ -205,6 +205,9 @@ function dateToString(dateStr) {
  * @returns {String} - Time till deadline: X Week(s), X Day(s) till deadline
  */
 function timeTillDeadline(deadline) {
+  if (deadline == "") {
+    return "No deadline assigned";
+  }
   const currentDate = new Date();
   const deadlineDate = new Date(deadline);
 
