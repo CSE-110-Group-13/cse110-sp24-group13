@@ -33,8 +33,9 @@ function init() {
         //Uncomment these 2 lines if you're starting live-server from this page
         //localStorage.setItem("NoteTable", JSON.stringify({}));
         //localStorage.setItem("IDContainer", JSON.stringify([]));
-        const newNote = createNewNoteObject();
+        const newNote = createNewNoteObject("Default Text", new Date().toISOString().slice(0,10), new Date().toISOString().slice(0,10), "Default Title", "", "", []);
         NOTE_ID = newNote.noteID;
+        window.location.href = './edit-note.html#' + NOTE_ID;
     } else {
         populateNote();
         populateTag();
@@ -42,6 +43,8 @@ function init() {
     }
     attachSaveButtonListener();
     attachCancelButtonListener();
+    const projectContainer = document.querySelector('.projectContainer');
+    projectContainer.innerHTML = '<linked-project></linked-project>';
 }
 
 /**
