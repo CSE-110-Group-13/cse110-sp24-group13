@@ -149,6 +149,9 @@ function addNewTask() {
   createTaskListItem(taskList, project.taskList);
 
   document.querySelector("#addTaskInput").value = "";
+
+  updateProgress();
+  calculateTaskCompletion(PROJECT_ID);
 }
 
 /**
@@ -204,7 +207,9 @@ function updateTaskCompletionStatusEventListener(singleInputCheckbox, projectID)
     }
     console.log(projectID);
     modifyLastWorkedOn(projectID, newDate);
-    progressBar.value = calculateTaskCompletion(projectID);
+
+    updateProgress();
+    // progressBar.value = calculateTaskCompletion(projectID);
 
     const linkedNotesElement = document.querySelector(".linkedNotes");
     const project = getProjectFromTable(PROJECT_ID);
