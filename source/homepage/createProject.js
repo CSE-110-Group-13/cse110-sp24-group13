@@ -78,10 +78,12 @@ import {
           }
       }
 
+      const completionWrap = document.createElement("div");
+      completionWrap.className = "completion-wrap";
    
   
       percentofTasksComplete = Math.floor((count/value.taskList.length)*100);
-  
+      
       //Create Progress Bar container and Progress Bar
       const progressContainer = document.createElement("div");
       progressContainer.classList.add("progress-container");
@@ -92,43 +94,45 @@ import {
       progressContainer.appendChild(progressBar);
   
       //Create PercentageText
-      const percentageContainer = document.createElement("span");
-      percentageContainer.className = "percentage-container";
       const percentageComplete = document.createElement("p");
       percentageComplete.textContent = percentofTasksComplete+"%";
       percentageComplete.className = "percent";
-      percentageContainer.appendChild(percentageComplete);
+      completionWrap.appendChild(percentageComplete);
   
       // %of Task Complete Text
       const percentageRemainer = document.createElement("p");
       percentageRemainer.innerText = "of task completed";
       percentageRemainer.className = "task-completed-text";
+      completionWrap.appendChild(percentageRemainer);
+
   
   
       //Create Vertical Lines
       const verticalLineProject = document.createElement('div');
       verticalLineProject.className = 'vertical-line-project';
-  
+      
+      const deadlineWrap = document.createElement("span");
+      deadlineWrap.className = "deadline-wrap";
   
       //Calender Image;
-      const calenderImage = document.createElement("div");
+      const calenderImage = document.createElement("span");
       calenderImage.innerHTML = calender;
       calenderImage.className = "calenderImage";
   
   
       // Time till deadline Text
-      const timeLeft = document.createElement("div");
+      const timeLeft = document.createElement("p");
       timeLeft.textContent = countTimeTillDeadline(value.deadline);
       timeLeft.className = "timeLeft";
   
   
       //Add all the items to newProject and then ProjectContainer
       newProject.appendChild(progressContainer);
-      newProject.appendChild(percentageContainer);
-      newProject.appendChild(percentageRemainer);
+      newProject.appendChild(completionWrap);
       newProject.appendChild(verticalLineProject);
-      newProject.appendChild(calenderImage);
-      newProject.appendChild(timeLeft);
+      deadlineWrap.appendChild(calenderImage);
+      deadlineWrap.appendChild(timeLeft);
+      newProject.appendChild(deadlineWrap);
       projectContainer.appendChild(newProject);
       counter++;
   }
