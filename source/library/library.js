@@ -13,6 +13,7 @@ import {
 
 
 const filteredTags = [];
+let currPage = 0;
     
 window.addEventListener("DOMContentLoaded", init);
 
@@ -38,10 +39,31 @@ function loadNotes(){
             return new Date(b.lastEdited) - new Date(a.lastEdited);
           }
         });
-
+    //generate page buttons
+    const buttonsHolder = document.getElementById('page-buttons');
+    buttonsHolder.innerHTML = "";
+    for(let i = 0; i < notesArray.length/10; i++)
+    {
+      const pageButton = document.createElement("button");
+      console.log(pageButton);
+      let pageNum = i + 1;
+      pageButton.innerText = pageNum;
+      if(i == currPage)
+        pageButton.setAttribute('selected', 'true');
+      pageButton.onclick = function(){
+        currPage = i;
+        loadNotes();
+      }
+      buttonsHolder.appendChild(pageButton);
+    }
+    let count = 0;
     notesArray.forEach(note => {
+      if(count >= currPage * 10 && count < currPage*10 + 10)
+      {
         const noteElement = createNoteElement(note);
         entriesHolder.appendChild(noteElement);
+      }
+      count++;
     });
 }
 

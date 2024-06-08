@@ -105,4 +105,15 @@ h3 {
   font-weight: 500;
 }
 
-
+#page-buttons > button {
+  margin-right: 1vw;
+  border-radius: 20%;
+  background-color: #e2e2e2;
+  border-color: #e2e2e2;
+}
+#page-buttons > button[selected='true']
+{
+  background-color: #212121;
+  border-color: #212121;
+  color: #f8f8f8;
+}
