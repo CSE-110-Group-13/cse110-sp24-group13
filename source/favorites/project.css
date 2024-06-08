@@ -73,7 +73,10 @@
 }
 
 
-
+a {
+  text-decoration: none;
+  color: black;
+}
 
 .project-wrapper {
   display: flex;

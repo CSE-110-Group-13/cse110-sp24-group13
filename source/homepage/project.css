@@ -17,6 +17,12 @@
     flex-shrink: 0; /* Prevents shrinking */
   }
   
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  
   .percentage-container {
     display: flex;
     align-items: center;
