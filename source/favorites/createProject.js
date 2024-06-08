@@ -31,11 +31,11 @@ function createProjectTable(){
     
     // Case of no projects
     if (!projectTable || Object.keys(projectTable).length === 0) {
-      const noProjectsCase = document.createElement("div");
-      noProjectsCase.textContent = "Nothing here yet. Add a project to get started!";
-      noProjectsCase.className = "noProjectsCase";
-      // Append the created element to the DOM
-      projectContainer.appendChild(noProjectsCase);
+        const noProjectsCase = document.createElement("div");
+        noProjectsCase.textContent = "Nothing here yet. Add a project to get started!";
+        noProjectsCase.className = "noProjectsCase";
+        // Append the created element to the DOM
+        projectContainer.appendChild(noProjectsCase);
     }
 
   let loadedProjects = [];
@@ -87,19 +87,21 @@ function createProjectTable(){
     
     let percentofTasksComplete = 100;
     let count = 0;
-
+    console.log(value.taskList.length )
     if(value.taskList.length != 0){
+      console.log("HERE")
+
       for(const task of value.taskList){
           const taskFromTable = getTaskFromTable(task);
           if(taskFromTable.completed == true){
             count++;
           }
       }
-
-   
-  
       percentofTasksComplete = Math.floor((count/value.taskList.length)*100);
-  
+  } 
+      const completionWrap = document.createElement("div");
+      completionWrap.className = "completion-wrap";
+
       //Create Progress Bar container and Progress Bar
       const progressContainer = document.createElement("div");
       progressContainer.classList.add("progress-container");
@@ -110,49 +112,51 @@ function createProjectTable(){
       progressContainer.appendChild(progressBar);
   
       //Create PercentageText
-      const percentageContainer = document.createElement("span");
-      percentageContainer.className = "percentage-container";
       const percentageComplete = document.createElement("p");
       percentageComplete.textContent = percentofTasksComplete+"%";
       percentageComplete.className = "percent";
-      percentageContainer.appendChild(percentageComplete);
+      completionWrap.appendChild(percentageComplete);
   
       // %of Task Complete Text
       const percentageRemainer = document.createElement("p");
       percentageRemainer.innerText = "of task completed";
       percentageRemainer.className = "task-completed-text";
+      completionWrap.appendChild(percentageRemainer);
+
   
   
       //Create Vertical Lines
       const verticalLineProject = document.createElement('div');
       verticalLineProject.className = 'vertical-line-project';
-  
+      
+      const deadlineWrap = document.createElement("span");
+      deadlineWrap.className = "deadline-wrap";
   
       //Calender Image;
-      const calenderImage = document.createElement("div");
+      const calenderImage = document.createElement("span");
       calenderImage.innerHTML = calender;
       calenderImage.className = "calenderImage";
   
   
       // Time till deadline Text
-      const timeLeft = document.createElement("div");
+      const timeLeft = document.createElement("p");
       timeLeft.textContent = countTimeTillDeadline(value.deadline);
       timeLeft.className = "timeLeft";
   
   
       //Add all the items to newProject and then ProjectContainer
       newProject.appendChild(progressContainer);
-      newProject.appendChild(percentageContainer);
-      newProject.appendChild(percentageRemainer);
+      newProject.appendChild(completionWrap);
       newProject.appendChild(verticalLineProject);
-      newProject.appendChild(calenderImage);
-      newProject.appendChild(timeLeft);
+      deadlineWrap.appendChild(calenderImage);
+      deadlineWrap.appendChild(timeLeft);
+      newProject.appendChild(deadlineWrap);
       projectContainer.appendChild(newProject);
       counter++;
+      
   }
-  
-  }
-  
+
+}
   function countTimeTillDeadline(deadline) {
     // Convert deadline string to Date object
     const deadlineDate = new Date(deadline);
@@ -172,6 +176,7 @@ function createProjectTable(){
     const weeks = Math.floor(differenceMs / (1000 * 60 * 60 * 24 * 7));
     const days = Math.floor((differenceMs % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
     const hours = Math.floor((differenceMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    console.log(days);
   
     // Construct the result string
     let result = "";
@@ -197,5 +202,5 @@ function createProjectTable(){
     }
   
     return result + " until deadline";
-}
+    
 }

@@ -87,21 +87,21 @@ function createProjectTable(){
     
     let percentofTasksComplete = 100;
     let count = 0;
-
+    console.log(value.taskList.length )
     if(value.taskList.length != 0){
+      console.log("HERE")
+
       for(const task of value.taskList){
           const taskFromTable = getTaskFromTable(task);
           if(taskFromTable.completed == true){
             count++;
           }
       }
-
+      percentofTasksComplete = Math.floor((count/value.taskList.length)*100);
+  } 
       const completionWrap = document.createElement("div");
       completionWrap.className = "completion-wrap";
-   
-  
-      percentofTasksComplete = Math.floor((count/value.taskList.length)*100);
-      
+
       //Create Progress Bar container and Progress Bar
       const progressContainer = document.createElement("div");
       progressContainer.classList.add("progress-container");
@@ -153,10 +153,10 @@ function createProjectTable(){
       newProject.appendChild(deadlineWrap);
       projectContainer.appendChild(newProject);
       counter++;
+      
   }
-  
-  }
-  
+
+}
   function countTimeTillDeadline(deadline) {
     // Convert deadline string to Date object
     const deadlineDate = new Date(deadline);
@@ -202,5 +202,5 @@ function createProjectTable(){
     }
   
     return result + " until deadline";
-}
+    
 }
