@@ -358,3 +358,12 @@ hr{
     transform: rotate(180deg);
 }
 
+label.checked {
+    opacity: 0.5;
+    color: grey;
+    text-decoration: line-through;
+  }
+  
+  input[type="checkbox"].checked {
+    opacity: 0.5;
+  }
