@@ -184,7 +184,7 @@ function addNotesAndProjectsToCalendar() {
      */
     for (const [key, value] of Object.entries(noteTable)) {
         const dayElement = document.querySelector(`[data-date='${value.date}']`);
-        console.log(value.date);
+        console.log(dayElement);
         if (dayElement) {
             const noteElement = document.createElement('a');
             noteElement.className = "task";
@@ -212,7 +212,6 @@ function addNotesAndProjectsToCalendar() {
     for (const [key, value] of Object.entries(projectTable)) {
         const deadlineDate = value.deadline.split('T')[0];
         const dayElement = document.querySelector(`[data-date='${deadlineDate}']`);
-        console.log(deadlineDate);
         if (dayElement) {
             const projectElement = document.createElement('a');
             projectElement.className = "task";
@@ -232,6 +231,5 @@ function addNotesAndProjectsToCalendar() {
             dayElement.querySelector(".tasks").appendChild(projectElement);
         }
     }
-    console.log('test');
     
 }
