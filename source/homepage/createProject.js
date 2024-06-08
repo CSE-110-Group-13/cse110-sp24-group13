@@ -105,7 +105,7 @@ function createProjectTable(){
     const progressBar = document.createElement("div");
     progressBar.classList.add("progress-bar");
     progressBar.style.width = percentofTasksComplete + "%";
-    progressBar.style.backgroundColor = "#0AB73B"
+    progressBar.style.backgroundColor = "green";
     progressContainer.appendChild(progressBar);
 
     //Create PercentageText
