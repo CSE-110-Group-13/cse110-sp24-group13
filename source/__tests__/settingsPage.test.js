@@ -28,8 +28,8 @@ describe('Tests for library page', () => {
     await browser.close();
   });
 
-  it('Sample test', async () => {
+  it('Test title is displayed correctly', async () => {
     const title = await page.title();
-    // expect(title).toBe('Settings');
+    expect(title).toBe('Commit');
   });
 });
