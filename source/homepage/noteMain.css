@@ -1,14 +1,14 @@
 .note {
   background-color: #F8F8F8;
-  padding-right: 10px;
-  padding-left: 20px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-radius: 20px;
-  display: flex;         /* Use flexbox for horizontal alignment */
+  padding-right: 1.25vh;  /* 10px converted to vh */
+  padding-left: 2.5vh;    /* 20px converted to vh */
+  padding-bottom: 1.25vh; /* 10px converted to vh */
+  margin-bottom: 1.25vh;  /* 10px converted to vh */
+  border-radius: 2.5vh;   /* 20px converted to vh */
+  display: flex;          /* Use flexbox for horizontal alignment */
   flex-direction: column;
   justify-content: flex-start; 
-  overflow: hidden;      /* hide the overflowed text */
+  overflow: hidden;       /* Hide the overflowed text */
   position: relative;
 }
 
@@ -21,38 +21,44 @@
 header h2 > a {
   font-weight: bold;
   color: #000;
-  max-width: 24%;   /* set max-width to avoid overlapping with the tags */
-  font-size: min(20px, max(14px, 2vw));
+  max-width: 50%;   /* set max-width to avoid overlapping with the tags */
+  font-size: min(2.5vh, max(3vh, 4vw));
   text-decoration: none;
+  padding: 0.5vh;
 }
 
-header {
-  display: flex;   
-  flex-direction: row; 
-  align-items: center; /* align items to be centered in the row */
-  margin-top: -10px;
-  margin-bottom: 5px;
-}
+ header {
+    display: flex;   
+    flex-direction: row; 
+    align-items: center; /* align items to be centered in the row */
+    margin-top: -1vh;
+    margin-bottom: 0.5vw;
+  }
 
 /* align the tags and project elements to the right of the title */
 .tags-project {
-  display: flex;
-  position: absolute;
-  left: 25%;          
+  flex-shrink: 1;
+  display: flex;     
   align-items: center;
+  flex-wrap: wrap;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .tags-project span {
+  flex-shrink: 1;
+  max-width: 100%;
   background-color: #e2e2e2;
-  padding: 0px 10px;
-  margin-right: 5px;
-  border-radius: 5px;
-  height: 20px;
+  padding: 0px 1.25vh;   /* 10px converted to vh */
+  margin-right: 0.625vh; /* 5px converted to vh */
+  border-radius: 0.625vh; /* 5px converted to vh */
+  height: 2.5vh;  /* 20px converted to vh */
   color: #000;
   transition: 0.5s;
 }
 
 .tags-project span > a {
+  margin-right: 25%;
   text-decoration: none;
   color: #000;
 }
@@ -76,38 +82,38 @@ header {
 }
 
 #vertical-line {
-  border-left: 2px solid #000;
-  height: 25px;
-  margin-right: 9px;
-  margin-left: 9px;
+  border-left: 0.25vh solid #000; /* 2px converted to vh */
+  height: 3.125vh;   
+  margin-right: 2vh; /* 9px converted to vh */
+  margin-left: 1.5vh;  /* 9px converted to vh */
 }
 
 .content-container {
   display: flex;
   flex-direction: row;
-  margin-top: -10px;
-  margin-bottom: 10px;
+  margin-top: -1.25vh;
+  margin-bottom: 1.25vh;
 }
 
 .dates {
   display: flex;   /* align the dates vertically */
   flex-direction: column; 
-  max-width: 22%;  
+  max-width: 17.5%;
 }
 
 .dates p {
-  font-size: 10px;
+  font-size: 1.25vh;
   color: #7C7C7C;
-  margin-top: -5px;  
+  margin-top: -0.625vh; 
 }
 
 #note-text {
   position: absolute;
   left: 25%;
-  margin-top: -5px;
+  margin-top: 1vh;
   margin-right: 4%;
-  max-width: 975px;
-  font-size: 12px;
+  max-width: 70%;
+  font-size: 1.5vh;    /* 12px converted to vh */
   color: #000;
   overflow: hidden;             /* Hide any overflow */
   white-space: normal;          /* Allow text to wrap */

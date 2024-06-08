@@ -107,6 +107,8 @@ function createNoteElement(noteObject) {
     tagsProjectContainer.appendChild(tagElement);
   });
   
+  const projectContainer = document.createElement('div');
+  projectContainer.classList.add('project-container');
   // Add line separating the tags and projects
   if(noteObject.linkedProject != "") {
     const verticalLine = document.createElement('div');
@@ -158,8 +160,6 @@ recentContainer.id = "recentsContainer";
 
 const favoriteContainer = document.createElement("div");
 const favorite = document.getElementById("favorites");
-favorite.appendChild(favoriteContainer);
-favoriteContainer.id = "favoritesContainer";
 
 function init(){
   
@@ -275,32 +275,29 @@ function filterByTag(tag)
   * @return {string} a string in the correct format
   */
 function getFormattedDate(dateString) {
-  //catches exception where a date is left blank.
-  if(dateString == "")
-  {
-    return "";
-  }
-  const date = new Date(dateString);
-  const day = date.getDate();
-  let suffix = "";
-  // Determine the suffix based on the day
-  if (day === 1 || day === 21 || day === 31) {
-    suffix = "st";
-  }
-  else if (day === 2 || day === 22) {
-    suffix = "nd";
-  }
-  else if (day === 3 || day === 23) {
-    suffix = "rd";
-  }
-  else {
-    suffix = "th";
-  }
+  // Catches exception where a date is left blank.
+if (dateString == "") {
+  return "";
+}
+const date = new Date(dateString);
+const day = date.getUTCDate(); // Use UTC to avoid timezone issues
+let suffix = "";
 
-  // Format the string
-  const options = { month: 'long' };
-  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date); 
-  return `${formattedDate} ${day}${suffix}`;
+// Determine the suffix based on the day
+if (day === 1 || day === 21 || day === 31) {
+  suffix = "st";
+} else if (day === 2 || day === 22) {
+  suffix = "nd";
+} else if (day === 3 || day === 23) {
+  suffix = "rd";
+} else {
+  suffix = "th";
+}
+
+// Format the string
+const options = { month: 'long', timeZone: 'UTC' }; // Ensure UTC is used
+const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+return `${formattedDate} ${day}${suffix}`;
 }
 
 
@@ -339,13 +336,8 @@ function toggleCollapse(event, type) {
   }
 }
 
-const recentsCollapseButton = document.getElementById('collapseButton1');
-recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'recents'));
-recentsCollapseButton.innerHTML = expandIcon;
 
-const favoritesCollapseButton = document.getElementById('collapseButton2');
-//favoritesCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'favorites'));
-recentsCollapseButton.innerHTML = expandIcon;
+
 
 
 // Export functions for creating a note
