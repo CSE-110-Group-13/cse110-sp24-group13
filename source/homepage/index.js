@@ -12,7 +12,7 @@ const filteredTags = [];
 window.addEventListener("DOMContentLoaded", init);
 
 let recentsCollapsed = false; 
-let recentCounter = 3;
+let recentCounter = 4;
 
 let favoriteCounter = 1;
 
@@ -277,8 +277,7 @@ function filterByTag(tag)
   */
 function getFormattedDate(dateString) {
   //catches exception where a date is left blank.
-  if(dateString == "")
-  {
+  if(dateString == "") {
     return "";
   }
   // const date = new Date(dateString);

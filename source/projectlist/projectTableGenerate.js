@@ -96,10 +96,10 @@
 //     // createNewProjectObject("Project3", "Description3", ['task1', 'task2', 'task3'], "2024-05-30", "Priority3");
 //     // createNewProjectObject("Project3", "Description3", ['task1', 'task2', 'task3'], "2024-05-30", "Priority3");
 //   }
-//   if (Object.keys(noteTable).length < 3) {
+//   if (Object.keys(noteTable).length < 10) {
 //     let newProjectTable = getProjectTableFromStorage();
 //     let aProject = Object.values(newProjectTable)[0];
-//     for(let i = 0; i < 2; i++){
+//     for(let i = 0; i < 9; i++){
 //     createNewNoteObject("this is text1", "2024-05-14", "2024-05-14", "this is title1", `${aProject.projectID}`, true, ["tag1", "tag2", "tag3"]);
 //     // createNewNoteObject("this is text2", "2024-05-29", "2024-05-30", "this is title2", ["project1", "project2"], false, ["tag1", "tag2", "tag3"]);
 //     // createNewNoteObject("this is text3", "2024-05-29", "2024-05-30", "this is title3", ["project1", "project2"], true, ["tag1", "tag2", "tag3"]);
