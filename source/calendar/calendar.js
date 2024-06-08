@@ -280,8 +280,7 @@ function addNotesAndProjectsToCalendar() {
         if (dayElement) {
             const noteElement = document.createElement('a');
             noteElement.className = "task";
-            // REPLACE WITH PROPER LINK
-            noteElement.href = `LINKHERE?noteId=${key}`; 
+            noteElement.href = "../note/view-note.html" + "#" + value.noteID; 
 
 
             const icon = document.createElement('div');
@@ -305,8 +304,7 @@ function addNotesAndProjectsToCalendar() {
         if (dayElement) {
             const projectElement = document.createElement('a');
             projectElement.className = "task";
-            //REPLACE WITH PROPER LINK
-            projectElement.href = `LINKHERE?projectId=${key}`;
+            projectElement.href = "../project/view-project.html" + "#" + value.projectID;
 
             const icon = document.createElement('div');
             icon.className = 'task-icon';
