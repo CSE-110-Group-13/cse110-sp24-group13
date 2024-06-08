@@ -528,7 +528,7 @@ class linkedProject extends HTMLElement {
         linkProject.textContent = "Link a Project";
         descriptionContainer.appendChild(linkProject);
         const description = document.createElement('p');
-        description.textContent = "This allows you to to update a specific task. Once you select a speific task, you can then check off which subtask you have completed in this specific note";
+        description.textContent = "This allows you to to update a specific task. Once you select a specific task, you can then check off which subtask you have completed in this specific note";
         descriptionContainer.appendChild(description);
         linkAProject.appendChild(descriptionContainer);
 
