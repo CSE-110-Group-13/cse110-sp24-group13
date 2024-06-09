@@ -1,7 +1,5 @@
 // editProject.js
 
-// TODO - Possibly add a custom popup for when save is successful
-
 // Importing necessary functions from backend modules
 import {
   getProjectFromTable,
@@ -50,7 +48,7 @@ function init() {
     modifyLastWorkedOn(PROJECT_ID, newDate);
     modifyProjectTitle(PROJECT_ID, "New Project!");
     modifyProjectPriority(PROJECT_ID, "low");
-    console.log('test');
+    console.log("test");
   }
   populateProject();
   populateOptionsLinkNotes();
@@ -310,7 +308,6 @@ function addLinkedNotes() {
   console.log(selectedNote);
 
   if (selectedNote.value != "") {
-
     console.log("Adding linked note");
     appendLinkedNoteToProject(PROJECT_ID, selectedNote.value);
     modifyLinkedProject(selectedNote.value, PROJECT_ID);
