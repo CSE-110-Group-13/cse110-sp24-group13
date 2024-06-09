@@ -1,20 +1,22 @@
 // editNote.js
 import { 
-	createNewNoteObject, 
-	modifyNoteText, 
-	modifyNoteDate, 
-	modifyNoteTitle, 
-	appendTagToNoteTags, 
-	removeTagFromNoteTags,
-	getNoteFromTable,
-	modifyNoteLastEdited,
-} from '../backend/NoteTable.js';
+    createNewNoteObject, 
+    modifyNoteText, 
+    modifyNoteDate, 
+    modifyNoteTitle, 
+    appendTagToNoteTags, 
+    removeTagFromNoteTags,
+    getNoteFromTable,
+    modifyNoteLastEdited,
+    deleteNoteFromTable,
+  } from '../backend/NoteTable.js';
 
 import {
 	getProjectFromTable
 } from '../backend/ProjectTable.js';
 
 let NOTE_ID = "";
+let NEW_NOTE = false;
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -88,6 +90,9 @@ function saveNote() {
  * On canceling edit, go back to homepage
  */
 function cancelEdit() {
+    if (NEW_NOTE) {
+        deleteNoteFromTable(NOTE_ID);
+    }
     window.location.href = "../homepage/index.html";
 }
 
