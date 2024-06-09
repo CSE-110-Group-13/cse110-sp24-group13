@@ -266,7 +266,7 @@ function appendLinkedNoteToProject(projectID, noteID) {
 function removeLinkedNoteFromProject(projectID, noteID) {
   const projectObject = getProjectFromTable(projectID);
   projectObject["linkedNotes"] = projectObject["linkedNotes"].filter(note => note !== noteID);
-  modifyLinkedProject(noteID,projectID);
+  modifyLinkedProject(noteID,"");
   saveProjectToTable(projectID, projectObject);
 }
 
