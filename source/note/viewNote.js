@@ -88,9 +88,18 @@ function populateTag() {
     tags.forEach(tag => {
         const newTag = document.createElement('li');
         newTag.textContent = tag;
-        newTag.addEventListener('dblclick', () => {
-            removeTagFromNoteTags(NOTE_ID, tag);
-            newTag.remove();
+        
+        // Deleting tag
+        let isClickedOnce = false;
+        newTag.addEventListener('click', () => {
+            if (!isClickedOnce) {
+                newTag.style.backgroundColor = "#FF000F";
+                isClickedOnce = true;
+            }
+            else {
+                removeTagFromNoteTags(NOTE_ID, tag);
+                newTag.remove();
+            }
         });
         tagsContainer.appendChild(newTag);
     });

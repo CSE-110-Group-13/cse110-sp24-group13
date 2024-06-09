@@ -112,9 +112,16 @@ function populateTag() {
     tags.forEach(tag => {
         const newTag = document.createElement('li');
         newTag.textContent = tag;
-        newTag.addEventListener('dblclick', () => {
-            //removeTagFromNoteTags(NOTE_ID, tag);
-            newTag.remove();
+        // Deleting tag
+        let isClickedOnce = false;
+        newTag.addEventListener('click', () => {
+            if (!isClickedOnce) {
+                newTag.style.backgroundColor = "#FF000F";
+                isClickedOnce = true;
+            }
+            else {
+                newTag.remove();
+            }
         });
         tagsContainer.appendChild(newTag);
     });
@@ -133,8 +140,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const tagsContainer = document.querySelector('.tagContainer');
             const newTag = document.createElement('li');
             newTag.textContent = tag;
-            newTag.addEventListener('dblclick', () => {
-                newTag.remove();
+            
+            // Deleting tag
+            let isClickedOnce = false;
+            newTag.addEventListener('click', () => {
+                if (!isClickedOnce) {
+                    newTag.style.backgroundColor = "#FF000F";
+                    isClickedOnce = true;
+                }
+                else {
+                    newTag.remove();
+                }
             });
             tagsContainer.appendChild(newTag);
             //tagsContainer.innerHTML = '';
