@@ -46,7 +46,7 @@ function init() {
     modifyLastWorkedOn(PROJECT_ID, newDate);
     modifyProjectTitle(PROJECT_ID, "New Project!");
     modifyProjectPriority(PROJECT_ID, "low");
-    console.log('test');
+    console.log("test");
   }
   populateProject();
   populateOptionsLinkNotes();
@@ -314,10 +314,10 @@ function addLinkedNotes() {
   console.log(selectedNote);
 
   if (selectedNote.value != "") {
-
     console.log("Adding linked note");
     appendLinkedNoteToProject(PROJECT_ID, selectedNote.value);
     modifyLinkedProject(selectedNote.value, PROJECT_ID);
+    console.log(selectedNote.value);
     selectedNote.value = "";
     selectedNote.ariaPlaceholder = "Linked Note(s)";
     console.log(getProjectFromTable(PROJECT_ID).linkedNotes[0]);
@@ -426,7 +426,6 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
     icon.addEventListener("click", () => {
       const noteID = icon.getAttribute("id");
       removeLinkedNote(noteID);
-      modifyLinkedProject(noteID, "");
     });
   });
 }
@@ -437,7 +436,7 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
  */
 function removeLinkedNote(noteID) {
   removeLinkedNoteFromProject(PROJECT_ID, noteID);
-  modifyLinkedProject(noteID, null);
+  modifyLinkedProject(noteID, "");
   const linkedNotesElement = document.querySelector(".linkedNotes");
   const project = getProjectFromTable(PROJECT_ID);
   populateLinkedNotes(project.linkedNotes, linkedNotesElement);

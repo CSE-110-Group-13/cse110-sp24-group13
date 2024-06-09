@@ -3,14 +3,13 @@ html body {
   font-size: 2vh;
   padding: 0;
 }
-
 vertical-navbar {
   position: fixed;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
 }
 
-p{
+p {
   overflow-wrap: break-word;
 }
 
@@ -32,7 +31,7 @@ p{
   flex-wrap: wrap;
 }
 
-.selectBar{
+.selectBar {
   margin: 2% auto 0 0;
   min-width: fit-content;
   display: flex;
@@ -40,25 +39,25 @@ p{
   scale: 90%;
 }
 
-.select-wrapper{
+.select-wrapper {
   display: flex;
   width: auto;
   justify-content: center;
   align-items: center;
-  
+
   background-color: #ffffff;
   border-radius: 1em;
-  border: .1em solid #00000017;
-  text-decoration: none; 
+  border: 0.1em solid #00000017;
+  text-decoration: none;
   font-size: 1vh;
 }
 
-.select-wrapper svg{
+.select-wrapper svg {
   margin-right: 1vw;
   margin-left: -2vw;
   width: 1em;
   height: 1em;
-  color:#6d6d6d;
+  color: #6d6d6d;
   stroke: #6d6d6d;
   stroke-width: 30;
 }
@@ -70,24 +69,24 @@ p{
   gap: 1vw;
 }
 
-.content{
+.content {
   padding: 0 0 0 0;
 }
 
 .container {
   margin: 2% 0 2% 0;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
   padding: 5px 20px 5px 20px;
   border-radius: 25px;
 }
 
-#title{
+#title {
   font-size: calc(1.5vw + 1.5vh);
   margin-right: auto;
 }
 
-.container textarea{
+.container textarea {
   margin: -1% 0 0 0;
   padding: 10px;
   width: 100%;
@@ -107,14 +106,15 @@ p{
   resize: none; /*remove the resize handle on the bottom right*/
 }
 
-#projectTitle{
+#projectTitle {
   margin-right: auto;
   padding-left: 1vw;
-  font-size: calc(1.5vw + 1.5vh);    font-weight: bold;
+  font-size: calc(1.5vw + 1.5vh);
+  font-weight: bold;
   width: 40%;
 
   border: 1px solid #00000017;
-  border-radius: .2em;
+  border-radius: 0.2em;
   overflow: auto;
 
   -webkit-box-shadow: none;
@@ -123,59 +123,59 @@ p{
   background-color: #00000003;
 }
 
-.projectDue{
+.projectDue {
   display: flex;
   justify-content: start;
   align-items: center;
 }
 
-.projectDue svg{
+.projectDue svg {
   margin: 0 0% 0 1%;
   min-width: 1em;
   height: 1em;
 }
 
-#descDropdown{
+#descDropdown {
   margin: 1% 50%; /* Add space between icon and text */
   width: 1em;
   height: 1em;
 }
 
-.container svg:hover{
+.container svg:hover {
   cursor: pointer;
 }
 
-.projectHeader{
+.projectHeader {
   flex-wrap: wrap;
-  display: flex; 
-  align-items: center; 
-  margin: 1vh 0vh ;
+  display: flex;
+  align-items: center;
+  margin: 1vh 0vh;
 }
 
-.progress{
+.progress {
   margin-right: 1%;
   display: flex;
   align-items: center;
 }
 
-.progress progress{
+.progress progress {
   width: 30vw;
   height: 3vh;
   margin-right: 1em;
 }
 
-#progressBar{
+#progressBar {
   accent-color: green;
   transition: width 0.1s ease-in-out;
 }
 
-.progress label{
+.progress label {
   font-size: larger;
-  font-weight:bold;
+  font-weight: bold;
 }
 
-.priorityDot{
-  padding: .7em;
+.priorityDot {
+  padding: 0.7em;
   margin: 1vw;
 
   background-color: rgb(123, 123, 123);
@@ -184,9 +184,9 @@ p{
 }
 
 select {
-  font-size: calc(.5vw + 1vh);    
-  padding: .75vh 7vw .75vh 7vw;
-  color: #6d6d6d; 
+  font-size: calc(0.5vw + 1vh);
+  padding: 0.75vh 7vw 0.75vh 7vw;
+  color: #6d6d6d;
   background-color: transparent;
   /* Remove default CSS */
   -moz-appearance: none;
@@ -197,18 +197,18 @@ select {
   z-index: 1;
 }
 
-#priority{
+#priority {
   padding-left: 3vw;
   padding-right: 3vw;
 }
 
-.addTask{
-  display:flex;
+.addTask {
+  display: flex;
   align-items: center;
   margin-bottom: 1vh;
 }
 
-.addTask svg{
+.addTask svg {
   height: 1rem;
   width: 1rem;
   margin-right: 10px;
@@ -218,17 +218,17 @@ select {
 
 .taskContainer {
   display: flex;
-  align-items:center;
+  align-items: center;
   margin-bottom: 10px;
 }
 
-.taskContainer svg{
+.taskContainer svg {
   height: 18px;
   width: 18px;
   margin-left: 10px;
 }
 
-input[type=text]{
+input[type="text"] {
   width: 95%;
   border: 1px solid #00000017;
   border-radius: 5px;
@@ -240,25 +240,25 @@ input[type=text]{
   background-color: #00000003;
 }
 
-select:hover{
+select:hover {
   cursor: pointer;
 }
 
-.linkedNotes{
-  margin: 0 .75vw 0 .75vw;
+.linkedNotes {
+  margin: 0 0.75vw 0 0.75vw;
 }
 
-.linkedNote{
+.linkedNote {
   margin-right: 2vw;
   justify-content: start;
   align-items: center;
   min-width: fit-content;
   display: flex;
   gap: 10px;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 }
 
-.linkedNote svg{
+.linkedNote svg {
   width: 20px;
   height: 20px;
 }
@@ -275,16 +275,15 @@ ul {
   display: flex;
   margin: 0 1% 0 auto;
 }
-
 li {
-  margin:0;
-  width:fit-content;
-  background-color: #E2E2E2;
+  margin: 0;
+  width: fit-content;
+  background-color: #e2e2e2;
   border-radius: 30px;
   border-style: none;
-  padding: 10px; 
-  text-decoration: none; 
-  color: black; 
+  padding: 10px;
+  text-decoration: none;
+  color: black;
   scale: 70%;
 }
 
@@ -295,7 +294,7 @@ hr {
 }
 
 .removeNote {
-  fill:#760000e3;
+  fill: #760000e3;
 }
 
 .flip {
@@ -307,7 +306,7 @@ label.checked {
   color: grey;
   text-decoration: line-through;
 }
-  
+
 input[type="checkbox"].checked {
   opacity: 0.5;
 }
