@@ -43,8 +43,6 @@ function init() {
     }
     attachSaveButtonListener();
     attachCancelButtonListener();
-    const projectContainer = document.querySelector('.projectContainer');
-    projectContainer.innerHTML = '<linked-project></linked-project>';
 }
 
 /**
@@ -112,9 +110,20 @@ function populateTag() {
     tags.forEach(tag => {
         const newTag = document.createElement('li');
         newTag.textContent = tag;
-        newTag.addEventListener('dblclick', () => {
-            //removeTagFromNoteTags(NOTE_ID, tag);
-            newTag.remove();
+        // Deleting tag
+        let isClickedOnce = false;
+        newTag.addEventListener('click', () => {
+            if (!isClickedOnce) {
+                newTag.style.backgroundColor = "#FF000F";
+                setTimeout(() => {
+                    newTag.style.backgroundColor = "";
+                    isClickedOnce = false;
+                }, 2000);
+                isClickedOnce = true;
+            }
+            else {  
+                newTag.remove();
+            }
         });
         tagsContainer.appendChild(newTag);
     });
@@ -125,20 +134,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const newTagInput = document.getElementById("newTagInput");
     newTagForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        const tag = newTagInput.value.trim();
+    });
+    // Add tag
+    document.addEventListener('click', (event) => {
+        const isClickInside = newTagForm.contains(event.target);
 
-        if (tag) {
-            // appendTagToNoteTags(NOTE_ID, tag);
-            newTagInput.value = '';
-            const tagsContainer = document.querySelector('.tagContainer');
-            const newTag = document.createElement('li');
-            newTag.textContent = tag;
-            newTag.addEventListener('dblclick', () => {
+        if(!isClickInside) {
+            const tag = newTagInput.value.trim();
+            if (tag) {
+                newTagInput.value = '';
+                const tagsContainer = document.querySelector('.tagContainer');
+                const newTag = document.createElement('li');
+                newTag.textContent = tag;
+                // Deleting tag
+                let isClickedOnce = false;
+                newTag.addEventListener('click', () => {
+                if (!isClickedOnce) {
+                    newTag.style.backgroundColor = "#FF000F";
+                    setTimeout(() => {
+                        newTag.style.backgroundColor = "";
+                        isClickedOnce = false;
+                    }, 2000);
+                    isClickedOnce = true;
+                }
+            else {  
                 newTag.remove();
-            });
-            tagsContainer.appendChild(newTag);
-            //tagsContainer.innerHTML = '';
-            //populateTag();
+            }
+        });
+                tagsContainer.appendChild(newTag);
+            }
         }
     });
 

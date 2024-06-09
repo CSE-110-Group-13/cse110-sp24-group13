@@ -11,6 +11,7 @@
   <title>Commit</title>
   <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
   <script src="../verticalnavbar/verticalnavbar.js"></script>
+  <script src="../addNewbutton/addNew.js"></script>
   <script src="library.js" type="module"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
@@ -27,9 +28,9 @@
       <label for="sort-select">Sort by:</label>
       <select id = 'sort-select'>
         <script src ='library.js' type="module"></script>
-        <option value="title">title (a - z)</option>
-        <option value="date">date created (old - new)</option>
-        <option value="lastEdited">date edited (old - new)</option>
+        <option value="title">title (a to z)</option>
+        <option value="date">date created (oldest first)</option>
+        <option value="lastEdited">date edited (latest first)</option>
       </select>
     </div>
     <div id = "page-buttons"></div>

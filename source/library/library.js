@@ -27,6 +27,14 @@ function loadNotes(){
     const entriesHolder = document.getElementById('entries-holder');
     entriesHolder.innerHTML = ''; // clear existing to reload
 
+    // no notes case
+    if (!noteTable || Object.keys(noteTable).length === 0) {
+      const noNotesCase = document.createElement('div');
+      noNotesCase.classList.add('noNotesCase');
+      noNotesCase.textContent = "Your note list is empty. Click on 'Add new' to get started!";
+      document.getElementById('entries-holder').appendChild(noNotesCase);
+    }
+
     const sortBy = document.getElementById('sort-select').value;
     const notesArray = Object.values(noteTable);
 

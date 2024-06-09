@@ -254,14 +254,15 @@ function addLinkedNotes() {
   if (selectedNote.value != "") {
     console.log("Adding linked note");
     appendLinkedNoteToProject(PROJECT_ID, selectedNote.value);
+    modifyLinkedProject(selectedNote.value, PROJECT_ID);
     selectedNote.value = "";
     selectedNote.ariaPlaceholder = "Linked Note(s)";
     console.log(getProjectFromTable(PROJECT_ID).linkedNotes[0]);
   }
   const linkedNotesElement = document.querySelector(".linkedNotes");
   const project = getProjectFromTable(PROJECT_ID);
-  populateLinkedNotes(project.linkedNotes, linkedNotesElement)
-  populateOptionsLinkNotes()
+  populateLinkedNotes(project.linkedNotes, linkedNotesElement);
+  populateOptionsLinkNotes();
 }
 
 /**
@@ -282,14 +283,7 @@ function populateOptionsLinkNotes() {
   selectElement.appendChild(placeHolder);
 
   for (const [key, value] of Object.entries(noteTable)) {
-    let isLinked = false;
-    linkedNotes.forEach((note) => {
-      if (note === value.noteID || note === "") {
-        isLinked = true;
-      }
-    });
-
-    if (!isLinked) {
+    if(value.linkedProject === "") {
       const option = document.createElement("option");
       option.value = value.noteID;
       option.innerText = value.title;

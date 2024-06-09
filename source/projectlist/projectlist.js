@@ -21,6 +21,15 @@ const main = document.querySelector('main');
  */
 function createProjects() {
   const projectTable = getProjectTableFromStorage();
+
+  // empty project table
+  if (!projectTable || Object.keys(projectTable).length === 0) {
+    const noProjectsCase = document.createElement('div');
+    noProjectsCase.classList.add('noProjectsCase');
+    noProjectsCase.textContent = "Your project list is empty. Click on 'Add new' to get started!";
+    main.appendChild(noProjectsCase);
+  }
+
   for (const [key, value] of Object.entries(projectTable)) {
     const projectContainer = document.createElement('div');
     projectContainer.id = value.projectID;
