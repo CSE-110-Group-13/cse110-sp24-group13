@@ -144,3 +144,8 @@ progress {
 label {
   pointer-events:none;
 }
+
+.noProjectsCase{
+  padding: 1%;
+  background-color: rgba(255, 255, 255, 0);
+}
