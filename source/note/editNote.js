@@ -117,9 +117,13 @@ function populateTag() {
         newTag.addEventListener('click', () => {
             if (!isClickedOnce) {
                 newTag.style.backgroundColor = "#FF000F";
+                setTimeout(() => {
+                    newTag.style.backgroundColor = "";
+                    isClickedOnce = false;
+                }, 2000);
                 isClickedOnce = true;
             }
-            else {
+            else {  
                 newTag.remove();
             }
         });
@@ -147,14 +151,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Deleting tag
                 let isClickedOnce = false;
                 newTag.addEventListener('click', () => {
-                    if (!isClickedOnce) {
-                        newTag.style.backgroundColor = "#FF000F";
-                        isClickedOnce = true;
-                    }
-                    else {
-                     newTag.remove();
-                    }
-                });
+                if (!isClickedOnce) {
+                    newTag.style.backgroundColor = "#FF000F";
+                    setTimeout(() => {
+                        newTag.style.backgroundColor = "";
+                        isClickedOnce = false;
+                    }, 2000);
+                    isClickedOnce = true;
+                }
+            else {  
+                newTag.remove();
+            }
+        });
                 tagsContainer.appendChild(newTag);
             }
         }

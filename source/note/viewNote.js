@@ -103,9 +103,14 @@ function populateTag() {
         newTag.addEventListener('click', () => {
             if (!isClickedOnce) {
                 newTag.style.backgroundColor = "#FF000F";
+                setTimeout(() => {
+                    newTag.style.backgroundColor = "";
+                    isClickedOnce = false;
+                }, 2000);
                 isClickedOnce = true;
             }
             else {
+                
                 removeTagFromNoteTags(NOTE_ID, tag);
                 newTag.remove();
             }
