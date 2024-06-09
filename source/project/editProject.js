@@ -436,7 +436,6 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
  */
 function removeLinkedNote(noteID) {
   removeLinkedNoteFromProject(PROJECT_ID, noteID);
-  modifyLinkedProject(noteID, "");
   const linkedNotesElement = document.querySelector(".linkedNotes");
   const project = getProjectFromTable(PROJECT_ID);
   populateLinkedNotes(project.linkedNotes, linkedNotesElement);
