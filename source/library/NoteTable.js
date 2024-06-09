@@ -1,5 +1,3 @@
-// NoteTable.js
-
 /**
  * The NoteTable in localStorage is in the format:
  * {

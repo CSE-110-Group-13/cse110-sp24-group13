@@ -1,83 +1,83 @@
-
-
-/** ---------------------------- */ 
-
 import { 
   getNoteTableFromStorage,getNoteFromTable,modifyNoteFavorited,
 } from "../backend/NoteTable.js";
 
 import {
   getProjectTableFromStorage, getProjectFromTable,
-
-}from "../backend/ProjectTable.js"
-
+} from "../backend/ProjectTable.js"
 
 const filteredTags = [];
 let currPage = 0;
     
 window.addEventListener("DOMContentLoaded", init);
 
+/**
+ * Initalizes the library page and when changing the sorting
+ */
 function init(){
-    loadNotes();
-    document.getElementById('sort-select').addEventListener('change', loadNotes);
+  loadNotes();
+  document.getElementById('sort-select').addEventListener('change', loadNotes);
 }
 
 function loadNotes(){
-    const noteTable = getNoteTableFromStorage();
-    const entriesHolder = document.getElementById('entries-holder');
-    entriesHolder.innerHTML = ''; // clear existing to reload
+  const noteTable = getNoteTableFromStorage();
+  const entriesHolder = document.getElementById('entries-holder');
+  entriesHolder.innerHTML = ''; // clear existing to reload
 
-    // no notes case
-    if (!noteTable || Object.keys(noteTable).length === 0) {
-      const noNotesCase = document.createElement('div');
-      noNotesCase.classList.add('noNotesCase');
-      noNotesCase.textContent = "Your note list is empty. Click on 'Add new' to get started!";
-      document.getElementById('entries-holder').appendChild(noNotesCase);
+  // no notes case
+  if (!noteTable || Object.keys(noteTable).length === 0) {
+    const noNotesCase = document.createElement('div');
+    noNotesCase.classList.add('noNotesCase');
+    noNotesCase.textContent = "Your note list is empty. Click on 'Add new' to get started!";
+    document.getElementById('entries-holder').appendChild(noNotesCase);
+  }
+
+  const sortBy = document.getElementById('sort-select').value;
+  const notesArray = Object.values(noteTable);
+
+  notesArray.sort((a, b) => {
+    if (sortBy === 'title') {
+      return a.title.localeCompare(b.title);
+    } else if (sortBy === 'date') {
+      return new Date(a.date) - new Date(b.date);
+    } else if (sortBy === 'lastEdited') {
+      return new Date(b.lastEdited) - new Date(a.lastEdited);
     }
+  });
 
-    const sortBy = document.getElementById('sort-select').value;
-    const notesArray = Object.values(noteTable);
-
-    notesArray.sort((a, b) => {
-        if (sortBy === 'title') {
-            return a.title.localeCompare(b.title);
-          } else if (sortBy === 'date') {
-            return new Date(a.date) - new Date(b.date);
-          } else if (sortBy === 'lastEdited') {
-            return new Date(b.lastEdited) - new Date(a.lastEdited);
-          }
-        });
-    //generate page buttons
-    const buttonsHolder = document.getElementById('page-buttons');
-    buttonsHolder.innerHTML = "";
-    for(let i = 0; i < notesArray.length/10; i++)
-    {
-      const pageButton = document.createElement("button");
-      console.log(pageButton);
-      let pageNum = i + 1;
-      pageButton.innerText = pageNum;
-      if(i == currPage)
-        pageButton.setAttribute('selected', 'true');
-      pageButton.onclick = function(){
-        currPage = i;
-        loadNotes();
-      }
-      buttonsHolder.appendChild(pageButton);
+  //generate page buttons
+  const buttonsHolder = document.getElementById('page-buttons');
+  buttonsHolder.innerHTML = "";
+  for(let i = 0; i < notesArray.length/10; i++) {
+    const pageButton = document.createElement("button");
+    console.log(pageButton);
+    let pageNum = i + 1;
+    pageButton.innerText = pageNum;
+    if(i == currPage)
+      pageButton.setAttribute('selected', 'true');
+    pageButton.onclick = function() {
+      currPage = i;
+      loadNotes();
     }
-    let count = 0;
-    notesArray.forEach(note => {
-      if(count >= currPage * 10 && count < currPage*10 + 10)
-      {
-        const noteElement = createNoteElement(note);
-        entriesHolder.appendChild(noteElement);
-      }
-      count++;
-    });
+    buttonsHolder.appendChild(pageButton);
+  }
+  let count = 0;
+  notesArray.forEach(note => {
+    if(count >= currPage * 10 && count < currPage*10 + 10) {
+      const noteElement = createNoteElement(note);
+      entriesHolder.appendChild(noteElement);
+    }
+    count++;
+  });
 }
 
-//Function to create a Note Element;
+/**
+ * Creates HTML element based on the note object and returns it.
+ * @param {*} noteObject noteObject to create the HTML off of.
+ * @returns a noteObject, or an empty div if it's being passed over.
+ */
 function createNoteElement(noteObject){
-  //Wrapper container for a note Element. That will incude a note Contianer and a button.
+  //Wrapper container for a note Element. That will incude a note container and a button.
   //check if
   let relevantTag = false;
   noteObject.tags.forEach(tag => {
@@ -164,22 +164,6 @@ function createNoteElement(noteObject){
     tagsProjectContainer.appendChild(tagElement);
   });
   
-  // // Add line separating the tags and projects
-  // if(noteObject.projectList.length != 0) {
-  //   const verticalLine = document.createElement('div');
-  //   verticalLine.id = 'vertical-line';
-  //   tagsProjectContainer.appendChild(verticalLine);
-  // }
-  
-  // // Add each project separately
-  // noteObject.projectList.forEach(project => {
-  //   const projectElement = document.createElement('span');
-  //   const linkElement = document.createElement('a');
-  //   linkElement.href="../project/view-project.html";
-  //   linkElement.textContent = project;
-  //   projectElement.appendChild(linkElement);
-  //   tagsProjectContainer.appendChild(projectElement);
-  // });
   // Add line separating the tags and projects
   if(noteObject.linkedProject != "") {
     const verticalLine = document.createElement('div');
@@ -199,71 +183,36 @@ function createNoteElement(noteObject){
   //Favorite button of the note. 
   let favorited = noteObject.favorited;
 
-
   const button = document.createElement("button");
   button.dataset.noteID = noteObject.noteID;
   button.dataset.favorited = noteObject.favorited;
-  if( favorited == true){
+  if( favorited == true) {
    button.innerText = "Favorited";
    button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>`;
   }
-
-  else{
+  else {
     button.innerText = "Note Favorited"; 
     button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24" opacity = "0.2"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>`;
   }
 
   button.className = "favorite-button";
   button.onclick = () => toggleFavorite(button);
-
-      
   
   //Append favorite button to the wrapper container. 
   headerElement.appendChild(button);
 
   return noteContainerMain;
-
 }
 
-
 /**
-    * Takes in a date string and converts it to the format Month Day with the corresponding suffix
-    * @param {string}  dateString string in the format YYYY-MM-DD
-    * @return {string} a string in the correct format
-    */
+  * Takes in a date string and converts it to the format Month Day with the corresponding suffix
+  * @param {string}  dateString string in the format YYYY-MM-DD
+  * @return {string} a string in the correct format
+  */
 function getFormattedDate(dateString) {
-  if (!dateString){
+  if (!dateString) {
       return null;
   }
-
-  // const date = new Date(dateString);
-
-  // if (isNaN(date)){
-  //     return "Invalid Date (NaN)";
-  // }
-
-  // const day = date.getDate();
-  // let suffix = "";
-
-  // // Determine the suffix based on the day
-  // if (day === 1 || day === 21 || day === 31) {
-  //   suffix = "st";
-  // }
-  // else if (day === 2 || day === 22) {
-  //   suffix = "nd";
-  // }
-  // else if (day === 3 || day === 23) {
-  //   suffix = "rd";
-  // }
-  // else {
-  //   suffix = "th";
-  // }
-
-  // // Format the string
-  // const options = { month: 'long' };
-  // const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
-
-  // return `${formattedDate} ${day}${suffix}`;
   
   const months = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
@@ -280,8 +229,11 @@ function getFormattedDate(dateString) {
   return `${monthName} ${dayInt}${suffix}`;
 }
 
-function filterByTag(tag)
-{
+/**
+ * adds a tag to filteredTags[] and reloads the notes based on it.
+ * @param {*} tag 
+ */
+function filterByTag(tag) {
   let idx = filteredTags.indexOf(tag);
   if(idx == -1)
     filteredTags.push(tag);
@@ -291,9 +243,11 @@ function filterByTag(tag)
 };
 
   
-//Function to change favorite button from highlighted to note highlighted. 
+/**
+ * Function to change favorite button from highlighted to note highlighted. 
+ * @param {Element} button HTML button element for favoriting
+ */
 function toggleFavorite(button){
-
   const noteID = button.dataset.noteID;
   const note = getNoteFromTable(noteID);
 
@@ -313,6 +267,11 @@ function toggleFavorite(button){
   loadNotes();
 }
 
+/**
+  * Takes in text with markdown special characters and returns them cleaned up
+  * @param {String} text the markdown text
+  * @return {String} newText the cleaned up text without special characters
+  */
 function unparseMarkdown(text) {
   const regex = /[^a-zA-Z0-9.,?!]+/g;
   const newText = text.replace(regex, ' ');
