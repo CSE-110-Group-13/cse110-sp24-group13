@@ -41,21 +41,24 @@ header h2 > a {
   display: flex;     
   align-items: center;
   /* flex-wrap: wrap; */
-  margin-left: 15%;
-  margin-right: 15%;
+  margin: 0 10vw;
+
 }
 
 .tags-project span {
   flex-shrink: 1;
-  max-width: 100%;
+  max-width: 30vw;
   width:fit-content;
   background-color: #e2e2e2;
   padding: .6vh 1vw 0 1vw;
-  margin-right: 0.625vh; /* 5px converted to vh */
+  margin-right: .5vw;
   border-radius: 0.625vh; /* 5px converted to vh */
   height: 2.5vh;  /* 20px converted to vh */
   color: #000;
   transition: 0.5s;
+  overflow: hidden; /* Ensures text does not overflow */
+  text-overflow: ellipsis; /* Adds ellipsis to overflowing text */
+  white-space: nowrap; /* Prevents text wrapping */
 }
 
 .tags-project a {
@@ -79,6 +82,14 @@ header h2 > a {
   background-color: #000;
   color: #F8F8F8;
   transition: 0.5s;
+}
+
+.favorite-button {
+  position: relative;
+  margin-left: auto;
+  margin-right: .5vw;
+  border: none;
+  background-color: transparent;
 }
 
 #vertical-line {
@@ -119,14 +130,7 @@ header h2 > a {
   white-space: normal;          /* Allow text to wrap */
   word-break: break-all;        /* Break long words to prevent overflow */
   display: -webkit-box;         /* Flexbox display for line clamping */
-  -webkit-line-clamp: 3;        /* Limit text to 3 lines */
+  -webkit-line-clamp: 2;        /* Limit text to 2 lines */
   -webkit-box-orient: vertical; /* Vertical orientation for flexbox */
 }
 
-.favorite-button {
-  position: absolute;
-  top: 20px;
-  right: 10px;
-  border: none;
-  background-color: transparent;
-}
