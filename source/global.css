@@ -106,9 +106,9 @@ progress{
     display: -webkit-box;         /* Flexbox display for line clamping */
     -webkit-line-clamp: 3;        /* Limit text to 3 lines */
     -webkit-box-orient: vertical; /* Vertical orientation for flexbox */
-  }
+}
 
-  .project-title {
+.project-title {
     width: 10vw; /* Fixed width for all project titles */
     padding-right: 1vw;
     font-weight: bold;
@@ -120,4 +120,19 @@ progress{
     justify-content: center; /* Centers the text horizontally */
     align-items: center; /* Centers the text vertically */
     text-align: center; /* Centers text within the element */
-  }
+}
+
+/* Styling the default empty message in list of proj and notes */
+.noNotesCase {
+    padding: 1%;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    font-size: 1em;
+}
+
+.noProjectsCase{
+    padding: 1%;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    font-size: 1em;
+}

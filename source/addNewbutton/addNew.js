@@ -68,7 +68,7 @@ class AddNewBtn extends HTMLElement {
         justify-content: center;
         gap: 5%;
         background-color: #f5f5f5;
-        border-radius: 15%; 
+        border-radius: 20px; 
         padding-top: 3%;
         padding-bottom: 9%;
         padding-left: 5%;
@@ -81,11 +81,8 @@ class AddNewBtn extends HTMLElement {
         align-items: center;
         justify-content: center;
         background-color: #f5f5f5;
-        border-radius: 30%; 
-        padding-top: 10%;
-        padding-bottom: 28%;
-        padding-left: 10%;
-        padding-right: 32%;
+        border-radius: 20px; 
+        padding: 10% 32% 32% 10%;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
       
