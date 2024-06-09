@@ -450,7 +450,7 @@ function setDeadline(datetimeInput) {
 function populateProject() {
   const project = getProjectFromTable(PROJECT_ID);
 
-  document.title = "Project | " + project.title;
+  document.title = "Commit | " + project.title;
 
   const titleElement = document.querySelector("h1");
   const descriptionElement = document.querySelector("#projectDesc");
@@ -475,11 +475,22 @@ function populateProject() {
 document.getElementById("descDropdown").addEventListener("click", function () {
   const angleBracket = document.getElementById("descDropdown");
   const projectDesc = document.getElementById("projectDesc");
+  const line = document.createElement("hr");
+
   if (projectDesc.style.display === "none") {
     projectDesc.style.display = "block";
     angleBracket.classList.remove("flip");
+    // If you want to remove the line when showing the description
+    if (
+      angleBracket.previousElementSibling &&
+      angleBracket.previousElementSibling.tagName === "HR"
+    ) {
+      angleBracket.previousElementSibling.remove();
+    }
   } else {
     projectDesc.style.display = "none";
     angleBracket.classList.add("flip");
+    // Insert the line above the angleBracket
+    angleBracket.parentNode.insertBefore(line, angleBracket);
   }
 });
