@@ -1,5 +1,3 @@
-// TaskTable.js
-
 /**
  * The TaskTable in localStorage is in the format:
  * {
@@ -97,7 +95,12 @@ function deleteTaskFromTable(taskID) {
   }
 }
 
-
+/**
+ * Creates a new task object and returns it
+ * @param {String} name name of task
+ * @param {Boolean} completed status of task completion
+ * @returns newTaskObject object for task
+ */
 function createNewTaskObject(name="", completed=false) {
   const newTaskObject = {
     "taskID" : `task-${generateID()}`,
