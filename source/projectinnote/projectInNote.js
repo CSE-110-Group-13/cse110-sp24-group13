@@ -646,9 +646,17 @@ class linkedProject extends HTMLElement {
             projectElement.addEventListener('click', () => {
                 const selectProject = document.querySelector('.selected');
                 if (selectProject) {
-                    selectProject.classList.remove('selected');
+                    if (selectProject.id !== projectElement.id) {
+                        selectProject.classList.remove('selected');
+                        projectElement.classList.add('selected');
+                    }
+                    else {
+                        projectElement.classList.remove('selected');
+                    }
                 } 
-                projectElement.classList.add('selected');
+                else {
+                    projectElement.classList.add('selected');
+                }
             });
             currentProjects.appendChild(projectElement);
         }
@@ -675,12 +683,24 @@ class linkedProject extends HTMLElement {
                     removeLinkedNoteFromProject(note.linkedProject, NOTE_ID);
                 }
             }
-            modifyLinkedProject(NOTE_ID, selectedProject.id);
-            appendLinkedNoteToProject(selectedProject.id, NOTE_ID);
-            projectContainer.classList.toggle("open");
-            overlay.classList.toggle("open");
-            linkAProject.classList.toggle("close");
-            this.populateProject(selectedProject.id);
+            if(!selectedProject) {
+                if(linkedProjectComponent.classList.contains("open")) {
+                    linkedProjectComponent.classList.toggle("open");
+                }
+                overlay.classList.toggle("open");
+                if(linkAProject.classList.contains("close")) {
+                    linkAProject.classList.toggle("close");
+                }
+                modifyLinkedProject(NOTE_ID, "");
+            }
+            else {
+                modifyLinkedProject(NOTE_ID, selectedProject.id);
+                appendLinkedNoteToProject(selectedProject.id, NOTE_ID);
+                projectContainer.classList.toggle("open");
+                overlay.classList.toggle("open");
+                linkAProject.classList.toggle("close");
+                this.populateProject(selectedProject.id);
+            }
             this.dispatchEvent(new CustomEvent('projectChanged', {
                 bubbles: true,
             }));         
