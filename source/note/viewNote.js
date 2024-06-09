@@ -64,16 +64,25 @@ function populateNote() {
 document.addEventListener('DOMContentLoaded', () => {
     const newTagForm = document.getElementById("newTag");
     const newTagInput = document.getElementById("newTagInput");
-    newTagForm.addEventListener('submit', () => {
-        const tag = newTagInput.value.trim();
+    
+    newTagForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+    });
 
-        if (tag) {
-            appendTagToNoteTags(NOTE_ID, tag);
-            newTagInput.value = '';
-            const tagsContainer = document.querySelector('.tagContainer');
-            tagsContainer.innerHTML = '';
-            populateTag();
-        }
+    // Add Tag if click outside of form
+    document.addEventListener('click', (event) => {
+        const isClickInside = newTagForm.contains(event.target);
+
+        if(!isClickInside) {
+            const tag = newTagInput.value.trim();
+            if (tag) {
+                appendTagToNoteTags(NOTE_ID, tag);
+                newTagInput.value = '';
+                const tagsContainer = document.querySelector('.tagContainer');
+                tagsContainer.innerHTML = '';
+                populateTag();
+            } 
+        } 
     });
 
     document.addEventListener('projectChanged', () => {
