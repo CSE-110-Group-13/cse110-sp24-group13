@@ -18,50 +18,50 @@
 </head>
 <body>
 	<div id="container">
-	<vertical-navbar currentPage="anchorToNotIcon"></vertical-navbar>
-	<div id="restOfScreen">
-		<main>
-			<header>
-				<div class = "actionBar" href = "#">
-					<save-button></save-button>
-					<cancel-button></cancel-button>
-				</div>
-			</header>
-			<div>
-				<form class="noteTitle">
-					<input type="text" value="Sample Note">
-				</form>
-			</div>
-			<div class = "noteDetails">
-				<div class = "tags"> <!-- new tag tag allows user to type, pressing on a tag will delete -->
-					<h4>Tags:</h4>
-					<ul class="tagContainer"></ul>
-					<div class = "newTag">
-						<form id = "newTag">
-							<input type = "text" placeholder = "+ Add new tag" id="newTagInput">
-						</form>
+		<vertical-navbar currentPage="anchorToNotIcon"></vertical-navbar>
+		<div id="restOfScreen">
+			<main>
+				<header>
+					<div class = "actionBar" href = "#">
+						<save-button></save-button>
+						<cancel-button></cancel-button>
 					</div>
-					<div class="vr"></div>
-					<span id = "projectTag">
-						<div class="projectTagContainer">
-							<span id="priority"></span>
-							<a id="linkedProjectTag"></a>
+				</header>
+				<div>
+					<form class="noteTitle">
+						<input type="text" value="Sample Note">
+					</form>
+				</div>
+				<div class = "noteDetails">
+					<div class = "tags"> <!-- new tag tag allows user to type, pressing on a tag will delete -->
+						<h4>Tags:</h4>
+						<ul class="tagContainer"></ul>
+						<div class = "newTag">
+							<form id = "newTag">
+								<input type = "text" placeholder = "+ Add new tag" id="newTagInput">
+							</form>
 						</div>
-					</span>
+						<div class="vr"></div>
+						<span id = "projectTag">
+							<div class="projectTagContainer">
+								<span id="priority"></span>
+								<a id="linkedProjectTag"></a>
+							</div>
+						</span>
+					</div>
+					<div class = "date">
+						<h4>Date:</h4>
+						<input type = "date" value="2024-05-18">
+					</div>
 				</div>
-				<div class = "date">
-					<h4>Date:</h4>
-					<input type = "date" value="2024-05-18">
+				<hr>
+				<div class = "noteContainer">
+					<markdown-editor></markdown-editor>
 				</div>
-			</div>
-			<hr>
-			<div class = "noteContainer">
-				<markdown-editor></markdown-editor>
-			</div>
-			<div class = "projectContainer">
-				<linked-project></linked-project> 
-			</div>
-		</main>
+				<div class = "projectContainer">
+					<linked-project></linked-project> 
+				</div>
+			</main>
 	</div>
 </body>
 </html>

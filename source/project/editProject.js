@@ -1,7 +1,3 @@
-// editProject.js
-
-// TODO - Possibly add a custom popup for when save is successful
-
 // Importing necessary functions from backend modules
 import {
   getProjectFromTable,
@@ -226,6 +222,10 @@ function createTaskListItem(taskListElement, taskListArray) {
   });
 }
 
+/**
+ * Given taskID, remove it from a project
+ * @param {String} taskID taskID of task to be removed
+ */
 function removeTask(taskID) {
   removeTaskFromProjectTaskList(PROJECT_ID, taskID);
   deleteTaskFromTable(taskID);
@@ -237,6 +237,11 @@ function removeTask(taskID) {
   createTaskListItem(taskList, project.taskList);
 }
 
+/**
+ * Changes task name to new name given task ID
+ * @param {String} taskID ID of task
+ * @param {String} newName new name for task
+ */
 function updateTaskName(taskID, newName) {
   console.log(newName);
   modifyTaskName(taskID, newName);
@@ -276,7 +281,6 @@ function updateTaskCompletionStatusEventListener(
 
     const linkedNotesElement = document.querySelector(".linkedNotes");
     const project = getProjectFromTable(PROJECT_ID);
-    // populateLinkedNotes(project.linkedNotes, linkedNotesElement);
     updateProgress();
   });
 }
@@ -427,6 +431,10 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
   });
 }
 
+/**
+ * Given noteID, remove it from the project
+ * @param {String} noteID ID of note
+ */
 function removeLinkedNote(noteID) {
   removeLinkedNoteFromProject(PROJECT_ID, noteID);
   modifyLinkedProject(noteID, null);

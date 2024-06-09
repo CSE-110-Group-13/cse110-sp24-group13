@@ -1,35 +1,33 @@
+import {
+  getProjectFromTable,
+  createNewProjectObject,
+  modifyProjectTitle,
+  modifyProjectDescription,
+  appendTaskToProjectTaskList,
+  removeTaskFromProjectTaskList,
+  modifyProjectDeadline,
+  modifyProjectPriority,
+  appendCompletedTaskToProject,
+  removeCompletedTaskFromProject,
+  appendLinkedNoteToProject,
+  removeLinkedNoteFromProject,
+  modifyProjectDateCreated,
+  modifyLastWorkedOn,
+} from "../backend/ProjectTable.js";
 
 import {
-    getProjectFromTable,
-    createNewProjectObject,
-    modifyProjectTitle,
-    modifyProjectDescription,
-    appendTaskToProjectTaskList,
-    removeTaskFromProjectTaskList,
-    modifyProjectDeadline,
-    modifyProjectPriority,
-    appendCompletedTaskToProject,
-    removeCompletedTaskFromProject,
-    appendLinkedNoteToProject,
-    removeLinkedNoteFromProject,
-    modifyProjectDateCreated,
-    modifyLastWorkedOn,
-  } from "../backend/ProjectTable.js";
+  getTaskFromTable,
+  deleteTaskFromTable,
+  createNewTaskObject,
+  modifyTaskName,
+  modifyTaskCompleted,
+} from "../backend/TaskTable.js";
   
-  import {
-    getTaskFromTable,
-    deleteTaskFromTable,
-    createNewTaskObject,
-    modifyTaskName,
-    modifyTaskCompleted,
-  } from "../backend/TaskTable.js";
-  
-  import {
-    getNoteTableFromStorage,
-    getNoteFromTable,
-    modifyLinkedProject,
-  
-  } from "../backend/NoteTable.js";
+import {
+  getNoteTableFromStorage,
+  getNoteFromTable,
+  modifyLinkedProject,
+} from "../backend/NoteTable.js";
 
 let PROJECT_ID = "";
 let progress = 0;
@@ -37,7 +35,6 @@ const taskUpdate = document.querySelectorAll('input[type="checkbox"]');
 
 window.addEventListener("DOMContentLoaded", init);
 
-    
 /**
  * Initializes the project editing process.
  * If a project ID is not set, creates a new project object.
@@ -68,12 +65,14 @@ function init() {
  * Attaches an event listener to the save button.
  */
 function attachEditButtonListener() {
-    document.querySelector('edit-button button').addEventListener('click', editProject);
-    
+  document.querySelector('edit-button button').addEventListener('click', editProject);
 }
 
+/**
+ * Attaches an event listener to the delete button
+ */
 function attachDeleteButtonListener() {
-    document.querySelector('delete-button button').addEventListener('click', deleteNote);
+  document.querySelector('delete-button button').addEventListener('click', deleteNote);
 }
 
 /**
@@ -292,72 +291,72 @@ function populateOptionsLinkNotes() {
   }
 }
 
-
-
-
-
 /**
  * Populates the linked notes section with notes linked to the project.
  * @param {Array} linkedNotes - An array of linked note IDs.
  * @param {HTMLElement} elementLinkedNotes - The DOM element where the linked notes should be added.
  */
 function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
-    // Create SVG icons for linking and checkboxes
-    elementLinkedNotes.innerHTML = '';
-    const linkIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    linkIcon.setAttribute("viewBox", "0 0 640 512");
-    linkIcon.innerHTML = `<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/>`;
+  // Create SVG icons for linking and checkboxes
+  elementLinkedNotes.innerHTML = '';
+  const linkIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  linkIcon.setAttribute("viewBox", "0 0 640 512");
+  linkIcon.innerHTML = `<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/>`;
 
-    // Iterate through each linked note
-    linkedNotes.forEach((noteID) => {
-        const note = getNoteFromTable(noteID);
+  // Iterate through each linked note
+  linkedNotes.forEach((noteID) => {
+    const note = getNoteFromTable(noteID);
 
-        // Create the note header
-        const noteHeader = document.createElement("div");
-        noteHeader.classList.add("linkedNote");
+    // Create the note header
+    const noteHeader = document.createElement("div");
+    noteHeader.classList.add("linkedNote");
 
-        const title = document.createElement("h3");
-        title.textContent = note.title;
+    const title = document.createElement("h3");
+    title.textContent = note.title;
 
-        // Create the right side of the header which includes tags and last modified date
-        const rightSide = document.createElement("ul");
+    // Create the right side of the header which includes tags and last modified date
+    const rightSide = document.createElement("ul");
 
-        const lastModified = document.createElement("p");
-        lastModified.textContent = "Last modified: " + note.lastEdited;
-        rightSide.appendChild(lastModified);
+    const lastModified = document.createElement("p");
+    lastModified.textContent = "Last modified: " + note.lastEdited;
+    rightSide.appendChild(lastModified);
 
-        note.tags.forEach((tagName) => {
-            const tag = document.createElement("li");
-            tag.textContent = tagName;
-            rightSide.appendChild(tag);
-        });
-
-        const notesLink = document.createElement('a');
-        notesLink.setAttribute("href", "../note/view-note.html#" + note.noteID);
-
-        notesLink.appendChild(linkIcon.cloneNode(true));
-
-        // Add the parts of the header to the linked notes container
-        noteHeader.appendChild(title);
-        noteHeader.appendChild(notesLink);
-        noteHeader.appendChild(rightSide);
-
-
-        // Append the note header and completed tasks to the linked notes element
-        elementLinkedNotes.appendChild(noteHeader);
-        elementLinkedNotes.appendChild(document.createElement("hr"));
+    note.tags.forEach((tagName) => {
+      const tag = document.createElement("li");
+      tag.textContent = tagName;
+      rightSide.appendChild(tag);
     });
 
-    // Add event listener to trash icons
-    const trashIcons = elementLinkedNotes.querySelectorAll('.removeNote');
-    trashIcons.forEach((icon) => {
-        icon.addEventListener('click', () => {
-            const noteID = icon.getAttribute('id');
-            removeLinkedNote(noteID);
-        });
+    const notesLink = document.createElement('a');
+    notesLink.setAttribute("href", "../note/view-note.html#" + note.noteID);
+
+    notesLink.appendChild(linkIcon.cloneNode(true));
+
+    // Add the parts of the header to the linked notes container
+    noteHeader.appendChild(title);
+    noteHeader.appendChild(notesLink);
+    noteHeader.appendChild(rightSide);
+
+
+    // Append the note header and completed tasks to the linked notes element
+    elementLinkedNotes.appendChild(noteHeader);
+    elementLinkedNotes.appendChild(document.createElement("hr"));
+  });
+
+  // Add event listener to trash icons
+  const trashIcons = elementLinkedNotes.querySelectorAll('.removeNote');
+  trashIcons.forEach((icon) => {
+    icon.addEventListener('click', () => {
+      const noteID = icon.getAttribute('id');
+      removeLinkedNote(noteID);
     });
+  });
 }
 
+/**
+ * Given noteID, remove linked note from project
+ * @param {String} noteID ID of note
+ */
 function removeLinkedNote(noteID) {
     removeLinkedNoteFromProject(PROJECT_ID,noteID);
     modifyLinkedProject(noteID, null);
@@ -374,57 +373,64 @@ function removeLinkedNote(noteID) {
  * Modifies the project in the backend using the project ID.
  */
 function editProject() {
-    console.log("Edit Clicked");
-    window.location.href = './edit-project.html#' + PROJECT_ID;
-    
+  console.log("Edit Clicked");
+  window.location.href = './edit-project.html#' + PROJECT_ID;
 }
 
+/**
+ * Console.log if note deleted
+ */
 function deleteNote() {
-    console.log("Delete clicked")
+  console.log("Delete clicked")
 }
 
+/**
+ * Given deadline date, return formatted string of time till deadline date
+ * @param {String} datetimeInput 
+ * @returns formatted string version time till deadline date
+ */
 function setDeadline(datetimeInput){
-    // Get the value from the datetime-local input
-    if (!datetimeInput) {
-        console.log(datetimeInput);
-        return "No deadline assigned";
-    }
-    // Parse the value to create a Date object
-    const targetDate = new Date(datetimeInput);
-    const currentDate = new Date();
+  // Get the value from the datetime-local input
+  if (!datetimeInput) {
+    console.log(datetimeInput);
+    return "No deadline assigned";
+  }
+  // Parse the value to create a Date object
+  const targetDate = new Date(datetimeInput);
+  const currentDate = new Date();
 
-    // Calculate the difference in milliseconds
-    const differenceInMillis = targetDate - currentDate;
+  // Calculate the difference in milliseconds
+  const differenceInMillis = targetDate - currentDate;
 
-    if (differenceInMillis < 0) {
-        return "Deadline passed!"
-    }
+  if (differenceInMillis < 0) {
+    return "Deadline passed!"
+  }
 
-    // Convert the difference to weeks, days, and hours
-    const millisecondsInOneHour = 1000 * 60 * 60;
-    const millisecondsInOneDay = millisecondsInOneHour * 24;
-    const millisecondsInOneWeek = millisecondsInOneDay * 7;
+  // Convert the difference to weeks, days, and hours
+  const millisecondsInOneHour = 1000 * 60 * 60;
+  const millisecondsInOneDay = millisecondsInOneHour * 24;
+  const millisecondsInOneWeek = millisecondsInOneDay * 7;
 
-    const weeks = Math.floor(differenceInMillis / millisecondsInOneWeek);
-    const days = Math.floor((differenceInMillis % millisecondsInOneWeek) / millisecondsInOneDay);
-    const hours = Math.floor((differenceInMillis % millisecondsInOneDay) / millisecondsInOneHour);
+  const weeks = Math.floor(differenceInMillis / millisecondsInOneWeek);
+  const days = Math.floor((differenceInMillis % millisecondsInOneWeek) / millisecondsInOneDay);
+  const hours = Math.floor((differenceInMillis % millisecondsInOneDay) / millisecondsInOneHour);
 
-    // Format the result as a string
-    let resultString = '';
-    if (weeks > 0) {
-        resultString += `${weeks} Week${weeks !== 1 ? 's' : ''}`;
-    }
-    if (days > 0) {
-        resultString += `${resultString.length > 0 ? ', ' : ''}${days} Day${days !== 1 ? 's' : ''}`;
-    }
-    if (hours > 0) {
-        resultString += `${resultString.length > 0 ? ', ' : ''}${hours} Hour${hours !== 1 ? 's' : ''}`;
-    }
+  // Format the result as a string
+  let resultString = '';
+  if (weeks > 0) {
+      resultString += `${weeks} Week${weeks !== 1 ? 's' : ''}`;
+  }
+  if (days > 0) {
+      resultString += `${resultString.length > 0 ? ', ' : ''}${days} Day${days !== 1 ? 's' : ''}`;
+  }
+  if (hours > 0) {
+      resultString += `${resultString.length > 0 ? ', ' : ''}${hours} Hour${hours !== 1 ? 's' : ''}`;
+  }
 
-    resultString += ' till Deadline';
+  resultString += ' till Deadline';
 
-    // Display the result
-    return resultString;
+  // Display the result
+  return resultString;
 }
 
 /**
@@ -433,38 +439,38 @@ function setDeadline(datetimeInput){
  * Sets the project title, deadline, and date in the DOM.
  */
 function populateProject() {
-    const project = getProjectFromTable(PROJECT_ID);
+  const project = getProjectFromTable(PROJECT_ID);
 
-    document.title = "Project | " + project.title;
-  
-    const titleElement = document.querySelector("h1");
-    const descriptionElement = document.querySelector("#projectDesc");
-    const deadlineElement = document.querySelector(".projectDue p");
-    const priorityElement = document.querySelector("#priority");
-    const taskListElement = document.querySelector(".taskList");
-    const linkedNotesElement = document.querySelector(".linkedNotes");
-  
-    titleElement.textContent = project.title;
-    descriptionElement.textContent = project.description;
-    deadlineElement.textContent = setDeadline(project.deadline);
-    priorityElement.value = project.priority;
-  
-    createTaskListItem(taskListElement, project.taskList);
-  
-    updateProgress();
-  
-    populateLinkedNotes(project.linkedNotes, linkedNotesElement);
-    updatePriority();;
+  document.title = "Project | " + project.title;
+
+  const titleElement = document.querySelector("h1");
+  const descriptionElement = document.querySelector("#projectDesc");
+  const deadlineElement = document.querySelector(".projectDue p");
+  const priorityElement = document.querySelector("#priority");
+  const taskListElement = document.querySelector(".taskList");
+  const linkedNotesElement = document.querySelector(".linkedNotes");
+
+  titleElement.textContent = project.title;
+  descriptionElement.textContent = project.description;
+  deadlineElement.textContent = setDeadline(project.deadline);
+  priorityElement.value = project.priority;
+
+  createTaskListItem(taskListElement, project.taskList);
+
+  updateProgress();
+
+  populateLinkedNotes(project.linkedNotes, linkedNotesElement);
+  updatePriority();;
 }
 
 document.getElementById("descDropdown").addEventListener("click", function() {
-    const angleBracket = document.getElementById("descDropdown");
-    const projectDesc = document.getElementById("projectDesc");
-    if (projectDesc.style.display === "none") {
-      projectDesc.style.display = "block";
-      angleBracket.classList.remove("flip");
-    } else {
-      projectDesc.style.display = "none";
-      angleBracket.classList.add("flip");
-    }
+  const angleBracket = document.getElementById("descDropdown");
+  const projectDesc = document.getElementById("projectDesc");
+  if (projectDesc.style.display === "none") {
+    projectDesc.style.display = "block";
+    angleBracket.classList.remove("flip");
+  } else {
+    projectDesc.style.display = "none";
+    angleBracket.classList.add("flip");
+  }
 });
