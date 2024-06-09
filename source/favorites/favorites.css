@@ -1,9 +1,9 @@
 /*styling not finished yet*/
-
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -11,13 +11,22 @@ html, body {
 #restOfScreen{
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 #favorites {
-  padding: 10px;
-  position: relative;
-  width: 85vw;
-  left: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 1% 1%;
+  padding: 1%;
+}
+
+
+.favorites-header {
+  display: flex;              /* Use flexbox for horizontal alignment */
+  align-items: center;        /* Vertically center the items */
+  justify-content: space-between; /* Space items out evenly */
 }
 
 .favorites-content {
@@ -28,11 +37,10 @@ html, body {
   font-weight: bold;          /* Make the text bold */
 }
 
-.favorites-content svg {
-  width: 24px;                /* Set the width of the SVG icon */
-  height: 24px; 
-  margin-right: 15px;               /* Set the height of the SVG icon */
-        /* Add space between icon and text */
+.favorites-content svg{
+  width: 1em;                /* Set the width of the SVG icon */
+  height: 1em;               /* Set the height of the SVG icon */
+  margin: 0 0.5em;           /* Add space between icon and text */
 }
 
 .favorites-content span {
@@ -41,30 +49,18 @@ html, body {
   margin-right: 100px;
 }
 
-#favorites::-webkit-scrollbar {
-  width: 7.5px;
-}
-
-
-#favorites::-webkit-scrollbar-thumb {
-  background-color: #ccc; /* Lighter shade of gray */
-  border-radius: 10px; /* Add rounded corners to the thumb */
-}
-
-#favorites::-webkit-scrollbar-thumb:hover {
-  background: #bbb; /* Slightly darker thumb color on hover */
-}
-
 
 .note-wrapper {
-  position: relative;
-  margin-left: 20px;
+ position: relative;
   margin-right:14px;
-  border-radius: 10px; /* Rounded corners */
   max-width: 98%; /* Ensure it takes the full width of the grid column */
   display: block;
 }
 
+#line {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* Adjust the alpha channel (last value) to control opacity */
+  margin-top: 10px; /* Adjust the top margin as needed */
+}
 
 a {
   text-decoration: none;

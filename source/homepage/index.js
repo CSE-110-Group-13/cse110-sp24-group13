@@ -108,6 +108,8 @@ function createNoteElement(noteObject) {
     tagsProjectContainer.appendChild(tagElement);
   });
   
+  const projectContainer = document.createElement('div');
+  projectContainer.classList.add('project-container');
   // Add line separating the tags and projects
   if(noteObject.linkedProject != "") {
     const verticalLine = document.createElement('div');
@@ -147,7 +149,7 @@ function createNoteElement(noteObject) {
 
 
   //Append favorite button to the wrapper container. 
-  noteContainerMain.appendChild(button);
+  headerElement.appendChild(button);
 
   return noteContainerMain;
 }
@@ -159,8 +161,6 @@ recentContainer.id = "recentsContainer";
 
 const favoriteContainer = document.createElement("div");
 const favorite = document.getElementById("favorites");
-favorite.appendChild(favoriteContainer);
-favoriteContainer.id = "favoritesContainer";
 
 function init(){
   
@@ -369,13 +369,8 @@ function unparseMarkdown(text) {
   return newText
 }
 
-const recentsCollapseButton = document.getElementById('collapseButton1');
-//recentsCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'recents'));
-recentsCollapseButton.innerHTML = expandIcon;
 
-const favoritesCollapseButton = document.getElementById('collapseButton2');
-//favoritesCollapseButton.addEventListener('click', (event) => toggleCollapse(event, 'favorites'));
-recentsCollapseButton.innerHTML = expandIcon;
+
 
 
 // Export functions for creating a note
