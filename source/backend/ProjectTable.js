@@ -26,6 +26,8 @@
 // Import the functions from generateID.js
 import { generateID, getIDContainerFromStorage, saveIDContainerToStorage } from "./generateID.js";
 
+import{modifyLinkedProject} from "./NoteTable.js"
+
 /**
  * Get the project table from local storage, if there is none, return an empty object
  * @returns {Object} the ProjectTable object in localStorage
@@ -87,8 +89,15 @@ function saveProjectToTable(projectID, projectObject) {
  */
 function deleteProjectFromTable(projectID) {
   const projectTable = getProjectTableFromStorage();
+  
 
   if (projectID in projectTable) {
+    
+    const project = getProjectFromTable(projectID);
+    (project.linkedNotes).forEach((noteID)=>{
+      modifyLinkedProject(noteID, "");
+    });
+    
     // Delete the projectID from the projectTable
     delete projectTable[projectID];
     saveProjectTableToStorage(projectTable);
@@ -245,6 +254,7 @@ function removeCompletedTaskFromProject(projectID, taskID) {
 function appendLinkedNoteToProject(projectID, noteID) {
   const projectObject = getProjectFromTable(projectID);
   projectObject["linkedNotes"].push(noteID);
+  modifyLinkedProject(noteID,projectID)
   saveProjectToTable(projectID, projectObject);
 }
 
@@ -256,6 +266,7 @@ function appendLinkedNoteToProject(projectID, noteID) {
 function removeLinkedNoteFromProject(projectID, noteID) {
   const projectObject = getProjectFromTable(projectID);
   projectObject["linkedNotes"] = projectObject["linkedNotes"].filter(note => note !== noteID);
+  modifyLinkedProject(noteID,projectID);
   saveProjectToTable(projectID, projectObject);
 }
 

@@ -314,6 +314,7 @@ function addLinkedNotes() {
     console.log("Adding linked note");
     appendLinkedNoteToProject(PROJECT_ID, selectedNote.value);
     modifyLinkedProject(selectedNote.value, PROJECT_ID);
+    console.log(selectedNote.value);
     selectedNote.value = "";
     selectedNote.ariaPlaceholder = "Linked Note(s)";
     console.log(getProjectFromTable(PROJECT_ID).linkedNotes[0]);
@@ -429,14 +430,13 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
     icon.addEventListener("click", () => {
       const noteID = icon.getAttribute("id");
       removeLinkedNote(noteID);
-      modifyLinkedProject(noteID, null);
     });
   });
 }
 
 function removeLinkedNote(noteID) {
   removeLinkedNoteFromProject(PROJECT_ID, noteID);
-  modifyLinkedProject(noteID, null);
+  modifyLinkedProject(noteID, "");
   const linkedNotesElement = document.querySelector(".linkedNotes");
   const project = getProjectFromTable(PROJECT_ID);
   populateLinkedNotes(project.linkedNotes, linkedNotesElement);
