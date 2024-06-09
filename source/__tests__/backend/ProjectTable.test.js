@@ -19,6 +19,10 @@ import {
   modifyLastWorkedOn
 } from "../../backend/ProjectTable.js";
 
+import {
+  createNewNoteObject
+} from "../../backend/NoteTable.js";
+
 import { mockObjects, initializeLocalStorage } from "../__mocks__/index.js";
 
 /**
@@ -172,8 +176,10 @@ describe('Tests for backend: Project', () => {
   });
 
   it('Test append a linked note to the project', async () => {
+    const note = createNewNoteObject();
+    const noteID = note.noteID;
+
     const project = createNewProjectObject();
-    const noteID = 'noteID';
     appendLinkedNoteToProject(project.projectID, noteID);
 
     const modifiedProject = getProjectFromTable(project.projectID);
@@ -181,8 +187,10 @@ describe('Tests for backend: Project', () => {
   });
 
   it('Test remove a linked note from the project', async () => {
+    const note = createNewNoteObject();
+    const noteID = note.noteID;
+
     const project = createNewProjectObject();
-    const noteID = 'noteID';
     appendLinkedNoteToProject(project.projectID, noteID);
     removeLinkedNoteFromProject(project.projectID, noteID);
 
