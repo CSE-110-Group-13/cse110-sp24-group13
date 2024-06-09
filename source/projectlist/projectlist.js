@@ -191,7 +191,7 @@ function calculateTaskCompletion(projectID) {
  * @param {String} dateStr - date in YYYY-MM-DD format
  * @returns {String} - date in string format: Month DayXX
  */
-function dateToString(dateStr) {
+export function dateToString(dateStr) {
     const months = ["January", "February", "March", "April", "May", "June",
               "July", "August", "September", "October", "November", "December"];
 
