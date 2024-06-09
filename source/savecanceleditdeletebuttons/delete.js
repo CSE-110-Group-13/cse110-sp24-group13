@@ -1,11 +1,15 @@
 import {
     getProjectTableFromStorage,
+    getProjectFromTable,
+    removeLinkedNoteFromProject,
     saveProjectTableToStorage,
     deleteProjectFromTable,
   } from "../backend/ProjectTable.js"
   
   import {
     getNoteTableFromStorage,
+    getNoteFromTable,
+    modifyLinkedProject,
     saveNoteTableToStorage,
     deleteNoteFromTable, 
   } from "../backend/NoteTable.js"
@@ -89,9 +93,14 @@ class deleteButton extends HTMLElement {
                 console.log("Current page:", currentPage);
                 if (currentPage.includes("note")) {
                     const noteID = window.location.hash.substring(1);
+                    const note = getNoteFromTable(noteID);
                     console.log("Note ID:", noteID);
-                    const noteTable = getNoteTableFromStorage();
-                    if (noteID in noteTable) {
+                    if (note) {
+                        // check for any linked projects
+                        if (note.linkedProject !== "") {
+                            // Remove note from linkedNotes
+                            removeLinkedNoteFromProject(note.linkedProject, noteID);
+                        }
                         deleteNoteFromTable(noteID);
                         window.location.href = "../homepage/index.html";
                     } else {
@@ -99,9 +108,15 @@ class deleteButton extends HTMLElement {
                     }
                 } else if (currentPage.includes("project")) {
                     const projectID = window.location.hash.substring(1);
+                    const project = getProjectFromTable(projectID);
                     console.log("Project ID:", projectID);
-                    const projectTable = getProjectTableFromStorage();
-                    if (projectID in projectTable) {
+                    if (project) {
+                        // check for any linked notes
+                        if (project.linkedNotes.length !== 0) {
+                            project.linkedNotes.forEach(note => {
+                                modifyLinkedProject(note, "");
+                            });
+                        }
                         deleteProjectFromTable(projectID);
                         window.location.href = "../projectlist/projectlist.html";
                     } else {
