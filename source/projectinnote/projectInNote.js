@@ -721,11 +721,11 @@ class linkedProject extends HTMLElement {
                 selectedProject.classList.remove('selected');
             }
         });
-        
+
         document.addEventListener('DOMContentLoaded', () => {
             const descDropdownButton = document.getElementById('descDropdown');
             const projectDescContent = document.getElementById('projectDescContent');
-        
+            
             // Add event listener for when the descDropdown button is clicked
             descDropdownButton.addEventListener('click', () => {
                 projectDescContent.classList.toggle('close');
@@ -764,3 +764,4 @@ class linkedProject extends HTMLElement {
 }
 
 customElements.define('linked-project', linkedProject);
+
