@@ -357,23 +357,6 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
     elementLinkedNotes.appendChild(document.createElement("hr"));
   });
 
-  // Add event listener to trash icons
-  const trashIcons = elementLinkedNotes.querySelectorAll(".removeNote");
-  trashIcons.forEach((icon) => {
-    icon.addEventListener("click", () => {
-      const noteID = icon.getAttribute("id");
-      removeLinkedNote(noteID);
-    });
-  });
-}
-
-function removeLinkedNote(noteID) {
-  removeLinkedNoteFromProject(PROJECT_ID, noteID);
-  modifyLinkedProject(noteID, "");
-  const linkedNotesElement = document.querySelector(".linkedNotes");
-  const project = getProjectFromTable(PROJECT_ID);
-  populateLinkedNotes(project.linkedNotes, linkedNotesElement);
-  populateOptionsLinkNotes();
 }
 
 /**
