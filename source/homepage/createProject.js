@@ -2,7 +2,7 @@ import {
   getProjectTableFromStorage, getProjectFromTable,
 } from "../backend/ProjectTable.js"
 
-import{
+import {
   getTaskTableFromStorage, getTaskFromTable,
 } from "../backend/TaskTable.js"
 
@@ -21,7 +21,7 @@ const calender = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xm
 /**
   * Function to create the elements of the three projects displayed.
   */
-function createProjectTable(){  
+function createProjectTable() {  
   const projectTable = getProjectTableFromStorage();
 
   // Counter to make sure only three projects
@@ -37,7 +37,7 @@ function createProjectTable(){
   }
 
   let loadedProjects = [];
-  for(const [key, value] of Object.entries(projectTable)){
+  for(const [key, value] of Object.entries(projectTable)) {
     loadedProjects.push(value);
   }
 
@@ -49,8 +49,8 @@ function createProjectTable(){
 
   loadedProjects.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
   //only three projects in module.
-  for(const value of loadedProjects){
-    if(counter>2){
+  for(const value of loadedProjects) {
+    if(counter>2) {
       break;
     }
 
@@ -81,12 +81,12 @@ function createProjectTable(){
     let percentofTasksComplete = 100;
     let count = 0;
     console.log(value.taskList.length )
-    if(value.taskList.length != 0){
+    if(value.taskList.length != 0) {
       console.log("HERE")
 
-      for(const task of value.taskList){
+      for(const task of value.taskList) {
           const taskFromTable = getTaskFromTable(task);
-          if(taskFromTable.completed == true){
+          if(taskFromTable.completed == true) {
             count++;
           }
       }

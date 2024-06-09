@@ -1,4 +1,3 @@
-/*styling not finished yet*/
 html, body {
   margin: 0;
   padding: 0;
@@ -21,7 +20,6 @@ html, body {
   margin: 1% 1%;
   padding: 1%;
 }
-
 
 .favorites-header {
   display: flex;              /* Use flexbox for horizontal alignment */
@@ -49,7 +47,6 @@ html, body {
   margin-right: 100px;
 }
 
-
 .note-wrapper {
  position: relative;
   margin-right:14px;
@@ -66,4 +63,3 @@ a {
   text-decoration: none;
   color: black;
 }
-
