@@ -1,23 +1,16 @@
 import {
   getProjectFromTable,
-  createNewProjectObject,
-  modifyProjectTitle,
-  modifyProjectDescription,
   appendTaskToProjectTaskList,
-  removeTaskFromProjectTaskList,
-  modifyProjectDeadline,
   modifyProjectPriority,
   appendCompletedTaskToProject,
   removeCompletedTaskFromProject,
   appendLinkedNoteToProject,
-  removeLinkedNoteFromProject,
-  modifyProjectDateCreated,
+
   modifyLastWorkedOn,
 } from "../backend/ProjectTable.js";
 
 import {
   getTaskFromTable,
-  deleteTaskFromTable,
   createNewTaskObject,
   modifyTaskName,
   modifyTaskCompleted,
@@ -30,7 +23,6 @@ import {
 } from "../backend/NoteTable.js";
 
 let PROJECT_ID = "";
-let progress = 0;
 const taskUpdate = document.querySelectorAll('input[type="checkbox"]');
 
 window.addEventListener("DOMContentLoaded", init);
