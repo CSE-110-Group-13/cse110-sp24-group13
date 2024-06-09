@@ -89,13 +89,11 @@ function saveProjectToTable(projectID, projectObject) {
  */
 function deleteProjectFromTable(projectID) {
   const projectTable = getProjectTableFromStorage();
-  
 
   if (projectID in projectTable) {
-    
     const project = getProjectFromTable(projectID);
-    (project.linkedNotes).forEach((noteID)=>{
-      modifyLinkedProject(noteID, "");
+    (project.linkedNotes).forEach((linkedNotes) => {
+      modifyLinkedProject(linkedNotes, "");
     });
     
     // Delete the projectID from the projectTable
@@ -254,7 +252,7 @@ function removeCompletedTaskFromProject(projectID, taskID) {
 function appendLinkedNoteToProject(projectID, noteID) {
   const projectObject = getProjectFromTable(projectID);
   projectObject["linkedNotes"].push(noteID);
-  modifyLinkedProject(noteID,projectID)
+  modifyLinkedProject(noteID, projectID)
   saveProjectToTable(projectID, projectObject);
 }
 
