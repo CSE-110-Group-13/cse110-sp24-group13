@@ -5,7 +5,3 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = '../homepage/index.html';
   });
 });
-
-
-
-
