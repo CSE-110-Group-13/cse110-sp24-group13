@@ -7,6 +7,7 @@ Our [Figma](https://www.figma.com/design/odeiJOVBUigypF5W5i9X9C/Dev-Journal?node
 
 ## Brief Description:  
 This should be a full-stack web app to serve as a journal for a web developer. More information about the project will be written as more instructions are given.
+Check out the project [here](https://cse-110-group-13.github.io/cse110-sp24-group13/source/homepage/index.html)
 
 ## Issue Workflow
 
@@ -21,5 +22,4 @@ Check [this](https://github.com/orgs/CSE-110-Group-13/projects/3/views/1?filterQ
 
 
 
-## You got this!!!!
-## We got this!!!!
+## Great job team!
