@@ -4,34 +4,28 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
-
-#container{
-  display:flex;
-}
-
 
 #restOfScreen{
-  flex:1;
-}
-
-head {
   display: flex;
-  width: 100px;
-  justify-content: flex-end;
-  /* box-sizing: border-box; */
+  flex-direction: column;
 }
 
-
+#favorites {
+  padding: 10px;
+  position: relative;
+  width: 85vw;
+  left: 35px;
+}
 
 .favorites-content {
-  margin-top: 120px;
   display: flex;              /* Use flexbox for horizontal alignment */
   align-items: center;        /* Vertically center the items */
   font-family: 'Varela Round', sans-serif;
   font-size: 1.5em;           /* Make the text bigger */
   font-weight: bold;          /* Make the text bold */
-  margin-left: 57px;
 }
 
 .favorites-content svg {
@@ -44,20 +38,7 @@ head {
 .favorites-content span {
   font-size: inherit;         /* Inherit the font size from .recents-content */
   font-weight: inherit;       /* Inherit the font weight from .recents-content */
-}
-
-
-#favorites {
-  margin: 5px auto; /* Center the container horizontally */
-  margin-left: 25px;
-  height: 475px;
-  width: 100%; /* Ensure it takes the full width of the parent */
-  max-width: calc(100% - 30px); /* Ensure there's no horizontal overflow */
-  
-  overflow-y: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(1300px, 1fr)); /* Define columns */
-  padding: 0 12px; /* Adjust padding to ensure proper spacing */
+  margin-right: 100px;
 }
 
 #favorites::-webkit-scrollbar {
@@ -80,7 +61,7 @@ head {
   margin-left: 20px;
   margin-right:14px;
   border-radius: 10px; /* Rounded corners */
-  max-width: 80%; /* Ensure it takes the full width of the grid column */
+  max-width: 98%; /* Ensure it takes the full width of the grid column */
   display: block;
 }
 
@@ -89,3 +70,4 @@ a {
   text-decoration: none;
   color: black;
 }
+

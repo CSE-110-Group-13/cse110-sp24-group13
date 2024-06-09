@@ -181,34 +181,44 @@ function init(){
 
   recentContainer.innerHTML = "";
   favoriteContainer.innerHTML = "";
-   // Get notes from local storage
-   noteTable = getNoteTableFromStorage();
-   // Load notes under recent section
-   let loadedNotes = [];
- 
-   for(const [key, value] of Object.entries(noteTable)){
-       loadedNotes.push(value);
-   }
- 
-   loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
- 
-   let recentsCount =0;
- 
-   for (const note of loadedNotes) {
-     if(recentsCount < recentCounter){
-       const noteElement = createNoteElement(note);
-       recentContainer.appendChild(noteElement);
-       recentsCount++;
-     }
-   }
-   
-   if(recentsCollapsed){
-    favoriteCounter = 3;
-   }
-   else{
-    favoriteCounter = 1;
-   }
-   let favoritesCount = 0;
+
+  // Get notes from local storage
+  noteTable = getNoteTableFromStorage();
+  // Load notes under recent section
+  let loadedNotes = [];
+
+  for(const [key, value] of Object.entries(noteTable)){
+      loadedNotes.push(value);
+  }
+
+  loadedNotes.sort((a,b) => new Date(b.lastEdited) - new Date(a.lastEdited));
+
+  let recentsCount =0;
+
+  for (const note of loadedNotes) {
+    if(recentsCount < recentCounter){
+      const noteElement = createNoteElement(note);
+      recentContainer.appendChild(noteElement);
+      recentsCount++;
+    }
+  }
+  
+  if(recentsCollapsed){
+  favoriteCounter = 3;
+  }
+  else{
+  favoriteCounter = 1;
+  }
+
+  // no notes to display
+  if (Object.keys(noteTable).length === 0) {
+    const noNotesCase = document.createElement('div');
+    noNotesCase.classList.add('noNotesCase');
+    noNotesCase.textContent = "Your most recent notes will show up here. Click on 'Add new' to get started!";
+    recentContainer.appendChild(noNotesCase);
+  }
+
+   // let favoritesCount = 0;
    // Load notes under favorites section
    /*for (const note of loadedNotes) {
      if(favoritesCount<favoriteCounter){
