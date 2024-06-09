@@ -140,7 +140,7 @@ function createNoteElement(noteObject) {
 
 
   //Append favorite button to the wrapper container. 
-  noteContainerMain.appendChild(button);
+  headerElement.appendChild(button);
 
   return noteContainerMain;
 }
