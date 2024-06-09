@@ -3,7 +3,9 @@ import {
     getProjectFromTable,
     appendCompletedTaskToProject,
     removeCompletedTaskFromProject,
-    modifyLastWorkedOn
+    modifyLastWorkedOn,
+    removeLinkedNoteFromProject,
+    appendLinkedNoteToProject
 } from "../backend/ProjectTable.js"; 
 import {
     modifyLinkedProject,
@@ -666,7 +668,15 @@ class linkedProject extends HTMLElement {
             // Add project to linkedProject for the note
             const selectedProject = form.querySelector('.selected');
             let NOTE_ID = window.location.hash.substring(1);
+            let note = getNoteFromTable(NOTE_ID);
+            // If note is already linked to a project remove the note from the project
+            if (note) {
+                if(note.linkedProject !== "") {
+                    removeLinkedNoteFromProject(note.linkedProject, NOTE_ID);
+                }
+            }
             modifyLinkedProject(NOTE_ID, selectedProject.id);
+            appendLinkedNoteToProject(selectedProject.id, NOTE_ID);
             projectContainer.classList.toggle("open");
             overlay.classList.toggle("open");
             linkAProject.classList.toggle("close");
