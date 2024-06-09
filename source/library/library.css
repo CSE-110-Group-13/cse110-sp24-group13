@@ -117,10 +117,3 @@ h3 {
   border-color: #212121;
   color: #f8f8f8;
 }
-
-.noNotesCase {
-  padding: 1%;
-  background-color: rgba(255, 255, 255, 0);
-  text-align: center;
-  font-size: 1em;
-}

@@ -153,10 +153,11 @@ favoriteContainer.id = "favoritesContainer";
 function init() {
   
   
-   // Get notes from local storage
-   const noteTable = getNoteTableFromStorage();
-   // Load notes under recent section
-   let loadedNotes = [];
+  // Get notes from local storage
+  const noteTable = getNoteTableFromStorage();
+
+  // Load notes under recent section
+  let loadedNotes = [];
 
   for (const[key, value] of Object.entries(noteTable)) {
     loadedNotes.push(value);
@@ -170,9 +171,24 @@ function init() {
       favoriteContainer.appendChild(noteElement);
     }
   }
+
+  // No notes in storage - default message
+  if (Object.keys(noteTable).length === 0) {
+    const noNotesCase = document.createElement('div');
+    noNotesCase.classList.add('noNotesCase');
+    noNotesCase.textContent = "You have no notes. Click on 'Add new' to get started!";
+    favoriteContainer.appendChild(noNotesCase);
+    return;
+  }
+
+  // No favorited notes - default message
+  if (favoriteContainer.children.length === 0) {
+    const noFavoritesCase = document.createElement('div');
+    noFavoritesCase.classList.add('noNotesCase');
+    noFavoritesCase.textContent = "You haven't favorited notes. Click on the star icon next to a note to add it to your favorites!";
+    favoriteContainer.appendChild(noFavoritesCase);
+  }
 }
-
-
 
 function reset() {
   const favoriteContainer = document.getElementById('favoritesContainer');
