@@ -22,7 +22,7 @@ import {
   modifyTaskName,
   modifyTaskCompleted,
 } from "../backend/TaskTable.js";
-  
+
 import {
   getNoteTableFromStorage,
   getNoteFromTable,
@@ -34,7 +34,6 @@ let progress = 0;
 const taskUpdate = document.querySelectorAll('input[type="checkbox"]');
 
 window.addEventListener("DOMContentLoaded", init);
-
 
 /**
  * Initializes the project editing process.
@@ -74,14 +73,18 @@ function init() {
  * Attaches an event listener to the save button.
  */
 function attachEditButtonListener() {
-  document.querySelector('edit-button button').addEventListener('click', editProject);
+  document
+    .querySelector("edit-button button")
+    .addEventListener("click", editProject);
 }
 
 /**
  * Attaches an event listener to the delete button
  */
 function attachDeleteButtonListener() {
-  document.querySelector('delete-button button').addEventListener('click', deleteNote);
+  document
+    .querySelector("delete-button button")
+    .addEventListener("click", deleteNote);
 }
 
 /**
@@ -310,14 +313,14 @@ function populateOptionsLinkNotes() {
  */
 function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
   // Create SVG icons for linking and checkboxes
-  elementLinkedNotes.innerHTML = '';
-  const linkIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  elementLinkedNotes.innerHTML = "";
+  const linkIcon = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "svg"
+  );
   linkIcon.setAttribute("viewBox", "0 0 640 512");
   linkIcon.innerHTML = `<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/>`;
 
-  // Iterate through each linked note
-  linkedNotes.forEach((noteID) => {
-    const note = getNoteFromTable(noteID);
   // Iterate through each linked note
   linkedNotes.forEach((noteID) => {
     const note = getNoteFromTable(noteID);
@@ -341,16 +344,10 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
       tag.textContent = tagName;
       rightSide.appendChild(tag);
     });
-    note.tags.forEach((tagName) => {
-      const tag = document.createElement("li");
-      tag.textContent = tagName;
-      rightSide.appendChild(tag);
-    });
 
-    const notesLink = document.createElement('a');
+    const notesLink = document.createElement("a");
     notesLink.setAttribute("href", "../note/view-note.html#" + note.noteID);
 
-    notesLink.appendChild(linkIcon.cloneNode(true));
     notesLink.appendChild(linkIcon.cloneNode(true));
 
     // Add the parts of the header to the linked notes container
@@ -358,15 +355,11 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
     noteHeader.appendChild(notesLink);
     noteHeader.appendChild(rightSide);
 
+    // Append the note header and completed tasks to the linked notes element
+    elementLinkedNotes.appendChild(noteHeader);
+    elementLinkedNotes.appendChild(document.createElement("hr"));
+  });
 
-    // Append the note header and completed tasks to the linked notes element
-    elementLinkedNotes.appendChild(noteHeader);
-    elementLinkedNotes.appendChild(document.createElement("hr"));
-  });
-    // Append the note header and completed tasks to the linked notes element
-    elementLinkedNotes.appendChild(noteHeader);
-    elementLinkedNotes.appendChild(document.createElement("hr"));
-  });
 }
 
 /**
@@ -376,14 +369,14 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
  */
 function editProject() {
   console.log("Edit Clicked");
-  window.location.href = './edit-project.html#' + PROJECT_ID;
+  window.location.href = "./edit-project.html#" + PROJECT_ID;
 }
 
 /**
  * Console.log if note deleted
  */
 function deleteNote() {
-  console.log("Delete clicked")
+  console.log("Delete clicked");
 }
 
 /**
@@ -405,7 +398,7 @@ function setDeadline(datetimeInput){
   const differenceInMillis = targetDate - currentDate;
 
   if (differenceInMillis < 0) {
-    return "Deadline passed!"
+    return "Deadline passed!";
   }
 
   // Convert the difference to weeks, days, and hours
@@ -414,22 +407,30 @@ function setDeadline(datetimeInput){
   const millisecondsInOneWeek = millisecondsInOneDay * 7;
 
   const weeks = Math.floor(differenceInMillis / millisecondsInOneWeek);
-  const days = Math.floor((differenceInMillis % millisecondsInOneWeek) / millisecondsInOneDay);
-  const hours = Math.floor((differenceInMillis % millisecondsInOneDay) / millisecondsInOneHour);
+  const days = Math.floor(
+    (differenceInMillis % millisecondsInOneWeek) / millisecondsInOneDay
+  );
+  const hours = Math.floor(
+    (differenceInMillis % millisecondsInOneDay) / millisecondsInOneHour
+  );
 
   // Format the result as a string
-  let resultString = '';
+  let resultString = "";
   if (weeks > 0) {
-      resultString += `${weeks} Week${weeks !== 1 ? 's' : ''}`;
+    resultString += `${weeks} Week${weeks !== 1 ? "s" : ""}`;
   }
   if (days > 0) {
-      resultString += `${resultString.length > 0 ? ', ' : ''}${days} Day${days !== 1 ? 's' : ''}`;
+    resultString += `${resultString.length > 0 ? ", " : ""}${days} Day${
+      days !== 1 ? "s" : ""
+    }`;
   }
   if (hours > 0) {
-      resultString += `${resultString.length > 0 ? ', ' : ''}${hours} Hour${hours !== 1 ? 's' : ''}`;
+    resultString += `${resultString.length > 0 ? ", " : ""}${hours} Hour${
+      hours !== 1 ? "s" : ""
+    }`;
   }
 
-  resultString += ' till Deadline';
+  resultString += " till Deadline";
 
   // Display the result
   return resultString;
@@ -443,7 +444,7 @@ function setDeadline(datetimeInput){
 function populateProject() {
   const project = getProjectFromTable(PROJECT_ID);
 
-  document.title = "Project | " + project.title;
+  document.title = "Commit | " + project.title;
 
   const titleElement = document.querySelector("h1");
   const descriptionElement = document.querySelector("#projectDesc");
@@ -462,7 +463,7 @@ function populateProject() {
   updateProgress();
 
   populateLinkedNotes(project.linkedNotes, linkedNotesElement);
-  updatePriority();;
+  updatePriority();
 }
 
 document.getElementById("descDropdown").addEventListener("click", function () {
