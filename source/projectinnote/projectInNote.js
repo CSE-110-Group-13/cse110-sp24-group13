@@ -3,7 +3,9 @@ import {
     getProjectFromTable,
     appendCompletedTaskToProject,
     removeCompletedTaskFromProject,
-    modifyLastWorkedOn
+    modifyLastWorkedOn,
+    removeLinkedNoteFromProject,
+    appendLinkedNoteToProject
 } from "../backend/ProjectTable.js"; 
 import {
     modifyLinkedProject,
@@ -644,9 +646,17 @@ class linkedProject extends HTMLElement {
             projectElement.addEventListener('click', () => {
                 const selectProject = document.querySelector('.selected');
                 if (selectProject) {
-                    selectProject.classList.remove('selected');
+                    if (selectProject.id !== projectElement.id) {
+                        selectProject.classList.remove('selected');
+                        projectElement.classList.add('selected');
+                    }
+                    else {
+                        projectElement.classList.remove('selected');
+                    }
                 } 
-                projectElement.classList.add('selected');
+                else {
+                    projectElement.classList.add('selected');
+                }
             });
             currentProjects.appendChild(projectElement);
         }
@@ -666,11 +676,31 @@ class linkedProject extends HTMLElement {
             // Add project to linkedProject for the note
             const selectedProject = form.querySelector('.selected');
             let NOTE_ID = window.location.hash.substring(1);
-            modifyLinkedProject(NOTE_ID, selectedProject.id);
-            projectContainer.classList.toggle("open");
-            overlay.classList.toggle("open");
-            linkAProject.classList.toggle("close");
-            this.populateProject(selectedProject.id);
+            let note = getNoteFromTable(NOTE_ID);
+            // If note is already linked to a project remove the note from the project
+            if (note) {
+                if(note.linkedProject !== "") {
+                    removeLinkedNoteFromProject(note.linkedProject, NOTE_ID);
+                }
+            }
+            if(!selectedProject) {
+                if(linkedProjectComponent.classList.contains("open")) {
+                    linkedProjectComponent.classList.toggle("open");
+                }
+                overlay.classList.toggle("open");
+                if(linkAProject.classList.contains("close")) {
+                    linkAProject.classList.toggle("close");
+                }
+                modifyLinkedProject(NOTE_ID, "");
+            }
+            else {
+                modifyLinkedProject(NOTE_ID, selectedProject.id);
+                appendLinkedNoteToProject(selectedProject.id, NOTE_ID);
+                projectContainer.classList.toggle("open");
+                overlay.classList.toggle("open");
+                linkAProject.classList.toggle("close");
+                this.populateProject(selectedProject.id);
+            }
             this.dispatchEvent(new CustomEvent('projectChanged', {
                 bubbles: true,
             }));         
@@ -691,11 +721,11 @@ class linkedProject extends HTMLElement {
                 selectedProject.classList.remove('selected');
             }
         });
-        
+
         document.addEventListener('DOMContentLoaded', () => {
             const descDropdownButton = document.getElementById('descDropdown');
             const projectDescContent = document.getElementById('projectDescContent');
-        
+            
             // Add event listener for when the descDropdown button is clicked
             descDropdownButton.addEventListener('click', () => {
                 projectDescContent.classList.toggle('close');
@@ -734,3 +764,4 @@ class linkedProject extends HTMLElement {
 }
 
 customElements.define('linked-project', linkedProject);
+

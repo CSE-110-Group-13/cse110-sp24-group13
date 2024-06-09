@@ -343,14 +343,7 @@ function populateOptionsLinkNotes() {
   selectElement.appendChild(placeHolder);
 
   for (const [key, value] of Object.entries(noteTable)) {
-    let isLinked = false;
-    linkedNotes.forEach((note) => {
-      if (note === value.noteID) {
-        isLinked = true;
-      }
-    });
-
-    if (!isLinked) {
+    if (value.linkedProject === "") {
       const option = document.createElement("option");
       option.value = value.noteID;
       option.innerText = value.title;
