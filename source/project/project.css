@@ -12,6 +12,7 @@ vertical-navbar {
 p {
   overflow-wrap: break-word;
 }
+
 #container {
   display: flex;
 }

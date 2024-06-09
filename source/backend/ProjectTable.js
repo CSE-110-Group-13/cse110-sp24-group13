@@ -1,5 +1,3 @@
-// ProjectTable.js
-
 /**
  * The ProjectData in localStorage is in the format:
  * {

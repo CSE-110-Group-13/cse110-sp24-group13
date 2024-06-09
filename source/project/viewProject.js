@@ -78,6 +78,9 @@ function attachEditButtonListener() {
     .addEventListener("click", editProject);
 }
 
+/**
+ * Attaches an event listener to the delete button
+ */
 function attachDeleteButtonListener() {
   document
     .querySelector("delete-button button")
@@ -369,11 +372,19 @@ function editProject() {
   window.location.href = "./edit-project.html#" + PROJECT_ID;
 }
 
+/**
+ * Console.log if note deleted
+ */
 function deleteNote() {
   console.log("Delete clicked");
 }
 
-function setDeadline(datetimeInput) {
+/**
+ * Given deadline date, return formatted string of time till deadline date
+ * @param {String} datetimeInput 
+ * @returns formatted string version time till deadline date
+ */
+function setDeadline(datetimeInput){
   // Get the value from the datetime-local input
   if (!datetimeInput) {
     console.log(datetimeInput);

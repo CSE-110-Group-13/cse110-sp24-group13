@@ -1,85 +1,84 @@
 <html> 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="../verticalnavbar/verticalnavbar.js"></script>
-        <script type="module" src="../savecanceleditdeletebuttons/delete.js"></script>
-        <script type="module" src="../savecanceleditdeletebuttons/edit.js"></script>
-        <script type="module" src="viewProject.js"></script>
-        <link rel="stylesheet" href="../global.css">
-        <link rel="stylesheet" href="project.css">
-        <title>Commit</title> <!-- replace name with project name -->
-        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-    </head>
-    <body>
-        <div id="container">
-        <!-- navbar -->
-        <vertical-navbar currentPage="anchorToViewProject"></vertical-navbar>
-        <div id="restOfScreen">
-        <div class = "content"> 
-            <div class = "header">
-                <div class="selectBar">
-                    <span class="select-wrapper">
-                        <select name="linkNotes" id="linkNotes">
-                            <option value="" disabled selected>Link Note(s)</option>
-                        </select>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
-                    </span>
-                    <span class="select-wrapper">
-                        <select name="priority" id="priority">
-                            <option value="" disabled selected>Update Priority</option>
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
-                        </select>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>
-                    </span>
-                </div>
-                <div class = "actionBar" href = "#">   
-                    <edit-button></edit-button>
-                    <delete-button></delete-button>
-                </div>
-            </div>
-            <div class = "container">
-                <div class="projectHeader">
-                    <span class="priorityDot"></span>
-                    <h1 id = "title">Project Name</h1> <!-- replace name with project name -->
-                    <div class="progress">
-                        <progress id="progressBar" value="0" max="100"></progress>
-                        <label for="progressBar" id="progressLabel">0%</label>
-                    </div>
-                </div>
-                <div class="projectDetails">
-                    <div class = "projectDue">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></svg>
-                        <p>No Deadline Set</p>
-                    </div> 
-                    <h3>Description</h3>
-                    <p id="projectDesc"></p>
-                    <!-- collapse button -->
-                    <svg id = "descDropdown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>
-                </div>
-            </div>
-            <div class = "container">
-                <div class = "tasks">
-                    <h2>Tasks</h2>
-                    <div class = "taskList"></div>
-                    <div class = "taskList"></div>
-                    <div class = addTask>
-                        <svg id="addTaskButton" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM200 344V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg></button>
-                        <input id="addTaskInput" type="text" placeholder="Add new task">    
-                    </div>  
-                </div>
-            </div>
-        
-            <div class = "container">
-                <h2>Linked Notes</h2>
-                <div class = "linkedNotes">
-                </div>
-            </div>    
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../verticalnavbar/verticalnavbar.js"></script>
+    <script type="module" src="../savecanceleditdeletebuttons/delete.js"></script>
+    <script type="module" src="../savecanceleditdeletebuttons/edit.js"></script>
+    <script type="module" src="viewProject.js"></script>
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="project.css">
+    <title>Commit</title> <!-- replace name with project name -->
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  </head>
+  <body>
+    <div id="container">
+      <!-- navbar -->
+      <vertical-navbar currentPage="anchorToViewProject"></vertical-navbar>
+      <div id="restOfScreen">
+      <div class = "content"> 
+        <div class = "header">
+          <div class="selectBar">
+            <span class="select-wrapper">
+              <select name="linkNotes" id="linkNotes">
+                <option value="" disabled selected>Link Note(s)</option>
+              </select>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+            </span>
+            <span class="select-wrapper">
+              <select name="priority" id="priority">
+                <option value="" disabled selected>Update Priority</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>
+            </span>
+          </div>
+          <div class = "actionBar" href = "#">   
+            <edit-button></edit-button>
+            <delete-button></delete-button>
+          </div>
         </div>
+        <div class = "container">
+          <div class="projectHeader">
+            <span class="priorityDot"></span>
+            <h1 id = "title">Project Name</h1> <!-- replace name with project name -->
+            <div class="progress">
+              <progress id="progressBar" value="0" max="100"></progress>
+              <label for="progressBar" id="progressLabel">0%</label>
+            </div>
+          </div>
+          <div class="projectDetails">
+            <div class = "projectDue">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></svg>
+              <p>No Deadline Set</p>
+            </div> 
+            <h3>Description</h3>
+            <p id="projectDesc"></p>
+            <!-- collapse button -->
+            <svg id = "descDropdown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>
+          </div>
+        </div>
+        <div class = "container">
+          <div class = "tasks">
+            <h2>Tasks</h2>
+            <div class = "taskList"></div>
+            <div class = "taskList"></div>
+            <div class = addTask>
+              <svg id="addTaskButton" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM200 344V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg></button>
+              <input id="addTaskInput" type="text" placeholder="Add new task">    
+            </div>  
+          </div>
+        </div>
+      
+        <div class = "container">
+          <h2>Linked Notes</h2>
+          <div class = "linkedNotes">
+          </div>
+        </div>    
+      </div>
     </div>
-    </div>
-        
-    </body>
+  </div>
+</body>
 </html>

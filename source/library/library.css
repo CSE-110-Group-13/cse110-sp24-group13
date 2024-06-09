@@ -2,7 +2,6 @@ body {
   padding: 0;
   margin: 0% 1% 2% 0%;
   display: flex;
-  /*overflow-y: hidden;*/
 }
 
 vertical-navbar{
@@ -48,8 +47,6 @@ body > #entries-holder{
   width: 100%;
   gap: 10px;
 }
-
-
 
 a {
   text-decoration: none;

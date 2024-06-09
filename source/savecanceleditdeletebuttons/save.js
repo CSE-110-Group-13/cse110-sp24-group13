@@ -1,53 +1,50 @@
 class saveButton extends HTMLElement {
-    constructor() {
-        super();
-    }
-    
-    connectedCallback() {
-        this.render();
-    }    
+	constructor() {
+		super();
+	}
+	
+	connectedCallback() {
+		this.render();
+	}    
 
-    render() {
-        const container = document.createElement('div');
-        const sButton = document.createElement('button');
-        sButton.id = 'sButton';
-        const styles = document.createElement('style');
-        styles.innerHTML = `
+	/**
+	 * Renders save button
+	 */
+	render() {
+		const container = document.createElement('div');
+		const sButton = document.createElement('button');
+		sButton.id = 'sButton';
+		const styles = document.createElement('style');
+		styles.innerHTML = `
+			#sButton {
+				display: flex;
+				width: 136px;
+				justify-content: center;
+				align-items: center;
+				background-color: #F8F8F8;
+				box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
+				border-radius: 10px;
+				padding: 10px 15px; 
+				text-decoration: none; 
+				color: black; 
+				font-size: 16px;
+				border-width: 0px;
+				transition: background-color .5s;
+			}
 
-        #sButton {
-            display: flex;
-            width: 136px;
-            justify-content: center;
-            align-items: center;
-            background-color: #F8F8F8;
-            box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
-            border-radius: 10px;
-            padding: 10px 15px; 
-            text-decoration: none; 
-            color: black; 
-            font-size: 16px;
-            border-width: 0px;
-            transition: background-color .5s;
+			#sButton:hover {
+				background-color: #e0e0e0; /* Change background color on hover */
+			}
 
-        }
-
-        #sButton:hover {
-            background-color: #e0e0e0; /* Change background color on hover */
-        }
-
-        #sButton.saved:hover{
-            background-color: #ced6c1;
-        }
-
-        #sButton svg {
-            margin-right: 8px; /* Add space between icon and text */
-            width: 25px;
-            height: 25px;
-        }
-        `;
-        container.appendChild(sButton);
-        this.appendChild(styles);
-        this.appendChild(container);
+			#sButton svg {
+				margin-right: 8px; /* Add space between icon and text */
+				width: 25px;
+				height: 25px;
+			}
+		`;
+		container.appendChild(sButton);
+		this.appendChild(styles);
+		this.appendChild(container);
 
         const saveIcon = `
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">

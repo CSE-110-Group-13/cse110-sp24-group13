@@ -7,18 +7,15 @@ import {
 
 }from "../backend/ProjectTable.js"
 
-
 const filteredTags = [];
 window.addEventListener("DOMContentLoaded", init);
 
 let recentsCollapsed = false; 
 let recentCounter = 4;
-
 let favoriteCounter = 1;
 
-//Function to create a Note Element;
 /**
- * creates HTML element based on the object and returns it.
+ * Creates HTML element based on the note object and returns it.
  * @param {*} noteObject noteObject to create the HTML off of.
  * @returns a noteObject, or an empty div if it's being passed over.
  */
@@ -126,10 +123,8 @@ function createNoteElement(noteObject) {
     tagsProjectContainer.appendChild(projectElement);
   };
 
-
   //Favorite button of the note. 
   let favorited = noteObject.favorited;
-
 
   const button = document.createElement("button");
   button.dataset.noteID = noteObject.noteID;
@@ -163,7 +158,6 @@ const favoriteContainer = document.createElement("div");
 const favorite = document.getElementById("favorites");
 
 function init(){
-  
   // Get notes from local storage
   let noteTable = getNoteTableFromStorage();
   // Load notes under recent section
@@ -217,20 +211,11 @@ function init(){
     noNotesCase.textContent = "Your most recent notes will show up here. Click on 'Add new' to get started!";
     recentContainer.appendChild(noNotesCase);
   }
-
-   // let favoritesCount = 0;
-   // Load notes under favorites section
-   /*for (const note of loadedNotes) {
-     if(favoritesCount<favoriteCounter){
-       if (note.favorited === true) {
-         const noteElement = createNoteElement(note);
-         favoriteContainer.appendChild(noteElement);
-         favoritesCount++;
-       }
-     }
-   }*/
 }
 
+/**
+ * Clears out recents and favorites container
+ */
 function reset() {
   const recentsContainer = document.getElementById('recentsContainer');
   while (recentsContainer.firstChild) {
@@ -241,12 +226,13 @@ function reset() {
   while (favoriteContainer.firstChild) {
     favoriteContainer.removeChild(favoriteContainer.firstChild);
   }
-  
 }
 
-//Function to change favorite button from highlighted to note highlighted. 
+/**
+ * Function to change favorite button from highlighted to note highlighted. 
+ * @param {Element} button HTML button element for favoriting
+ */
 function toggleFavorite(button){
-
   const noteID = button.dataset.noteID;
   const note = getNoteFromTable(noteID);
 
@@ -270,8 +256,7 @@ function toggleFavorite(button){
  * adds a tag to filteredTags[] and reloads the notes based on it.
  * @param {*} tag 
  */
-function filterByTag(tag)
-{
+function filterByTag(tag) {
   let idx = filteredTags.indexOf(tag);
   if(idx == -1)
     filteredTags.push(tag);
@@ -290,27 +275,6 @@ function getFormattedDate(dateString) {
   if(dateString == "") {
     return "";
   }
-  // const date = new Date(dateString);
-  // const day = date.getDate();
-  // let suffix = "";
-  // // Determine the suffix based on the day
-  // if (day === 1 || day === 21 || day === 31) {
-  //   suffix = "st";
-  // }
-  // else if (day === 2 || day === 22) {
-  //   suffix = "nd";
-  // }
-  // else if (day === 3 || day === 23) {
-  //   suffix = "rd";
-  // }
-  // else {
-  //   suffix = "th";
-  // }
-
-  // // Format the string
-  // const options = { month: 'long' };
-  // const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date); 
-  // return `${formattedDate} ${day}${suffix}`;
 
   const months = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
@@ -327,8 +291,6 @@ function getFormattedDate(dateString) {
   return `${monthName} ${dayInt}${suffix}`;
 }
 
-
-
 const expandIcon = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
   <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
@@ -342,9 +304,13 @@ const collapseIcon = `
 let isRecentsCollapsed = false;
 let isFavoritesCollapsed = false;
 
+/**
+  * Collapses and opens recents and favorites area
+  * @param {event} event Used to prevent default behavior of clicking
+  * @param {String} type favorites or recents pressed
+  */
 function toggleCollapse(event, type) {
   event.preventDefault();
-
   if (type === 'recents') {
     const recentsContainer = document.getElementById('recents');
     recentsContainer.classList.toggle('collapsed');
@@ -363,15 +329,16 @@ function toggleCollapse(event, type) {
   }
 }
 
+/**
+  * Takes in text with markdown special characters and returns them cleaned up
+  * @param {String} text the markdown text
+  * @return {String} newText the cleaned up text without special characters
+  */
 function unparseMarkdown(text) {
   const regex = /[^a-zA-Z0-9.,?!]+/g;
   const newText = text.replace(regex, ' ');
   return newText
 }
-
-
-
-
 
 // Export functions for creating a note
 export {

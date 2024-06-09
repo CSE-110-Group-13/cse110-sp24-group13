@@ -1,72 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../verticalnavbar/verticalnavbar.js"></script>
-    <script src="https://www.unpkg.com/wysimark-standalone/dist/javascript/index.cjs.js"></script>
-    <script src="../markdown/markdown.js"></script>
-    <script src="../savecanceleditdeletebuttons/save.js"></script>
-    <script src="../savecanceleditdeletebuttons/cancel.js"></script>
-    <script type="module" src="../projectinnote/projectInNote.js"></script>
-    <script type="module" src="editNote.js"></script>
-    <link rel="stylesheet" href="../global.css">
-    <link rel="stylesheet" href="./notes.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="../verticalnavbar/verticalnavbar.js"></script>
+	<script src="https://www.unpkg.com/wysimark-standalone/dist/javascript/index.cjs.js"></script>
+	<script src="../markdown/markdown.js"></script>
+	<script src="../savecanceleditdeletebuttons/save.js"></script>
+	<script src="../savecanceleditdeletebuttons/cancel.js"></script>
+	<script type="module" src="../projectinnote/projectInNote.js"></script>
+	<script type="module" src="editNote.js"></script>
+	<link rel="stylesheet" href="../global.css">
+	<link rel="stylesheet" href="./notes.css">
 
-    <title>Commit</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	<title>Commit</title>
+	<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 </head>
 <body>
-    <!-- TODO: Make it like project list in that it has autoload/generate features. If no saved data, make temp stuff-->
-    <!-- TODO: Make the project link button work like it does in the figma-->
-    
-    <div id="container">
-    <vertical-navbar currentPage="anchorToNotIcon"></vertical-navbar>
-    <div id="restOfScreen">
-        <main>
-            <header>
-                <div class = "actionBar" href = "#">
-                    <save-button></save-button>
-                    <cancel-button></cancel-button>
-                </div>
-            </header>
-            <div>
-                <form class="noteTitle">
-                    <input type="text" value="Sample Note">
-                </form>
-            </div>
-            <div class = "noteDetails">
-                <div class = "tags"> <!-- new tag tag allows user to type, pressing on a tag will delete -->
-                    <h4>Tags:</h4>
-                    <ul class="tagContainer"></ul>
-                    <div class = "newTag">
-                        <form id = "newTag">
-                            <input type = "text" placeholder = "+ Add new tag" id="newTagInput">
-                        </form>
-                    </div>
-                    <div class="vr"></div>
-                    <span id = "projectTag">
-                        <div class="projectTagContainer">
-                            <span id="priority"></span>
-                            <a id="linkedProjectTag"></a>
-                        </div>
-                    </span>
-                </div>
-                <div class = "date">
-                    <h4>Date:</h4>
-                    <input type = "date" value="2024-05-18">
-                </div>
-            </div>
-            <hr>
-            <div class = "noteContainer">
-                <markdown-editor></markdown-editor>
-            </div>
-            <div class = "projectContainer">
-                <linked-project></linked-project> 
-            </div>
-            
-        </main>
-    </div>
-    
+	<div id="container">
+		<vertical-navbar currentPage="anchorToNotIcon"></vertical-navbar>
+		<div id="restOfScreen">
+			<main>
+				<header>
+					<div class = "actionBar" href = "#">
+						<save-button></save-button>
+						<cancel-button></cancel-button>
+					</div>
+				</header>
+				<div>
+					<form class="noteTitle">
+						<input type="text" value="Sample Note">
+					</form>
+				</div>
+				<div class = "noteDetails">
+					<div class = "tags"> <!-- new tag tag allows user to type, pressing on a tag will delete -->
+						<h4>Tags:</h4>
+						<ul class="tagContainer"></ul>
+						<div class = "newTag">
+							<form id = "newTag">
+								<input type = "text" placeholder = "+ Add new tag" id="newTagInput">
+							</form>
+						</div>
+						<div class="vr"></div>
+						<span id = "projectTag">
+							<div class="projectTagContainer">
+								<span id="priority"></span>
+								<a id="linkedProjectTag"></a>
+							</div>
+						</span>
+					</div>
+					<div class = "date">
+						<h4>Date:</h4>
+						<input type = "date" value="2024-05-18">
+					</div>
+				</div>
+				<hr>
+				<div class = "noteContainer">
+					<markdown-editor></markdown-editor>
+				</div>
+				<div class = "projectContainer">
+					<linked-project></linked-project> 
+				</div>
+			</main>
+	</div>
 </body>
 </html>
