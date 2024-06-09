@@ -16,6 +16,7 @@ import {
   removeLinkedNoteFromProject,
   modifyProjectDateCreated,
   modifyLastWorkedOn,
+  deleteProjectFromTable,
 } from "../backend/ProjectTable.js";
 
 import {
@@ -33,6 +34,7 @@ import {
 } from "../backend/NoteTable.js";
 
 let PROJECT_ID;
+let NEW_PROJECT = false;
 
 /**
  * Initializes the edit project page by setting up event listeners,
@@ -42,6 +44,7 @@ function init() {
   PROJECT_ID = window.location.hash.substring(1);
   if (!PROJECT_ID) {
     const project = createNewProjectObject();
+    NEW_PROJECT = true;
     PROJECT_ID = project.projectID;
     let newDate = new Date().toISOString().split("T")[0];
     modifyProjectDateCreated(PROJECT_ID, newDate);
@@ -467,7 +470,11 @@ function cancelEdit() {
   if (!PROJECT_ID) {
     window.location.href = "../projectlist/projectlist.html";
   } else {
-    window.location.href = "./view-project.html#" + PROJECT_ID;
+    if (NEW_PROJECT) {
+      deleteProjectFromTable(PROJECT_ID);
+    }
+    window.location.href = "../homepage/index.html";
+    PROJECT_ID = "";
   }
 }
 

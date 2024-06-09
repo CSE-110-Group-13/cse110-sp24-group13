@@ -8,6 +8,7 @@ import {
     removeTagFromNoteTags,
     getNoteFromTable,
     modifyNoteLastEdited,
+    deleteNoteFromTable,
   } from '../backend/NoteTable.js';
 
 import {
@@ -17,6 +18,7 @@ import {
 
 
 let NOTE_ID = "";
+let NEW_NOTE = false;
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -34,6 +36,7 @@ function init() {
         //localStorage.setItem("NoteTable", JSON.stringify({}));
         //localStorage.setItem("IDContainer", JSON.stringify([]));
         const newNote = createNewNoteObject("Default Text", new Date().toISOString().slice(0,10), new Date().toISOString().slice(0,10), "Default Title", "", "", []);
+        NEW_NOTE = true;
         NOTE_ID = newNote.noteID;
         window.location.href = './edit-note.html#' + NOTE_ID;
     } else {
@@ -89,6 +92,9 @@ function saveNote() {
 }
 
 function cancelEdit() {
+    if (NEW_NOTE) {
+        deleteNoteFromTable(NOTE_ID);
+    }
     window.location.href = "../homepage/index.html";
 }
 /**
