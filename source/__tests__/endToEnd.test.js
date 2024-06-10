@@ -124,6 +124,10 @@ describe('End to end tests of the app', () => {
     const url = await page.url();
     expect(url).toMatch(new RegExp(`${URL}/note/edit-note.html#.*`));
 
+    await page.type('.noteTitle', 'Test Note Title');
+    await page.type('.noteDetails', 'Test Note Details');
+    await page.type('.css-cyr08h[role="textbox"]', 'Test Note Content');
+
     await Promise.all([
       page.waitForNavigation(),
       page.click('#sButton'),
@@ -157,25 +161,6 @@ describe('End to end tests of the app', () => {
     newUrl = await page.url();
     expect(newUrl).toMatch(new RegExp(`${URL}/note/view-note.html#.*`));
 
-    // const deleteButton = await page.$('#dButton');
-    // await Promise.all([
-    //   page.waitForNavigation(),
-    //   deleteButton.click({ clickCount: 2 }),
-    // ]);
-
-    // newUrl = await page.url();
-    // expect(newUrl).toBe(`${URL}/homepage/index.html`);
-
-    // await page.waitForSelector('.note-wrapper .note h2 a', { hidden: true });
-    // const noteExists = await page.$('.note-wrapper .note h2 a');
-    // expect(noteExists).toBeNull();
-
-    // const noteTable = await page.evaluate(() => JSON.parse(localStorage.getItem('NoteTable')));
-    // console.log('NoteTable after deletion:', noteTable);
-
-    // const noteCount = Object.keys(noteTable).length;
-    // expect(noteCount).toBe(0);
-
     const verticalNavBar = await page.$('vertical-navbar');
     const shadowRootHandleNavBar = await verticalNavBar.getProperty('shadowRoot');
     const shadowRootNavBar = await shadowRootHandleNavBar.asElement();
@@ -192,7 +177,30 @@ describe('End to end tests of the app', () => {
     const libraryNotesCount = await page.$$eval('.note-wrapper .note', notes => notes.length);
     expect(libraryNotesCount).toBe(1);
 
+    // Favorite a note in the library page
+    const favoriteButton = await page.$('.note-wrapper .note .favorite-button');
+    await favoriteButton.click();
+
+    // Re-select the vertical navbar after navigation
+    const verticalNavBarUpdated = await page.$('vertical-navbar');
+    const shadowRootHandleNavBarUpdated = await verticalNavBarUpdated.getProperty('shadowRoot');
+    const shadowRootNavBarUpdated = await shadowRootHandleNavBarUpdated.asElement();
+
+    // Navigate to the Favorites page and check for the favorited note
+    const favoritesNavButton = await shadowRootNavBarUpdated.$('#anchorToFavorites');
     
+    await Promise.all([
+      page.waitForNavigation(),
+      favoritesNavButton.click(),
+    ]);
+
+    newUrl = await page.url();
+    expect(newUrl).toBe(`${URL}/favorites/favorites.html`);
+
+    const favoritedNotes = await page.$$eval('.note-wrapper .note h2 a', notes => notes.map(note => note.textContent.trim().split(' ').slice(0, 3).join(' ')));
+    expect(favoritedNotes).toContain('Test');
+
   });
+
   
 });
