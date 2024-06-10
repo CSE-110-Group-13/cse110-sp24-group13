@@ -16,6 +16,9 @@ vertical-navbar{
 
 #restOfScreen{
     margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 select{
