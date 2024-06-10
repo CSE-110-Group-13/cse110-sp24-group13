@@ -14,7 +14,6 @@
   "jest": {
     "preset": "jest-puppeteer",
     "verbose": true,
-    "testEnvironment": "jsdom",
     "testPathIgnorePatterns": ["__mocks__"]
   },
   "type": "module",

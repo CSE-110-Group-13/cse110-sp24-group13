@@ -3,7 +3,7 @@ import {
 } from "../backend/NoteTable.js";
 
 import {
-  getProjectTableFromStorage, getProjectFromTable,
+  getProjectFromTable,
 } from "../backend/ProjectTable.js"
 
 const filteredTags = [];
@@ -209,8 +209,8 @@ function createNoteElement(noteObject){
   * @return {string} a string in the correct format
   */
 function getFormattedDate(dateString) {
-  if (!dateString) {
-      return null;
+  if (dateString == "") {
+    return "";
   }
   
   const months = ["January", "February", "March", "April", "May", "June",
@@ -273,6 +273,6 @@ function toggleFavorite(button){
   */
 function unparseMarkdown(text) {
   const regex = /[^a-zA-Z0-9.,?!]+/g;
-  const newText = text.replace(regex, ' ');
+  const newText = text.replace(regex, ' ').trim();
   return newText
 }

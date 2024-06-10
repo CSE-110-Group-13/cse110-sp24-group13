@@ -72,6 +72,13 @@ function init() {
   document
     .querySelector("#addTaskButton")
     .addEventListener("click", addNewTask);
+  document
+    .querySelector("#addTaskInput")
+    .addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        addNewTask(); // Call the function with the task ID and new value
+      }
+    });
 }
 
 /**

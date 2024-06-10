@@ -265,14 +265,13 @@ class linkedProject extends HTMLElement {
         align-items: center; 
         background-color: #F8F8F8;
         box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
-        border-radius: 10px;
+        border-radius: 20px;
         padding: 25px 5px; 
         text-decoration: none; 
         color: black; 
-        font-size: min(2.5vw, min(16px, 2.5vw));
+        font-size: 1em;
         border-width: 0px;
-        margin-left: auto;
-        margin-right: auto;
+        font-family: 'Varela Round', sans-serif;
       }
 
       #lButton:hover {
@@ -280,9 +279,9 @@ class linkedProject extends HTMLElement {
       }
 
       #lButton svg {
-        margin-left: 8px; /* Add space between icon and text */
-        width: 25px;
-        height: 25px;
+          width: 1em;                /* Set the width of the SVG icon */
+          height: 1em;               /* Set the height of the SVG icon */
+          margin: 0 0.5em;           /* Add space between icon and text */
       }
 
       .addProjectContainer.close {
@@ -291,15 +290,14 @@ class linkedProject extends HTMLElement {
 
       .addProjectContainer.open {
         display: block;
-        position: relative;
+        position: space-evenly;
         height: 50vh;
-        width: 50vw;
-        margin: 20vh auto;
+        width: 100%;
+        margin: 2%;
         background-color: #FFFFFF;
-        padding: 15px;
         border-radius: 10px;
         box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
-        overflow: auto;
+        overflow: auto;]
       }
 
       #overlay h1 {
@@ -527,18 +525,19 @@ class linkedProject extends HTMLElement {
       }
 
       .description {
-        width: 60vw;
+        width: 78%;
+        margin-right: 2%;
         background-color: #F8F8F8;
-        border-radius: 25px; 
+        border-radius: 20px; 
+        box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.08);
         padding: 5px 20px;
-        margin-left: auto;
-        margin-right: 3vw;
+        gap: 10px;
+      }
+
+      .description p {
+        font-size: 0.9em;
       }
       
-      .description p {
-        margin-top: -15px;
-        margin-left: 20px;
-      }
       `;
     // Create the main container
     const container = document.createElement('div');

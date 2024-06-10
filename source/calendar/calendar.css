@@ -1,15 +1,8 @@
 /* Global Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+html, body {
+    background-color: white;
     margin: 0;
     padding: 0;
-    display: flex;
-}
-
-/* Vertical Navigation Bar */
-vertical-nav-bar {
-    flex-shrink: 0;
 }
 
 /* Link Styles */
@@ -31,12 +24,11 @@ a:active {
 
 /* Main Container */
 .container {
-    width: 80%;
+    width: 90%;
     height: 100vh;
-    margin: 0 auto;
+    margin: 0 0 0 10%;
     padding: 2rem;
     background-color: #fff;
-    box-shadow: 0 0 1rem rgba(0,0,0,0.1);
     box-sizing: border-box;
     flex-grow: 1;
 }
@@ -44,7 +36,7 @@ a:active {
 /* Header */
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
 }
@@ -57,24 +49,38 @@ header h1 {
 .controls {
     display: flex;
     align-items: center;
+    justify-content: center;
+    min-width: 20%;
+    overflow: hidden;
 }
 
 .controls select, .controls input, .controls button {
-    margin: 0 1rem;
+    color: #828282;
+    margin: 1%;
     padding: 0.5rem;
     font-size: 1rem;
 }
 
 .controls select {
-    width: 10rem;
+    width: 80%;
+    min-width: fit-content;
+    max-width: 10rem;
+    border: 1px solid #E0E0E0;
+    border-radius: 0.8rem 0.25rem 0.25rem 0.8rem;
 }
 
 .controls input {
-    width: 5rem;
+    width: 20%;
+    min-width: fit-content;
+    max-width: 5rem;
+    border: 1px solid #E0E0E0;
+    border-radius: 0.25rem 0.8rem 0.8rem 0.25rem;
 }
 
 .controls button {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
+    border: 0px;
+    background-color: white;
 }
 
 /* Search Bar */
@@ -91,17 +97,20 @@ header h1 {
 
 /* Calendar */
 #calendar {
+    background-color: #F8F8F8;
+    border-radius: 25px;
+    height: 80%;
     display: grid;
-    gap: .5rem;
+    gap: .15rem;
     flex-grow: 1;
+    overflow: hidden;
 }
 
 /* Weekdays Header */
 .week-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    border: 0.0625rem solid #888;
-    background-color: #ddd;
+    height: 2vh;
     padding: .5rem;
 }
 
@@ -114,15 +123,13 @@ header h1 {
 .days-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: .5rem;
     position: relative;
     height: 65vh;
 }
 
 /* Individual Calendar Day */
 .calendar-day {
-    border: 0.0625rem solid #ddd;
-    background-color: #f9f9f9;
+    border: 0.05rem solid #ddd;
     padding: 0.1rem;
     height: 11vh;
     position: relative;
@@ -263,4 +270,13 @@ close:focus {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 80%;
+}
+
+@media (max-width: 700px){
+    add-new-btn{
+        position: fixed;
+        top: 100%;
+        right: 3%;
+
+    }
 }

@@ -242,8 +242,8 @@ function filterByTag(tag) {
   * @return {string} a string in the correct format
   */
 function getFormattedDate(dateString) {
-  if(dateString == "") {
-      return "";
+  if (dateString == "") {
+    return "";
   }
 
   const months = ["January", "February", "March", "April", "May", "June",
@@ -268,6 +268,6 @@ function getFormattedDate(dateString) {
   */
 function unparseMarkdown(text) {
   const regex = /[^a-zA-Z0-9.,?!]+/g;
-  const newText = text.replace(regex, ' ');
+  const newText = text.replace(regex, ' ').trim();
   return newText
 }

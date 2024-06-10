@@ -3,7 +3,7 @@ import {
 } from "../backend/NoteTable.js";
 
 import {
-  getProjectTableFromStorage, getProjectFromTable,
+  getProjectFromTable,
 
 }from "../backend/ProjectTable.js"
 
@@ -12,7 +12,6 @@ window.addEventListener("DOMContentLoaded", init);
 
 let recentsCollapsed = false; 
 let recentCounter = 4;
-let favoriteCounter = 1;
 
 /**
  * Creates HTML element based on the note object and returns it.
@@ -196,13 +195,6 @@ function init(){
       recentsCount++;
     }
   }
-  
-  if(recentsCollapsed){
-  favoriteCounter = 3;
-  }
-  else{
-  favoriteCounter = 1;
-  }
 
   // no notes to display
   if (Object.keys(noteTable).length === 0) {
@@ -272,7 +264,7 @@ function filterByTag(tag) {
   */
 function getFormattedDate(dateString) {
   //catches exception where a date is left blank.
-  if(dateString == "") {
+  if (dateString == "") {
     return "";
   }
 
@@ -336,7 +328,7 @@ function toggleCollapse(event, type) {
   */
 function unparseMarkdown(text) {
   const regex = /[^a-zA-Z0-9.,?!]+/g;
-  const newText = text.replace(regex, ' ');
+  const newText = text.replace(regex, ' ').trim();
   return newText
 }
 
