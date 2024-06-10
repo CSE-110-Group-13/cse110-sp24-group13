@@ -123,6 +123,17 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 				calendarDays.appendChild(dayElement);
 		}
+
+    // final cells to fill out the week
+    const totalCells = firstDay + lastDay;
+    const emptyCellsAtEnd = (7 - (totalCells % 7)) % 7;
+
+    // Add empty cells at the end of the month
+    for (let i = 0; i < emptyCellsAtEnd; i++) {
+        const emptyCell = document.createElement("div");
+        emptyCell.className = "calendar-day empty";
+        calendarDays.appendChild(emptyCell);
+    }
   }
 
   /**
