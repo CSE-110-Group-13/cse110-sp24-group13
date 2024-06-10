@@ -28,7 +28,64 @@ describe('End to end tests of the app', () => {
     await browser.close();
   });
 
-  it('Sample test', async () => {
-    expect(1).toBe(1);
+  const navigateAndCheckUrl = async (shadowRoot, selector, expectedUrl) => {
+    const navButton = await shadowRoot.$(selector);
+    await Promise.all([
+      page.waitForNavigation(),
+      navButton.click(),
+    ]);
+    const url = await page.url();
+    expect(url).toBe(expectedUrl);
+  };
+
+  // Test navbar
+  it('Navigate to Home page', async () => {
+    const verticalNavBar = await page.$('vertical-navbar');
+    const shadowRoot = await verticalNavBar.getProperty('shadowRoot');
+    const innerShadowRoot = await shadowRoot.asElement();
+
+    await navigateAndCheckUrl(innerShadowRoot, '#anchorToHome', `${URL}/homepage/index.html`);
   });
+
+  it('Navigate to Favorites page', async () => {
+    const verticalNavBar = await page.$('vertical-navbar');
+    const shadowRoot = await verticalNavBar.getProperty('shadowRoot');
+    const innerShadowRoot = await shadowRoot.asElement();
+
+    await navigateAndCheckUrl(innerShadowRoot, '#anchorToFavorites', `${URL}/favorites/favorites.html`);
+  });
+
+  it('Navigate to Library page', async () => {
+    const verticalNavBar = await page.$('vertical-navbar');
+    const shadowRoot = await verticalNavBar.getProperty('shadowRoot');
+    const innerShadowRoot = await shadowRoot.asElement();
+
+    await navigateAndCheckUrl(innerShadowRoot, '#anchorToLibrary', `${URL}/library/library.html`);
+  });
+
+  it('Navigate to Calendar page', async () => {
+    const verticalNavBar = await page.$('vertical-navbar');
+    const shadowRoot = await verticalNavBar.getProperty('shadowRoot');
+    const innerShadowRoot = await shadowRoot.asElement();
+
+    await navigateAndCheckUrl(innerShadowRoot, '#anchorToCalendar', `${URL}/calendar/calendar.html`);
+  });
+
+  it('Navigate to Projects page', async () => {
+    const verticalNavBar = await page.$('vertical-navbar');
+    const shadowRoot = await verticalNavBar.getProperty('shadowRoot');
+    const innerShadowRoot = await shadowRoot.asElement();
+
+    await navigateAndCheckUrl(innerShadowRoot, '#anchorToProjectList', `${URL}/projectlist/projectlist.html`);
+  });
+
+  // Return back to Home page
+  it('Navigate back to Home page', async () => {
+    const verticalNavBar = await page.$('vertical-navbar');
+    const shadowRoot = await verticalNavBar.getProperty('shadowRoot');
+    const innerShadowRoot = await shadowRoot.asElement();
+
+    await navigateAndCheckUrl(innerShadowRoot, '#anchorToHome', `${URL}/homepage/index.html`);
+  }); 
+
 });
