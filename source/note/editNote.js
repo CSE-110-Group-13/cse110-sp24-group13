@@ -31,6 +31,7 @@ function init() {
 	if (!NOTE_ID) {
 		const newNote = createNewNoteObject("Default Text", new Date().toISOString().slice(0,10), new Date().toISOString().slice(0,10), "Default Title", "", "", []);
 		NOTE_ID = newNote.noteID;
+		NEW_NOTE = true;
 		window.location.href = '../note/edit-note.html#' + NOTE_ID;
 	} else {
 		populateNote();
