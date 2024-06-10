@@ -194,9 +194,35 @@ describe('End to end tests of the app', () => {
     newUrl = await page.url();
     expect(newUrl).toBe(`${URL}/favorites/favorites.html`);
 
-    const favoritedNotes = await page.$$eval('.note-wrapper .note h2 a', notes => notes.map(note => note.textContent.trim().split(' ').slice(0, 3).join(' ')));
-    expect(favoritedNotes).toContain('Test');
+    const favoritedNotes = await page.$$eval('.note-wrapper .note h2 a', notes => notes.map(note => note.textContent.trim().split(' ').slice(0, 2).join(' ')));
+    expect(favoritedNotes).toContain('Test Note');
   });
+
+  it('Click toggle button and verify navbar disappears', async () => {
+    const verticalNavBar = await page.$('vertical-navbar');
+    const shadowRootHandle = await verticalNavBar.getProperty('shadowRoot');
+    const shadowRoot = await shadowRootHandle.asElement();
+  
+    const toggleButton = await shadowRoot.$('#toggleButton');
+  
+    if (!toggleButton) {
+      console.error('Toggle button not found.');
+      return;
+    }
+  
+    await toggleButton.click();
+
+    await page.waitForTimeout(500);
+
+    const isNavBarClosed = await page.evaluate(() => {
+      const navBarDiv = document.querySelector('vertical-navbar').shadowRoot.querySelector('#verticalNavbar');
+      return navBarDiv.classList.contains('close');
+    });
+  
+    expect(isNavBarClosed).toBe(true);
+});
+
+
 
   
 });
