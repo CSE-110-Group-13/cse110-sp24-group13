@@ -50,7 +50,6 @@ function loadNotes(){
   buttonsHolder.innerHTML = "";
   for(let i = 0; i < notesArray.length/10; i++) {
     const pageButton = document.createElement("button");
-    console.log(pageButton);
     let pageNum = i + 1;
     pageButton.innerText = pageNum;
     if(i == currPage)

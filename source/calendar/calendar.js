@@ -180,7 +180,6 @@ function addNotesAndProjectsToCalendar() {
    */
   for (const [key, value] of Object.entries(noteTable)) {
   	const dayElement = document.querySelector(`[data-date='${value.date}']`);
-  	console.log(dayElement);
 		if (dayElement) {
 			const noteElement = document.createElement('a');
 			noteElement.className = "task";

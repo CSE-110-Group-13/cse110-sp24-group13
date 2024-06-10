@@ -52,7 +52,6 @@ class editButton extends HTMLElement {
 
 			Edit
 		`;
-		console.log("initailized edit button")
 	}
 }
 

@@ -78,7 +78,6 @@ class deleteButton extends HTMLElement {
 		</svg>`
 		dButton.innerHTML = `${trashIcon}Delete`;
 
-		console.log("initailized delete button")
 		dButton.addEventListener('click', () => {
 			if (dButton.textContent.trim() === "Delete") {
 				dButton.innerHTML = `${trashIcon}Confirm?`;
@@ -90,11 +89,9 @@ class deleteButton extends HTMLElement {
 				}, 3000); // allow 3 seconds to confirm deletion
 			} else {
 				const currentPage = window.location.href;
-				console.log("Current page:", currentPage);
 				if (currentPage.includes("note")) {
 					const noteID = window.location.hash.substring(1);
 					const note = getNoteFromTable(noteID);
-					console.log("Note ID:", noteID);
 					if (note) {
 						// check for any linked projects
 						if (note.linkedProject !== "") {
@@ -109,7 +106,6 @@ class deleteButton extends HTMLElement {
 				} else if (currentPage.includes("project")) {
 					const projectID = window.location.hash.substring(1);
 					const project = getProjectFromTable(projectID);
-					console.log("Project ID:", projectID);
 					if (project) {
 						// check for any linked notes
 						if (project.linkedNotes.length !== 0) {

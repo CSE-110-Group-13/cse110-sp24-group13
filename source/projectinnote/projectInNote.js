@@ -33,13 +33,10 @@ class linkedProject extends HTMLElement {
    * Loads project in note
    */
   loadProject() {
-    console.log("loadProject")
     let Note_ID = window.location.hash.substring(1);
     if (Note_ID !== "") {
       let table = getNoteTableFromStorage(Note_ID);
       let note = table[Note_ID];
-      console.log(note);
-      console.log(note["linkedProject"]);
       if (note["linkedProject"] !== "") {
         this.populateProject(note["linkedProject"]);
       }
@@ -196,7 +193,6 @@ class linkedProject extends HTMLElement {
    * @param {String} projectID ID of project
    */
   populateProject(projectID) {
-    console.log("populateProject");
 
     const linkedProject = document.querySelector('.linkedProject');
     if(!linkedProject.classList.contains('open')) {

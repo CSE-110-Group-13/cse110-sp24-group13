@@ -51,7 +51,6 @@ function init() {
     modifyLastWorkedOn(PROJECT_ID, newDate);
     modifyProjectTitle(PROJECT_ID, "New Project!");
     modifyProjectPriority(PROJECT_ID, "low");
-    console.log("test");
   }
   populateProject();
   populateOptionsLinkNotes();
@@ -127,7 +126,6 @@ function updatePriority() {
  */
 function updateProgress() {
   const project = getProjectFromTable(PROJECT_ID);
-  console.log("In progress");
   let progressBar = document.getElementById("progressBar");
 
   progressBar.value = calculateTaskCompletion(PROJECT_ID);
@@ -141,7 +139,6 @@ function updateProgress() {
  */
 function addNewTask() {
   const taskName = document.querySelector("#addTaskInput").value;
-  console.log(taskName);
 
   if (!taskName) {
     alert("Task must have a description");
@@ -155,11 +152,8 @@ function addNewTask() {
   }
 
   appendTaskToProjectTaskList(PROJECT_ID, newTask.taskID);
-  console.log(newTask.taskID, newTask.name, taskName);
 
   modifyTaskName(newTask.taskID, taskName);
-
-  console.log(getTaskFromTable(newTask.taskID), newTask.name);
 
   const taskList = document.querySelector(".taskList");
   const project = getProjectFromTable(PROJECT_ID);
@@ -234,7 +228,6 @@ function createTaskListItem(taskListElement, taskListArray) {
 function removeTask(taskID) {
   removeTaskFromProjectTaskList(PROJECT_ID, taskID);
   deleteTaskFromTable(taskID);
-  console.log("deleteed task?");
 
   const taskList = document.querySelector(".taskList");
   const project = getProjectFromTable(PROJECT_ID);
@@ -248,7 +241,6 @@ function removeTask(taskID) {
  * @param {String} newName new name for task
  */
 function updateTaskName(taskID, newName) {
-  console.log(newName);
   modifyTaskName(taskID, newName);
 
   const taskList = document.querySelector(".taskList");
@@ -280,7 +272,6 @@ function updateTaskCompletionStatusEventListener(
       modifyTaskCompleted(taskID, false);
       removeCompletedTaskFromProject(projectID, taskID);
     }
-    console.log(projectID);
     modifyLastWorkedOn(projectID, newDate);
     progressBar.value = calculateTaskCompletion(projectID);
 
@@ -316,16 +307,12 @@ function calculateTaskCompletion(projectID) {
  */
 function addLinkedNotes() {
   const selectedNote = document.querySelector("#linkNotes");
-  console.log(selectedNote);
 
   if (selectedNote.value != "") {
-    console.log("Adding linked note");
     appendLinkedNoteToProject(PROJECT_ID, selectedNote.value);
     modifyLinkedProject(selectedNote.value, PROJECT_ID);
-    console.log(selectedNote.value);
     selectedNote.value = "";
     selectedNote.ariaPlaceholder = "Linked Note(s)";
-    console.log(getProjectFromTable(PROJECT_ID).linkedNotes[0]);
   }
   const linkedNotesElement = document.querySelector(".linkedNotes");
   const project = getProjectFromTable(PROJECT_ID);
@@ -451,7 +438,6 @@ function removeLinkedNote(noteID) {
  * Saves the project with the current state of inputs and tasks.
  */
 function saveProject() {
-  console.log("Save Clicked");
   if (!PROJECT_ID) {
     const newProject = createNewProjectObject();
     PROJECT_ID = newProject.projectID;
@@ -463,9 +449,7 @@ function saveProject() {
   }
   const projectTitle = document.querySelector("#projectTitle").value;
   const projectDescription = document.querySelector("#projectDesc").value;
-  console.log(projectDescription);
   const projectDeadline = document.querySelector("#deadline").value;
-  console.log(projectDeadline);
 
   modifyProjectTitle(PROJECT_ID, projectTitle);
   modifyProjectDescription(PROJECT_ID, projectDescription);

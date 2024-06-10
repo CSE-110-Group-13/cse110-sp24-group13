@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", init);
 function init() {
   NOTE_ID = window.location.hash.substring(1);
   makeUneditable();
-  console.log(NOTE_ID);
+  
   populateNote();   
   attachEditButtonListener();
   attachCancelButtonListener();
@@ -46,13 +46,6 @@ function attachCancelButtonListener() {
  */
 function editNote() {
   window.location.href = './edit-note.html#' + NOTE_ID;
-}
-
-/**
- * Console.log when deleting
- */
-function deleteNote() {
-  console.log("Delete clicked")
 }
 
 /**

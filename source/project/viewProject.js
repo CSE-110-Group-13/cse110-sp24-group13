@@ -121,7 +121,6 @@ function updatePriority() {
  */
 function updateProgress() {
   const project = getProjectFromTable(PROJECT_ID);
-  console.log("In progress");
   let progressBar = document.getElementById("progressBar");
 
   progressBar.value = calculateTaskCompletion(PROJECT_ID);
@@ -135,7 +134,6 @@ function updateProgress() {
  */
 function addNewTask() {
   const taskName = document.querySelector("#addTaskInput").value;
-  console.log(taskName);
 
   if (!taskName) {
     alert("Task must have a description");
@@ -149,11 +147,8 @@ function addNewTask() {
   }
 
   appendTaskToProjectTaskList(PROJECT_ID, newTask.taskID);
-  console.log(newTask.taskID, newTask.name, taskName);
 
   modifyTaskName(newTask.taskID, taskName);
-
-  console.log(getTaskFromTable(newTask.taskID), newTask.name);
 
   const taskList = document.querySelector(".taskList");
   const project = getProjectFromTable(PROJECT_ID);
@@ -184,14 +179,12 @@ function createTaskListItem(taskListElement, taskListArray) {
     const label = document.createElement("label");
     label.setAttribute("for", taskID);
     label.textContent = task.name;
-    console.log(task.name);
 
     if (task.completed) {
       inputCheckbox.checked = true;
       label.classList.add("checked");
       inputCheckbox.classList.add("checked");
     }
-    console.log(task);
 
     updateTaskCompletionStatusEventListener(inputCheckbox, PROJECT_ID);
     taskListElement.appendChild(inputCheckbox);
@@ -263,15 +256,12 @@ function calculateTaskCompletion(projectID) {
  */
 function addLinkedNotes() {
   const selectedNote = document.querySelector("#linkNotes");
-  console.log(selectedNote);
 
   if (selectedNote.value != "") {
-    console.log("Adding linked note");
     appendLinkedNoteToProject(PROJECT_ID, selectedNote.value);
     modifyLinkedProject(selectedNote.value, PROJECT_ID);
     selectedNote.value = "";
     selectedNote.ariaPlaceholder = "Linked Note(s)";
-    console.log(getProjectFromTable(PROJECT_ID).linkedNotes[0]);
   }
   const linkedNotesElement = document.querySelector(".linkedNotes");
   const project = getProjectFromTable(PROJECT_ID);
@@ -368,15 +358,7 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
  * Modifies the project in the backend using the project ID.
  */
 function editProject() {
-  console.log("Edit Clicked");
   window.location.href = "./edit-project.html#" + PROJECT_ID;
-}
-
-/**
- * Console.log if note deleted
- */
-function deleteNote() {
-  console.log("Delete clicked");
 }
 
 /**
@@ -387,7 +369,6 @@ function deleteNote() {
 function setDeadline(datetimeInput){
   // Get the value from the datetime-local input
   if (!datetimeInput) {
-    console.log(datetimeInput);
     return "No deadline assigned";
   }
   // Parse the value to create a Date object

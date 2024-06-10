@@ -80,9 +80,8 @@ function createProjectTable() {
     
     let percentofTasksComplete = 100;
     let count = 0;
-    console.log(value.taskList.length )
+    
     if(value.taskList.length != 0) {
-      console.log("HERE")
 
       for(const task of value.taskList) {
           const taskFromTable = getTaskFromTable(task);
@@ -171,7 +170,7 @@ function countTimeTillDeadline(deadline) {
   const weeks = Math.floor(differenceMs / (1000 * 60 * 60 * 24 * 7));
   const days = Math.floor((differenceMs % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
   const hours = Math.floor((differenceMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  console.log(days);
+  
 
   // Construct the result string
   let result = "";
