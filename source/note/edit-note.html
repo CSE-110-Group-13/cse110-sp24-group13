@@ -51,7 +51,16 @@
 					</div>
 					<div class = "date">
 						<h4>Date:</h4>
-						<input type = "date" value="2024-05-18">
+						<input type = "date" id="dateInput">
+
+						<script>
+							// for today's date (placeholder)
+							if (!dateInput.value){
+								const dateInput = document.getElementById('dateInput');
+								const today = new Date().toISOString().split('T')[0];
+								dateInput.value = today;
+							}
+						</script>
 					</div>
 				</div>
 				<hr>
