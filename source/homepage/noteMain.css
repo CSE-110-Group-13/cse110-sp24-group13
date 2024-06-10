@@ -50,7 +50,7 @@ header h2 > a {
   max-width: 30vw;
   width:fit-content;
   background-color: #e2e2e2;
-  padding: .6vh 1vw .6vh 1vw;
+  padding: .6vh 1vw 0 1vw;
   margin-right: .5vw;
   border-radius: 0.625vh; /* 5px converted to vh */
   height: 2.5vh;  /* 20px converted to vh */
