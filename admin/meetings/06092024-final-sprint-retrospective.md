@@ -1,4 +1,4 @@
-# Sprint Review for Sprint starting 5/26
+# Sprint Retrospective for Sprint starting 5/26
 
 ## Date and Location
 [6/9 at 8 PM, Discord]
@@ -42,7 +42,5 @@ Salnav: Backend for viewnote and edit note. Edited notes to show things correctl
 Jacqueline: Worked on the calendar. Made sure everything links to the correct place. Put it in relative units. Made sure time is working correctly for calendar.
 
 Rocky: Made notes clickable. Pagination for library page.
- 
 
-## Highpoints:
-- We finished. Everyone did good.
+![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/100500846/ee5ba336-aa45-4801-9711-64a0acbbc84c)
