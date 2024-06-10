@@ -43,4 +43,5 @@ Jacqueline: Worked on the calendar. Made sure everything links to the correct pl
 
 Rocky: Made notes clickable. Pagination for library page.
 
-![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/100500846/ee5ba336-aa45-4801-9711-64a0acbbc84c)
+![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/100500846/8f899596-2ba8-46ca-9541-06c6148d5bf0)
+
