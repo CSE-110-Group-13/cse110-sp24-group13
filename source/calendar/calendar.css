@@ -39,7 +39,6 @@ header {
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
-
 }
 
 header h1 {
@@ -98,17 +97,20 @@ header h1 {
 
 /* Calendar */
 #calendar {
+    background-color: #F8F8F8;
+    border-radius: 25px;
+    height: 80%;
     display: grid;
-    gap: .5rem;
+    gap: .15rem;
     flex-grow: 1;
+    overflow: hidden;
 }
 
 /* Weekdays Header */
 .week-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    border: 0.0625rem solid #888;
-    background-color: #ddd;
+    height: 2vh;
     padding: .5rem;
 }
 
@@ -121,15 +123,13 @@ header h1 {
 .days-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: .5rem;
     position: relative;
     height: 65vh;
 }
 
 /* Individual Calendar Day */
 .calendar-day {
-    border: 0.0625rem solid #ddd;
-    background-color: #f9f9f9;
+    border: 0.05rem solid #ddd;
     padding: 0.1rem;
     height: 11vh;
     position: relative;
