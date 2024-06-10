@@ -4,7 +4,7 @@ import { LocalStorage } from "node-localstorage";
  * Mock window and localStorage object, as well as the alert function
  */ 
 const mockObjects = () => {
-  global.localStorage = new LocalStorage('./local-storage-mock');
+  global.localStorage = new LocalStorage('./scratch');
   global.window = { localStorage: localStorage };
   global.alert = (message) => {
     console.log(message);
@@ -19,13 +19,13 @@ function initializeLocalStorage() {
   const tables = ["NoteTable", "ProjectTable", "TaskTable"];
   tables.forEach(table => {
     if (window.localStorage.getItem(table) === null) {
-      window.localStorage.setItem(table, JSON.stringify({}));
+      localStorage.setItem(table, JSON.stringify({}));
     }
   })
 
   // Create the ID container to check whether an ID is used
   if (window.localStorage.getItem("IDContainer") === null) {
-    window.localStorage.setItem("IDContainer", JSON.stringify([]));
+    localStorage.setItem("IDContainer", JSON.stringify([]));
   }
 }
 
