@@ -21,7 +21,7 @@ Meeting ended: [8:40 PM]
 - maybe bang out a few final changes
 
 ## Meeting Notes:
-Addy: Finalized project list. Removed search bar.
+Addy: Finalized project list. Removed search bar. Wrote tests. Various bug fixes. Reviewed/merged pull requests.
 
 Maxim: Finished edit and view note. Reviewed a lot of pull requests.
 
@@ -43,3 +43,9 @@ Jacqueline: Worked on the calendar. Made sure everything links to the correct pl
 
 Rocky: Made notes clickable. Pagination for library page.
 
+![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/c5305942-5302-4d0d-b2d8-056a56feafcb)
+![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/d82f1d8c-6db8-4e92-bcd7-745aa9d41394)
+![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/90826534-18cd-4004-bdda-8fd51b957602)
+![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/640db679-970e-48db-be04-9761fe46f43e)
+![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/961784ba-b43b-4548-aa32-8ec743ffda6d)
+![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/110417388/9a128d1f-73f9-468b-a3d7-cc725d3618ce)
