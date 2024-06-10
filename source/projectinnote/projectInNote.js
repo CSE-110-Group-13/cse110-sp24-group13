@@ -657,36 +657,38 @@ class linkedProject extends HTMLElement {
 
     // Load projects under currentProjects;
     for(const[key, value] of Object.entries(projectTable)) {
-      // Create currentProjects container
-      const currentProjects = document.createElement('div');
-      currentProjects.classList = "currentProjects";
-      form.appendChild(currentProjects);
-      // Get note_id and noe
-      let note_id = window.location.hash.substring(1);
-      let note = getNoteFromTable(note_id);
-      // Add title of the project
-      const projectElement = document.createElement('button');
-      projectElement.type = 'button';
-      projectElement.textContent = value.title;
-      projectElement.id = key;
-      // Add selected if the project is in the projectList
-      if(note.linkedProject === key) {
-        projectElement.classList.add('selected');
-      }
-      projectElement.addEventListener('click', () => {
-        const selectProject = document.querySelector('.selected');
-        if (selectProject) {
-          if (selectProject.id !== projectElement.id) {
-            selectProject.classList.remove('selected');
-            projectElement.classList.add('selected');
-          } else {
-            projectElement.classList.remove('selected');
-          }
-        } else {
+      if (window.location.hash) {
+        // Create currentProjects container
+        const currentProjects = document.createElement('div');
+        currentProjects.classList = "currentProjects";
+        form.appendChild(currentProjects);
+        // Get note_id and note
+        let note_id = window.location.hash.substring(1);
+        let note = getNoteFromTable(note_id);
+        // Add title of the project
+        const projectElement = document.createElement('button');
+        projectElement.type = 'button';
+        projectElement.textContent = value.title;
+        projectElement.id = key;
+        // Add selected if the project is in the projectList
+        if(note.linkedProject === key) {
           projectElement.classList.add('selected');
         }
-      });
-      currentProjects.appendChild(projectElement);
+        projectElement.addEventListener('click', () => {
+          const selectProject = document.querySelector('.selected');
+          if (selectProject) {
+            if (selectProject.id !== projectElement.id) {
+              selectProject.classList.remove('selected');
+              projectElement.classList.add('selected');
+            } else {
+              projectElement.classList.remove('selected');
+            }
+          } else {
+            projectElement.classList.add('selected');
+          }
+        });
+        currentProjects.appendChild(projectElement);
+      }
     }
   
     // Add confirm button
