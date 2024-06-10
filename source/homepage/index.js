@@ -195,13 +195,6 @@ function init(){
       recentsCount++;
     }
   }
-  
-  if(recentsCollapsed){
-  favoriteCounter = 3;
-  }
-  else{
-  favoriteCounter = 1;
-  }
 
   // no notes to display
   if (Object.keys(noteTable).length === 0) {
