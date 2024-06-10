@@ -177,16 +177,13 @@ describe('End to end tests of the app', () => {
     const libraryNotesCount = await page.$$eval('.note-wrapper .note', notes => notes.length);
     expect(libraryNotesCount).toBe(1);
 
-    // Favorite a note in the library page
     const favoriteButton = await page.$('.note-wrapper .note .favorite-button');
     await favoriteButton.click();
 
-    // Re-select the vertical navbar after navigation
     const verticalNavBarUpdated = await page.$('vertical-navbar');
     const shadowRootHandleNavBarUpdated = await verticalNavBarUpdated.getProperty('shadowRoot');
     const shadowRootNavBarUpdated = await shadowRootHandleNavBarUpdated.asElement();
 
-    // Navigate to the Favorites page and check for the favorited note
     const favoritesNavButton = await shadowRootNavBarUpdated.$('#anchorToFavorites');
     
     await Promise.all([
@@ -199,7 +196,6 @@ describe('End to end tests of the app', () => {
 
     const favoritedNotes = await page.$$eval('.note-wrapper .note h2 a', notes => notes.map(note => note.textContent.trim().split(' ').slice(0, 3).join(' ')));
     expect(favoritedNotes).toContain('Test');
-
   });
 
   
