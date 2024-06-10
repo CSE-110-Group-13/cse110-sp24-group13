@@ -2,8 +2,6 @@ import puppeteer from 'puppeteer';
 import { URL } from '../__global__.js';
 import { mockObjects, initializeLocalStorage } from "./__mocks__/index.js";
 
-jest.setTimeout(10000);
-
 describe('End to end tests of the app', () => {
   let browser;
   let page;
@@ -205,14 +203,7 @@ describe('End to end tests of the app', () => {
   
     const toggleButton = await shadowRoot.$('#toggleButton');
   
-    if (!toggleButton) {
-      console.error('Toggle button not found.');
-      return;
-    }
-  
     await toggleButton.click();
-
-    await page.waitForTimeout(500);
 
     const isNavBarClosed = await page.evaluate(() => {
       const navBarDiv = document.querySelector('vertical-navbar').shadowRoot.querySelector('#verticalNavbar');
