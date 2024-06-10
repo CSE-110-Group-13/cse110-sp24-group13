@@ -19,7 +19,7 @@ Meeting ended: [9:05 PM]
 - The stuff we reflect on can be stuff in the video.
 
 ### Challenges: 
-- we had one big github mishap that forced ust to revert commits. 
+- we had one big github mishap that forced us to revert commits. 
 - Keeping boards and members update. 
 - Merge conflicts.
 
