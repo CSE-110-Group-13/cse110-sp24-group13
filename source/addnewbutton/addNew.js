@@ -109,10 +109,10 @@ class AddNewBtn extends HTMLElement {
     buttonsContainer.id = "buttonsContainer";
     this.shadowRoot.appendChild(buttonsContainer);
 
-    const addNewSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addNewbutton/addNew.svg');
-    const backSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addNewbutton/back.svg');
-    const addNoteSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addNewbutton/addNote.svg');
-    const addProjSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addNewbutton/addProj.svg');
+    const addNewSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addnewbutton/addNew.svg');
+    const backSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addnewbutton/back.svg');
+    const addNoteSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addnewbutton/addNote.svg');
+    const addProjSvg = await fetchSvg('https://cse-110-group-13.github.io/cse110-sp24-group13/source/addnewbutton/addProj.svg');
 
     // Add New Container
     const addNewContainer = document.createElement("div");
