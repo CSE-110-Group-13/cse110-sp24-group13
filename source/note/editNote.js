@@ -39,6 +39,8 @@ function init() {
 	}
 	attachSaveButtonListener();
 	attachCancelButtonListener();
+	const projectContainer = document.querySelector('.projectContainer');
+	projectContainer.innerHTML = '<linked-project></linked-project>';
 }
 
 /**
