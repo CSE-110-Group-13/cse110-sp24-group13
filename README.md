@@ -10,7 +10,7 @@ Check out the project [HERE](https://cse-110-group-13.github.io/cse110-sp24-grou
 This app, **Commit**, is a CRUD web app to serve as a journal for a developer. Within the app, you can create notes and projects. Notes are meant to be short quick snippets about what was done, while projects are meant to hold details about your assignments like programming assignments. Notes have markdown capability. Each note can link a project, while each project can link numerous notes. Within projects, you can assign a deadline and create tasks for your assignments, which can be checked off for completion. There are multiple pages, including the homepage, favorites, library, calendar, and project list.
 
 ## How to Run our Project:
-It is automatically deployed via github pages. Everytime a commit is made or pull request merged, github automatically deploys the new version to the site. Again, the site is availabe [HERE](https://cse-110-group-13.github.io/cse110-sp24-group13/source/homepage/index.html)
+It is automatically deployed via GitHub pages. Everytime a commit is made or pull request merged, GitHub automatically deploys the new version to the site. Again, the site is available [HERE](https://cse-110-group-13.github.io/cse110-sp24-group13/source/homepage/index.html). Start by pressing the add new button to add a note or a project!
 
 ## Issue Workflow
 - Once you pick out an issue create a branch  
