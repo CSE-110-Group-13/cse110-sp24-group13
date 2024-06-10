@@ -3,7 +3,7 @@ import {
 } from "../backend/NoteTable.js";
 
 import {
-  getProjectTableFromStorage, getProjectFromTable,
+  getProjectFromTable,
 } from "../backend/ProjectTable.js"
 
 const filteredTags = [];

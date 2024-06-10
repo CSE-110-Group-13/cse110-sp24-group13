@@ -3,7 +3,7 @@ import {
 } from "../backend/NoteTable.js";
 
 import {
-  getProjectTableFromStorage, getProjectFromTable,
+  getProjectFromTable,
 
 }from "../backend/ProjectTable.js"
 
@@ -12,7 +12,6 @@ window.addEventListener("DOMContentLoaded", init);
 
 let recentsCollapsed = false; 
 let recentCounter = 4;
-let favoriteCounter = 1;
 
 /**
  * Creates HTML element based on the note object and returns it.
@@ -195,13 +194,6 @@ function init(){
       recentContainer.appendChild(noteElement);
       recentsCount++;
     }
-  }
-  
-  if(recentsCollapsed){
-  favoriteCounter = 3;
-  }
-  else{
-  favoriteCounter = 1;
   }
 
   // no notes to display

@@ -1,5 +1,4 @@
 html, body {
-  font-family: Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -41,6 +40,7 @@ form {
 }
 
 form input {
+  font-family: 'Varela Round', sans-serif;
   border: none;
   font-size: 35px;
   font-weight: bold;
@@ -148,6 +148,7 @@ main >.projectContainer {
 }
 
 .newTag input{
+  font-family: 'Varela Round', sans-serif;
   background-color: #E2E2E2;
   border: none;
   padding: 5 10 5 10;
@@ -165,6 +166,7 @@ main >.projectContainer {
 }
 
 .newTagView input{
+  font-family: 'Varela Round', sans-serif;
   background-color: #E2E2E2;
   border: none;
   padding: 5 10 5 10;
@@ -181,6 +183,7 @@ main >.projectContainer {
 }
 
 .projectTag input {
+  font-family: 'Varela Round', sans-serif;
   background-color: #E2E2E2;
   border: none;
   padding: 5 10 5 10;
@@ -196,7 +199,7 @@ main >.projectContainer {
 }
 
 .date input {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Varela Round', sans-serif;
   color: #7C7C7C;
   border: none;
   padding: 5 10 5 10;
