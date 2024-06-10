@@ -272,7 +272,7 @@ function filterByTag(tag) {
   */
 function getFormattedDate(dateString) {
   //catches exception where a date is left blank.
-  if(dateString == "") {
+  if (dateString == "") {
     return "";
   }
 
@@ -336,7 +336,7 @@ function toggleCollapse(event, type) {
   */
 function unparseMarkdown(text) {
   const regex = /[^a-zA-Z0-9.,?!]+/g;
-  const newText = text.replace(regex, ' ');
+  const newText = text.replace(regex, ' ').trim();
   return newText
 }
 
