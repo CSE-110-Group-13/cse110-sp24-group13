@@ -7,10 +7,9 @@ Our [Figma](https://www.figma.com/design/odeiJOVBUigypF5W5i9X9C/Dev-Journal?node
 
 ## Brief Description:  
 This should be a full-stack web app to serve as a journal for a web developer. More information about the project will be written as more instructions are given.
-Check out the project [here](https://cse-110-group-13.github.io/cse110-sp24-group13/source/homepage/index.html)
+Check out the project [HERE](https://cse-110-group-13.github.io/cse110-sp24-group13/source/homepage/index.html)
 
 ## Issue Workflow
-
 - Once you pick out an issue create a branch  
 - Assign yourself and the others working on it to the isssue on github boards, and then move it to _in progress_
 - Create a task list of small steps in the process for tracking purposes. You do that by editing the issue on github boards
