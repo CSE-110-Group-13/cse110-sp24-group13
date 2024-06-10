@@ -19,13 +19,15 @@ The following features were deemed desirable. Things very good for functionality
 2. Progress bar for tasks
 
 The following features were deemed beyond. Not at all necessary to functionality, but would be nice to have.
-1. Ability to search journals by keywords
-2. Ability to pin journals at the top
-3. Ability to categorize journal
-4. Ability to have LaTeX formatting
-5. Ability to set goals and mark as done
-6. Git integration
-7. Extension for search specific journals
+
+**Updated: 6/9/2024**
+1. ~~Ability to search journals by keywords~~ Search functionality not implemented
+3. ~~Ability to pin journals at the top~~ Not implemented
+4. Ability to categorize journal - Implemented through tags, able to select tags to only chose certain notes
+5. Ability to have LaTeX formatting - Implemented through a markdown editor
+6. Ability to set goals and mark as done - Implemented through tasks for projects
+7. ~~Git integration~~ Not implemented
+8. ~~Extension for search specific journals~~ Not implemented
 
 ## Consequences
 We know the order we'll be implementing features in.

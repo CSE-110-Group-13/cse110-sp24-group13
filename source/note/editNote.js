@@ -31,7 +31,7 @@ function init() {
 	if (!NOTE_ID) {
 		const newNote = createNewNoteObject("Default Text", new Date().toISOString().slice(0,10), new Date().toISOString().slice(0,10), "Default Title", "", "", []);
 		NOTE_ID = newNote.noteID;
-		window.location.href = './edit-note.html#' + NOTE_ID;
+		window.location.href = '../note/edit-note.html#' + NOTE_ID;
 	} else {
 		populateNote();
 		populateTag();
@@ -39,6 +39,8 @@ function init() {
 	}
 	attachSaveButtonListener();
 	attachCancelButtonListener();
+	const projectContainer = document.querySelector('.projectContainer');
+	projectContainer.innerHTML = '<linked-project></linked-project>';
 }
 
 /**
@@ -137,13 +139,38 @@ function populateTag() {
 	});
 }
 
+// Adding tags and populating the project tag
 document.addEventListener('DOMContentLoaded', () => {
 	const newTagForm = document.getElementById("newTag");
 	const newTagInput = document.getElementById("newTagInput");
+    // Add tag when enter is clicked
 	newTagForm.addEventListener('submit', (event) => {
 		event.preventDefault();
+        const tag = newTagInput.value.trim();
+		if (tag) {
+			newTagInput.value = '';
+			const tagsContainer = document.querySelector('.tagContainer');
+			const newTag = document.createElement('li');
+			newTag.textContent = tag;
+			// Deleting tag
+			let isClickedOnce = false;
+			newTag.addEventListener('click', () => {
+			    if (!isClickedOnce) {
+				    newTag.style.backgroundColor = "#FF000F";
+				    setTimeout(() => {
+					    newTag.style.backgroundColor = "";
+					    isClickedOnce = false;
+				    }, 2000);
+				    isClickedOnce = true;
+			    }
+			    else {  
+					newTag.remove();
+				}
+            });
+            tagsContainer.appendChild(newTag);
+        }
 	});
-	// Add tag
+	// Add tag when click away from the screen
 	document.addEventListener('click', (event) => {
 		const isClickInside = newTagForm.contains(event.target);
 
@@ -168,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					else {  
 							newTag.remove();
 					}
-        });
+                });
 				tagsContainer.appendChild(newTag);
 			}	
 		}

@@ -661,7 +661,7 @@ class linkedProject extends HTMLElement {
       const currentProjects = document.createElement('div');
       currentProjects.classList = "currentProjects";
       form.appendChild(currentProjects);
-      // Get note_id and noe
+      // Get note_id and note
       let note_id = window.location.hash.substring(1);
       let note = getNoteFromTable(note_id);
       // Add title of the project

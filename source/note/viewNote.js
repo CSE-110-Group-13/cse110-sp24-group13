@@ -79,12 +79,22 @@ function populateNote() {
   document.querySelector('.date input').value = note.date;
 }
 
+// Adding a tag and populating the project tag
 document.addEventListener('DOMContentLoaded', () => {
   const newTagForm = document.getElementById("newTag");
   const newTagInput = document.getElementById("newTagInput");
   
+  // Add tag if enter is clicked
   newTagForm.addEventListener('submit', (event) => {
     event.preventDefault();
+    const tag = newTagInput.value.trim();
+    if (tag) {
+        appendTagToNoteTags(NOTE_ID, tag);
+        newTagInput.value = '';
+        const tagsContainer = document.querySelector('.tagContainer');
+        tagsContainer.innerHTML = '';
+        populateTag();
+    } 
   });
 
   // Add Tag if click outside of form
