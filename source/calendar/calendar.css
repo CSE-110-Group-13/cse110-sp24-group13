@@ -37,9 +37,10 @@ a:active {
 /* Header */
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
+
 }
 
 header h1 {
@@ -256,4 +257,13 @@ close:focus {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 80%;
+}
+
+@media (max-width: 700px){
+    add-new-btn{
+        position: fixed;
+        top: 100%;
+        right: 3%;
+
+    }
 }
