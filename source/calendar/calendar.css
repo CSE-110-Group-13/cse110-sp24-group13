@@ -51,24 +51,38 @@ header h1 {
 .controls {
     display: flex;
     align-items: center;
+    justify-content: center;
+    min-width: 20%;
+    overflow: hidden;
 }
 
 .controls select, .controls input, .controls button {
-    margin: 0 1rem;
+    color: #828282;
+    margin: 1%;
     padding: 0.5rem;
     font-size: 1rem;
 }
 
 .controls select {
-    width: 10rem;
+    width: 80%;
+    min-width: fit-content;
+    max-width: 10rem;
+    border: 1px solid #E0E0E0;
+    border-radius: 0.8rem 0.25rem 0.25rem 0.8rem;
 }
 
 .controls input {
-    width: 5rem;
+    width: 20%;
+    min-width: fit-content;
+    max-width: 5rem;
+    border: 1px solid #E0E0E0;
+    border-radius: 0.25rem 0.8rem 0.8rem 0.25rem;
 }
 
 .controls button {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
+    border: 0px;
+    background-color: white;
 }
 
 /* Search Bar */
