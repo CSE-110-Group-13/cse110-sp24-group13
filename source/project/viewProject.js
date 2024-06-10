@@ -45,7 +45,7 @@ function init() {
   PROJECT_ID = window.location.hash.substring(1);
   if (!PROJECT_ID) {
     alert("No project exists here");
-    window.location.href = "../projectlist/projectlist.html";
+    window.location.href = "../projectlist/projectList.html";
   }
   populateProject();
   populateOptionsLinkNotes();
@@ -369,7 +369,7 @@ function populateLinkedNotes(linkedNotes, elementLinkedNotes) {
  */
 function editProject() {
   console.log("Edit Clicked");
-  window.location.href = "./edit-project.html#" + PROJECT_ID;
+  window.location.href = "./editProject.html#" + PROJECT_ID;
 }
 
 /**

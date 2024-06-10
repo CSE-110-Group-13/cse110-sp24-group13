@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	else {
 		const project = getProjectFromTable(note.linkedProject);
 		linkProjectElement.textContent = project.title;
-		linkProjectElement.href = "../project/view-project.html" + "#" + note.linkedProject;
+		linkProjectElement.href = "../project/viewProject.html" + "#" + note.linkedProject;
 		// get priority
 		const priority = document.getElementById("priority");
 		if (project.priority === "high") {

@@ -75,7 +75,7 @@ function createProjectTable() {
     const title = document.createElement("a");
     title.textContent = value.title;
     title.className = "project-title";
-    title.href = "../project/view-project.html" + "#" + value.projectID;
+    title.href = "../project/viewProject.html" + "#" + value.projectID;
     newProject.appendChild(title);
     
     let percentofTasksComplete = 100;

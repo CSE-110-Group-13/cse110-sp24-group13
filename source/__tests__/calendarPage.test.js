@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { URL } from '../__global__.js';
+import { URL } from '../global.js';
 import { mockObjects, initializeLocalStorage } from "./__mocks__/index.js";
 
 describe('Tests for calendar page', () => {

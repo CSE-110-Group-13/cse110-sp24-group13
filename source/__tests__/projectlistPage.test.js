@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { URL } from '../__global__.js';
+import { URL } from '../global.js';
 import { mockObjects, initializeLocalStorage } from "./__mocks__/index.js";
 
 describe('Tests for projectlist page', () => {
@@ -50,7 +50,7 @@ describe('Tests for projectlist page', () => {
       childButtons[2].click(),  // Click the first child button
     ]);
 
-    expect(await page.url()).toBe(URL + '/project/edit-project.html');
+    expect(await page.url()).toBe(URL + '/project/editProject.html');
   });
 
   it('Return back to project list', async () => {
@@ -63,7 +63,7 @@ describe('Tests for projectlist page', () => {
       projectListNavButton.click(),  // Click the first child button
     ]);
 
-    expect(await page.url()).toBe(URL + '/projectlist/projectlist.html');
+    expect(await page.url()).toBe(URL + '/projectlist/projectList.html');
   });
 
   it('Project created successfully', async () => {

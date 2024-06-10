@@ -471,7 +471,7 @@ function saveProject() {
   modifyProjectDescription(PROJECT_ID, projectDescription);
   modifyProjectDeadline(PROJECT_ID, projectDeadline);
   setTimeout(() => {
-    window.location.href = "./view-project.html#" + PROJECT_ID;
+    window.location.href = "./viewProject.html#" + PROJECT_ID;
   }, 500);
 }
 
@@ -480,7 +480,7 @@ function saveProject() {
  */
 function cancelEdit() {
   if (!PROJECT_ID) {
-    window.location.href = "../projectlist/projectlist.html";
+    window.location.href = "../projectlist/projectList.html";
   } else {
     if (NEW_PROJECT) {
       deleteProjectFromTable(PROJECT_ID);

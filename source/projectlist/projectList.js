@@ -65,7 +65,7 @@ function createProjects() {
 
     const title = projectContainer.querySelector('.title');
     title.textContent = value.title;
-    title.href = "../project/view-project.html" + "#" + value.projectID;
+    title.href = "../project/viewProject.html" + "#" + value.projectID;
 
     const labelForProgressBar = document.createElement('label');
     labelForProgressBar.setAttribute('for', 'progressBar');

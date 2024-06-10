@@ -118,7 +118,7 @@ class deleteButton extends HTMLElement {
 							});
 						}
 						deleteProjectFromTable(projectID);
-						window.location.href = "../projectlist/projectlist.html";
+						window.location.href = "../projectlist/projectList.html";
 					} else {
 						alert(`ProjectID: ${projectID} does not exist to delete in the table`);
 					}

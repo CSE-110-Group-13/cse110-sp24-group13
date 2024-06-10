@@ -172,7 +172,7 @@ function createNoteElement(noteObject){
 
     const projectElement = document.createElement('span');
     const linkProjectElement = document.createElement('a');
-    linkProjectElement.href="../project/view-project.html" + "#" + noteObject.linkedProject;
+    linkProjectElement.href="../project/viewProject.html" + "#" + noteObject.linkedProject;
 
     const project = getProjectFromTable(noteObject.linkedProject)
     linkProjectElement.textContent = project.title; 

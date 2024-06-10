@@ -228,7 +228,7 @@ class linkedProject extends HTMLElement {
 
     // Add hrefs to projectView 
     let projectViewLink = document.querySelector('.projectHeader a');
-    projectViewLink.href = "../project/view-project.html" + "#" + projectID;
+    projectViewLink.href = "../project/viewProject.html" + "#" + projectID;
 
     // Add priority
     let priority = document.querySelector('.priorityDot');

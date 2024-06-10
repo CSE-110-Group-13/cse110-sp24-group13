@@ -4,7 +4,7 @@
 
 // Unit Tests for functions that have a return and aren't reliant on the DOM 
 // aside from the backend tests under __tests__/backend
-import {dateToString} from '../projectlist/projectlist.js';
+import {dateToString} from '../projectlist/projectList.js';
 
 // Home/Favorites/Library single functions
 function getFormattedDate(dateString) {

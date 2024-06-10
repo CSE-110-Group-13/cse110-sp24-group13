@@ -211,7 +211,7 @@ function addNotesAndProjectsToCalendar() {
 		if (dayElement) {
 			const projectElement = document.createElement('a');
 			projectElement.className = "task";
-			projectElement.href = "../project/view-project.html" + "#" + value.projectID;
+			projectElement.href = "../project/viewProject.html" + "#" + value.projectID;
 
 			const icon = document.createElement('div');
 			icon.className = 'task-icon';
