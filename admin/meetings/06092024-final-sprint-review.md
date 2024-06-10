@@ -1,9 +1,9 @@
-# Sprint Retrospective for Sprint starting 5/26
+# Sprint Review for Sprint starting 5/26
 
 ## Date and Location
 [6/9 at 8 PM, Discord]
-Meeting began: [8 PM]
-Meeting ended: [ PM]
+Meeting began: [8:00 PM]
+Meeting ended: [8:40 PM]
 
 ## Attendees:
 - Alessio
@@ -42,6 +42,4 @@ Salnav: Backend for viewnote and edit note. Edited notes to show things correctl
 Jacqueline: Worked on the calendar. Made sure everything links to the correct place. Put it in relative units. Made sure time is working correctly for calendar.
 
 Rocky: Made notes clickable. Pagination for library page.
-
-![image](https://github.com/CSE-110-Group-13/cse110-sp24-group13/assets/100500846/8f899596-2ba8-46ca-9541-06c6148d5bf0)
 
