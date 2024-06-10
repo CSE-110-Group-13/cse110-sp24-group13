@@ -1,5 +1,4 @@
 html body {
-  font-family: Helvetica, Arial, sans-serif;
   font-size: 2vh;
   padding: 0;
 }
@@ -87,11 +86,11 @@ p {
 }
 
 .container textarea {
-  margin: -1% 0 0 0;
+  margin: -0.5% 0 0 0;
   padding: 10px;
   width: 100%;
   font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Varela Round', sans-serif;
 
   border: 1px solid #00000017;
   border-radius: 5px;
@@ -103,10 +102,11 @@ p {
   box-shadow: none;
   background-color: #00000003;
 
-  resize: none; /*remove the resize handle on the bottom right*/
+  resize: vertical;
 }
 
 #projectTitle {
+  font-family: 'Varela Round', sans-serif;
   margin-right: auto;
   padding-left: 1vw;
   font-size: calc(1.5vw + 1.5vh);
@@ -229,11 +229,11 @@ select {
 }
 
 input[type="text"] {
+  font-family: 'Varela Round', sans-serif;
   width: 95%;
   border: 1px solid #00000017;
   border-radius: 5px;
   overflow: auto;
-
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
