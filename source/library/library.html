@@ -21,9 +21,8 @@
 <body>
   <vertical-navbar currentPage="anchorToLibrary"></vertical-navbar>
   <add-new-btn></add-new-btn> <!-- Add new button - Top right side of site -->
-  <search-bar></search-bar>  <!-- Search bar - Top of site -->
 
-  <div class = "content"> <!-- main content -->
+  <div id="restOfScreen"> <!-- main content -->
     <div class = "sort"> <!-- Sort by dropdown - Top left side of site -->
       <label for="sort-select">Sort by:</label>
       <select id = 'sort-select'>
@@ -34,7 +33,7 @@
       </select>
     </div>
     <div id = "page-buttons"></div>
-    <div id = "entries-holder" class = "notes">
+    <div id = "entries-holder" class = "recents-content">
     <!-- Notes will be dynamically loaded here -->
     </div>
   </div>
