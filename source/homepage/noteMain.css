@@ -1,10 +1,10 @@
 .note {
   background-color: #F8F8F8;
-  padding-right: 1.25vh;  /* 10px converted to vh */
-  padding-left: 2.5vh;    /* 20px converted to vh */
-  padding-bottom: 1.25vh; /* 10px converted to vh */
-  margin-bottom: 1.25vh;  /* 10px converted to vh */
-  border-radius: 2.5vh;   /* 20px converted to vh */
+  padding-right: 1.25vh;  
+  padding-left: 2.5vh;    
+  padding-bottom: 1.25vh; 
+  margin-bottom: 1.25vh; 
+  border-radius: 2.5vh;  
   display: flex;          /* Use flexbox for horizontal alignment */
   flex-direction: column;
   justify-content: flex-start; 
@@ -53,8 +53,8 @@ header h2 > a {
   background-color: #e2e2e2;
   padding: .6vh 1vw .6vh 1vw;
   margin-right: .5vw;
-  border-radius: 0.625vh; /* 5px converted to vh */
-  height: 2.5vh;  /* 20px converted to vh */
+  border-radius: 0.625vh;
+  height: 2.5vh; 
   color: #000;
   transition: 0.5s;
   overflow: hidden; /* Ensures text does not overflow */
@@ -94,10 +94,10 @@ header h2 > a {
 }
 
 #vertical-line {
-  border-left: 0.25vh solid #000; /* 2px converted to vh */
+  border-left: 0.25vh solid #000;
   height: 3.125vh;   
-  margin-right: 2vh; /* 9px converted to vh */
-  margin-left: 1.5vh;  /* 9px converted to vh */
+  margin-right: 2vh; 
+  margin-left: 1.5vh; 
 }
 
 .content-container {
@@ -125,7 +125,7 @@ header h2 > a {
   margin-top: 1vh;
   margin-right: 4%;
   max-width: 70%;
-  font-size: 1.5vh;    /* 12px converted to vh */
+  font-size: 1.5vh;   
   color: #000;
   overflow: hidden;             /* Hide any overflow */
   white-space: normal;          /* Allow text to wrap */

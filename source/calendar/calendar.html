@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Commit</title>
   <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <link rel="stylesheet" href="../global.css">
   <link rel="stylesheet" href="calendar.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
@@ -12,6 +13,7 @@
 </head>
 <body>
   <vertical-navbar currentPage="anchorToCalendar"></vertical-navbar>
+  <add-new-btn></add-new-btn>
   <div class="container">
     <header>
       <div class="controls">
@@ -20,7 +22,7 @@
         <input type="number" id="year-input" min="1900" max="2100">
         <button id="next-month">&gt;</button>
       </div>
-      <add-new-btn></add-new-btn>
+      
     </header>
     <div id="calendar">
       <div class="week-days">
