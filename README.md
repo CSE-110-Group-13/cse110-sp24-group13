@@ -3,6 +3,8 @@
 
 Our [Figma](https://www.figma.com/design/odeiJOVBUigypF5W5i9X9C/Dev-Journal?node-id=112%3A82&t=OtFmd9BN0BnRaXgy-1) 
 
+Our [final project video (private)](https://www.youtube.com/watch?v=CMLF1YE8BXo)
+
 # _Commit_, a developer journal:
 Check out the project [HERE](https://cse-110-group-13.github.io/cse110-sp24-group13/source/homepage/index.html)
 
